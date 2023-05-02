@@ -22,7 +22,6 @@ export default function Test() {
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 
-  const infoPane = document.getElementById('panel');
 
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -41,8 +40,6 @@ export default function Test() {
     if (event.target.innerText !== "" && event.target.innerText !== "Specialization") {
       setSpeciality(event.target.innerText);
       setMapWidth('57vw');
-    } else {
-      launchMapMultiMarker(selectedCountry, selectedCity, speciality)
     }
   };
 
@@ -52,8 +49,8 @@ export default function Test() {
       if (event.key === "Enter") {
         setClinicSelected(true);
         event.preventDefault();
-        let urlForMap = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinic.value}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
-        fetch(urlForMap)
+        let url = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinic.value}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+        fetch(url)
           .then((nameOfClinicFetchResponse) => {
             return nameOfClinicFetchResponse.json();
           }).then((nameOfClinicFetchResponseJson) => {

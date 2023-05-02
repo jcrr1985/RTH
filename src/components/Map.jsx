@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const initMap = (mapOptions) => {
-  console.log('mapOptions', mapOptions)
   const { lat, lng } = mapOptions;
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat, lng },

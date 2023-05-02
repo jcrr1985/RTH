@@ -22,8 +22,6 @@ export default function Test() {
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 
-  const infoPane = document.getElementById('panel');
-
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
   const { register, handleSubmit } = useForm();
@@ -41,8 +39,6 @@ export default function Test() {
     if (event.target.innerText !== "" && event.target.innerText !== "Specialization") {
       setSpeciality(event.target.innerText);
       setMapWidth('57vw');
-    } else {
-      launchMapMultiMarker(selectedCountry, selectedCity, speciality)
     }
   };
 

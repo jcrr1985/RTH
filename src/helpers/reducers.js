@@ -1,6 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs'
 
-
 export function reducer_requestForm(state, action) {
   switch (action.type) {
     case 'setCountries':
@@ -10,7 +9,6 @@ export function reducer_requestForm(state, action) {
     case 'setDate':
       return { ...state, date: action.payload }
     case 'setCiudades':
-      console.log('action.payload', action.payload)
       return { ...state, ciudades: [...action.payload] }
     case 'setSelectedCountry':
       return { ...state, selectedCountry: action.payload }
