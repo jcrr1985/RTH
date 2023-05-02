@@ -1,0 +1,97 @@
+/*  scss*/
+body {
+  background: #fff;
+}
+.globe1 {
+//  background: #fff;
+  border: 1px solid #8bc34a;
+  border-radius: 50%;
+  height: 140px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  z-index: 2;
+
+  .img1 {
+    animation: rotation 8s linear 0s infinite;
+
+    path {
+      stroke: #080;
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: translateX(0);
+  }
+  from {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rotation2 {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.line-wrap {
+  color: #000;
+  font-family: 'Fira Sans Extra Condensed';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -12px 0 0 -100px;
+  font: 20px arial;
+  width: 200px;
+  overflow: hidden;
+
+  .line {
+    white-space: nowrap;
+    line-height: 20px;
+    animation: rotation2 4s linear 0s infinite;
+  }
+}
+
+.globe2{
+  //background: #fff;
+  border-radius: 50%;
+  height: 140px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 30%;
+  transform: translate(50%, 50%);
+  scale: -1 1;
+  width: 140px;
+/* cambiando svg por imag */
+  .img2 {
+    animation: rotation 8s linear 0s infinite;
+
+    path {
+      stroke: #ccc;
+    }
+  }
+}
+
+@keyframes rotation-2 {
+  from {
+    transform: translateX(50%);
+  }
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes rotation2-2 {
+  to {
+    transform: translateX(150%);
+  }
+}
+
+.front-side, .back-side{  position: absolute; }
+// .img2{ position: absolute; }

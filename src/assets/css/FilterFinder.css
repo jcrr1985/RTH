@@ -1,0 +1,44 @@
+.settings-image{
+    position: absolute;
+        width: 30px;
+        height: 30px;
+        left: 557px;
+        top: 152px;
+}
+.finding-filter-wrapper{
+      position: absolute;
+      width: 315px;
+      background: #F0EFEE;
+      border-radius: 14px;
+}
+.finding-filter-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+}
+.left-section{
+    width: 230px;
+    display: flex;
+    justify-content: center;
+}
+.label-custom-checkbox{
+    font-family: 'Fira Sans Extra Condensed';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+}
+.right-section{
+    position: relative;
+    width: 20px;
+    height: 25px;
+   /* border: solid 1px #000; */
+    margin-right: 15px;
+}
+.input-custom-checkbox{
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    visibility: visible;
+}

@@ -1,0 +1,38 @@
+/** @jsxImportSource @emotion/react */
+// import { css } from "@emotion/react"
+import 'normalize.css'
+import './App.css'
+import { RequestForm } from './components/RequestForm'
+import { Onboarding } from './components/Onboarding'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import { useHistory, Link } from 'react-router-dom'
+import ErrorPage from './components/ErrorPage'
+import RegisterForm from './components/RegisterForm'
+import LoginForm from './components/LoginForm'
+import Test from './components/Test'
+import AboutUs from './components/AboutUs'
+import FilterFinding from './components/FilterFinding'
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme';
+
+function App() {
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Onboarding />}></Route>
+          <Route path='/RequestForm' element={<Test />}></Route>
+          <Route path='/FilterFinding' element={<FilterFinding />}></Route>
+          <Route path='/RegisterForm' element={<RegisterForm />}></Route>
+          <Route path='/LoginForm' element={<LoginForm />}></Route>
+          <Route path='/Test' element={<Test />}></Route>
+          <Route path='/AboutUs' element={<AboutUs />}></Route>
+          <Route path='*' element={<ErrorPage />}></Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
+}
+
+export default App

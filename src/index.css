@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed&display=swap');
+
+*{
+  font-family: "Fira Sans Extra Condensed" Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  font-family: "Fira Sans Extra Condensed" Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+
+}
+
+label{
+  color: rgba(0, 0, 0, 0.87)!important;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+#container-map > div {
+  /* tus estilos CSS */
+  z-index: 10;
+}

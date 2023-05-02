@@ -1,0 +1,394 @@
+{
+  "cyprus": {
+    "name": "cyprus",
+    "code": "CY",
+    "cities": [
+      {
+        "Nikokapria": {
+          "clinics": [
+            {
+              "id":1,
+              "name": "Nikokapria Health Center",
+              "address": "",
+              "distance": 10, "phone":"111222333", "rating":2.2,"openNow":false, "price": 100, "englishTranslator":true, "JCI":false, "photos": ["clinic_Chipre1.jpeg"], "braile":true,
+              "email": "",
+              "treatments": [
+                "Psychiatry",
+                "Radiation oncology",
+                "Surgery",
+                "Urology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Nicosia": {
+          "clinics": [
+            {
+              "id":2,
+              "name": "Valessia Polyclinic",
+              "address": "",
+              "distance": 7, "phone":"111222333", "rating":3,"openNow":false, "price": 1200, "englishTranslator":true, "JCI":true, "photos": ["clinic_Chipre2.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":3,
+              "name": "Santa Marina Protaras Medical Center",
+              "address": "",
+              "distance":8, "phone":"222222333", "rating":1.3,"openNow":false, "price": 1000, "englishTranslator":false, "JCI":true, "photos": ["clinic_Chipre3.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":4,
+              "name": "Agia Styliani Clinic",
+              "address": "",
+              "distance":2, "phone":"777722333", "rating":4,"openNow":false, "price": 500, "englishTranslator":true, "JCI":false, "photos": ["clinic_Chipre4.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":5,
+              "name": "Iasion Dental Center",
+              "address": "",
+              "distance":3, "phone":"444222333", "rating":2.7,"openNow":false, "price": 200, "englishTranslator":false, "JCI":false, "photos": ["clinic_Chipre5.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Paphos": {
+          "clinics": [
+            {
+              "id":6,
+              "name": "Evangelismos Kings Medical Center",
+              "address": "",
+              "distance":5, "phone":"234522333", "rating":5,"openNow":false, "price": 100, "englishTranslator":true, "JCI":true, "photos": ["clinic_Chipre6.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":7,
+              "name": "Paphos Elpis Medical Centre",
+              "address": "",
+              "distance":2, "phone":"343222333", "rating":2,"openNow":false, "price": 130, "englishTranslator":true, "JCI":false, "photos": ["clinic_Chipre7.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":8,
+              "name": "Paphos Private Hospital",
+              "address": "",
+              "distance": 11, "phone":"3453453345", "rating":5,"openNow":false,   "price": 1930,  "englishTranslator":false, "JCI":true, "photos": ["clinic_Chipre8.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Famagusta": {
+          "clinics": [
+            {
+              "id":9,
+              "name": "Famagusta Life Hospital",
+              "address": "",
+              "distance":23, "phone":"334534553", "rating":2.3,"openNow":false, "price": 1030, "englishTranslator":false, "JCI":false, "photos": ["clinic_Chipre9.jpeg"],
+              "email": "",
+              "treatments": [
+                "Anesthesiology",
+                "Dermatology",
+                "Surgery",
+                "Emergency medicine"
+              ]
+            },
+            {
+              "id":10,
+              "name": "Famagusta Medical MR. hospital",
+              "address": "",
+              "distance": 38, "phone":"223432445", "rating":4.7,"openNow":false, "price": 1040, "englishTranslator":true, "JCI":true, "photos": ["clinic_Chipre10.jpeg"],
+              "email": "",
+              "treatments": [
+                "Anesthesiology",
+                "Dermatology",
+                "Surgery",
+                "Emergency medicine"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "russia": {
+    "name": "Russia",
+    "code": "RU",
+    "cities": [
+      {
+        "Moscow": {
+          "clinics": [
+            {
+              "id":11,
+              "name": "Клиника H-Clinic",
+              "address": "Moscow street 1",
+              "distance": 26, "phone":"565575464", "rating":2.3,"openNow":false, "price": 10000,  "englishTranslator":false, "JCI":true, "photos": ["clinic_Rusia1.jpeg"],
+              "email": "",
+              "treatments": [
+                "Psychiatry",
+                "Radiation oncology",
+                "Surgery",
+                "Urology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":12,
+              "name": "GMS Clinic Смоленская",
+              "address": "Moscow street 2",
+              "distance": 13, "phone":"9934535", "rating":4.3,"openNow":false,  "price": 9000, "englishTranslator":true, "JCI":false, "photos": ["clinic_Rusia2.jpeg"],
+              "email": "",
+              "treatments": [
+                "Psychiatry",
+                "Radiation oncology",
+                "Surgery",
+                "Urology",
+                "Pediatrics"
+              ]
+            },
+            {
+              "id":13,
+              "name": "Ekateriny Faustovoy Clinic",
+              "address": "Moscow street 23",
+              "distance":4, "phone":"22456454", "rating":1.9,"openNow":false,   "price": 8000, "englishTranslator":true, "JCI":false, "photos": ["clinic_Rusia3.jpeg"],
+              "email": "",
+              "treatments": [
+                "Psychiatry",
+                "Radiation oncology",
+                "Surgery",
+                "Urology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Saint Petersburg": {
+          "clinics": [
+            {
+              "id":14,
+              "name": "Clinic of Saint Petersburg",
+              "address": "Saint Petersburg street 12",
+              "distance": 4, "phone":"324244344", "rating":1,"openNow":false, "price": 7000, "englishTranslator":false, "JCI":false, "photos": ["clinic_Rusia4.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "Novosibirsk": {
+          "clinics": [
+            {
+              "id":15,
+              "name": "Clinic of Novosibirsk",
+              "address": "Novosibirsk street 34",
+              "distance":4, "phone":"2342424234", "rating":2.4,"openNow":false, "price": 16000, "englishTranslator":true, "JCI":false, "photos": ["clinic_Rusia5.jpeg"],
+              "email": "",
+              "treatments": [
+                "Family medicine",
+                "Internal medicine",
+                "Medical genetics",
+                "Neurology",
+                "Nuclear medicine"
+              ]
+            },
+            {
+              "id":16,
+              "name": "Hospital of Novosibirsk",
+              "address": "Novosibirsk street 123",
+              "distance": 1, "phone":"345675665", "rating":5,"openNow":false, "price": 17000, "englishTranslator":false, "JCI":true, "photos": ["clinic_Rusia6.jpeg"],
+              "email": "",
+              "treatments": [
+                "Family medicine",
+                "Internal medicine",
+                "Medical genetics",
+                "Neurology",
+                "Nuclear medicine"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Yekaterinburg": {
+          "clinics": [
+            {
+              "id":17,
+              "name": "Medical Center Healthy Family",
+              "address": "Yekaterinburg street 3",
+              "distance": 1, "phone":"343453534", "rating":4,"openNow":false, "price": 18000, "englishTranslator":false, "JCI":false, "photos": ["clinic_Rusia7.jpeg"],
+              "email": "",
+              "treatments": [
+                "Anesthesiology",
+                "Dermatology",
+                "Surgery",
+                "Emergency medicine"
+              ]
+            },
+            {
+              "id":18,
+              "name": "SMT-Clinic",
+              "address": "Yekaterinburg street 23",
+              "distance": 11, "phone":"675456754", "rating":3.6,"openNow":false,  "price": 11000, "englishTranslator":true, "JCI":false, "photos": ["clinic_Rusia8.jpeg"],
+              "email": "",
+              "treatments": [
+                "Anesthesiology",
+                "Dermatology",
+                "Surgery",
+                "Emergency medicine"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "chile": {
+    "name": "Chile",
+    "code": "CL",
+    "cities": [
+      {
+        "Santiago": {
+          "clinics": [
+            {
+              "id":19,
+              "name": "Clinic of Santiago",
+              "address": "Santiago street 1",
+              "distance": 4, "phone":"452324444", "rating":2.3,"openNow":false, "price": 10000, "englishTranslator":true , "JCI":false, "photos": ["clinic_Chile1.jpeg"],
+              "email": "",
+              "treatments": [
+                "Psychiatry",
+                "Radiation oncology",
+                "Surgery",
+                "Urology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Talca": {
+          "clinics": [
+            {
+              "id":20,
+              "name": "Clinic of Talca",
+              "address": "Talca street 1",
+              "distance": 6, "phone":"232354646", "rating":1.4,"openNow":false, "price": 12000, "englishTranslator":true, "JCI":true, "photos": ["clinic_Chile2.jpeg"],
+              "email": "",
+              "treatments": [
+                "Obstetrics and gynecology",
+                "Ophthalmology",
+                "Pathology",
+                "Pediatrics"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Viña de Mar": {
+          "clinics": [
+            {
+              "id":21,
+              "name": "Clinic of Viña del mar",
+              "address": "Viña del mar street 1",
+              "distance": 1, "phone":"234333333", "rating":2.3,"openNow":false, "price": 3000, "englishTranslator":true, "JCI":true, "photos": ["clinic_Chile3.jpeg"],
+              "email": "",
+              "treatments": [
+                "Family medicine",
+                "Internal medicine",
+                "Medical genetics",
+                "Neurology",
+                "Nuclear medicine"
+              ]
+            }
+          ]
+        }
+      },
+
+      {
+        "Concepción": {
+          "clinics": [
+            {
+              "id":22,
+              "name": "Clinic of Concepción",
+              "address": "Concepción street 1",
+              "distance":3, "phone":"555333777", "rating":4.3,"openNow":false, "price": 5000, "englishTranslator":true, "JCI":false, "photos": ["clinic_Chile4.jpeg"],
+              "email": "",
+              "treatments": [
+                "Anesthesiology",
+                "Dermatology",
+                "Surgery",
+                "Emergency medicine"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
