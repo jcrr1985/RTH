@@ -59,12 +59,7 @@
 
 .button{
   border: 0;
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 1,831501832vw;
-  line-height: 4,109589041vh;
-
   display: flex;
   align-items: center;
   text-align: center;
@@ -76,21 +71,17 @@
 
 
 .button-Для-1{
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0px;
-
-
   width: 9.597069597vw;
   height: 6.849315068vh;
 
 }
 
 .button-Для-2{
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -104,34 +95,18 @@
   flex-grow: 0;
 }
 
-    /*  HEADER PART2: LOGO-APP AND INFO-TEXT  */
-
-
-  /*  RTH-wrapper  */
-  .RHT-wrapper{
-      display: flex;
-      justify-content: space-between;
-      margin-top: 3.698630137vh;
-
-   }
-     /*    Run To Health app-icon   */
 
 .app-icon{
-  margin-left: 3.663003663vw;
-  display: flex;
+   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-content: flex-start;
 }
 
 p.app-icon{
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 5.128205128vw;
   color: #333;
   transform: rotate(-6.23deg);
-
 }
 
 .RTH-info{
@@ -145,20 +120,12 @@ p.header-info{
   margin: 0;
   width: 39.56043956vw;
   height: 16.438356164vh;
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 1.831501832vw;
-  line-height: 4.109589041vh;
   color: #333;
 }
 
 .link{
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 1.831501832vw;
-  line-height: 5.479452055vh;
   color: #3A89F4;
 }
 
@@ -168,8 +135,6 @@ p.header-info{
   left: 1150px;
   transform: scale(2);
 }
-
- /*  GLOBE IMAGE  */
 
 .globe{
   margin-top: 16.02739726vh;
@@ -207,7 +172,6 @@ p.header-info{
   align-items: center;
 }
 
-/* temporal, eliminar estilo de abajo */
 .css-whebh7-MuiInputBase-root-MuiInput-root:after, .css-whebh7-MuiInputBase-root-MuiInput-root:before{
   display: none;
 
@@ -247,29 +211,18 @@ p.header-info{
   width: 11.648351648vw;
   height: 6.849315068vh;
   background: #3A89F4;
-  /* кнопки */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 1.831501832vw;
-  line-height: 4.109589041vh;
   color: #333
 }
 
 .h2{
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
   line-height: 35px;
 }
 
 .T4{
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 32px;
 }
@@ -303,11 +256,7 @@ p.header-info{
   color: #000;
   border-radius: 1.026392962vw;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Fira Sans Extra Condensed';
-  font-style: normal;
-  font-weight: 400;
   font-size: 2.19941349vw;
-  line-height: 2.565982405vw;
   width: 33%;
 }
 
@@ -396,7 +345,6 @@ fieldset{
 .slider_bar{
   height: 0.73313783vw;
   margin-bottom: 10px;
-
 }
 
 .search-and-results-container{
@@ -435,4 +383,17 @@ fieldset{
 
 .icons_wrapper div span.int-acc{
   display: block;
+}
+
+.onboarding-wrapper{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-around;
+  gap: 2vw;
+}
+
+#chartdiv{
+width: 50%;
+height: 100vh;
 }

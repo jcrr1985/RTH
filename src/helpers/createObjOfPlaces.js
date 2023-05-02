@@ -17,9 +17,7 @@ function createObjOfPlaces(places) {
       distance, phone, photos, placeId
     }];
 
-    clinicToDisplayObj = [...clinicToDisplayObj, {
-      lat, lng
-    }];
+    clinicToDisplayObj = [...clinicToDisplayObj, { lat, lng, name, address, rating, distance, phone, photos, id }];
   })
   return clinicToDisplayObj;
 }

@@ -15,9 +15,9 @@ export const Onboarding = () => {
     []);
 
   return (
-    <div style={{ display: 'flex', width: '100vw', height: '100vh', justifyContent: 'flex-start', alignItems: 'center', gap: '2vw' }}>
-      <Header info={true} />
-      <div className="" id='chartdiv' style={{ width: '50vw', height: '100vh', justifyContent: 'center', alignItems: ' center' }}></div>
+    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+      <Header />
+      <div className="" id='chartdiv' style={{ width: '50vw', height: '100vh' }}></div>
     </div>
   );
 
