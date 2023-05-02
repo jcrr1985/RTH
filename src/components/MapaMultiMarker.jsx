@@ -90,14 +90,10 @@ function centrarSinDatosConGeoLocation() {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
-
-    // Crear el mapa centrado en la ubicación del usuario
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
       center: userLatLng,
     });
-
-    // Agregar marcador en la ubicación del usuario
     const marker = new google.maps.Marker({
       position: userLatLng,
       map: map,
@@ -130,7 +126,7 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
     creadorDeMarcadores(places, map)
-  }, error => {ón
+  }, error => {
     centrarSinDatosConGeoLocation();
     console.error(error);
   });

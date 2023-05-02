@@ -14,11 +14,6 @@ import reviewHalfStar from '@/assets/images/svg/reviewHalfStar.png';
 import './../App.css'
 
 export function MediaCard({ name, phone, address, rating, openNow, key, photo }) {
-    console.log('photo', photo)
-
-
-    //*image={clinicImg} http://localhost:5173/
-    console.log(name, phone, address, rating, openNow, key, photo)
     let url_img = `src/assets/images/clinics/${photo}`;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
@@ -27,7 +22,6 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
             <img className="reviewFullStar" src={reviewFullStar} alt="reviews" css={{ marginBottom: '4px' }} width={25} />
         )
     })
-    //color="text.secondary"
     return (
         <Card sx={{
             width: '22.600732601vw',
@@ -61,13 +55,10 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
                         <Typography variant="body2" >
                             {rating}
                         </Typography>
-                        {(
-                            <>
-                                {fullStarArray}
-                                {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '4px' }} width={25} />}
-                            </>
-                        )}
-
+                        {(<>
+                            {fullStarArray}
+                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '4px' }} width={25} />}
+                        </>)}
                     </div>
                     <Typography variant="body2" color="text.secondary">
                         {openNow}
