@@ -37,7 +37,6 @@ function reducer(state, action) {
   }
 }
 
-
  export default function FilterBox(){
     const [state, dispatch] = useReducer(reducer, initialState);
     const filters = ['low price','high price','closest to me','soon','translator from English','JCI international accreditation'];
@@ -51,7 +50,6 @@ function reducer(state, action) {
         );
        dispatch({ type: `custom_checkbox_${position}` })
        setCheckedState(updatedCheckedState);
-        //const newFilterMode = filters.filter((_, index) => updatedCheckedState[index]);
        setFilterMode(event.target.value);
         const selectedValue = event.target.value;
        console.log( filterMode );
@@ -85,7 +83,6 @@ function reducer(state, action) {
                                         width: '300px',
                                         display: 'flex',
                                         justifyContent: 'center',
-                                        //marginLeft: '5px',
                                     }}>
                                         <label htmlFor={`custom_checkbox_${index}`}  className="label-custom_checkbox_"
                                                style={{

@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form"
 
 const DatePicker_requestForm = (props) => {
     const [date, setDate] = useState(null);
-
     const handleChange = (newDate) => {
         setDate(newDate);
     }
@@ -20,9 +19,7 @@ const DatePicker_requestForm = (props) => {
         {/* title={props.showTooltip} */}
             <div className="tooltip-shower">
                 <div className="tooltip not-specialities-dropdown">
-
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-
                         <MobileDatePicker
                             label="Date"
                             inputFormat="MM/DD/YYYY"
