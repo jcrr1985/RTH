@@ -7,12 +7,37 @@ let infoPanel = document.getElementById('panel');
 
 //funciones reutilizables
 
-function creadorDeMarcadores(places, map) {
+// Perform a Places Nearby Search Request: realizamos busqyeda de lugares asociados con especialidad
+function getNearbyPlaces(position) {
+  let request = {
+    location: position,
+    rankBy: google.maps.places.RankBy.DISTANCE,
+    keyword: spec,
+  };
+  //console.log(request.keyword)
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, nearbyCallback);
+
+}
+
+// Handle the results (up to 20) of the Nearby Search
+function nearbyCallback(results, status, testCoord) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    createMarkers(results, testCoord);
+
+  }
+}
+
+function creadorDeMarcadores(places, map, fillCardArray) { //AQUI ENVIE LA FUNCION RESCATADORA DE PLACES <-----------------------------
+  console.log('places', places)
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
 
     places.forEach((place) => {
+      console.log('place', place)
+
+      fillCardArray(places) // Y DENTRO DEL FOREACH LA LLAMO POR CADA MARCADOR <----------------> ESTA FUNCION ESTA DEFINIDA EN TEST.JS
       const marker = new window.google.maps.Marker({
         position: { lat: place.lat, lng: place.lng },
         map: map,
@@ -39,7 +64,7 @@ function creadorDeMarcadores(places, map) {
 }
 
 
-function fetching(url) {
+function fetching(url, fillCardArray) {
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -53,7 +78,8 @@ function fetching(url) {
           zoom: 10,
           center: data.results[0].geometry.location,
         });
-        creadorDeMarcadores(places, map);
+        creadorDeMarcadores(places, map, fillCardArray);
+        getNearbyPlaces(map.center)
 
       } else {
         console.error("No se encontraron resultados para la búsqueda especificada");
@@ -69,10 +95,13 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
   geocoder.geocode({ address: address }, (results, status) => {
     if (status === "OK") {
       const map = new window.google.maps.Map(document.getElementById("map"), {
-        zoom: pais && ciudad ? 10 : 8,
+        zoom: pais && ciudad ? 10 : (pais == "russia") ? 4 :
+          (pais == "cyprus") ? 10 :
+            (pais == "chile") ? 10 : 10
+        ,
         center: results[0].geometry.location,
       });
-
+      getNearbyPlaces(map.center)
     } else {
       console.error("No se ha podido encontrar la ciudad especificada");
     }
@@ -91,9 +120,10 @@ function centrarSinDatosConGeoLocation() {
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
+      zoom: 6,
       center: userLatLng,
     });
+    getNearbyPlaces(map.center)
     const marker = new google.maps.Marker({
       position: userLatLng,
       map: map,
@@ -126,6 +156,7 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
     creadorDeMarcadores(places, map)
+    getNearbyPlaces(map.center)
   }, error => {
     centrarSinDatosConGeoLocation();
     console.error(error);
@@ -209,7 +240,7 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad) {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  { // AQUI PASO POR PARAMETRO LA FUNCION RESCATA - PLACES
 
   // si pais no ciudad, no especialidad
 
@@ -240,7 +271,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad) {
     console.log('ciudad && ciudad.length > 0', ciudad && ciudad.length > 0, ciudad)
     console.log('si si si')
     const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
-    fetching(url)
+    fetching(url, fillCardArray)
   }
 
   //--------------------------------------------------------------

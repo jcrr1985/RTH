@@ -17,10 +17,17 @@ import { MediaCard } from "./MediaCard";
 import { MapaMultiMarker } from './MapaMultiMarker';
 import './../App.css'
 
+const funcionFueraDelComponente = (parametro) => {
+  console.log('parametro', parametro)
+
+}
+
 export default function Test() {
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/'
+
+  funcionFueraDelComponente('cualquier cosa random')
 
 
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -33,6 +40,20 @@ export default function Test() {
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
   const [clinicSelected, setClinicSelected] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
+
+  const [cardArray, setCardArray] = useState([]);
+
+  const fillCardArray = (cardArray) => {
+    setTimeout(() => {
+      const uniqueArray = cardArray.filter((obj, index, self) =>
+        index === self.findIndex((o) => o.id === obj.id && o.name === obj.name)
+      );
+
+      setCardArray([...uniqueArray])
+    }, 10);
+    console.log('uniqueArray', uniqueArray)
+  }
+
   const onSubmit = (data) => {
   };
 
@@ -119,12 +140,15 @@ export default function Test() {
     setCountries(countriesArray);
   }, []);
 
+  useEffect(() => {
+    console.log('cardArray!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', cardArray)
+  }, [cardArray]);
 
   useEffect(() => {
     setCityValue('');
     nameOfClinic.value = '';
     setMapWidth('100%');
-    MapaMultiMarker(selectedCountry, cityValue, speciality);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
 
     if (selectedCountry) {
       const countryData = data.paises.find((country) => country.name === selectedCountry);
@@ -137,12 +161,12 @@ export default function Test() {
     nameOfClinic.value = '';
     setMapWidth('100%');
     setClinicsToDisplay(null);
-    MapaMultiMarker(selectedCountry, cityValue, speciality);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
     setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
   }, [clinicsToDisplay]);
 
   return (
@@ -247,17 +271,17 @@ export default function Test() {
       <div className="search-and-results-container">
         <div className="results-and-map-wrapper">
           {<div className="clinic-cards-container">
-            {clinicsToDisplay && clinicsToDisplay.map((clinic) => {
+            {cardArray && cardArray.map((clinic) => {
+              console.log('cardArray!! :D', cardArray)
               return (
                 <MediaCard
                   name={clinic.name}
                   phone={clinic.distance}
                   address={clinic.address}
                   rating={clinic.rating}
-                  openNow={clinic.openNow ? 'Open now' : 'Closed'}
-                  key={clinic.id}
-                  component="img"
-                  photo={clinic.photos ? clinic.photos[0] : 'no-clinic.webp'}
+                // openNow={clinic.openNow ? 'Open now' : 'Closed'}
+                // component="img"
+                // photo={clinic.photos ? clinic.photos[0] : 'no-clinic.webp'}
                 />
               )
             })}

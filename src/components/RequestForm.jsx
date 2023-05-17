@@ -56,7 +56,6 @@ export const RequestForm = () => {
   useEffect(() => {
 
     if (state.clinicsToDisplay) () => { logicFilterFinder(state.clinicsToDisplay, filterMode) }
-    //console.log(clinicsValues)
     if (state.ciudades) () => MapaMultiMarker(speciality, displayCards, city, country)
   }, [filterMode, state.ciudades, state.clinicsToDisplay, state.countries])
 
@@ -67,11 +66,9 @@ export const RequestForm = () => {
   }
 
   const handleOpen = () => {
-    console.log('Iḿ in', open)
     setOpen(true)
   }
   const handleClose = () => {
-    console.log('Iḿ out', open)
     setOpen(false)
   }
 
@@ -82,7 +79,6 @@ export const RequestForm = () => {
   useEffect(() => {
     // set string array of countries
     let paises = Object.keys(countriesAndCities)
-    console.log('paises', paises)
     paises = paises.filter(pais => pais !== 'default');
 
     // enviando array de paises para el select de .... paises
@@ -114,22 +110,18 @@ export const RequestForm = () => {
   //desbloquear inputs
   const unblockFields = () => {
     let fields = document.querySelectorAll('.not-specialities-dropdown')
-    console.log('fields fields fields fields', fields);
     fields.forEach(field => {
       field.style.pointerEvents = 'auto';
     })
     dispatch({ type: 'showTooltip', payload: '' })
   }
 
-
   //lanzar Mapa MultiMarker
   const launchMapMultiMarker = (ev) => {
     setSpeciality(ev.target.innerText)
     let specialitySelected = ev.target.innerText;
-    console.log('specialitySelected', specialitySelected)
-    dispatch({ type: 'specialitySelected', payload: true })
-    MapaMultiMarker(speciality, displayCards, city, country)
-
+    dispatch({ type: 'specialitySelected', payload: true });
+    MapaMultiMarker(speciality, displayCards, city, country);
   }
 
   //managing the change of the country
@@ -147,7 +139,6 @@ export const RequestForm = () => {
       return (objectoActual.name).toLowerCase() == paisSeleccionado;
     })
 
-    console.log('elpropio', elpropio)
     let ciudadesObj = elpropio[0].cities;
     //set the cities (strings) of the selected country
     ciudadesObj.forEach(ciudadObj => {
@@ -170,7 +161,6 @@ export const RequestForm = () => {
       let cityName = Object.keys(cityObj)[0];
       if (cityName.toLowerCase() === ciudadSeleccionada?.toLowerCase()) {
         let clinicsToDisplay = cityObj[cityName].clinics;
-        console.log('clinicsToDisplay', clinicsToDisplay)
         dispatch({ type: 'setClinicsToDisplay', payload: clinicsToDisplay })
       }
     })
@@ -199,7 +189,6 @@ export const RequestForm = () => {
           margin: '0 auto',
         }}>
           <form onSubmit={handleSubmit((data) => {
-            console.log('data', data);
           })}>
             <Accordion
               sx={{
@@ -249,7 +238,6 @@ export const RequestForm = () => {
                     {/* SEARCH ICON */}
                     <img src={searchIcon} width={39} height={41} alt="Magnifying glass icon"
                       onClick={handleSubmit((data) => {
-                        console.log('data', data)
                       })} />
                   </Stack>
                 </div>
@@ -320,12 +308,10 @@ export const RequestForm = () => {
                             onKeyDown={(event) => {
                               if (event.key === "Enter") {
                                 event.preventDefault();
-                                console.log('enter!', nameOfClinic)
                                 fetch(urlForMap).then((nameOfClinicFetchResponse) => {
                                   return nameOfClinicFetchResponse.json()
                                 }).then((nameOfClinicFetchResponseJson) => {
                                   dispatch({ type: 'setClinicsToDisplay', payload: [] })
-                                  console.log('nameOfClinicFetchResponseJson', nameOfClinicFetchResponseJson.candidates[0])
                                   let data = nameOfClinicFetchResponseJson.candidates[0];
                                   let lat = data.geometry.location.lat;
                                   let lng = data.geometry.location.lng;
@@ -340,7 +326,6 @@ export const RequestForm = () => {
                                   let placeId = data.place_id;
                                   let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId }
                                   dispatch({ type: 'setLatLng', payload: { lat, lng } })
-                                  console.log('state.latLng', state.latLng)
                                   dispatch({ type: 'setClinicsToDisplay', payload: [clinicToDisplayObj] })
                                 })
                               }

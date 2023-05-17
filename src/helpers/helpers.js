@@ -1,8 +1,6 @@
-const animal = 'perro'
 
 export function capitalizeFirstLetter(str) {
-    // return str.charAt(0).toUpperCase() + str.slice(1);
-    console.log(animal)
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export function reducer_requestForm(state, action) {

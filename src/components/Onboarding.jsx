@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 
 export const Onboarding = () => {
   useEffect(() => {
-    console.log('useEffect')
     setTimeout(() => {
       amworld()
     }, 1)
