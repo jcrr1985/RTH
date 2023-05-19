@@ -1,8 +1,8 @@
 import data from '../models/cities_coords.json';
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Box, TextField, Autocomplete } from '@mui/material';
+import { Box, TextField, Autocomplete, Pagination } from '@mui/material';
 import { Slider } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import RoomSharpIcon from '@mui/icons-material/RoomSharp';
@@ -17,19 +17,14 @@ import { MediaCard } from "./MediaCard";
 import { MapaMultiMarker } from './MapaMultiMarker';
 import './../App.css'
 
-const funcionFueraDelComponente = (parametro) => {
-  console.log('parametro', parametro)
-
-}
 
 export default function Test() {
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 
-  funcionFueraDelComponente('cualquier cosa random')
 
-
+  const clinicsPerPage = 3; // Número de clínicas por página
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
   const { register, handleSubmit } = useForm();
@@ -40,16 +35,18 @@ export default function Test() {
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
   const [clinicSelected, setClinicSelected] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
+  const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
 
+  newArrayWithoutDuplicates
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = (cardArray) => {
     setTimeout(() => {
-      const uniqueArray = cardArray.filter((obj, index, self) =>
-        index === self.findIndex((o) => o.id === obj.id && o.name === obj.name)
-      );
+      const newArrayWithoutDuplicates = [...new Set(cardArray.map((clinic) => clinic.name))].map((name) => {
+        return cardArray.find((clinic) => clinic.name === name);
+      });
 
-      setCardArray([...uniqueArray])
+      setCardArray(newArrayWithoutDuplicates)
     }, 10);
     console.log('uniqueArray', uniqueArray)
   }
@@ -168,6 +165,11 @@ export default function Test() {
     setMapWidth('60%')
     MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
   }, [clinicsToDisplay]);
+  const [page, setPage] = React.useState(1);
+
+  const handlePaginationChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <>
@@ -271,7 +273,9 @@ export default function Test() {
       <div className="search-and-results-container">
         <div className="results-and-map-wrapper">
           {<div className="clinic-cards-container">
-            {cardArray && cardArray.map((clinic) => {
+            {
+
+            cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic) => {
               console.log('cardArray!! :D', cardArray)
               return (
                 <MediaCard
@@ -279,12 +283,12 @@ export default function Test() {
                   phone={clinic.distance}
                   address={clinic.address}
                   rating={clinic.rating}
-                // openNow={clinic.openNow ? 'Open now' : 'Closed'}
-                // component="img"
-                // photo={clinic.photos ? clinic.photos[0] : 'no-clinic.webp'}
                 />
               )
             })}
+            <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)} // Calcula el número total de páginas
+              color="secondary"
+              onChange={handlePaginationChange} />
           </div>}
           <div css={{
             width: `${mapWidth}`,
