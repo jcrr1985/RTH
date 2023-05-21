@@ -48,7 +48,6 @@ export default function Test() {
 
       setCardArray(newArrayWithoutDuplicates)
     }, 10);
-    console.log('uniqueArray', uniqueArray)
   }
 
   const onSubmit = (data) => {

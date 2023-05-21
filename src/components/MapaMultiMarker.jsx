@@ -33,16 +33,17 @@ function creadorDeMarcadores(places, map, fillCardArray) { //AQUI ENVIE LA FUNCI
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
+    fillCardArray(places) // Y DENTRO DEL FOREACH LA LLAMO POR CADA MARCADOR <----------------> ESTA FUNCION ESTA DEFINIDA EN TEST.JS
 
     places.forEach((place) => {
       console.log('place', place)
 
-      fillCardArray(places) // Y DENTRO DEL FOREACH LA LLAMO POR CADA MARCADOR <----------------> ESTA FUNCION ESTA DEFINIDA EN TEST.JS
       const marker = new window.google.maps.Marker({
         position: { lat: place.lat, lng: place.lng },
         map: map,
         title: place.name,
       });
+      console.log('marker', marker)
 
       bounds.extend(marker.position);
 
@@ -264,6 +265,8 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  { //
     centrarMapaEnPaisOCiudad(pais, ciudad);
 
   }
+
+  //-------------------------------------------------------------
 
   // si pais, si ciudad si especialidad
 
