@@ -130,10 +130,12 @@ p.header-info{
 }
 
 .back-arrow{
+  width: min-content;
+  display: inline-block;
   position: relative;
-  top: 40px;
-  left: 1150px;
-  transform: scale(2);
+  left: 8.3em;
+  top: 3.4rem;
+  scale: 1.5;
 }
 
 .globe{
