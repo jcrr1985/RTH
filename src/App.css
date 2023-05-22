@@ -126,7 +126,7 @@ p.header-info{
 
 .link{
   font-size: 1.831501832vw;
-  color: #3A89F4;
+  color: #5c85c6;
 }
 
 .back-arrow{
@@ -212,11 +212,13 @@ p.header-info{
   gap: 1.369863014vh;
   width: 11.648351648vw;
   height: 6.849315068vh;
-  background: #3A89F4;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #5c85c6;
   border-radius: 14px;
+  border: none;
   font-size: 1.831501832vw;
-  color: #333
+  color: #333;
+  display: flex;
+    align-self: flex-end;
 }
 
 .h2{
@@ -297,7 +299,7 @@ fieldset{
 }
 
 .card-content button{
-  background: #3A89F4;
+  background: #5c85c6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 52px;
   width: 152px;

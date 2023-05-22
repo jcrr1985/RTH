@@ -30,7 +30,7 @@ export default function Header() {
                 <span>More about us...</span>
               </Link>
               <button className="button_blue">
-                <Link to='../RequestForm' style={{ textDecoration: 'none', color: '#000' }}>SEARCH</Link>
+                <Link to='../RequestForm' style={{ textDecoration: 'none', color: '#000',  border: 'none', boxShadow: 'none' }}>SEARCH</Link>
               </button>
             </p>
           </div>

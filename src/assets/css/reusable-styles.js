@@ -42,7 +42,7 @@ link : {
     fontWeight: '400',
     fontSize: '1.831501832vw',
     lineHeight: '1.831501832vh',
-    color: '#3A89F4',
+    color: '#5c85c6',
   },
 form_content : {
 
@@ -123,7 +123,7 @@ button_blue: {
     //left: '47.47vw',
     //segun el figma left 442
     //top: '21.918vh',
-    background: '#3A89F4',
+    background: '#5c85c6',
     /* кнопки */
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '14px',
