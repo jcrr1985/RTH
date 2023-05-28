@@ -32,7 +32,7 @@ function creadorDeMarcadores(places, map, fillCardArray) {
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
-    fillCardArray(places) 
+    fillCardArray(places)
 
     places.forEach((place) => {
       const marker = new window.google.maps.Marker({
@@ -60,7 +60,8 @@ function creadorDeMarcadores(places, map, fillCardArray) {
 }
 
 
-function fetching(url, fillCardArray) {
+function fetching(url, fillCardArray, especialidad) {
+  console.log('url', url)
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -75,7 +76,9 @@ function fetching(url, fillCardArray) {
           center: data.results[0].geometry.location,
         });
         creadorDeMarcadores(places, map, fillCardArray);
-        getNearbyPlaces(map.center)
+
+        especialidad ? getNearbyPlaces(map.center, especialidad) : getNearbyPlaces(map.center);
+
 
       } else {
         console.error("No se encontraron resultados para la búsqueda especificada");
@@ -235,7 +238,7 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray) {
 
   // si pais no ciudad, no especialidad
 
@@ -265,9 +268,13 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  {
   // si pais, si ciudad si especialidad
 
   if (pais && (ciudad && ciudad.length > 0) && especialidad) {
+let keyword = especialidad;
+    keyword += 'clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic';
+    keyword = keyword.replace(/ /g, '+');
+
     console.log('ciudad && ciudad.length > 0', ciudad && ciudad.length > 0, ciudad)
     console.log('si si si')
-    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
+    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
     fetching(url, fillCardArray)
   }
 

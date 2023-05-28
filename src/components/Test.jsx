@@ -99,6 +99,7 @@ export default function Test() {
   };
 
   const handleCountryChange = (event) => {
+    setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
       const paisSeleccionado = event.target.innerText;
       setSelectedCountry(paisSeleccionado);
@@ -132,13 +133,20 @@ export default function Test() {
   }, [selectedCountryData]);
 
   useEffect(() => {
-    // fetch countries from json file
+    const links = document.querySelectorAll('.filter-icon');
+
+    links.forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        links.forEach(link => {
+          link.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
     setCountries(countriesArray);
   }, []);
 
-  useEffect(() => {
-    console.log('cardArray!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', cardArray)
-  }, [cardArray]);
 
   useEffect(() => {
     setCityValue('');
@@ -239,15 +247,15 @@ export default function Test() {
         {/* cuarta fila */}
         <form className='filters' onSubmit={handleSubmit(onSubmit)}>
           <div className="icons_wrapper">
-            <div>
+            <div className='filter-icon'>
               <RoomSharpIcon className='search-icon' />
-              <span>Destination</span>
+              <span className=''>Destination</span>
             </div>
-            <div>
+            <div className='filter-icon'>
               <TranslateRoundedIcon className='search-icon' />
-              <span>Translator</span>
+              <span className=''>Translator</span>
             </div>
-            <div>
+            <div className='filter-icon'>
               <DescriptionRoundedIcon className='search-icon' />
               <span className='int-acc'>International Accreditation</span>
             </div>
@@ -274,18 +282,18 @@ export default function Test() {
           {<div className="clinic-cards-container">
             {
 
-            cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic) => {
-              console.log('cardArray!! :D', cardArray)
-              return (
-                <MediaCard
-                  name={clinic.name}
-                  phone={clinic.distance}
-                  address={clinic.address}
-                  rating={clinic.rating}
-                />
-              )
-            })}
-            <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)} // Calcula el número total de páginas
+              cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic) => {
+                console.log('cardArray!! :D', cardArray)
+                return (
+                  <MediaCard
+                    name={clinic.name}
+                    phone={clinic.distance}
+                    address={clinic.address}
+                    rating={clinic.rating}
+                  />
+                )
+              })}
+            <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
               color="secondary"
               onChange={handlePaginationChange} />
           </div>}

@@ -278,7 +278,7 @@ fieldset{
   width: 22vw;
   margin-top: 27px;
   border-radius: 15px;
-  height: 0px;
+  height: auto;
 }
 
 .results-and-map-wrapper{
@@ -375,6 +375,16 @@ fieldset{
 .search-icon{
   transform: scale(1.5);
   margin-top: 12px;
+}
+
+.filter-icon{
+  height: min-content;
+padding-bottom: 3px;
+}
+
+.filter-icon.active{
+ border-bottom: #5c85c6 3px solid;
+ cursor: pointer;
 }
 
 .icons_wrapper div{
