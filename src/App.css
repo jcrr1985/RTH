@@ -383,7 +383,7 @@ padding-bottom: 3px;
 }
 
 .filter-icon.active{
- border-bottom: #5c85c6 3px solid;
+ border-bottom: #000 3px solid;
  cursor: pointer;
 }
 
