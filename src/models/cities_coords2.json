@@ -1,0 +1,278 @@
+{
+  "paises": [
+      {
+       "code": "CY",
+       "name": "Cyprus",
+       "coords":  {"lat":35, "lng":33 },
+       "cities": {
+          "Nicosia":{"coords": {"lat":35.17531, "lng":33.3642}}, "Limassol":{"coords": {"lat":34.68406, "lng":33.03794}}, "Famagusta":{"coords": {"lat":35.12489, "lng":33.94135}}, "Larnaca":{"coords": {"lat":34.92291, "lng":33.6233}}, "Stróvolos":{"coords": {"lat":35.14867, "lng":33.33384}}, "Paphos":{"coords": {"lat":34.77679, "lng":32.42451}}, "Kyrenia":{"coords": {"lat":35.33634, "lng":33.31729}}, "Protaras":{"coords": {"lat":35.0125, "lng":34.05833}}, "Pergama":{"coords": {"lat":35.04167, "lng":33.70833}}, "Omorfo":{"coords": {"lat":35.19869, "lng":32.99338}}, "Aradíppou":{"coords": {"lat":34.94779, "lng":33.58813}}, "Paralim":{"coords": {"lat":35.03945, "lng":33.98181}}, "Geroskipou":{"coords": {"lat":34.76091, "lng":32.44844}}, "Lefke":{"coords": {"lat":35.11199, "lng":32.84997}}, "Yeri":{"coords": {"lat":35.1056, "lng":33.41977}}, "Ipsonas":{"coords": {"lat":34.68797, "lng":32.96191}}, "Idalion":{"coords": {"lat":35.02294, "lng":33.42195}}, "Xylophagou":{"coords": {"lat":34.97743, "lng":33.84894}}, "Xeri":{"coords": {"lat":35.07307, "lng":33.32344}}, "Livádia":{"coords": {"lat":34.95515, "lng":33.62734}} }
+      },
+      {
+      "code": "RU",
+      "name": "Russia",
+      "coords": {"lat":60, "lng":100 },
+      "cities": {
+          "Moscow":{"coords": {"lat":55.75222, "lng":37.61556}}, "Saint Petersburg":{"coords": {"lat":59.93863, "lng":30.31413}}, "Yekaterinburg":{"coords": {"lat":56.8519, "lng":60.6122}}, "Samara":{"coords": {"lat":53.20007, "lng":50.15}}, "Omsk":{"coords": {"lat":54.99244, "lng":73.36859}}, "Kazan":{"coords": {"lat":55.78874, "lng":49.12214}}, "Chelyabinsk":{"coords": {"lat":55.15402, "lng":61.42915}}, "Ufa":{"coords": {"lat":54.74306, "lng":55.96779}}, "Volgograd":{"coords": {"lat":48.71939, "lng":44.50183}}, "Perm":{"coords": {"lat":58.01046, "lng":56.25017}}, "Krasnoyarsk":{"coords": {"lat":56.01839, "lng":92.86717}}, "Saratov":{"coords": {"lat":51.54056, "lng":46.00861}}, "Voronezh":{"coords": {"lat":51.67204, "lng":39.1843}}, "Novosibirsk":{"coords": {"lat":55.0415, "lng":82.9346}}, "Krasnodar":{"coords": {"lat":45.04484, "lng":38.97603}}, "Nizhniy Novgorod":{"coords": {"lat":56.32867, "lng":44.00205}}, "Ulyanovsk":{"coords": {"lat":54.32824, "lng":48.38657}}, "Izhevsk":{"coords": {"lat":56.84976, "lng":53.20448}}, "Yaroslavl":{"coords": {"lat":57.62987, "lng":39.87368}}, "Barnaul":{"coords": {"lat":53.36056, "lng":83.76361}}  }
+      },
+      {
+       "code": "CL",
+       "name": "Chile",
+       "coords": {"lat":30, "lng":71 },
+       "cities": { "Santiago":{"coords": {"lat":-33.45694, "lng":-70.64827}}, "Puente Alto":{"coords": {"lat":-33.61169, "lng":-70.57577}}, "Antofagasta":{"coords": {"lat":-23.65236, "lng":-70.3954}},
+        "Viña del Mar":{"coords": {"lat":33.02457, "lng":-71.55183}}, "Valparaíso":{"coords": {"lat":-33.036, "lng":-71.62963}}, "Talcahuano":{"coords": {"lat":-36.72494, "lng":-73.11684}},
+        "San Bernardo":{"coords": {"lat":-33.59217, "lng":-70.6996}}, "Temuco":{"coords": {"lat":-38.73965, "lng":-72.59842}}, "Iquique":{"coords": {"lat":-20.21326, "lng":-70.15027}},
+         "Concepción":{"coords": {"lat":-36.82699, "lng":-73.04977}}, "Rancagua ":{"coords": {"lat":-34.17083, "lng":-70.74444}}, "La Pintana":{"coords": {"lat":-33.58331, "lng":-70.63419}},
+          "Talca":{"coords": {"lat":-35.4264, "lng":-71.65542}}, "Arica":{"coords": {"lat":-18.4746, "lng":-70.29792}}, "Coquimbo":{"coords": {"lat":-29.95332, "lng":-71.33947}},
+          "Puerto Montt":{"coords": {"lat":-41.4693, "lng":-72.94237}}, "La Serena":{"coords": {"lat":-29.90453, "lng":-71.24894}}, "Chillán":{"coords": {"lat":-36.60664, "lng":-72.10344}},
+           "Villa Alemana":{"coords": {"lat":-33.04222, "lng":-71.37333}}, "Calama":{"coords": {"lat":-22.45667, "lng":-68.92371}}, "Osorno":{"coords": {"lat":-40.57395, "lng":-73.13348}},
+            "Valdivia":{"coords": {"lat":-39.81422, "lng":-73.24589}}, "Quilpué":{"coords": {"lat":-33.045, "lng":-71.44972}}, "Copiapó":{"coords": {"lat":-27.36679, "lng":-70.3314}},
+              "Los Ángeles":{"coords": {"lat":-37.46973, "lng":-72.35366}}, "Punta Arenas":{"coords": {"lat":-53.15483, "lng":-70.91144}}, "Curicó":{"coords": {"lat":-34.98333, "lng":-71.23333}},
+                "Ovalle":{"coords": {"lat":-30.59833, "lng":-71.20028}}, "Coronel":{"coords": {"lat":-37.02861, "lng":-73.14083}}, "San Antonio":{"coords": {"lat":-33.59333, "lng":-71.62167}},
+                "Quillota":{"coords": {"lat":-32.88333, "lng":-71.26667}}, "Linares":{"coords": {"lat":-35.85083, "lng":-71.59139}}, "Melipilla":{"coords": {"lat":-33.68611, "lng":-71.21667}},
+                  "San Felipe":{"coords": {"lat":-32.75, "lng":-70.73333}}, "Los Andes":{"coords": {"lat":-32.83333, "lng":-70.6}}, "Buin":{"coords": {"lat":-33.73333, "lng":-70.75}},
+                  "Talagante":{"coords": {"lat":-33.66667, "lng":-70.93333}}, "Lota":{"coords": {"lat":-37.08333, "lng":-73.16667}}, "Hacienda La Calera":{"coords": {"lat":-32.78333, "lng":-71.21667}},
+                    "Tome":{"coords": {"lat":-36.61667, "lng":-72.95}}, "Penco":{"coords": {"lat":-36.73333, "lng":-72.98333}}, "Coyhaique":{"coords": {"lat":-45.57524, "lng":-72.0662}},
+                    "Rengo":{"coords": {"lat":-34.41667, "lng":-70.86667}}, "Constitución":{"coords": {"lat":-35.33333, "lng":-72.41667}}, "Limache":{"coords": {"lat":-33.01667, "lng":-71.26667}},
+                      "Santa Cruz":{"coords": {"lat":-34.63333, "lng":-71.36667}}, "Cauquenes":{"coords": {"lat":-35.96667, "lng":-72.35}}, "Paine":{"coords": {"lat":-33.81667, "lng":-70.75}},
+                      "Vallenar":{"coords": {"lat":-28.56667, "lng":-70.75}}, "Angol":{"coords": {"lat":-37.8, "lng":-72.71667}}, "Victoria":{"coords": {"lat":-38.21667, "lng":-72.33333}},
+                        "Ancud":{"coords": {"lat":-41.86667, "lng":-73.83333}}, "Pitrufquén":{"coords": {"lat":-38.98333, "lng":-72.65}}, "San Carlos":{"coords": {"lat":-36.41667, "lng":-71.96667}},
+                        "San Vicente de Tagua Tagua":{"coords": {"lat":-34.4, "lng":-71.28333}}, "Curanilahue":{"coords": {"lat":-37.46667, "lng":-73.35}}, "Illapel":{"coords": {"lat":-31.63333, "lng":-71.16667}},
+                          "Salamanca":{"coords": {"lat":-31.78333, "lng":-70.96667}}, "San Javier":{"coords": {"lat":-35.6, "lng":-71.75}}, "Lebu":{"coords": {"lat":-37.61667, "lng":-73.65}},
+                          "Mulchén":{"coords": {"lat":-37.71667, "lng":-72.23333}}, "La Unión":{"coords": {"lat":-40.28333, "lng":-73.08333}}, "Puerto Varas":{"coords": {"lat":-41.31667, "lng":-72.98333}},
+                            "Lampa":{"coords": {"lat":-33.28333, "lng":-70.9}}, "La Ligua":{"coords": {"lat":-32.45, "lng":-71.21667}}, "San Felipe":{"coords": {"lat":-32.75, "lng":-70.73333}},
+                            "San Fernando":{"coords": {"lat":-34.58333, "lng":-70.96667}}, "Pucón":{"coords": {"lat":-39.28333, "lng":-71.96667}}, "Puerto Natales":{"coords": {"lat":-51.73333, "lng":-72.51667}}
+
+
+    }
+   },
+   {
+    "code": "SA",
+    "name": "saudi arabia",
+    "coords": {
+      "lat": 35,
+      "lng": 33
+    },
+    "cities": {
+      "Riyadh": {
+        "coords": { "lat": 24.7136, "lng": 46.6753
+        }
+      },
+      "Jeddah": {
+        "coords": {"lat": 21.4858,"lng": 39.1925
+        }
+      },
+      "Mecca": {
+        "coords": {"lat": 21.3891,"lng": 39.8579
+        }
+      },
+      "Madinah": {
+        "coords": { "lat": 24.5247, "lng": 39.5692
+        }
+      },
+      "Dammam": {
+        "coords": {"lat": 26.3927,"lng": 49.9777
+        }
+      },
+      "Taif": {
+        "coords": {"lat": 21.2703,"lng": 40.4158
+        }
+      },
+      "Buraidah": {
+        "coords": {"lat": 26.3592,"lng": 43.9818
+        }
+      },
+      "Tabuk": {
+        "coords": {"lat": 28.3835,"lng": 36.5552
+        }
+      },
+      "Abha": {
+        "coords": {"lat": 18.2301,"lng": 42.5000
+        }
+      },
+      "Hail": {
+        "coords": {"lat": 27.5219,"lng": 41.6907
+        }
+      },
+      "Jubail": {
+        "coords": {"lat": 27.0060,"lng": 49.6536
+        }
+      },
+      "Najran": {
+        "coords": {"lat": 17.5360,"lng": 44.2170
+        }
+      },
+      "Al Khobar": {
+        "coords": {"lat": 26.2747,"lng": 50.2095
+        }
+      },
+      "Yanbu": {
+        "coords": {"lat": 24.0827,"lng": 38.0498
+        }
+      },
+      "Unaizah": {
+        "coords": {"lat": 26.0876,"lng": 43.9586
+        }
+      },
+      "Al Ahsa": {
+        "coords": {"lat": 25.3763,"lng": 49.5874
+        }
+      },
+      "Khamis Mushait": {
+        "coords": {"lat": 18.3064,"lng": 42.7296
+        }
+      },
+      "Qatif": {
+        "coords": {"lat": 26.5698,"lng": 49.9777
+        }
+      }
+    }
+},
+{
+  "code": "AL",
+  "name": "Albania",
+  "coords": {"lat": 41.1533, "lng": 20.1683},
+  "cities": {
+    "Berat": {"coords": {"lat": 40.7058, "lng": 19.9524}}, "Bulqizë": {"coords": {"lat": 41.4947, "lng": 20.2211}}, "Burrel": {"coords": {"lat": 41.6100, "lng": 20.0169}}, "Cërrik": {"coords": {"lat": 41.0350, "lng": 19.9714}}, "Delvinë": {"coords": {"lat": 39.9514, "lng": 20.0917}}, "Devoll": {"coords": {"lat": 40.6333, "lng": 20.8986}}, "Dibër": {"coords": {"lat": 41.6231, "lng": 20.4067}}, "Durrës": {"coords": {"lat": 41.3231, "lng": 19.4414}}, "Elbasan": {"coords": {"lat": 41.1211, "lng": 20.0833}}, "Fier": {"coords": {"lat": 40.7264, "lng": 19.5561}}, "Gjirokastër": {"coords": {"lat": 40.0758, "lng": 20.1389}}, "Gramsh": {"coords": {"lat": 40.8694, "lng": 20.1847}}, "Has": {"coords": {"lat": 42.0442, "lng": 20.7425}}, "Kavajë": {"coords": {"lat": 41.1853, "lng": 19.5561}}, "Kolonjë": {"coords": {"lat": 40.6197, "lng": 20.7739}}, "Korçë": {"coords": {"lat": 40.6186, "lng": 20.7808}}, "Krujë": {"coords": {"lat": 41.5092, "lng": 19.7928}}, "Kuçovë": {"coords": {"lat": 40.8008, "lng": 19.9167}}, "Kukës": {"coords": {"lat": 42.0836, "lng": 20.4214}}, "Kurbin": {"coords": {"lat": 41.5694, "lng": 19.7733}}, "Lezhë": {"coords": {"lat": 41.7872, "lng": 19.6542}}, "Librazhd": {"coords": {"lat": 41.1844, "lng": 20.3378}}, "Lushnjë": {"coords": {"lat": 40.9417, "lng": 19.7050}}, "Malësi e Madhe": {"coords": {"lat": 42.3675, "lng": 19.9189}}, "Mallakastër": {"coords": {"lat": 40.3144, "lng": 19.7808}}, "Mat": {"coords": {"lat": 41.5589, "lng": 19.9128}}, "Mirditë": {"coords": {"lat": 41.7961, "lng": 19.7886}}, "Peqin": {"coords": {"lat": 41.0492, "lng": 19.7469}}, "Përmet": {"coords": {"lat": 40.2342, "lng": 20.3517}}, "Pogradec": {"coords": {"lat": 40.9058, "lng": 20.6647}}, "Pukë": {"coords": {"lat": 42.0464, "lng": 19.8994}}, "Sarandë": {"coords": {"lat": 39.8756, "lng": 20.0058}}, "Shijak": {"coords": {"lat": 41.3422, "lng": 19.5664}}, "Shkodër": {"coords": {"lat": 42.0685, "lng": 19.5125}}, "Skrapar": {"coords": {"lat": 40.6339, "lng": 20.1944}}, "Tepelenë": {"coords": {"lat": 40.2942, "lng": 20.0183}}, "Tirana": {"coords": {"lat": 41.3275, "lng": 19.8189}}, "Tropojë": {"coords": {"lat": 42.4167, "lng": 20.1500}}, "Urë Vajgurore": {"coords": {"lat": 40.7897, "lng": 19.9867}}, "Vau i Dejës": {"coords": {"lat": 41.7514, "lng": 19.5583}}, "Vlorë": {"coords": {"lat": 40.4661, "lng": 19.4897}}, "Vorë": {"coords": {"lat": 41.3822, "lng": 19.6217}} }
+},
+{
+  "code": "DZ",
+  "name": "Algeria",
+  "coords": {"lat": 28.0339, "lng": 1.6596},
+  "cities": {
+    "Adrar": {"coords": {"lat": 27.8747, "lng": -0.2931}}, "Aïn Defla": {"coords": {"lat": 36.2642, "lng": 1.9678}}, "Aïn Témouchent": {"coords": {"lat": 35.2972, "lng": -1.1406}}, "Algiers": {"coords": {"lat": 36.7538, "lng": 3.0588}}, "Annaba": {"coords": {"lat": 36.8983, "lng": 7.7619}}, "Batna": {"coords": {"lat": 35.5559, "lng": 6.1741}}, "Béchar": {"coords": {"lat": 31.6167, "lng": -2.2167}}, "Béjaïa": {"coords": {"lat": 36.7500, "lng": 5.0667}}, "Biskra": {"coords": {"lat": 34.8500, "lng": 5.7333}}, "Blida": {"coords": {"lat": 36.4700, "lng": 2.8300}}, "Bordj Bou Arréridj": {"coords": {"lat": 36.0700, "lng": 4.7600}}, "Bouïra": {"coords": {"lat": 36.3800, "lng": 3.9000}}, "Boumerdès": {"coords": {"lat": 36.7667, "lng": 3.4833}}, "Chlef": {"coords": {"lat": 36.1667, "lng": 1.3333}}, "Constantine": {"coords": {"lat": 36.3667, "lng": 6.6000}}, "Djelfa": {"coords": {"lat": 34.6667, "lng": 3.2500}}, "El Bayadh": {"coords": {"lat": 33.6833, "lng": 1.0167}}, "El Oued": {"coords": {"lat": 33.3667, "lng": 6.8500}}, "El Tarf": {"coords": {"lat": 36.7667, "lng": 8.3000}}, "Ghardaïa": {"coords": {"lat": 32.5000, "lng": 3.6667}}, "Guelma": {"coords": {"lat": 36.4667, "lng": 7.4333}}, "Illizi": {"coords": {"lat": 26.4833, "lng": 8.4667}}, "Jijel": {"coords": {"lat": 36.8000, "lng": 5.7667}}, "Khenchela": {"coords": {"lat": 35.4000, "lng": 7.1500}}, "Laghouat": {"coords": {"lat": 33.8000, "lng": 2.8833}}, "Mascara": {"coords": {"lat": 35.4000, "lng": 0.1400}}, "Médéa": {"coords": {"lat": 36.2667, "lng": 2.7500}}, "Mila": {"coords": {"lat": 36.4500, "lng": 6.2667}}, "Mostaganem": {"coords": {"lat": 35.9333, "lng": 0.0900}}, "Naâma": {"coords": {"lat": 33.2667, "lng": -0.3167}}, "Oran": {"coords": {"lat": 35.7000, "lng": -0.6333}}, "Ouargla": {"coords": {"lat": 31.9500, "lng": 5.3167}}, "Oum El Bouaghi": {"coords": {"lat": 35.8833, "lng": 7.1167}}, "Relizane": {"coords": {"lat": 35.7333, "lng": 0.5500}}, "Saïda": {"coords": {"lat": 34.8333, "lng": 0.1500}}, "Sétif": {"coords": {"lat": 36.2000, "lng": 5.4167}}
+  }
+},
+{
+  "code": "AO",
+  "name": "Angola",
+  "coords": {"lat": -12.5000, "lng": 18.5000},
+  "cities": {
+    "Benguela": {"coords": {"lat": -12.5783, "lng": 13.4072}}, "Huambo": {"coords": {"lat": -12.7761, "lng": 15.7392}}, "Luanda": {"coords": {"lat": -8.8383, "lng": 13.2344}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}, "Lubango": {"coords": {"lat": -14.9167, "lng": 13.5000}}
+  }
+},
+{
+  "code": "AR",
+  "name": "Argentina",
+  "coords": {"lat": -34.0000, "lng": -64.0000},
+  "cities": {
+    "Bahía Blanca": {"coords": {"lat": -38.7167, "lng": -62.2833}}, "Buenos Aires": {"coords": {"lat": -34.6033, "lng": -58.3817}}, "Catamarca": {"coords": {"lat": -28.4696, "lng": -65.7852}}, "Comodoro Rivadavia": {"coords": {"lat": -45.8641, "lng": -67.4966}}, "Concordia": {"coords": {"lat": -31.3925, "lng": -58.0209}}, "Corrientes": {"coords": {"lat": -27.4806, "lng": -58.8341}}, "Formosa": {"coords": {"lat": -26.1775, "lng": -58.1789}}, "La Plata": {"coords": {"lat": -34.9215, "lng": -57.9545}}, "La Rioja": {"coords": {"lat": -29.4131, "lng": -66.8558}}, "Mar del Plata": {"coords": {"lat": -38.0000, "lng": -57.5500}}, "Mendoza": {"coords": {"lat": -32.8908, "lng": -68.8272}}, "Neuquén": {"coords": {"lat": -38.9516, "lng": -68.0591}}, "Paraná": {"coords": {"lat": -31.7413, "lng": -60.5115}}, "Posadas": {"coords": {"lat": -27.3621, "lng": -55.9007}}, "Rawson": {"coords": {"lat": -43.3000, "lng": -65.1000}}, "Resistencia": {"coords": {"lat": -27.4512, "lng": -58.9864}}, "Río Cuarto": {"coords": {"lat": -33.1307, "lng": -64.3493}}, "Río Gallegos": {"coords": {"lat": -51.6333, "lng": -69.2167}}, "Salta": {"coords": {"lat": -24.7859, "lng": -65.4117}}, "San Fernando del Valle de Catamarca": {"coords": {"lat": -28.4696, "lng": -65.7852}}, "San Juan": {"coords": {"lat": -31.5375, "lng": -68.5364}}, "San Luis": {"coords": {"lat": -33.2950, "lng": -66.3356}}, "San Miguel de Tucumán": {"coords": {"lat": -26.8241, "lng": -65.2226}}, "San Nicolás de los Arroyos": {"coords": {"lat": -33.3350, "lng": -60.2250}}, "San Rafael": {"coords": {"lat": -34.6000, "lng": -68.3333}}, "Santa Fe": {"coords": {"lat": -31.6333, "lng": -60.7000}}, "Santa Rosa": {"coords": {"lat": -36.6200, "lng": -64.2900}}, "Santiago del Estero": {"coords": {"lat": -27.7834, "lng": -64.2666}}, "Trelew": {"coords": {"lat": -43.2489, "lng": -65.3050}}, "Ushuaia": {"coords": {"lat": -54.8000, "lng": -68.3000}}, "Viedma": {"coords": {"lat": -40.8000, "lng": -63.0000}}, "Villa María": {"coords": {"lat": -32.4167, "lng": -63.2500}}, "Zárate": {"coords": {"lat": -34.0989, "lng": -59.0289}}
+  }
+
+  },
+{
+  "code": "AT",
+  "name": "Austria",
+  "coords": {"lat": 47.3333, "lng": 13.3333},
+  "cities": {
+    "Bregenz": {"coords": {"lat": 47.5031, "lng": 9.7471}}, "Eisenstadt": {"coords": {"lat": 47.8456, "lng": 16.5333}}, "Graz": {"coords": {"lat": 47.0667, "lng": 15.4500}}, "Innsbruck": {"coords": {"lat": 47.2667, "lng": 11.3833}}, "Klagenfurt": {"coords": {"lat": 46.6247, "lng": 14.3053}}, "Linz": {"coords": {"lat": 48.3064, "lng": 14.2861}}, "Salzburg": {"coords": {"lat": 47.8000, "lng": 13.0333}}, "St. Pölten": {"coords": {"lat": 48.2000, "lng": 15.6333}}, "Vienna": {"coords": {"lat": 48.2083, "lng": 16.3731}}, "Wels": {"coords": {"lat": 48.1667, "lng": 14.0333}}, "Wiener Neustadt": {"coords": {"lat": 47.8167, "lng": 16.2500}}, "Wolfsberg": {"coords": {"lat": 46.8400, "lng": 14.8300}}, "Zell am See": {"coords": {"lat": 47.3167, "lng": 12.7833}}, "Zwettl": {"coords": {"lat": 48.6167, "lng": 15.1667}}, "Braunau am Inn": {"coords": {"lat": 48.2667, "lng": 13.0333}}, "Dornbirn": {"coords": {"lat": 47.4167, "lng": 9.7333}}, "Feldkirch": {"coords": {"lat": 47.2333, "lng": 9.6000}}, "Hallein": {"coords": {"lat": 47.6833, "lng": 13.1000}}, "Kapfenberg": {"coords": {"lat": 47.4333, "lng": 15.3000}}, "Klosterneuburg": {"coords": {"lat": 48.3000, "lng": 16.3333}}, "Leoben": {"coords": {"lat": 47.3833, "lng": 15.1000}}, "Lienz": {"coords": {"lat": 46.8300, "lng": 12.7667}}, "Modling": {"coords": {"lat": 48.0833, "lng": 16.2833}}, "Saalfelden am Steinernen Meer": {"coords": {"lat": 47.4167, "lng": 12.8500}}, "Schwaz": {"coords": {"lat": 47.3500, "lng": 11.7000}}, "Spittal an der Drau": {"coords": {"lat": 46.8000, "lng": 13.5000}}, "Steyr": {"coords": {"lat": 48.0500, "lng": 14.4167}}, "Traun": {"coords": {"lat": 48.2167, "lng": 14.2333}}, "Villach": {"coords": {"lat": 46.6100, "lng": 13.8550}}, "Waidhofen an der Ybbs": {"coords": {"lat": 47.9667, "lng": 14.7667}}, "Wolfsberg": {"coords": {"lat": 46.8400, "lng": 14.8300}}, "Worgl": {"coords": {"lat": 47.4833, "lng": 12.0667}}, "Zwettl": {"coords": {"lat": 48.6167, "lng": 15.1667}}, "Amstetten": {"coords": {"lat": 48.1167, "lng": 14.8833}}, "Ansfelden": {"coords": {"lat": 48.2000, "lng": 14.2833}}, "Bad Ischl": {"coords": {"lat": 47.7167, "lng": 13.6167}}, "Bad Voslau": {"coords": {"lat": 47.9667, "lng": 16.2000}}, "Bludenz": {"coords": {"lat": 47.1500, "lng": 9.8167}}, "Brunn am Gebirge": {"coords": {"lat": 48.1000, "lng": 16.2833}}, "Deutschlandsberg": {"coords": {"lat": 46.8167, "lng": 15.2167}}, "Ebreichsdorf": {"coords": {"lat": 47.9500, "lng": 16.4000}}, "Feldkirchen": {"coords": {"lat": 46.7167, "lng": 14.1000}}, "Feldkirchen an der Donau": {"coords": {"lat": 48.2333, "lng": 14.0333}}, "Ferlach": {"coords": {"lat": 46.5500, "lng": 14.3167}}, "Gmunden": {"coords": {"lat": 47.9167, "lng": 13.8000}}, "Gotzis": {"coords": {"lat": 47.3333, "lng": 9.6333}}, "Grodig": {"coords": {"lat": 47.7333, "lng": 13.0667}}, "Hallein": {"coords": {"lat": 47.6833, "lng": 13.1000}}, "Hard": {"coords": {"lat": 47.4833, "lng": 9.6833}}, "Hohenems": {"coords": {"lat": 47.3667, "lng": 9.6833}}, "Hollabrunn": {"coords": {"lat": 48.5667, "lng": 16.0833}}
+  }
+},
+{
+  "code": "AU",
+  "name": "Australia",
+  "coords": {"lat": -27.0000, "lng": 133.0000},
+  "cities": {
+    "Adelaide": {"coords": {"lat": -34.9286, "lng": 138.6000}}, "Albury": {"coords": {"lat": -36.0806, "lng": 146.9167}}, "Armidale": {"coords": {"lat": -30.5083, "lng": 151.6717}}, "Bathurst": {"coords": {"lat": -33.4193, "lng": 149.5775}}, "Bendigo": {"coords": {"lat": -36.7570, "lng": 144.2787}}, "Brisbane": {"coords": {"lat": -27.4700, "lng": 153.023 }}, "Broken Hill": {"coords": {"lat": -31.9500, "lng": 141.4333}}, "Broome": {"coords": {"lat": -17.9614, "lng": 122.2359}}, "Bunbury": {"coords": {"lat": -33.3271, "lng": 115.6414}}, "Bundaberg": {"coords": {"lat": -24.8667, "lng": 152.3500}}, "Burnie": {"coords": {"lat": -41.0667, "lng": 145.9167}}, "Cairns": {"coords": {"lat": -16.9256, "lng": 145.7545}}, "Canberra": {"coords": {"lat": -35.3075, "lng": 149.1244}}, "Coffs Harbour": {"coords": {"lat": -30.2963, "lng": 153.1131}}, "Darwin": {"coords": {"lat": -12.4634, "lng": 130.8456}}, "Devonport": {"coords": {"lat": -41.1771, "lng": 146.3450}}, "Dubbo": {"coords": {"lat": -32.2431, "lng": 148.6097}}, "Geelong": {"coords": {"lat": -38.1499, "lng": 144.3617}}, "Geraldton": {"coords": {"lat": -28.7777, "lng": 114.6144}}, "Gladstone": {"coords": {"lat": -23.8500, "lng": 151.2500}}, "Gold Coast": {"coords": {"lat": -28.0167, "lng": 153.4000}}, "Hervey Bay": {"coords": {"lat": -25.2887, "lng": 152.8400}}, "Hobart": {"coords": {"lat": -42.8806, "lng": 147.3250}}, "Kalgoorlie": {"coords": {"lat": -30.7500, "lng": 121.4667}}, "Launceston": {"coords": {"lat": -41.4381, "lng": 147.1347}}, "Lismore": {"coords": {"lat": -28.8136, "lng": 153.2773}}, "Mackay": {"coords": {"lat": -21.1439, "lng": 149.1856}}, "Maitland": {"coords": {"lat": -32.7333, "lng": 151.5500}}, "Mandurah": {"coords": {"lat": -32.5267, "lng": 115.7217}}, "Melbourne": {"coords": {"lat": -37.8136, "lng": 144.9631}}, "Melton": {"coords": {"lat": -37.6833, "lng": 144.5833}}, "Mildura": {"coords": {"lat": -34.2000, "lng": 142.1500}}, "Mount Gambier": {"coords": {"lat": -37.8314, "lng": 140.7794}}, "Newcastle": {"coords": {"lat": -32.9167, "lng": 151.7500}}, "Nowra": {"coords": {"lat": -34.8833, "lng": 150.6000}}, "Orange": {"coords": {"lat": -33.2833, "lng": 149.1000}}, "Perth": {"coords": {"lat": -31.9522, "lng": 115.8589}}, "Port Augusta": {"coords": {"lat": -32.5000, "lng": 137.7667}}, "Port Hedland": {"coords": {"lat": -20.3167, "lng": 118.6000}}, "Port Lincoln": {"coords": {"lat": -34.7333, "lng": 135.8667}}, "Port Macquarie": {"coords": {"lat": -31.4333, "lng": 152.9000}}, "Queanbeyan": {"coords": {"lat": -35.3542, "lng": 149.2367}}, "Rockhampton": {"coords": {"lat": -23.3833, "lng": 150.5000}}, "Shepparton": {"coords": {"lat": -36.3833, "lng": 145.4000}}, "Sunbury": {"coords": {"lat": -37.5794, "lng": 144.7272}}, "Sydney": {"coords": {"lat": -33.8650, "lng": 151.2094}}, "Tamworth": {"coords": {"lat": -31.0833, "lng": 150.9167}}, "Toowoomba": {"coords": {"lat": -27.5606, "lng": 151.9533}}, "Townsville": {"coords": {"lat": -19.2583, "lng": 146.8167}}, "Traralgon": {"coords": {"lat": -38.1833, "lng": 146.5333}}, "Wagga Wagga": {"coords": {"lat": -35.1082, "lng": 147.3598}}, "Warrnambool": {"coords": {"lat": -38.3833, "lng": 142.4833}}, "Wollongong": {"coords": {"lat": -34.4333, "lng": 150.8833}}
+  }
+},
+{
+  "code": "AT",
+  "name": "Austria",
+  "coords": {"lat": 47.5162, "lng": 14.5501},
+  "cities": {
+    "Graz": {"coords": {"lat": 47.0667, "lng": 15.4500}}, "Innsbruck": {"coords": {"lat": 47.2667, "lng": 11.3833}}, "Klagenfurt": {"coords": {"lat": 46.6200, "lng": 14.3100}}, "Linz": {"coords": {"lat": 48.3064, "lng": 14.2861}}, "Salzburg": {"coords": {"lat": 47.8000, "lng": 13.0333}}, "Vienna": {"coords": {"lat": 48.2083, "lng": 16.3731}}, "Wels": {"coords": {"lat": 48.1667, "lng": 14.0333}}, "Wiener Neustadt": {"coords": {"lat": 47.8167, "lng": 16.2500}}, "Villach": {"coords": {"lat": 46.6100, "lng": 13.8550}}, "Sankt Pölten": {"coords": {"lat": 48.2000, "lng": 15.6333}}, "Dornbirn": {"coords": {"lat": 47.4167, "lng": 9.7333}}, "Steyr": {"coords": {"lat": 48.0500, "lng": 14.4167}}, "Bregenz": {"coords": {"lat": 47.5000, "lng": 9.7500}}, "Klosterneuburg": {"coords": {"lat": 48.3000, "lng": 16.3333}}, "Baden": {"coords": {"lat": 48.0167, "lng": 16.2333}}, "Wolfsberg": {"coords": {"lat": 46.8400, "lng": 14.8400}}, "Leoben": {"coords": {"lat": 47.3833, "lng": 15.1000}}, "Krems an der Donau": {"coords": {"lat": 48.4000, "lng": 15.6000}}, "Traun": {"coords": {"lat": 48.2167, "lng": 14.2333}}, "Amstetten": {"coords": {"lat": 48.1167, "lng": 14.8833}}, "Lustenau": {"coords": {"lat": 47.4333, "lng": 9.6500}}, "Kapfenberg": {"coords": {"lat": 47.4333, "lng": 15.3000}}, "Mödling": {"coords": {"lat": 48.0833, "lng": 16.2833}}, "Hallein": {"coords": {"lat": 47.6833, "lng": 13.1000}}, "Stockerau": {"coords": {"lat": 48.3833, "lng": 16.2167}}, "Eisenstadt": {"coords": {"lat": 47.8333, "lng": 16.5333}}, "Saalfelden am Steinernen Meer": {"coords": {"lat": 47.4167, "lng": 12.8500}}, "Ansfelden": {"coords": {"lat": 48.2000, "lng": 14.2833}}, "Tulln": {"coords": {"lat": 48.3333, "lng": 16.0500}}, "Hohenems": {"coords": {"lat": 47.3667, "lng": 9.6833}}, "Spittal an der Drau": {"coords": {"lat": 46.8000, "lng": 13.5000}}, "Telfs": {"coords": {"lat": 47.3000, "lng": 11.0667}}, "Ternitz": {"coords": {"lat": 47.7167, "lng": 16.0333}}, "Perchtoldsdorf": {"coords": {"lat": 48.1333, "lng": 16.2833}}, "Feldkirch": {"coords": {"lat": 47.2333, "lng": 9.6000}}, "Bludenz": {"coords": {"lat": 47.1500, "lng": 9.8167}}, "Bad Ischl": {"coords": {"lat": 47.7167, "lng": 13.6167}}, "Weinzierl bei Krems": {"coords": {"lat": 48.4000, "lng": 15.6000}}, "Braunau am Inn": {"coords": {"lat": 48.2667, "lng": 13.0333}}, "Spitz": {"coords": {"lat": 48.3667, "lng": 15.4000}}, "Hall in Tirol": {"coords": {"lat": 47.2833, "lng": 11.5000}}, "Gmunden": {"coords": {"lat": 47.9167, "lng": 13.8000}}, "Kufstein": {"coords": {"lat": 47.5833, "lng": 12.1667}}, "Traiskirchen": {"coords": {"lat": 48.0167, "lng": 16.2833}}, "Schwechat": {"coords": {"lat": 48.1333, "lng": 16.4667}}, "Schwaz": {"coords": {"lat": 47.3500, "lng": 11.7000}}
+  }
+  },
+{
+  "code": "AZ",
+  "name": "Azerbaijan",
+  "coords": {"lat": 40.1431, "lng": 47.5769},
+  "cities": {
+    "Baku": {"coords": {"lat": 40.3833, "lng": 49.8667}}, "Ganja": {"coords": {"lat": 40.6833, "lng": 46.3500}}, "Sumqayit": {"coords": {"lat": 40.5833, "lng": 49.6667}}, "Mingachevir": {"coords": {"lat": 40.7667, "lng": 47.0500}}, "Qaraçuxur": {"coords": {"lat": 40.3833, "lng": 49.8500}}, "Shirvan": {"coords": {"lat": 39.9333, "lng": 48.0500}}, "Nakhchivan": {"coords": {"lat": 39.2000, "lng": 45.4167}}, "Bakıxanov": {"coords": {"lat": 40.3667, "lng": 49.8500}}, "Shamakhi": {"coords": {"lat": 40.6333, "lng": 48.6333}}, "Yevlakh": {"coords": {"lat": 40.6167, "lng": 47.1500}}, "Lankaran": {"coords": {"lat": 38.7500, "lng": 48.8500}}, "Agdam": {"coords": {"lat": 39.9939, "lng": 46.9308}}, "Khirdalan": {"coords": {"lat": 40.4300, "lng": 49.9800}}, "Barda": {"coords": {"lat": 40.3800, "lng": 47.1300}}, "Xankandi": {"coords": {"lat": 39.8156, "lng": 46.7522}}, "Aghsu": {"coords": {"lat": 40.5667, "lng": 48.4000}}, "Bilajari": {"coords": {"lat": 40.4500, "lng": 49.9500}}, "Mastaga": {"coords": {"lat": 40.5000, "lng": 50.0000}}, "Sabirabad": {"coords": {"lat": 40.0086, "lng": 48.4772}}, "Buzovna": {"coords": {"lat": 40.5000, "lng": 50.0833}}, "Bina": {"coords": {"lat": 40.4500, "lng": 49.9500}}, "Bilgah": {"coords": {"lat": 40.5000, "lng": 50.0000}}, "Buzovna": {"coords": {"lat": 40.5000, "lng": 50.0833}}, "Bina": {"coords": {"lat": 40.4500, "lng": 49.9500}}, "Bilgah": {"coords": {"lat": 40.5000, "lng": 50.0000}}
+  }
+},
+{
+  "code": "BS",
+  "name": "Bahamas",
+  "coords": {"lat": 24.2500, "lng": -76.0000},
+  "cities": {
+    "Nassau": {"coords": {"lat": 25.0667, "lng": -77.3333}}
+  }
+},
+{
+  "code": "BH",
+  "name": "Bahrain",
+  "coords": {"lat": 26.0275, "lng": 50.5500},
+  "cities": {
+    "Manama": {"coords": {"lat": 26.2333, "lng": 50.5667}}
+  }
+},
+{
+  "code": "BD",
+  "name": "Bangladesh",
+  "coords": {"lat": 24.0000, "lng": 90.0000},
+  "cities": {
+    "Chittagong": {"coords": {"lat": 22.3667, "lng": 91.8000}}, "Dhaka": {"coords": {"lat": 23.7161, "lng": 90.3961}}, "Khulna": {"coords": {"lat": 22.8167, "lng": 89.5500}, "population": 1550000}, "Narayanganj": {"coords": {"lat": 23.6167, "lng": 90.5000}}, "Rajshahi": {"coords": {"lat": 24.3667, "lng": 88.6000}}, "Tungi": {"coords": {"lat": 23.8915, "lng": 90.4025}}
+  }
+},
+{
+  "code": "BB",
+  "name": "Barbados",
+  "coords": {"lat": 13.1667, "lng": -59.5333},
+  "cities": {
+    "Bridgetown": {"coords": {"lat": 13.1000, "lng": -59.6167}}
+  }
+},
+{
+  "code": "BY",
+  "name": "Belarus",
+  "coords": {"lat": 53.0000, "lng": 28.0000},
+  "cities": {
+    "Gomel": {"coords": {"lat": 52.4411, "lng": 30.9878}}, "Hrodna": {"coords": {"lat": 53.6833, "lng": 23.8333}}, "Mahilyow": {"coords": {"lat": 53.9167, "lng": 30.3333}}, "Minsk": {"coords": {"lat": 53.9000, "lng": 27.5667}}, "Vitebsk": {"coords": {"lat": 55.1833, "lng": 30.1667}}
+  }
+},
+{
+  "code": "BE",
+  "name": "Belgium",
+  "coords": {"lat": 50.8333, "lng": 4.0000},
+  "cities": {
+    "Antwerp": {"coords": {"lat": 51.2167, "lng": 4.4167}}, "Brussels": {"coords": {"lat": 50.8500, "lng": 4.3500}}, "Charleroi": {"coords": {"lat": 50.4167, "lng": 4.4333}}, "Ghent": {"coords": {"lat": 51.0500, "lng": 3.7167}}, "Liege": {"coords": {"lat": 50.6333, "lng": 5.5667}}
+  }
+},
+{
+  "code": "BZ",
+  "name": "Belize",
+  "coords": {"lat": 17.2500, "lng": -88.7500},
+  "cities": {
+    "Belize City": {"coords": {"lat": 17.4833, "lng": -88.1833}, "population": 570000}, "San Ignacio": {"coords": {"lat": 17.1561, "lng": -89.0714}, "population": 17000 }, "Orange Walk": {"coords": {"lat": 18.0908, "lng": -88.5636}, "population": 15000 }, "Belmopan": {"coords": {"lat": 17.2500, "lng": -88.7667}, "population": 13000 }, "Dangriga": {"coords": {"lat": 16.9700, "lng": -88.2200}, "population": 10000 }, "Corozal": {"coords": {"lat": 18.4000, "lng": -88.3833}, "population": 10000 }, "Punta Gorda": {"coords": {"lat": 16.1000, "lng": -88.8000}, "population": 6000 }, "San Pedro": {"coords": {"lat": 17.9167, "lng": -87.9500}, "population": 5000 }, "Benque Viejo del Carmen": {"coords": {"lat": 17.0750, "lng": -89.1397}, "population": 5000 }, "Sarteneja": {"coords": {"lat": 18.3667, "lng": -88.4000}, "population": 2000 }
+  }
+},
+{
+  "code": "BJ",
+  "name": "Benin",
+  "coords": {"lat": 9.5000, "lng": 2.2500},
+  "cities": {
+    "Cotonou": {"coords": {"lat": 6.3667, "lng": 2.4333}, "population": 690584}, "Porto-Novo": {"coords": {"lat": 6.4833, "lng": 2.6167}, "population": 234168}, "Parakou": {"coords": {"lat": 9.3500, "lng": 2.6167}, "population": 163753}, "Djougou": {"coords": {"lat": 9.7000, "lng": 1.6667}, "population": 152708}, "Bohicon": {"coords": {"lat": 7.2000, "lng": 2.0667}, "population": 125092}, "Kandi": {"coords": {"lat": 11.1333, "lng": 2.9333}, "population": 109701}, "Lokossa": {"coords": {"lat": 6.6333, "lng": 1.7167}, "population": 86965}, "Abomey": {"coords": {"lat": 7.1833, "lng": 1.9833}, "population": 82154}, "Natitingou": {"coords": {"lat": 10.3000, "lng": 1.3833}, "population": 80859}, "Save": {"coords": {"lat": 8.0333, "lng": 2.4833}, "population": 76700}, "Ouidah": {"coords": {"lat": 6.3667, "lng": 2.0833}, "population": 76203}, "Malanville": {"coords": {"lat": 11.8667, "lng": 3.3833}, "population": 67904}, "Dogbo": {"coords": {"lat": 6.8167, "lng": 1.7833}, "population": 65300}, "Cove": {"coords": {"lat": 7.2333, "lng": 2.3333}, "population": 1}, "Sakete": {"coords": {"lat": 6.7333, "lng": 2.6667}, "population": 1}
+  }
+},
+{
+  "code": "BT",
+  "name": "Bhutan",
+  "coords": {"lat": 27.5000, "lng": 90.5000},
+  "cities": {
+    "Thimphu": {"coords": {"lat": 27.4667, "lng": 89.6333}, "population": 98676}, "Phuntsholing": {"coords": {"lat": 26.8500, "lng": 89.3833}, "population": 17000}, "Punakha": {"coords": {"lat": 27.6333, "lng": 89.8333}, "population": 5000}, "Samdrup Jongkhar": {"coords": {"lat": 26.8000, "lng": 91.5000}, "population": 5000}, "Geylegphug": {"coords": {"lat": 26.8667, "lng": 90.5000}, "population": 5000}, "Jakar": {"coords": {"lat": 27.5667, "lng": 90.7500}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Trongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Mongar": {"coords": {"lat": 27.2500, "lng": 91.2500}, "population": 5000}, "Tashigang": {"coords": {"lat": 27.3333, "lng": 91.5500}, "population": 5000}, "Tongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Wangdiphodrang": {"coords": {"lat": 27.4667, "lng": 89.9167}, "population": 5000}, "Daga": {"coords": {"lat": 27.0833, "lng": 89.8833}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Ha": {"coords": {"lat": 27.3667, "lng": 89.2833}, "population": 5000}, "Samchi": {"coords": {"lat": 26.9000, "lng": 89.1000}, "population": 5000}, "Tashigang": {"coords": {"lat": 27.3333, "lng": 91.5500}, "population": 5000}, "Tongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Wangdiphodrang": {"coords": {"lat": 27.4667, "lng": 89.9167}, "population": 5000}, "Daga": {"coords": {"lat": 27.0833, "lng": 89.8833}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Ha": {"coords": {"lat": 27.3667, "lng": 89.2833}, "population": 5000}, "Samchi": {"coords": {"lat": 26.9000, "lng": 89.1000}, "population": 5000}, "Tashigang": {"coords": {"lat": 27.3333, "lng": 91.5500}, "population": 5000}, "Tongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Wangdiphodrang": {"coords": {"lat": 27.4667, "lng": 89.9167}, "population": 5000}, "Daga": {"coords": {"lat": 27.0833, "lng": 89.8833}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Ha": {"coords": {"lat": 27.3667, "lng": 89.2833}, "population": 5000}, "Samchi": {"coords": {"lat": 26.9000, "lng": 89.1000}, "population": 5000}, "Tashigang": {"coords": {"lat": 27.3333, "lng": 91.5500}, "population": 5000}, "Tongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Wangdiphodrang": {"coords": {"lat": 27.4667, "lng": 89.9167}, "population": 5000}, "Daga": {"coords": {"lat": 27.0833, "lng": 89.8833}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Ha": {"coords": {"lat": 27.3667, "lng": 89.2833}, "population": 5000}, "Samchi": {"coords": {"lat": 26.9000, "lng": 89.1000}, "population": 5000}, "Tashigang": {"coords": {"lat": 27.3333, "lng": 91.5500}, "population": 5000}, "Tongsa": {"coords": {"lat": 27.5000, "lng": 90.5000}, "population": 5000}, "Wangdiphodrang": {"coords": {"lat": 27.4667, "lng": 89.9167}, "population": 5000}, "Daga": {"coords": {"lat": 27.0833, "lng": 89.8833}, "population": 5000}, "Paro": {"coords": {"lat": 27.4333, "lng": 89.4167}, "population": 5000}, "Ha": {"coords": {"lat": 27.3667, "lng": 89.2833}, "population": 5000}, "Samchi": {"coords": {"lat": 26.9000, "lng": 89.1000}, "population": 5000}
+  }
+},
+{
+  "code": "BW",
+  "name": "Botswana",
+  "coords": {"lat": -22.0000, "lng": 24.0000},
+  "cities": {
+    "Gaborone": {"coords": {"lat": -24.6333, "lng": 25.9000}, "population": 208411}, "Francistown": {"coords": {"lat": -21.1667, "lng": 27.5000}, "population": 89979}, "Molepolole": {"coords": {"lat": -24.4000, "lng": 25.5000}, "population": 63272}, "Selebi-Phikwe": {"coords": {"lat": -21.9833, "lng": 27.8167}, "population": 50138}, "Maun": {"coords": {"lat": -19.9833, "lng": 23.4167}, "population": 49948}, "Serowe": {"coords": {"lat": -22.3833, "lng": 26.7167}, "population": 47421}, "Kanye": {"coords": {"lat": -24.9667, "lng": 25.3333}, "population": 44718}, "Mahalapye": {"coords": {"lat": -23.1000, "lng": 26.8167}, "population": 44473}, "Mogoditshane": {"coords": {"lat": -24.6333, "lng": 25.8833}, "population": 43417}, "Mochudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 41876}, "Lobatse": {"coords": {"lat": -25.2167, "lng": 25.7000}, "population": 30543}, "Palapye": {"coords": {"lat": -22.5500, "lng": 27.1333}, "population": 30479}, "Ramotswa": {"coords": {"lat": -24.8667, "lng": 25.8667}, "population": 27274}, "Thamaga": {"coords": {"lat": -24.7500, "lng": 25.4167}, "population": 25000}, "Mosopa": {"coords": {"lat": -24.5000, "lng": 25.3500}, "population": 25000}, "Letlhakane": {"coords": {"lat": -21.4167, "lng": 25.5833}, "population": 25000}, "Tonota": {"coords": {"lat": -21.4833, "lng": 27.4667}, "population": 25000}, "Gabane": {"coords": {"lat": -24.6500, "lng": 25.8500}, "population": 25000}, "Mmadinare": {"coords": {"lat": -21.9500, "lng": 27.8167}, "population": 25000}, "Tlokweng": {"coords": {"lat": -24.7500, "lng": 25.8500}, "population": 25000}, "Mogapi": {"coords": {"lat": -22.2500, "lng": 26.8167}, "population": 25000}, "Mmopane": {"coords": {"lat": -24.6333, "lng": 25.8500}, "population": 25000}, "Mochhudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 25000}, "Metsimotlhabe": {"coords": {"lat": -24.6333, "lng": 25.8500}, "population": 25000}, "Mmathubudukwane": {"coords": {"lat": -24.6333, "lng": 25.8500}, "population": 25000}, "Mmankgodi": {"coords": {"lat": -24.6333, "lng": 25.8500}, "population": 25000}, "Molepolole": {"coords": {"lat": -24.4000, "lng": 25.5000}, "population": 25000}, "Mogoditshane": {"coords": {"lat": -24.6333, "lng": 25.8833}, "population": 25000}, "Mochudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 25000}, "Lobatse": {"coords": {"lat": -25.2167, "lng": 25.7000}, "population": 25000}, "Kanye": {"coords": {"lat": -24.9667, "lng": 25.3333}, "population": 25000}, "Gaborone": {"coords": {"lat": -24.6333, "lng": 25.9000}, "population": 25000}, "Francistown": {"coords": {"lat": -21.1667, "lng": 27.5000}, "population": 25000}, "Serowe": {"coords": {"lat": -22.3833, "lng": 26.7167}, "population": 25000}, "Selebi-Phikwe": {"coords": {"lat": -21.9833, "lng": 27.8167}, "population": 25000}, "Maun": {"coords": {"lat": -19.9833, "lng": 23.4167}, "population": 25000}, "Molepolole": {"coords": {"lat": -24.4000, "lng": 25.5000}, "population": 25000}, "Mochudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 25000}, "Lobatse": {"coords": {"lat": -25.2167, "lng": 25.7000}, "population": 25000}, "Kanye": {"coords": {"lat": -24.9667, "lng": 25.3333}, "population": 25000}, "Gaborone": {"coords": {"lat": -24.6333, "lng": 25.9000}, "population": 25000}, "Francistown": {"coords": {"lat": -21.1667, "lng": 27.5000}, "population": 25000}, "Serowe": {"coords": {"lat": -22.3833, "lng": 26.7167}, "population": 25000}, "Selebi-Phikwe": {"coords": {"lat": -21.9833, "lng": 27.8167}, "population": 25000}, "Maun": {"coords": {"lat": -19.9833, "lng": 23.4167}, "population": 25000}, "Molepolole": {"coords": {"lat": -24.4000, "lng": 25.5000}, "population": 25000}, "Mochudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 25000}, "Lobatse": {"coords": {"lat": -25.2167, "lng": 25.7000}, "population": 25000}, "Kanye": {"coords": {"lat": -24.9667, "lng": 25.3333}, "population": 25000}, "Gaborone": {"coords": {"lat": -24.6333, "lng": 25.9000}, "population": 25000}, "Francistown": {"coords": {"lat": -21.1667, "lng": 27.5000}, "population": 25000}, "Serowe": {"coords": {"lat": -22.3833, "lng": 26.7167}, "population": 25000}, "Selebi-Phikwe": {"coords": {"lat": -21.9833, "lng": 27.8167}, "population": 25000}, "Maun": {"coords": {"lat": -19.9833, "lng": 23.4167}, "population": 25000}, "Molepolole": {"coords": {"lat": -24.4000, "lng": 25.5000}, "population": 25000}, "Mochudi": {"coords": {"lat": -24.4167, "lng": 26.1500}, "population": 25000}, "Lobatse": {"coords": {"lat": -25.2167, "lng": 25.7000}, "population": 25000}, "Kanye": {"coords": {"lat": -24.9667, "lng": 25.3333}, "population": 25000}
+  }
+}
+
+
+]
+
+}

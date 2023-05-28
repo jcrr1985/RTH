@@ -28,22 +28,18 @@ function nearbyCallback(results, status, testCoord) {
   }
 }
 
-function creadorDeMarcadores(places, map, fillCardArray) { //AQUI ENVIE LA FUNCION RESCATADORA DE PLACES <-----------------------------
-  console.log('places', places)
+function creadorDeMarcadores(places, map, fillCardArray) {
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
-    fillCardArray(places) // Y DENTRO DEL FOREACH LA LLAMO POR CADA MARCADOR <----------------> ESTA FUNCION ESTA DEFINIDA EN TEST.JS
+    fillCardArray(places) 
 
     places.forEach((place) => {
-      console.log('place', place)
-
       const marker = new window.google.maps.Marker({
         position: { lat: place.lat, lng: place.lng },
         map: map,
         title: place.name,
       });
-      console.log('marker', marker)
 
       bounds.extend(marker.position);
 
@@ -58,7 +54,6 @@ function creadorDeMarcadores(places, map, fillCardArray) { //AQUI ENVIE LA FUNCI
 
       map.fitBounds(bounds);
     });
-    // establecer el nivel de zoom deseado
     map.setZoom(8);
   }
   markersCreator(places, map);
@@ -137,7 +132,6 @@ function centrarSinDatosConGeoLocation() {
 }
 
 function obtenerPaisYCiudadPorGeoLocalizacion() {
-  console.log('obtenerPaisYCiudadPorGeoLocalizacion')
   navigator.geolocation.getCurrentPosition(async position => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
@@ -241,7 +235,7 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  { // AQUI PASO POR PARAMETRO LA FUNCION RESCATA - PLACES
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  {
 
   // si pais no ciudad, no especialidad
 
@@ -304,7 +298,6 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray)  { //
   if (!pais && !ciudad && !especialidad) {
     console.log('no no no')
     centrarSinDatosConGeoLocation();
-
   }
 
 }
