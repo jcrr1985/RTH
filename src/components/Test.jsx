@@ -172,6 +172,7 @@ export default function Test() {
     setMapWidth('60%')
     MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
   }, [clinicsToDisplay]);
+
   const [page, setPage] = React.useState(1);
 
   const handlePaginationChange = (event, value) => {
@@ -293,9 +294,10 @@ export default function Test() {
                   />
                 )
               })}
-            <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
+             {cardArray.length >= 2 && 
+                 <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
               color="secondary"
-              onChange={handlePaginationChange} />
+              onChange={handlePaginationChange} /> } 
           </div>}
           <div css={{
             width: `${mapWidth}`,
