@@ -42,7 +42,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
             />
             <div className='card-content'>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', marginBottom: '15px' }}>
+                    <Typography gutterBottom variant="h6" component="div" style={{ textAlign: 'center', marginBottom: '5px' }}>
                         {name}
                     </Typography>
                     <Typography variant="body2" >
@@ -57,7 +57,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
                         </Typography>
                         {(<>
                             {fullStarArray}
-                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '4px' }} width={25} />}
+                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '0px' }} width={25} />}
                         </>)}
                     </div>
                     <Typography variant="body2" color="text.secondary">

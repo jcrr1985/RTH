@@ -94,9 +94,9 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
   geocoder.geocode({ address: address }, (results, status) => {
     if (status === "OK") {
       const map = new window.google.maps.Map(document.getElementById("map"), {
-        zoom: pais && ciudad ? 10 : (pais == "russia") ? 4 :
-          (pais == "cyprus") ? 10 :
-            (pais == "chile") ? 10 : 10
+        zoom: pais && ciudad ? 11 : (pais == "Russia" || pais == "China") ? 4 :
+          (pais == "Cyprus") ? 10 :
+            (pais == "Chile") ? 10 : 10
         ,
         center: results[0].geometry.location,
       });
