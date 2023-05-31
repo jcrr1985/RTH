@@ -152,10 +152,7 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
 
     const tipo1 = 'hospital';
     const tipo2 = 'clínica';
-    const tipo3 = 'centro';
-    const tipo4 = 'center';
     const tipo5 = 'clinic';
-    const tipo6 = 'medical';
 
     const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&key=${apiKey}`;
 
