@@ -36,6 +36,7 @@ export default function Test() {
   const [clinicSelected, setClinicSelected] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
+  const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
   newArrayWithoutDuplicates
   const [cardArray, setCardArray] = useState([]);
@@ -147,30 +148,36 @@ export default function Test() {
     setCountries(countriesArray);
   }, []);
 
-
   useEffect(() => {
     setCityValue('');
     nameOfClinic.value = '';
     setMapWidth('100%');
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
-
-    if (selectedCountry) {
-      const countryData = data.paises.find((country) => country.name === selectedCountry);
-      setCities(selectedCountryCities);
-      setMapWidth('57vw');
-    }
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+       if (selectedCountry) {
+         const countryData = data.paises.find((country) => country.name === selectedCountry);
+         setCities(selectedCountryCities);
+         setMapWidth('57vw');
+       }
   }, [selectedCountry]);
 
   useEffect(() => {
     nameOfClinic.value = '';
     setMapWidth('100%');
     setClinicsToDisplay(null);
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
+    const delay = 500; // tiempo de espera en milisegundos
+    const timeoutId = setTimeout(() => {
+      console.log('placesDistancesToUserPosition:', placesDistancesToUserPosition);
+    }, delay);
+    return () => clearTimeout(timeoutId); // Limpiar el temporizador
+  }, [placesDistancesToUserPosition]);
+
+  useEffect(() => {
     setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);
@@ -292,6 +299,7 @@ export default function Test() {
                     address={clinic.address}
                     rating={clinic.rating}
                     id={index}
+                    distance={placesDistancesToUserPosition[index]}
                   />
                 )
               })}
