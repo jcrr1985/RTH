@@ -24,7 +24,7 @@ export default function Test() {
   const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 
 
-  const clinicsPerPage = 3; // Número de clínicas por página
+  const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
   const { register, handleSubmit } = useForm();
@@ -41,10 +41,12 @@ export default function Test() {
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = (cardArray) => {
+    console.log('cardArray en fillcardaraay', cardArray)
     setTimeout(() => {
       const newArrayWithoutDuplicates = [...new Set(cardArray.map((clinic) => clinic.name))].map((name) => {
         return cardArray.find((clinic) => clinic.name === name);
       });
+
 
       setCardArray(newArrayWithoutDuplicates)
     }, 10);

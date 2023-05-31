@@ -149,7 +149,17 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
     );
     const ciudad = cityComponent.long_name;
     const pais = countryComponent.short_name;
-    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
+
+    const tipo1 = 'hospital';
+    const tipo2 = 'clínica';
+    const tipo3 = 'centro';
+    const tipo4 = 'center';
+    const tipo5 = 'clinic';
+    const tipo6 = 'medical';
+
+    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&key=${apiKey}`;
+
+    // const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
@@ -268,7 +278,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray) {
   // si pais, si ciudad si especialidad
 
   if (pais && (ciudad && ciudad.length > 0) && especialidad) {
-let keyword = especialidad;
+    let keyword = especialidad;
     keyword += 'clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic';
     keyword = keyword.replace(/ /g, '+');
 
