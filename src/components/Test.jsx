@@ -226,7 +226,7 @@ export default function Test() {
           />
           {/* cities */}
           <Autocomplete className='req-form-input' id="city-selected"
-            inputValue={cityValue} {...register('city-selected')}
+            {...register('city-selected')}
             onChange={(ev) => handleChangeCities(ev)}
             options={cities} renderInput={(params) => <TextField {...params} label="City" />}
           />
@@ -284,7 +284,6 @@ export default function Test() {
         <div className="results-and-map-wrapper">
           {<div className="clinic-cards-container">
             {
-
               cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic) => {
                 console.log('cardArray!! :D', cardArray)
                 return (
@@ -296,10 +295,10 @@ export default function Test() {
                   />
                 )
               })}
-             {cardArray.length >= 2 && 
-                 <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
-              color="secondary"
-              onChange={handlePaginationChange} /> } 
+            {cardArray.length >= 2 &&
+              <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
+                color="secondary"
+                onChange={handlePaginationChange} />}
           </div>}
           <div css={{
             width: `${mapWidth}`,
