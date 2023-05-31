@@ -39,11 +39,11 @@ const distanceBetween = (pos, marker_coords) => {
      return testDistance;
   }
 
-function creadorDeMarcadores(places, map, fillCardArray, userPosition) {
+function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition) {
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
-    const mapCenter = { lat: map.lat, lng: map.lng }
+    let placesCoords = [];
     fillCardArray(places)
 // console.log('userPosition inside markets:', userPosition)
     places.forEach((place) => {
@@ -54,12 +54,14 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition) {
         title: place.name,
         distance: distance
       });
-      let coord = new google.maps.LatLng(place.lat, place.lng);
+      let coord = new window.google.maps.LatLng(place.lat, place.lng);
       // console.log(`${coord} of ${marker.title}`)
       if(userPosition){
         // Crear un objeto google.maps.LatLng
         marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
         console.log(`para ${marker.title} la distancia desde su ubicaci[on actual es de ${marker.distance}]`)
+        placesCoords = [...new Set([...placesCoords, marker.distance])];
+
       }
       bounds.extend(marker.position);
 
@@ -75,12 +77,13 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition) {
       map.fitBounds(bounds);
     });
     map.setZoom(8);
+    setPlacesDistancesToUserPosition(placesCoords);
   }
   markersCreator(places, map);
 }
 
 
-function fetching(url, fillCardArray) {
+function fetching(url, fillCardArray, setPlacesDistancesToUserPosition) {
   let pos;
   console.log('url', url)
   fetch(url)
@@ -99,7 +102,7 @@ function fetching(url, fillCardArray) {
         pos = map.center;
         console.log('map.center in pos:', pos);
         // creadorDeMarcadores(places, map, fillCardArray);
-        creadorDeMarcadores(places, map, fillCardArray, userPosition); // Pasar userPosition como argumento
+        creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition); // Pasar userPosition como argumento
 
         // especialidad ? getNearbyPlaces(map.center, especialidad) : getNearbyPlaces(map.center);
 
@@ -271,7 +274,7 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray) {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition) {
 
   // si pais no ciudad, no especialidad
 
@@ -308,7 +311,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray) {
     console.log('ciudad && ciudad.length > 0', ciudad && ciudad.length > 0, ciudad)
     console.log('si si si')
     const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
-    fetching(url, fillCardArray)
+    fetching(url, fillCardArray, setPlacesDistancesToUserPosition)
   }
 
   //--------------------------------------------------------------
