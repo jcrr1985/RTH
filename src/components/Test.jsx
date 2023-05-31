@@ -283,7 +283,7 @@ export default function Test() {
           {<div className="clinic-cards-container">
             {
 
-              cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic) => {
+              cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
                 console.log('cardArray!! :D', cardArray)
                 return (
                   <MediaCard
@@ -291,6 +291,7 @@ export default function Test() {
                     phone={clinic.distance}
                     address={clinic.address}
                     rating={clinic.rating}
+                    id={index}
                   />
                 )
               })}
