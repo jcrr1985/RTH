@@ -28,7 +28,6 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
             height: '22.739726027vh',
             borderRadius: '1.025641026vh',
             display: 'inline-table!important',
-            marginTop: '21px!important'
         }} key={key} >
 
             <CardMedia

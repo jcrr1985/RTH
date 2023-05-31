@@ -4,43 +4,63 @@ import '../assets/css/MapaMultiMarker.css'
 const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
 const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 let infoPanel = document.getElementById('panel');
+let userPosition = null; // Variable global
 
 //funciones reutilizables
 
 // Perform a Places Nearby Search Request: realizamos busqyeda de lugares asociados con especialidad
-function getNearbyPlaces(position) {
-  let request = {
-    location: position,
-    rankBy: google.maps.places.RankBy.DISTANCE,
-    keyword: spec,
-  };
-  //console.log(request.keyword)
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, nearbyCallback);
+// function getNearbyPlaces(position) {
+//   let request = {
+//     location: position,
+//     rankBy: google.maps.places.RankBy.DISTANCE,
+//     keyword: spec,
+//   };
+//   //console.log(request.keyword)
+//   service = new google.maps.places.PlacesService(map);
+//   service.nearbySearch(request, nearbyCallback);
 
-}
+// }
 
-// Handle the results (up to 20) of the Nearby Search
-function nearbyCallback(results, status, testCoord) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    createMarkers(results, testCoord);
+// // Handle the results (up to 20) of the Nearby Search
+// function nearbyCallback(results, status, testCoord) {
+//   if (status == google.maps.places.PlacesServiceStatus.OK) {
+//     createMarkers(results, testCoord);
 
+//   }
+// }
+
+const distanceBetween = (pos, marker_coords) => {
+  let _coordinates = pos //a google.maps.LatLng object
+    var _pCord = marker_coords;
+  let testDistance = google.maps.geometry.spherical.computeDistanceBetween(_pCord, _coordinates);
+    // console.log('testDistance:', testDistance);
+//como el valor devuelto viene en metros lo llevamos a kilimetros
+    testDistance = (testDistance / 100).toFixed(3) 
+     return testDistance;
   }
-}
 
-function creadorDeMarcadores(places, map, fillCardArray) {
+function creadorDeMarcadores(places, map, fillCardArray, userPosition) {
   const markersCreator = (places, map) => {
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
+    const mapCenter = { lat: map.lat, lng: map.lng }
     fillCardArray(places)
-
+// console.log('userPosition inside markets:', userPosition)
     places.forEach((place) => {
+      let distance = 0;
       const marker = new window.google.maps.Marker({
         position: { lat: place.lat, lng: place.lng },
         map: map,
         title: place.name,
+        distance: distance
       });
-
+      let coord = new google.maps.LatLng(place.lat, place.lng);
+      // console.log(`${coord} of ${marker.title}`)
+      if(userPosition){
+        // Crear un objeto google.maps.LatLng
+        marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
+        console.log(`para ${marker.title} la distancia desde su ubicaci[on actual es de ${marker.distance}]`)
+      }
       bounds.extend(marker.position);
 
       marker.addListener("mouseover", () => {
@@ -60,7 +80,8 @@ function creadorDeMarcadores(places, map, fillCardArray) {
 }
 
 
-function fetching(url, fillCardArray, especialidad) {
+function fetching(url, fillCardArray) {
+  let pos;
   console.log('url', url)
   fetch(url)
     .then(response => response.json())
@@ -75,9 +96,12 @@ function fetching(url, fillCardArray, especialidad) {
           zoom: 10,
           center: data.results[0].geometry.location,
         });
-        creadorDeMarcadores(places, map, fillCardArray);
+        pos = map.center;
+        console.log('map.center in pos:', pos);
+        // creadorDeMarcadores(places, map, fillCardArray);
+        creadorDeMarcadores(places, map, fillCardArray, userPosition); // Pasar userPosition como argumento
 
-        especialidad ? getNearbyPlaces(map.center, especialidad) : getNearbyPlaces(map.center);
+        // especialidad ? getNearbyPlaces(map.center, especialidad) : getNearbyPlaces(map.center);
 
 
       } else {
@@ -100,7 +124,7 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
         ,
         center: results[0].geometry.location,
       });
-      getNearbyPlaces(map.center)
+      // getNearbyPlaces(map.center)
     } else {
       console.error("No se ha podido encontrar la ciudad especificada");
     }
@@ -113,16 +137,18 @@ function centrarSinDatosConGeoLocation() {
   } else {
     alert("La geolocalización no es compatible con este navegador.");
   }
-
-  function success(position) {
+ 
+function success(position) {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
+    userPosition = userLatLng; // Asignar el valor a la variable global
+    console.log('userPosition:', userPosition);
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: userLatLng,
     });
-    getNearbyPlaces(map.center)
+    // getNearbyPlaces(map.center)
     const marker = new google.maps.Marker({
       position: userLatLng,
       map: map,
@@ -161,7 +187,7 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
     creadorDeMarcadores(places, map)
-    getNearbyPlaces(map.center)
+    // getNearbyPlaces(map.center)
   }, error => {
     centrarSinDatosConGeoLocation();
     console.error(error);
@@ -292,7 +318,6 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray) {
   if (!pais && !ciudad && !especialidad) {
     centrarSinDatosConGeoLocation();
   }
-
   // no pais, si ciudad, si especialidad
 
   if (!pais && ciudad && especialidad) {
