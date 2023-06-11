@@ -13,6 +13,9 @@ import reviewFullStar from '@/assets/images/svg/reviewFullStar.png';
 import reviewHalfStar from '@/assets/images/svg/reviewHalfStar.png';
 import './../App.css'
 
+import { Link } from 'react-router-dom'
+
+
 export function MediaCard({ name, phone, address, rating, openNow, key, photo, distance }) {
     let url_img = `src/assets/images/clinics/${photo}`;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
@@ -22,14 +25,15 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
             <img className="reviewFullStar" src={reviewFullStar} alt="reviews" css={{ marginBottom: '4px' }} width={25} />
         )
     })
-    return (
+  return (
+    <Link to='../BookingTime' style={{ textDecoration: 'none', }} className="header-info-link link">  
         <Card sx={{
             width: '22.600732601vw',
             height: '22.739726027vh',
-            borderRadius: '1.025641026vh',
+            borderRadius: '1.035641026vh',
             display: 'inline-table!important',
-        }} key={key} >
-
+        }} 
+            key={key} >
             <CardMedia
                 sx={{
                     maxWidth: '100%',
@@ -41,39 +45,39 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
             />
             <div className='card-content'>
                 <CardContent>
-                    <Typography gutterBottom variant="h6" component="div" style={{ textAlign: 'center', marginBottom: '5px' }}>
+                    <Typography gutterBottom variant="h6" component="div" >
                         {name}
                     </Typography>
                     <Typography variant="body2" >
                         {phone}
                     </Typography>
-                    <Typography variant="body2" >
-                        {address}
+                    <Typography variant="body2" style={{ color: 'black', padding: '3px', marginBlockEnd: '-7', fontWeight: 'bold' }}>
+                    address: <span>  {address}  </span>
                     </Typography>
-                    <div css={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography variant="body2" style={{ color: 'black', padding: '3px' }}>
-                         {`La distancia desde su ubicación actual es de:`}
+                    <div css={{ display: 'flex', alignItems: 'center', marginBlockEnd: '-11' }}>
+                      <Typography variant="body2" style={{ color: 'black', padding: '3px', fontWeight: 'bold' }}>
+                         distance: <span> {distance}km </span>
                       </Typography>
-                         { <span alt="reviews" css={{ marginTop: '1.319648093841642vw', color: 'orange' }} width={25} >
-                            {distance} </span>}
+        
                     </div>
-                    <div css={{ display: 'inline-flex' }}>
-                        <Typography variant="body2" >
-                            {rating}
+                 { rating && <div css={{ display: 'inline-flex' }}>
+                        <Typography variant="body2" css={{ marginBlockEnd: '-11', padding: '3px', fontWeight: 'bold'}} >
+                        rating: <span> {rating} </span>
                         </Typography>
                         {(<>
                             {fullStarArray}
-                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '0px' }} width={25} />}
+                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '0px' }} width={25} height={25} />}
                         </>)}
-                    </div>
+                    </div>}
                     <Typography variant="body2" color="text.secondary">
                         {openNow}
                     </Typography>
                 </CardContent>
-                <CardActions style={{ textAlign: 'center' }}>
+                <CardActions style={{ textAlign: 'center', fontSize: '1.2rem' }}>
                     <button>Book now</button>
                 </CardActions>
             </div>
         </Card>
-    );
+    </Link>   
+  );
 }

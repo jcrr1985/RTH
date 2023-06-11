@@ -127,6 +127,11 @@ p.header-info{
   color: #5c85c6;
 }
 
+.linkcards{
+  font-size: 1.831501832vw;
+  color: #5c85c6;
+}
+
 .back-arrow{
   width: min-content;
   display: inline-block;
@@ -216,7 +221,7 @@ p.header-info{
   font-size: 1.831501832vw;
   color: #333;
   display: flex;
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .h2{
@@ -397,6 +402,176 @@ fieldset{
 }
 
 #chartdiv{
-width: 50%;
-height: 100vh;
+  width: 50%; 
+  height: 100vh;
 }
+
+/* CLASSES FOR BOOKING-TIME */
+
+.wrapper-bkt{ 
+  /* position: relative; */
+  width: 1440px; 
+  height: 1024px; 
+  text-align: center; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1vw; 
+  justify-content: flex-start; 
+  align-items: flex-start;
+  margin-left: 170px;
+}
+
+.bkt-header{
+  display: flex;
+  width: 1440px;
+  height: 96px;
+  align-items: flex-start;
+} 
+
+.arrow-back-bkt{
+  width: 54px;
+  height: 31px;
+  margin-top: 9px;
+}
+
+.back-arrow{
+  width: 54px;
+  height: 31px;
+}
+
+.title-bkt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1110px;
+  height: 96px;
+  background: #3A89F4;
+  border-radius: 14px;
+  /* margin: -122px 0px; */
+}
+
+.bkt-name{
+  width: 453px;
+  height: 97px;
+}
+
+     /* H1 */
+.h1{
+  font-family: 'Architects Daughter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 96px;
+  text-align: left;
+  color: #FFF;
+  display: relative;
+  margin-left: -480px;
+}
+
+.container-body-bkt{ 
+  display: flex;
+  gap: 1vw;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.doc-cards-wrapper{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  width: 444px;
+  height: auto;
+}
+
+.doc-card-in-wrapper{
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1vw;
+  width: 444px;
+  height: auto;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+}
+
+.doc-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 444px;
+  height: 30px;
+}
+
+.doc-card-name{
+  width: 284px;
+}
+
+.p{
+  font-family: 'Fira Sans Extra Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 35px;
+  margin-left: -99px;
+  margin-top: 50px;
+}
+
+.doc-card-500{
+  width: 105px;
+  height: 30px;
+}
+.doc-card-info, .doc-card-dates-t-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.doc-card-dates-t-wrapper{
+  gap: 1vw;
+  justify-content: space-around;
+  width: 444px;
+}
+
+.doc-card-dates-t{
+  width: 46px;
+  height: 30px;
+}
+
+.bkt-span{
+  font-family: 'Fira Sans Extra Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  margin-left: 10px;
+}
+
+.bkt-calendar-image-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1vw;
+}
+
+.calendar{
+  width: 445px;
+  height: 330px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+}
+
+.bkt-img{
+  width: 635px;
+  height: 386px;
+  border-radius: 14px;
+}
+
+/*  CLASSES TO CREATE-LAYOUTS ONLY FOR INITIAL CONF  */
+
+.test1{ background: #000; }
+.test2{ background:#2ACB91; }
+
+

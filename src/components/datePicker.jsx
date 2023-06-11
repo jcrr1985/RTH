@@ -35,6 +35,7 @@ const DatePicker_requestForm = (props) => {
                                   }}
                             />}
                             minDate={dayjs().startOf('day').toDate()}
+                            open={props.open}
                         />
                     </LocalizationProvider>
                 </div>

@@ -216,7 +216,7 @@ export default function Test() {
               sx={{ backgroundColor: 'theme.palette.background.default', }} />}
           />
           {/* Date */}
-          <DatePicker_requestForm register={register} />
+          <DatePicker_requestForm register={register} open={false} />
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
         </form>
@@ -304,7 +304,7 @@ export default function Test() {
                   />
                 )
               })}
-            {cardArray.length >= 2 &&
+            {(cardArray.length >= 2) &&
               <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
                 color="secondary"
                 onChange={handlePaginationChange} />}
@@ -313,6 +313,7 @@ export default function Test() {
             width: `${mapWidth}`,
             maxHeight: '70vh',
           }}>
+            { (cardArray.length == 0) && speciality && selectedCountry && cityValue && <span style={{ color: 'red' }}> no results found </span> }
             <div id="panel"></div>
             <div className="map" id="map"></div>
           </div>
