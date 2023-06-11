@@ -202,7 +202,6 @@ export default function Test() {
 
         {/* First row */}
         <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
-        <p>Selected Language: {selectedLanguage}</p>
 
           {/* SPECIALITIES */}
           <Autocomplete className="h2 req-form-input "
