@@ -1,5 +1,5 @@
 import data from '../models/cities_coords.json';
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, TextField, Autocomplete, Pagination } from '@mui/material';
@@ -9,23 +9,23 @@ import RoomSharpIcon from '@mui/icons-material/RoomSharp';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import ChangeLanguage from './ChangeLanguage';
-
-
-
 import specialities from '../assets/specialities.js';
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
 
 import { MapaMultiMarker } from './MapaMultiMarker';
+import  LanguageContext  from '../contexts/LanguageContext';
+
 import './../App.css'
 
 
 export default function Test() {
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
-  const myProxy = 'https://juliocorsproxy.herokuapp.com/'
+  const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
+  const { selectedLanguage } = useContext(LanguageContext);
 
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -158,11 +158,11 @@ export default function Test() {
     nameOfClinic.value = '';
     setMapWidth('100%');
     MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
-       if (selectedCountry) {
-         const countryData = data.paises.find((country) => country.name === selectedCountry);
-         setCities(selectedCountryCities);
-         setMapWidth('57vw');
-       }
+    if (selectedCountry) {
+      const countryData = data.paises.find((country) => country.name === selectedCountry);
+      setCities(selectedCountryCities);
+      setMapWidth('57vw');
+    }
   }, [selectedCountry]);
 
   useEffect(() => {
@@ -202,6 +202,7 @@ export default function Test() {
 
         {/* First row */}
         <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
+        <p>Selected Language: {selectedLanguage}</p>
 
           {/* SPECIALITIES */}
           <Autocomplete className="h2 req-form-input "

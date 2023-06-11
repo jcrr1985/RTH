@@ -1,9 +1,11 @@
 import LanguageIcon from '@mui/icons-material/Language';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import LanguageContext from '../contexts/LanguageContext';
 
 const ChangeLanguage = () => {
 	const [isOpen, setIsOpen] = useState(false); // State to track whether the language menu is open or not
-	const [selectedLanguage, setSelectedLanguage] = useState('en'); // State to track the selected language
+	const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
 
 	const handleChangeLanguage = (language) => {
 		setSelectedLanguage(language);
@@ -20,7 +22,7 @@ const ChangeLanguage = () => {
 	]; // Array of languages to display in the menu
 
 	return (
-		<div style={{ position: 'relative', display: 'inline-block' }}>
+		<div style={{ position: 'relative', display: 'inline-block', display: 'flex', alignItems: 'center' }}>
 			<LanguageIcon fontSize="large" onClick={() => setIsOpen(!isOpen)} />
 			{/* Render the language menu if isOpen is true */}
 			{isOpen && (
@@ -37,7 +39,7 @@ const ChangeLanguage = () => {
 					}}
 				>
 					{/* Language menu options */}
-					<ul style={{ textAlign: 'center', textAlign: 'center', padding: '4px', margin: '4px', fontSize: 'initial' }}>
+					<ul style={{ textAlign: 'center', padding: '4px', margin: '4px', fontSize: 'initial' }}>
 						{languages.map((language) => (
 							<li
 								key={language.code}
