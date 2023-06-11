@@ -8,6 +8,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import RoomSharpIcon from '@mui/icons-material/RoomSharp';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
+import ChangeLanguage from './ChangeLanguage';
+
+
 
 import specialities from '../assets/specialities.js';
 import DatePicker_requestForm from './datePicker';
@@ -212,6 +215,8 @@ export default function Test() {
           <DatePicker_requestForm register={register} />
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
+
+          <ChangeLanguage />
         </form>
         {/* second row */}
 
