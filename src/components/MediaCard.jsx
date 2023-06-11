@@ -13,7 +13,7 @@ import reviewFullStar from '@/assets/images/svg/reviewFullStar.png';
 import reviewHalfStar from '@/assets/images/svg/reviewHalfStar.png';
 import './../App.css'
 
-export function MediaCard({ name, phone, address, rating, openNow, key, photo }) {
+export function MediaCard({ name, phone, address, rating, openNow, key, photo, distance }) {
     let url_img = `src/assets/images/clinics/${photo}`;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
@@ -28,7 +28,6 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
             height: '22.739726027vh',
             borderRadius: '1.025641026vh',
             display: 'inline-table!important',
-            marginTop: '21px!important'
         }} key={key} >
 
             <CardMedia
@@ -52,6 +51,13 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo })
                         {address}
                     </Typography>
                     <div css={{ display: 'flex', alignItems: 'center' }}>
+                      <Typography variant="body2" style={{ color: 'black', padding: '3px' }}>
+                         {`La distancia desde su ubicación actual es de:`}
+                      </Typography>
+                         { <span alt="reviews" css={{ marginTop: '1.319648093841642vw', color: 'orange' }} width={25} >
+                            {distance} </span>}
+                    </div>
+                    <div css={{ display: 'inline-flex' }}>
                         <Typography variant="body2" >
                             {rating}
                         </Typography>
