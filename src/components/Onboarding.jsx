@@ -1,12 +1,15 @@
 import Header from './Header'
 import amworld from './amworld';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Onboarding = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     setTimeout(() => {
       amworld()
-    }, 1)
+    }, 100)
   }, []);
 
   return (

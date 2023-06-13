@@ -1,12 +1,27 @@
-import RuntoHealth from '../assets/images/svg/RunToHealth.svg'
-import { Link } from 'react-router-dom'
-import '../App.css'
+import React, { useContext } from 'react';
+import RuntoHealth from '../assets/images/svg/RunToHealth.svg';
+import { useTranslation } from 'react-i18next';
+import LanguageContext from '../contexts/LanguageContext';
+import ChangeLanguage from './ChangeLanguage';
 
+import { Link } from 'react-router-dom';
+import '../App.css';
 
 export default function Header() {
+  const { t } = useTranslation();
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
+  const handleChangeLanguage = (languageCode) => {
+    setSelectedLanguage(languageCode);
+  };
+
+  console.log('Selected Language:', selectedLanguage);
 
   return (
     <header>
+      <div style={{ position: 'relative', top: '20px', right: '20px' }}>
+        <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+      </div>
       <div className='header'>
         <div className="RHT-wrapper" style={{
           display: 'flex',
@@ -24,13 +39,15 @@ export default function Header() {
 
           <div className="rth-info">
             <p className="header-info header-info" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              RunToHealth is a platform for finding medical services around the world quickly and easily. <br />
-              We believe that with our help you will be able to find the best solution to your problem.
-              <Link to='../AboutUs' style={{ textDecoration: 'none', }} className="header-info-link link">
-                <span>More about us...</span>
+              {t('header.title')}<br />
+              {t('header.description')}
+              <Link to='/AboutUs' style={{ textDecoration: 'none' }} className="header-info-link link">
+                <span>{t('header.moreAboutUs')}</span>
               </Link>
               <button className="button_blue">
-                <Link to='../RequestForm' style={{ textDecoration: 'none', color: '#000',  border: 'none', boxShadow: 'none' }}>SEARCH</Link>
+                <Link to='/RequestForm' style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
+                  {t('header.search')}
+                </Link>
               </button>
             </p>
           </div>
