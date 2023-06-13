@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header>
       <div style={{ position: 'relative', top: '20px', right: '20px' }}>
-        <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+        <ChangeLanguage />
       </div>
       <div className='header'>
         <div className="RHT-wrapper" style={{
