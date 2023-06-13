@@ -12,10 +12,18 @@ const ChangeLanguage = () => {
   };
 
   const languages = [
+    { code: 'ar', name: 'Arabic' },
+    { code: 'zh', name: 'Chinese' },
     { code: 'en', name: 'English' },
+    { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' },
+    { code: 'el', name: 'Greek' },
+    { code: 'hi', name: 'Hindi' },
+    { code: 'it', name: 'Italian' },
+    { code: 'ja', name: 'Japanese' },
+    { code: 'pt', name: 'Portuguese' },
     { code: 'ru', name: 'Russian' },
-    { code: 'es', name: 'Spanish' },
-    { code: 'fr', name: 'French' }
+    { code: 'es', name: 'Spanish' }
   ];
 
   return (

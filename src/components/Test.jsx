@@ -22,12 +22,16 @@ import './../App.css'
 
 
 export default function Test() {
-  const { t } = useTranslation();
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
-  const { selectedLanguage } = useContext(LanguageContext);
+  const { t } = useTranslation();
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
+  const handleChangeLanguage = (languageCode) => {
+    setSelectedLanguage(languageCode);
+  };
 
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -193,6 +197,8 @@ export default function Test() {
     setPage(value);
   };
 
+  console.log('Selected Language:', selectedLanguage);
+
   return (
     <>
       <Box className="back-arrow">
@@ -225,7 +231,8 @@ export default function Test() {
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
 
-          <ChangeLanguage />
+          <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+
         </form>
         {/* second row */}
 
