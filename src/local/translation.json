@@ -1,0 +1,75 @@
+{
+    "en": {
+      "header.title": "RunToHealth - a platform for finding medical services around the world quickly and easily",
+      "header.description": "We believe that with our help you will be able to find the best solution to your problem.",
+      "header.moreAboutUs": "More about us...",
+      "header.search": "SEARCH"
+    },
+    "es": {
+      "header.title": "RunToHealth - una plataforma para encontrar servicios médicos en todo el mundo de forma rápida y sencilla",
+      "header.description": "Creemos que con nuestra ayuda podrás encontrar la mejor solución a tu problema.",
+      "header.moreAboutUs": "Más sobre nosotros...",
+      "header.search": "BUSCAR"
+    },
+    "de": {
+      "header.title": "RunToHealth - eine Plattform zur schnellen und einfachen Suche nach medizinischen Dienstleistungen weltweit",
+      "header.description": "Wir sind der Meinung, dass du mit unserer Hilfe die beste Lösung für dein Problem finden wirst.",
+      "header.moreAboutUs": "Mehr über uns...",
+      "header.search": "SUCHEN"
+    },
+    "fr": {
+      "header.title": "RunToHealth - une plateforme pour trouver rapidement et facilement des services médicaux dans le monde entier",
+      "header.description": "Nous croyons qu'avec notre aide, vous pourrez trouver la meilleure solution à votre problème.",
+      "header.moreAboutUs": "En savoir plus sur nous...",
+      "header.search": "RECHERCHER"
+    },
+    "ru": {
+        "header.title": "RunToHealth - платформа поиска медицинских услуг по всему миру",
+        "header.description": "Мы верим, что с нашей помощью вы сможете найти лучшее решение для вашей проблемы.",
+        "header.moreAboutUs": "Подробнее о нас...",
+        "header.search": "ПОИСК"
+    },
+    "zh": {
+        "header.title": "RunToHealth - 一个快速轻松找到全球医疗服务的平台",
+        "header.description": "我们相信，在我们的帮助下，您将能够找到解决您问题的最佳方案。",
+        "header.moreAboutUs": "了解更多关于我们...",
+        "header.search": "搜索"
+      },
+    "ja": {
+      "header.title": "RunToHealth - 世界中の医療サービスを迅速かつ簡単に見つけるためのプラットフォーム",
+      "header.description": "私たちの助けを借りれば、あなたの問題に最適な解決策を見つけることができると信じています。",
+      "header.moreAboutUs": "私たちについての詳細...",
+      "header.search": "検索"
+    },
+    "el": {
+      "header.title": "RunToHealth - μια πλατφόρμα για την εύρεση ιατρικών υπηρεσιών σε ολόκληρο τον κόσμο γρήγορα και εύκολα",
+      "header.description": "Πιστεύουμε ότι με τη βοήθειά μας θα μπορέσετε να βρείτε την καλύτερη λύση για το πρόβλημά σας.",
+      "header.moreAboutUs": "Περισσότερα για εμάς...",
+      "header.search": "ΑΝΑΖΗΤΗΣΗ"
+    },
+    "pt": {
+      "header.title": "RunToHealth - uma plataforma para encontrar serviços médicos em todo o mundo de forma rápida e fácil",
+      "header.description": "Acreditamos que, com a nossa ajuda, você será capaz de encontrar a melhor solução para o seu problema.",
+      "header.moreAboutUs": "Mais sobre nós...",
+      "header.search": "PESQUISAR"
+    },
+    "it": {
+      "header.title": "RunToHealth - una piattaforma per trovare servizi medici in tutto il mondo in modo rapido e facile",
+      "header.description": "Crediamo che con il nostro aiuto potrai trovare la migliore soluzione per il tuo problema.",
+      "header.moreAboutUs": "Maggiori informazioni su di noi...",
+      "header.search": "CERCA"
+    },
+    "ar": {
+      "header.title": "RunToHealth - منصة للعثور على الخدمات الطبية في جميع أنحاء العالم بسرعة وسهولة",
+      "header.description": "نعتقد أنه باستخدام مساعدتنا ستتمكن من إيجاد أفضل حل لمشكلتك.",
+      "header.moreAboutUs": "معلومات إضافية عنا...",
+      "header.search": "بحث"
+    },
+    "hi": {
+      "header.title": "RunToHealth - विश्व भर में चिकित्सा सेवाओं को तेजी से और आसानी से ढूंढने के लिए एक प्लेटफ़ॉर्म",
+      "header.description": "हम मानते हैं कि हमारी मदद से आप अपनी समस्या के लिए सबसे अच्छा समाधान ढूंढ़ सकेंगे।",
+      "header.moreAboutUs": "हमारे बारे में और जानें...",
+      "header.search": "खोजें"
+    }
+  }
+    

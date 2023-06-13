@@ -37,12 +37,14 @@ import { initMap } from './Map'
 import { MapaMultiMarker } from './MapaMultiMarker'
 import { reducer_requestForm, initState_requestForm } from "../helpers/reducers"
 import DatePicker_requestForm from './datePicker'
+import { useTranslation } from 'react-i18next';
 
 let isFormEmpty = true;
 
 
 
 export const RequestForm = () => {
+  const { t } = useTranslation();
   const [state, dispatch] = useReducer(reducer_requestForm, initState_requestForm)
   const [date, setDate] = useState(dayjs('2014-08-18T21:11:54')); // change to today
   const [open, setOpen] = useState(false);

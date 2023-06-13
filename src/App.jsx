@@ -9,9 +9,10 @@ import AboutUs from './components/AboutUs'
 import FilterFinding from './components/FilterFinding'
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
+import { useTranslation } from 'react-i18next'
 
 function App() {
-
+  const { t } = useTranslation();
   return (
     <ThemeProvider theme={theme}>
       <Router>

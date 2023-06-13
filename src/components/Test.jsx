@@ -16,11 +16,13 @@ import { MediaCard } from "./MediaCard";
 
 import { MapaMultiMarker } from './MapaMultiMarker';
 import  LanguageContext  from '../contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 import './../App.css'
 
 
 export default function Test() {
+  const { t } = useTranslation();
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
