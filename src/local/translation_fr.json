@@ -2,5 +2,15 @@
   "header.title": "RunToHealth - une plateforme pour trouver rapidement et facilement des services médicaux dans le monde entier",
   "header.description": "Nous croyons qu'avec notre aide, vous pourrez trouver la meilleure solution à votre problème.",
   "header.moreAboutUs": "En savoir plus sur nous...",
-  "header.search": "RECHERCHER"
+  "header.search": "RECHERCHER",
+  "Specialization": "Spécialisation",
+  "Country": "Pays",
+  "City": "Ville",
+  "Clinic Name": "Nom de la clinique",
+  "Destination": "Destination",
+  "Translator": "Traducteur",
+  "International Accreditation": "Accréditation internationale",
+  "distance": "Distance",
+  "Average service cost": "Coût moyen du service",
+  "date": "Date"
 }

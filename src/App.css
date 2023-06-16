@@ -400,3 +400,13 @@ fieldset{
 width: 50%;
 height: 100vh;
 }
+
+.no-results-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.46627566vw;
+  margin-top: -20px;
+  margin-left: 11px;
+  color: red;
+}

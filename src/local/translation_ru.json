@@ -2,5 +2,15 @@
     "header.title": "RunToHealth - платформа поиска медицинских услуг по всему миру",
     "header.description": "Мы верим, что с нашей помощью вы сможете найти лучшее решение для вашей проблемы.",
     "header.moreAboutUs": "Подробнее о нас...",
-    "header.search": "ПОИСК"
+    "header.search": "ПОИСК",
+    "Specialization": "Специализация",
+    "Country": "Страна",
+    "City": "Город",
+    "Clinic Name": "Название клиники",
+    "Destination": "Назначение",
+    "Translator": "Переводчик",
+    "International Accreditation": "Международная аккредитация",
+    "distance": "расстояние",
+    "Average service cost": "Средняя стоимость услуги",
+    "date": "Дата"
 }

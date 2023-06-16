@@ -51,8 +51,8 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                         {address}
                     </Typography>
                     <div css={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography variant="body2" style={{ color: 'black', padding: '3px' }}>
-                         {`distance:`}
+                      <Typography variant="body2" style={{ color: 'black' }}>
+                      {'Distance:'}
                       </Typography>
                          { <span alt="reviews" width={25} >
                             {distance}km </span>}
