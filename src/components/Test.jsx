@@ -1,4 +1,4 @@
-import data from '../models/cities_coords.json';
+// import data from '../models/cities_coords.json';
 import React, { useEffect, useState, useMemo, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,20 @@ import specialities from '../assets/specialities.js';
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
+
+// Import JSON files as necessary to each translation
+
+import citiesEn from '../models/cities_en.json';
+import citiesRu from '../models/cities_ru.json';
+// import citiesEs from '../models/cities_es.json';
+// import citiesFr from '../models/cities_fr.json';                  
+// import citiesEl from '../models/cities_el.json';
+// import citiesPt from '../models/cities_pt.json';
+// import citiesIt from '../models/cities_it.json';
+// import citiesHi from '../models/cities_hi.json';
+// import citiesAr from '../models/cities_ar.json';
+// import citiesZh from '../models/cities_zh.json';
+// import citiesJa from '../models/cities_ja.json';
 
 import { MapaMultiMarker } from './MapaMultiMarker';
 import  LanguageContext  from '../contexts/LanguageContext';
@@ -32,7 +46,7 @@ export default function Test() {
   const handleChangeLanguage = (languageCode) => {
     setSelectedLanguage(languageCode);
   };
-
+  const [data, setData] = useState(citiesEn);
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -47,6 +61,56 @@ export default function Test() {
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
+
+  const setDataForSelects = () => {
+    // Choose the correct JSON file based on the selected language
+    switch (selectedLanguage) {
+         case 'en':
+           setData(citiesEn);
+           break;
+         case 'ru':
+           setData(citiesRu);
+           break;
+         // case 'es':
+         //   setData(citiesEs);
+         //   break;
+         // case 'fr':
+         //   setData(citiesFr);
+         //   break;
+         // case 'pt':
+         //   setData(citiesPt);
+         //   break;
+         // case 'it':
+         //   setData(citiesIt);
+         //   break;
+         // case 'hi':
+         //   setData(citiesHi);
+         //   break;
+         // case 'ar':
+         //   setData(citiesAr);
+         //   break;
+         // case 'zh':
+         //   setData(citiesZh);
+         //   break;
+         // case 'ja':
+         //   setData(citiesJa);
+         //   break;
+         // case 'el':
+         //   setData(citiesEl);
+         //   break;
+         default:
+           setData(citiesEn);
+           break;
+    }
+    console.log('data', data);
+  };
+
+
+  useEffect(() => {
+    setDataForSelects();
+  }, [selectedLanguage]);
+  
+  
   newArrayWithoutDuplicates
   const [cardArray, setCardArray] = useState([]);
 
@@ -133,10 +197,12 @@ export default function Test() {
   }
 
   const countriesArray = useMemo(() => {
+    setDataForSelects();
     return data.paises.map((country) => country.name);
   }, [data.paises]);
 
   const selectedCountryData = useMemo(() => {
+    setDataForSelects();
     return data.paises.find((country) => country.name === selectedCountry) || {};
   }, [data.paises, selectedCountry]);
 
@@ -158,6 +224,62 @@ export default function Test() {
     });
     setCountries(countriesArray);
   }, []);
+
+  // const countriesArray = useMemo(() => {
+  //   return data.paises.map((country) => country.name);
+  // }, [data.paises]);
+  
+  // const selectedCountryData = useMemo(() => {
+  //   return data.paises.find((country) => country.name === selectedCountry) || {};
+  // }, [data.paises, selectedCountry]);
+  
+  // const selectedCountryCities = useMemo(() => {
+  //   let cities = [];
+  //   switch (selectedLanguage) {
+  //     case 'en':
+  //       cities = citiesEn.find((country) => country.code === selectedCountryData.code)?.cities || [];
+  //       break;
+  //     case 'ru':
+  //       cities = citiesRu.find((country) => country.code === selectedCountryData.code)?.cities || [];
+  //       break;
+  //     case 'de':
+  //       cities = citiesDe[selectedCountryData.code] || [];
+  //       break;
+  //     case 'el':
+  //       cities = citiesEl[selectedCountryData.code] || [];
+  //       break;
+  //     case 'es':
+  //       cities = citiesEs[selectedCountryData.code] || [];
+  //       break;
+  //     case 'pt':
+  //       cities = citiesPt[selectedCountryData.code] || [];
+  //       break;
+  //     case 'it':
+  //       cities = citiesIt[selectedCountryData.code] || [];
+  //       break;
+  //     case 'ar':
+  //       cities = citiesAr[selectedCountryData.code] || [];
+  //       break;
+  //     case 'zh':
+  //       cities = citiesZh[selectedCountryData.code] || [];
+  //       break;
+  //     case 'ja':
+  //       cities = citiesJa[selectedCountryData.code] || [];
+  //       break;
+  //     case 'hi':
+  //       cities = citiesHi[selectedCountryData.code] || [];
+  //       break;
+  //     case 'fr':
+  //       cities = citiesFr[selectedCountryData.code] || [];
+  //       break;
+  //     // Agrega más casos para otros idiomas según sea necesario
+  //     default:
+  //       cities = [];
+  //       break;
+  //   }
+  //   return cities;
+  // }, [selectedCountryData, selectedLanguage]);
+  
 
   useEffect(() => {
     setCityValue('');

@@ -7,6 +7,7 @@ export const LanguageProvider = ({ children }) => {
 
   const handleChangeLanguage = (languageCode) => {
     setSelectedLanguage(languageCode);
+    console.log(languageCode);
   };
 
   return (

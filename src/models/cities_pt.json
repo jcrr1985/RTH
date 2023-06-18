@@ -1,0 +1,29 @@
+{
+    "paises": [
+        {
+            "code": "AL",
+            "name": "Albânia",
+            "cities": [ "Berat", "Bulqizë", "Burrel", "Cërrik", "Delvinë", "Devoll", "Dibër", "Durrës", "Elbasan", "Fier", "Gjirokastër", "Gramsh", "Has", "Kavajë", "Kolonjë", "Korçë", "Krujë", "Kuçovë", "Kukës", "Kurbin", "Lezhë", "Librazhd", "Lushnjë", "Malësi e Madhe", "Mallakastër", "Mat", "Mirditë", "Peqin", "Përmet", "Pogradec", "Pukë", "Sarandë", "Shijak", "Shkodër", "Skrapar", "Tepelenë", "Tirana", "Tropojë", "Urë Vajgurore", "Vau i Dejës", "Vlorë", "Vorë"
+            ]
+          },
+          {
+            "code": "AD",
+            "name": "Andorra",
+            "cities": [ "Andorra-a-Velha", "Canillo", "Encamp", "Escaldes-Engordany", "La Massana", "Ordino", "Sant Julià de Lòria", "Aixovall", "Aixirivall", "Aldosa de Canillo", "Aldosa de la Massana", "Ansalonga", "Anyós", "Arans", "Arinsal", "Bixessarri", "Certers", "El Vilar", "Els Plans", "El Serrat", "Erts", "Forn", "La Cortinada", "L'Aldosa", "L'Aldosa de Ordino", "Les Bons", "Llorts", "Llumeneres", "Mas d'Alins", "Nagol", "Pal", "Pas de la Casa", "Prats", "Santa Coloma", "Sispony", "Soldeu", "Sornàs", "Tarter", "Vila", "Xixerella"
+            ]
+          },
+          {
+            "code": "AR",
+            "name": "Argentina",
+            "cities": [ "Avellaneda", "Bahía Blanca", "Bariloche", "Buenos Aires", "Córdoba", "Corrientes", "Formosa", "Jujuy", "La Plata", "Lanús", "Lomas de Zamora", "Mar del Plata", "Mendoza", "Morón", "Neuquén", "Posadas", "Quilmes", "Río Cuarto", "Rosario", "Salta", "San Carlos de Bariloche", "San Clemente del Tuyú", "San Fernando", "San Francisco", "San Isidro", "San Juan", "San Justo", "San Luis", "San Martín", "San Miguel de Tucumán", "San Nicolás de los Arroyos", "San Rafael", "San Salvador de Jujuy"
+            ]
+          },
+          {
+            "code": "AM",
+            "name": "Armênia",
+            "cities": [ "Abovyan", "Alaverdi", "Aparan", "Ararat", "Artashat", "Ashtarak", "Byureghavan", "Charentsavan", "Dilijan", "Ejmiatsin", "Gavar", "Goris", "Gyumri", "Hrazdan", "Ijevan", "Kapan", "Masis", "Meghri", "Sevan", "Spitak", "Stepanakert", "Tashir", "Tsaghkadzor", "Vagharshapat", "Vanadzor", "Vardenis", "Yeghegnadzor", "Yerevan"
+            ]
+          },
+          
+]
+}  
