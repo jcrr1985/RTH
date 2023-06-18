@@ -15,7 +15,7 @@ import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
 
 import { MapaMultiMarker } from './MapaMultiMarker';
-import  LanguageContext  from '../contexts/LanguageContext';
+import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 
 import './../App.css'
@@ -103,6 +103,7 @@ export default function Test() {
   }
 
   const handleChangeCities = (event) => {
+    setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "City") {
       const ciudadSeleccionada = event.target.innerText;
       setCityValue(ciudadSeleccionada);
@@ -303,31 +304,39 @@ export default function Test() {
       </Box >
       <div className="search-and-results-container">
         <div className="results-and-map-wrapper">
-          {<div className="clinic-cards-container">
-            { cardArray.length === 0 && selectedCountry && cityValue && <span className="no-results-container">no results found</span>}
+          <div className="clinic-cards-container">
             {
-              cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
-                console.log('cardArray!! :D', cardArray)
-                return (
-                  <MediaCard
-                    name={clinic.name}
-                    phone={clinic.distance}
-                    address={clinic.address}
-                    rating={clinic.rating}
-                    id={index}
-                    distance={placesDistancesToUserPosition[index]}
-                  />
+              (cardArray.length === 0 && selectedCountry && cityValue) ?
+                <>
+                  <span className="no-results-container">no results found</span>
+                </> :
+                (
+                  <>
+                    {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
+                      console.log('cardArray con valor!! :D', cardArray);
+                      return (
+                        <MediaCard
+                          name={clinic.name}
+                          phone={clinic.distance}
+                          address={clinic.address}
+                          rating={clinic.rating}
+                          id={index}
+                          distance={placesDistancesToUserPosition[index]}
+                        />
+                      );
+                    })}
+                    {cardArray.length >= 2 &&
+                      <Pagination
+                        count={Math.ceil(cardArray.length / clinicsPerPage)}
+                        color="secondary"
+                        onChange={handlePaginationChange}
+                      />
+                    }
+                  </>
                 )
-              })}
-            {cardArray.length >= 2 &&
-              <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
-                color="secondary"
-                onChange={handlePaginationChange} />}
-          </div>}
-          <div css={{
-            width: `${mapWidth}`,
-            maxHeight: '70vh',
-          }}>
+            }
+          </div>
+          <div css={{ width: `${mapWidth}`, maxHeight: '70vh' }}>
             <div id="panel"></div>
             <div className="map" id="map"></div>
           </div>
