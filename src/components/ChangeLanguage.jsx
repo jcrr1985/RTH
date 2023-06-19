@@ -28,19 +28,19 @@ const ChangeLanguage = () => {
 
   return (
     <div style={{ position: 'relative', display: 'inline-block', alignItems: 'center' }}>
-      <LanguageIcon fontSize="large" onClick={() => setIsOpen(!isOpen)} />
+      <LanguageIcon style={{ position: 'relative', top: '10px' }} fontSize="large" onClick={() => setIsOpen(!isOpen)} />
 
       {isOpen && (
         <div
           style={{
             position: 'absolute',
-            top: '10px',
+            top: '45px',
             left: 0,
             backgroundColor: 'white',
             padding: '1rem',
-            borderRadius: '4px',
+            borderRadius: '14px',
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
-            zIndex: 9
+            zIndex: 100
           }}
         >
           <ul style={{ textAlign: 'center', padding: '4px', margin: '4px', fontSize: 'initial' }}>
@@ -50,7 +50,8 @@ const ChangeLanguage = () => {
                 onClick={() => handleSelectLanguage(language.code)}
                 style={{
                   cursor: 'pointer',
-                  fontWeight: i18n.language === language.code ? 'bold' : 'normal'
+                  fontWeight: i18n.language === language.code ? 'bold' : 'normal',
+                  padding: '6px',
                 }}
               >
                 {language.name}

@@ -232,7 +232,7 @@ export default function Test() {
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
 
-          <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+          <ChangeLanguage/>
 
         </form>
         {/* second row */}
@@ -274,7 +274,7 @@ export default function Test() {
           <div className="icons_wrapper">
             <div className='filter-icon'>
               <RoomSharpIcon className='search-icon' />
-              <span className=''>{t('Destination')}</span>
+              <span className=''>{t('Distance')}</span>
             </div>
             <div className='filter-icon'>
               <TranslateRoundedIcon className='search-icon' />
