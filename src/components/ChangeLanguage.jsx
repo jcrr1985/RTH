@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
+import LanguageContext from '../contexts/LanguageContext';
+import { useLanguageContext } from '../contexts/LanguageContext';
+
 
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelectLanguage = (language) => {
-    i18n.changeLanguage(language);
-    setIsOpen(false);
-  };
+const { handleChangeLanguage } = useLanguageContext();
+
 
   const languages = [
     { code: 'zh', name: 'Chinese' },
@@ -49,7 +50,7 @@ const ChangeLanguage = () => {
             {languages.map((language) => (
               <li
                 key={language.code}
-                onClick={() => handleSelectLanguage(language.code)}
+                onClick={() => handleChangeLanguage(language.code)}
                 style={{
                   cursor: 'pointer',
                   fontWeight: i18n.language === language.code ? 'bold' : 'normal'

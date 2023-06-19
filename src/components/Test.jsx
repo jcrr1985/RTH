@@ -19,7 +19,7 @@ import { MediaCard } from "./MediaCard";
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
 // import citiesEs from '../models/cities_es.json';
-// import citiesFr from '../models/cities_fr.json';                  
+// import citiesFr from '../models/cities_fr.json';
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
 // import citiesIt from '../models/cities_it.json';
@@ -30,6 +30,7 @@ import citiesRu from '../models/cities_ru.json';
 
 import { MapaMultiMarker } from './MapaMultiMarker';
 import LanguageContext from '../contexts/LanguageContext';
+
 import { useTranslation } from 'react-i18next';
 
 import './../App.css'
@@ -41,11 +42,9 @@ export default function Test() {
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
   const { t } = useTranslation();
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+  const { selectedLanguage } = useContext(LanguageContext);
 
-  const handleChangeLanguage = (languageCode) => {
-    setSelectedLanguage(languageCode);
-  };
+
   const [data, setData] = useState(citiesEn);
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -64,43 +63,44 @@ export default function Test() {
 
   const setDataForSelects = () => {
     // Choose the correct JSON file based on the selected language
+    console.log('selectedLanguage en setDataForSelects', selectedLanguage)
     switch (selectedLanguage) {
-         case 'en':
-           setData(citiesEn);
-           break;
-         case 'ru':
-           setData(citiesRu);
-           break;
-         // case 'es':
-         //   setData(citiesEs);
-         //   break;
-         // case 'fr':
-         //   setData(citiesFr);
-         //   break;
-         // case 'pt':
-         //   setData(citiesPt);
-         //   break;
-         // case 'it':
-         //   setData(citiesIt);
-         //   break;
-         // case 'hi':
-         //   setData(citiesHi);
-         //   break;
-         // case 'ar':
-         //   setData(citiesAr);
-         //   break;
-         // case 'zh':
-         //   setData(citiesZh);
-         //   break;
-         // case 'ja':
-         //   setData(citiesJa);
-         //   break;
-         // case 'el':
-         //   setData(citiesEl);
-         //   break;
-         default:
-           setData(citiesEn);
-           break;
+      case 'en':
+        setData(citiesEn);
+        break;
+      case 'ru':
+        setData(citiesRu);
+        break;
+      // case 'es':
+      //   setData(citiesEs);
+      //   break;
+      // case 'fr':
+      //   setData(citiesFr);
+      //   break;
+      // case 'pt':
+      //   setData(citiesPt);
+      //   break;
+      // case 'it':
+      //   setData(citiesIt);
+      //   break;
+      // case 'hi':
+      //   setData(citiesHi);
+      //   break;
+      // case 'ar':
+      //   setData(citiesAr);
+      //   break;
+      // case 'zh':
+      //   setData(citiesZh);
+      //   break;
+      // case 'ja':
+      //   setData(citiesJa);
+      //   break;
+      // case 'el':
+      //   setData(citiesEl);
+      //   break;
+      default:
+        setData(citiesEn);
+        break;
     }
     console.log('data', data);
   };
@@ -109,8 +109,8 @@ export default function Test() {
   useEffect(() => {
     setDataForSelects();
   }, [selectedLanguage]);
-  
-  
+
+
   newArrayWithoutDuplicates
   const [cardArray, setCardArray] = useState([]);
 
@@ -226,61 +226,6 @@ export default function Test() {
     setCountries(countriesArray);
   }, []);
 
-  // const countriesArray = useMemo(() => {
-  //   return data.paises.map((country) => country.name);
-  // }, [data.paises]);
-  
-  // const selectedCountryData = useMemo(() => {
-  //   return data.paises.find((country) => country.name === selectedCountry) || {};
-  // }, [data.paises, selectedCountry]);
-  
-  // const selectedCountryCities = useMemo(() => {
-  //   let cities = [];
-  //   switch (selectedLanguage) {
-  //     case 'en':
-  //       cities = citiesEn.find((country) => country.code === selectedCountryData.code)?.cities || [];
-  //       break;
-  //     case 'ru':
-  //       cities = citiesRu.find((country) => country.code === selectedCountryData.code)?.cities || [];
-  //       break;
-  //     case 'de':
-  //       cities = citiesDe[selectedCountryData.code] || [];
-  //       break;
-  //     case 'el':
-  //       cities = citiesEl[selectedCountryData.code] || [];
-  //       break;
-  //     case 'es':
-  //       cities = citiesEs[selectedCountryData.code] || [];
-  //       break;
-  //     case 'pt':
-  //       cities = citiesPt[selectedCountryData.code] || [];
-  //       break;
-  //     case 'it':
-  //       cities = citiesIt[selectedCountryData.code] || [];
-  //       break;
-  //     case 'ar':
-  //       cities = citiesAr[selectedCountryData.code] || [];
-  //       break;
-  //     case 'zh':
-  //       cities = citiesZh[selectedCountryData.code] || [];
-  //       break;
-  //     case 'ja':
-  //       cities = citiesJa[selectedCountryData.code] || [];
-  //       break;
-  //     case 'hi':
-  //       cities = citiesHi[selectedCountryData.code] || [];
-  //       break;
-  //     case 'fr':
-  //       cities = citiesFr[selectedCountryData.code] || [];
-  //       break;
-  //     // Agrega más casos para otros idiomas según sea necesario
-  //     default:
-  //       cities = [];
-  //       break;
-  //   }
-  //   return cities;
-  // }, [selectedCountryData, selectedLanguage]);
-  
 
   useEffect(() => {
     setCityValue('');
@@ -320,8 +265,6 @@ export default function Test() {
     setPage(value);
   };
 
-  console.log('Selected Language:', selectedLanguage);
-
   return (
     <>
       <Box className="back-arrow">
@@ -354,7 +297,7 @@ export default function Test() {
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
 
-          <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+          <ChangeLanguage />
 
         </form>
         {/* second row */}
