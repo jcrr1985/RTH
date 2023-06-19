@@ -17,10 +17,14 @@ export default function Header() {
 
   console.log('Selected Language:', selectedLanguage);
 
+  const handleLanguageChange = (languageCode) => {
+    handleChangeLanguage(languageCode);
+  };
+
   return (
     <header>
       <div style={{ position: 'relative', top: '20px', right: '20px' }}>
-        <ChangeLanguage />
+        <ChangeLanguage onChange={handleLanguageChange} />
       </div>
       <div className='header'>
         <div className="RHT-wrapper" style={{

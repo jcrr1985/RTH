@@ -22,10 +22,10 @@ import citiesRu from '../models/cities_ru.json';
 // import citiesFr from '../models/cities_fr.json';                  
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
-// import citiesIt from '../models/cities_it.json';
+import citiesIt from '../models/cities_it.json';
 // import citiesHi from '../models/cities_hi.json';
 // import citiesAr from '../models/cities_ar.json';
-// import citiesZh from '../models/cities_zh.json';
+import citiesZh from '../models/cities_zh.json';
 // import citiesJa from '../models/cities_ja.json';
 
 import { MapaMultiMarker } from './MapaMultiMarker';
@@ -46,6 +46,7 @@ export default function Test() {
   const handleChangeLanguage = (languageCode) => {
     setSelectedLanguage(languageCode);
   };
+
   const [data, setData] = useState(citiesEn);
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -61,73 +62,44 @@ export default function Test() {
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
-
   const setDataForSelects = () => {
     // Choose the correct JSON file based on the selected language
     switch (selectedLanguage) {
-         case 'en':
-           setData(citiesEn);
-           break;
-         case 'ru':
-           setData(citiesRu);
-           break;
-         // case 'es':
-         //   setData(citiesEs);
-         //   break;
-         // case 'fr':
-         //   setData(citiesFr);
-         //   break;
-         // case 'pt':
-         //   setData(citiesPt);
-         //   break;
-         // case 'it':
-         //   setData(citiesIt);
-         //   break;
-         // case 'hi':
-         //   setData(citiesHi);
-         //   break;
-         // case 'ar':
-         //   setData(citiesAr);
-         //   break;
-         // case 'zh':
-         //   setData(citiesZh);
-         //   break;
-         // case 'ja':
-         //   setData(citiesJa);
-         //   break;
-         // case 'el':
-         //   setData(citiesEl);
-         //   break;
-         default:
-           setData(citiesEn);
-           break;
+      case 'en':
+        setData(citiesEn);
+        break;
+      case 'ru':
+        setData(citiesRu);
+        break;
+      case 'it':
+        setData(citiesIt);
+        break;
+      case 'zh':
+        setData(citiesZh);
+        break;
+      default:
+        setData(citiesEn);
+        break;
     }
-    console.log('data', data);
   };
-
 
   useEffect(() => {
     setDataForSelects();
   }, [selectedLanguage]);
-  
-  
-  newArrayWithoutDuplicates
+
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = (cardArray) => {
-    console.log('cardArray en fillcardaraay', cardArray)
     setTimeout(() => {
       const newArrayWithoutDuplicates = [...new Set(cardArray.map((clinic) => clinic.name))].map((name) => {
         return cardArray.find((clinic) => clinic.name === name);
       });
 
-
-      setCardArray(newArrayWithoutDuplicates)
+      setCardArray(newArrayWithoutDuplicates);
     }, 10);
-  }
-
-  const onSubmit = (data) => {
   };
+
+  const onSubmit = (data) => {};
 
   const handleChangeEspecialitation = (event) => {
     if (event.target.innerText !== "" && event.target.innerText !== "Specialization") {
@@ -164,7 +136,7 @@ export default function Test() {
           })
       }
     };
-  }
+  };
 
   const handleChangeCities = (event) => {
     setCardArray([]);
@@ -175,112 +147,48 @@ export default function Test() {
     }
   };
 
+  // const handleCountryChange = (event) => {
+  //   setCardArray([]);
+  //   if (event.target.innerText !== "" && event.target.innerText !== "Country") {
+  //     const paisSeleccionado = event.target.innerText;
+  //     setSelectedCountry(paisSeleccionado);
+  //     setCityValue('');
+  //   }
+  // };
+
   const handleCountryChange = (event) => {
-    setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
       const paisSeleccionado = event.target.innerText;
       setSelectedCountry(paisSeleccionado);
       setCityValue('');
-      let cityInput = document.getElementById('city-selected');
-      console.log('cityInput', cityInput)
-      cityInput.value = '';
+      const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
+      const selectedCountryCities = Object.keys(selectedCountryData?.cities || {});
+      setCities(selectedCountryCities);
     }
   };
+  
 
   const marks = [
     { value: 0, label: '0' },
     { value: 200, label: '~' }
-  ]
+  ];
 
   const getValue = (e, val) => {
     console.warn(val);
     setSliderValue(val);
-  }
+  };
 
   const countriesArray = useMemo(() => {
-    setDataForSelects();
     return data.paises.map((country) => country.name);
   }, [data.paises]);
 
-  const selectedCountryData = useMemo(() => {
-    setDataForSelects();
-    return data.paises.find((country) => country.name === selectedCountry) || {};
-  }, [data.paises, selectedCountry]);
-
   const selectedCountryCities = useMemo(() => {
-    return Object.keys(selectedCountryData.cities || {});
-  }, [selectedCountryData]);
-
-  useEffect(() => {
-    const links = document.querySelectorAll('.filter-icon');
-
-    links.forEach(link => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        links.forEach(link => {
-          link.classList.remove('active');
-        });
-        this.classList.add('active');
-      });
-    });
-    setCountries(countriesArray);
-  }, []);
-
-  // const countriesArray = useMemo(() => {
-  //   return data.paises.map((country) => country.name);
-  // }, [data.paises]);
-  
-  // const selectedCountryData = useMemo(() => {
-  //   return data.paises.find((country) => country.name === selectedCountry) || {};
-  // }, [data.paises, selectedCountry]);
-  
-  // const selectedCountryCities = useMemo(() => {
-  //   let cities = [];
-  //   switch (selectedLanguage) {
-  //     case 'en':
-  //       cities = citiesEn.find((country) => country.code === selectedCountryData.code)?.cities || [];
-  //       break;
-  //     case 'ru':
-  //       cities = citiesRu.find((country) => country.code === selectedCountryData.code)?.cities || [];
-  //       break;
-  //     case 'de':
-  //       cities = citiesDe[selectedCountryData.code] || [];
-  //       break;
-  //     case 'el':
-  //       cities = citiesEl[selectedCountryData.code] || [];
-  //       break;
-  //     case 'es':
-  //       cities = citiesEs[selectedCountryData.code] || [];
-  //       break;
-  //     case 'pt':
-  //       cities = citiesPt[selectedCountryData.code] || [];
-  //       break;
-  //     case 'it':
-  //       cities = citiesIt[selectedCountryData.code] || [];
-  //       break;
-  //     case 'ar':
-  //       cities = citiesAr[selectedCountryData.code] || [];
-  //       break;
-  //     case 'zh':
-  //       cities = citiesZh[selectedCountryData.code] || [];
-  //       break;
-  //     case 'ja':
-  //       cities = citiesJa[selectedCountryData.code] || [];
-  //       break;
-  //     case 'hi':
-  //       cities = citiesHi[selectedCountryData.code] || [];
-  //       break;
-  //     case 'fr':
-  //       cities = citiesFr[selectedCountryData.code] || [];
-  //       break;
-  //     // Agrega más casos para otros idiomas según sea necesario
-  //     default:
-  //       cities = [];
-  //       break;
-  //   }
-  //   return cities;
-  // }, [selectedCountryData, selectedLanguage]);
-  
+    if (selectedCountry) {
+      const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
+      return Object.keys(selectedCountryData?.cities || {});
+    }
+    return [];
+  }, [data.paises, selectedCountry]);
 
   useEffect(() => {
     setCityValue('');
@@ -288,7 +196,6 @@ export default function Test() {
     setMapWidth('100%');
     MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
     if (selectedCountry) {
-      const countryData = data.paises.find((country) => country.name === selectedCountry);
       setCities(selectedCountryCities);
       setMapWidth('57vw');
     }
@@ -355,7 +262,6 @@ export default function Test() {
           <SearchIcon className='search-icon' fontSize="large" />
 
           <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
-
         </form>
         {/* second row */}
 
@@ -365,7 +271,7 @@ export default function Test() {
             id="country-selected"
             {...register('country-selected')}
             onChange={(ev) => handleCountryChange(ev)}
-            options={countries}
+            options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
@@ -385,11 +291,6 @@ export default function Test() {
             onKeyDown={(ev) => handleChangeClinics(ev)
             } sx={{ width: '100%' }}
           />
-          {/* PROCEDURES */}
-          {/* <Autocomplete className='req-form-input' id="procedures" {...register('procedures')}
-            onChange={(ev) => handleChangeProcedure(ev)}
-            options={filter} renderInput={(params) => <TextField {...params} label="Procedures" />} /> */}
-
         </form>
         {/* cuarta fila */}
         <form className='filters' onSubmit={handleSubmit(onSubmit)}>
@@ -413,7 +314,7 @@ export default function Test() {
               <span className="T4"> {sliderValue} </span>
             </div>
             <div className="slider_bar">
-              <Slider color="bar" defaultValue={0} max={10000} step={25} mark={marks}
+              <Slider color="bar" defaultValue={0} max={10000} step={25} marks={marks}
                 onChange={getValue} valueLabelDisplay="auto" />
             </div>
             <div className="slider_leyent_button">
@@ -435,7 +336,6 @@ export default function Test() {
                 (
                   <>
                     {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
-                      console.log('cardArray con valor!! :D', cardArray);
                       return (
                         <MediaCard
                           name={clinic.name}

@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const { setSelectedLanguage } = useContext(LanguageContext);
 
   const handleSelectLanguage = (language) => {
     i18n.changeLanguage(language);
+    setSelectedLanguage(language);
     setIsOpen(false);
   };
 
@@ -25,8 +28,6 @@ const ChangeLanguage = () => {
   // { code: 'pt', name: 'Portuguese' },
   // { code: 'de', name: 'German' },
   // { code: 'el', name: 'Greek' },
-
-
 
   return (
     <div style={{ position: 'relative', display: 'inline-block', alignItems: 'center' }}>
