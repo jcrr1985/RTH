@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../contexts/LanguageContext';
@@ -50,7 +51,7 @@ const ChangeLanguage = () => {
             {languages.map((language) => (
               <li
                 key={language.code}
-                onClick={() => handleSelectLanguage(language.code)}
+                onClick={() => handleChangeLanguage(language.code)}
                 style={{
                   cursor: 'pointer',
                   fontWeight: i18n.language === language.code ? 'bold' : 'normal'
