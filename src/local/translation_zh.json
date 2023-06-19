@@ -2,5 +2,15 @@
   "header.title": "RunToHealth - 一个快速轻松找到全球医疗服务的平台",
   "header.description": "我们相信，在我们的帮助下，您将能够找到解决您问题的最佳方案。",
   "header.moreAboutUs": "了解更多关于我们...",
-  "header.search": "搜索"
+  "header.search": "搜索",
+  "Specialization": "专业",
+  "Country": "国家",
+  "City": "城市",
+  "Clinic Name": "诊所名称",
+  "Destination": "目的地",
+  "Translator": "翻译",
+  "International Accreditation": "国际认证",
+  "distance": "距离",
+  "Average service cost": "平均服务费用",
+  "date": "日期"
 }

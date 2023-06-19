@@ -15,19 +15,23 @@ import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
 
 import { MapaMultiMarker } from './MapaMultiMarker';
-import  LanguageContext  from '../contexts/LanguageContext';
+import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 
 import './../App.css'
 
 
 export default function Test() {
-  const { t } = useTranslation();
   // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
-  const { selectedLanguage } = useContext(LanguageContext);
+  const { t } = useTranslation();
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
+  const handleChangeLanguage = (languageCode) => {
+    setSelectedLanguage(languageCode);
+  };
 
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -99,6 +103,7 @@ export default function Test() {
   }
 
   const handleChangeCities = (event) => {
+    setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "City") {
       const ciudadSeleccionada = event.target.innerText;
       setCityValue(ciudadSeleccionada);
@@ -193,6 +198,8 @@ export default function Test() {
     setPage(value);
   };
 
+  console.log('Selected Language:', selectedLanguage);
+
   return (
     <>
       <Box className="back-arrow">
@@ -217,7 +224,7 @@ export default function Test() {
               width: '33%', height: '56px'
             }}
             options={specialities}
-            renderInput={(params) => <TextField {...params} label="Specialization"
+            renderInput={(params) => <TextField {...params} label={t('Specialization')}
               sx={{ backgroundColor: 'theme.palette.background.default', }} />}
           />
           {/* Date */}
@@ -225,7 +232,8 @@ export default function Test() {
           {/* Search Button */}
           <SearchIcon className='search-icon' fontSize="large" />
 
-          <ChangeLanguage />
+          <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
+
         </form>
         {/* second row */}
 
@@ -236,20 +244,20 @@ export default function Test() {
             {...register('country-selected')}
             onChange={(ev) => handleCountryChange(ev)}
             options={countries}
-            renderInput={(params) => <TextField {...params} label="Country" />}
+            renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
           <Autocomplete className='req-form-input' id="city-selected"
             {...register('city-selected')}
             onChange={(ev) => handleChangeCities(ev)}
-            options={cities} renderInput={(params) => <TextField {...params} label="City" />}
+            options={cities} renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
         </form>
         {/* third row */}
 
         <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
           {/* Name Of Clinics */}
-          <TextField label="Clinic Name" variant="outlined"
+          <TextField label={t('Clinic Name')} variant="outlined"
             id="nameOfClinic" className='req-form-input'
             {...register('nameOfClinic')}
             onKeyDown={(ev) => handleChangeClinics(ev)
@@ -266,20 +274,20 @@ export default function Test() {
           <div className="icons_wrapper">
             <div className='filter-icon'>
               <RoomSharpIcon className='search-icon' />
-              <span className=''>Destination</span>
+              <span className=''>{t('Destination')}</span>
             </div>
             <div className='filter-icon'>
               <TranslateRoundedIcon className='search-icon' />
-              <span className=''>Translator</span>
+              <span className=''>{t('Translator')}</span>
             </div>
             <div className='filter-icon'>
               <DescriptionRoundedIcon className='search-icon' />
-              <span className='int-acc'>International Accreditation</span>
+              <span className='int-acc'>{t('International Accreditation')}</span>
             </div>
           </div>
           <div className="slider_wrapper">
             <div className="slider_leyent_top">
-              <span className="T4"> Average service cost </span>
+              <span className="T4">{t('Average service cost')}</span>
               <span className="T4"> {sliderValue} </span>
             </div>
             <div className="slider_bar">
@@ -296,30 +304,39 @@ export default function Test() {
       </Box >
       <div className="search-and-results-container">
         <div className="results-and-map-wrapper">
-          {<div className="clinic-cards-container">
+          <div className="clinic-cards-container">
             {
-              cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
-                console.log('cardArray!! :D', cardArray)
-                return (
-                  <MediaCard
-                    name={clinic.name}
-                    phone={clinic.distance}
-                    address={clinic.address}
-                    rating={clinic.rating}
-                    id={index}
-                    distance={placesDistancesToUserPosition[index]}
-                  />
+              (cardArray.length === 0 && selectedCountry && cityValue) ?
+                <>
+                  <span className="no-results-container">no results found</span>
+                </> :
+                (
+                  <>
+                    {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
+                      console.log('cardArray con valor!! :D', cardArray);
+                      return (
+                        <MediaCard
+                          name={clinic.name}
+                          phone={clinic.distance}
+                          address={clinic.address}
+                          rating={clinic.rating}
+                          id={index}
+                          distance={placesDistancesToUserPosition[index]}
+                        />
+                      );
+                    })}
+                    {cardArray.length >= 2 &&
+                      <Pagination
+                        count={Math.ceil(cardArray.length / clinicsPerPage)}
+                        color="secondary"
+                        onChange={handlePaginationChange}
+                      />
+                    }
+                  </>
                 )
-              })}
-            {cardArray.length >= 2 &&
-              <Pagination count={Math.ceil(cardArray.length / clinicsPerPage)}
-                color="secondary"
-                onChange={handlePaginationChange} />}
-          </div>}
-          <div css={{
-            width: `${mapWidth}`,
-            maxHeight: '70vh',
-          }}>
+            }
+          </div>
+          <div css={{ width: `${mapWidth}`, maxHeight: '70vh' }}>
             <div id="panel"></div>
             <div className="map" id="map"></div>
           </div>

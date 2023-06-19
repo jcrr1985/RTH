@@ -51,11 +51,11 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                         {address}
                     </Typography>
                     <div css={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography variant="body2" style={{ color: 'black', padding: '3px' }}>
-                         {`La distancia desde su ubicación actual es de:`}
+                      <Typography variant="body2" style={{ color: 'black' }}>
+                      {'Distance:'}
                       </Typography>
-                         { <span alt="reviews" css={{ marginTop: '1.319648093841642vw', color: 'orange' }} width={25} >
-                            {distance} </span>}
+                         { <span alt="reviews" width={25} >
+                            {distance}km </span>}
                     </div>
                     <div css={{ display: 'inline-flex' }}>
                         <Typography variant="body2" >
@@ -63,7 +63,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                         </Typography>
                         {(<>
                             {fullStarArray}
-                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '0px' }} width={25} />}
+                            {ratingHasDecimal && <img className="reviewHalfStar" src={reviewHalfStar} alt="reviews" css={{ marginBottom: '0px' }} width={25} height={25} />}
                         </>)}
                     </div>
                     <Typography variant="body2" color="text.secondary">
