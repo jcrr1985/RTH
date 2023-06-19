@@ -2,5 +2,15 @@
   "header.title": "RunToHealth - منصة للعثور على الخدمات الطبية في جميع أنحاء العالم بسرعة وسهولة",
   "header.description": "نعتقد أنه باستخدام مساعدتنا ستتمكن من إيجاد أفضل حل لمشكلتك.",
   "header.moreAboutUs": "معلومات إضافية عنا...",
-  "header.search": "بحث"
+  "header.search": "بحث",
+  "Specialization": "التخصص",
+  "Country": "البلد",
+  "City": "المدينة",
+  "Clinic Name": "اسم العيادة",
+  "Destination": "الوجهة",
+  "Translator": "مترجم",
+  "International Accreditation": "الاعتماد الدولي",
+  "distance": "المسافة",
+  "Average service cost": "تكلفة الخدمة المتوسطة",
+  "date": "تاريخ"
 }

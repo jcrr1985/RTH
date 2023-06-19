@@ -2,5 +2,15 @@
   "header.title": "RunToHealth - 世界中の医療サービスを迅速かつ簡単に見つけるためのプラットフォーム",
   "header.description": "私たちの助けを借りれば、あなたの問題に最適な解決策を見つけることができると信じています。",
   "header.moreAboutUs": "私たちについての詳細...",
-  "header.search": "検索"
+  "header.search": "検索",
+  "Specialization": "専門分野",
+  "Country": "国",
+  "City": "市",
+  "Clinic Name": "クリニック名",
+  "Destination": "目的地",
+  "Translator": "翻訳者",
+  "International Accreditation": "国際認証",
+  "distance": "距離",
+  "Average service cost": "平均サービス費用",
+  "date": "日付"
 }

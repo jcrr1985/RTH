@@ -35,7 +35,7 @@ const distanceBetween = (pos, marker_coords) => {
   let testDistance = google.maps.geometry.spherical.computeDistanceBetween(_pCord, _coordinates);
     // console.log('testDistance:', testDistance);
 //como el valor devuelto viene en metros lo llevamos a kilimetros
-    testDistance = (testDistance / 100).toFixed(3) 
+    testDistance = (testDistance / 100).toFixed(3)
      return testDistance;
   }
 
@@ -89,7 +89,9 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition) {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log('data desde fetching: ', data)
+      console.log('data desde fetching: ', data);
+      console.log('status de la peticion http : ', data.status)
+
 
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
@@ -140,7 +142,7 @@ function centrarSinDatosConGeoLocation() {
   } else {
     alert("La geolocalización no es compatible con este navegador.");
   }
- 
+
 function success(position) {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;

@@ -2,5 +2,15 @@
   "header.title": "RunToHealth - μια πλατφόρμα για την εύρεση ιατρικών υπηρεσιών σε ολόκληρο τον κόσμο γρήγορα και εύκολα",
   "header.description": "Πιστεύουμε ότι με τη βοήθειά μας θα μπορέσετε να βρείτε την καλύτερη λύση για το πρόβλημά σας.",
   "header.moreAboutUs": "Περισσότερα για εμάς...",
-  "header.search": "ΑΝΑΖΗΤΗΣΗ"
+  "header.search": "ΑΝΑΖΗΤΗΣΗ",
+  "Specialization": "Ειδίκευση",
+  "Country": "Χώρα",
+  "City": "Πόλη",
+  "Clinic Name": "Όνομα κλινικής",
+  "Destination": "Προορισμός",
+  "Translator": "Μεταφραστής",
+  "International Accreditation": "Διεθνής Πιστοποίηση",
+  "distance": "Απόσταση",
+  "Average service cost": "Μέσο κόστος υπηρεσίας",
+  "date": "Ημερομηνία"
 }
