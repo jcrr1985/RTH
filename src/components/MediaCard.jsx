@@ -75,7 +75,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                     </Typography>
                 </CardContent>
                 <CardActions style={{ textAlign: 'center' }}>
-                    <button>Book now</button>
+                    <button>{t('book now')}</button>
                 </CardActions>
             </div>
         </Card>
