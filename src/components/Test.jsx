@@ -9,7 +9,12 @@ import RoomSharpIcon from '@mui/icons-material/RoomSharp';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import ChangeLanguage from './ChangeLanguage';
-import specialities from '../assets/specialities.js';
+import specialities_en from '../assets/specialities_en.js';
+import specialities_ru from '../assets/specialities_ru.js';
+import specialities_it from '../assets/specialities_it.js';
+import specialities_zh from '../assets/specialities_zh.js';
+// import specialities_es from '../assets/specialities_es.js';
+
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
@@ -48,6 +53,7 @@ export default function Test() {
   };
 
   const [data, setData] = useState(citiesEn);
+  const [specialities, setSpecialities] = useState(specialities_en);	
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -67,18 +73,23 @@ export default function Test() {
     switch (selectedLanguage) {
       case 'en':
         setData(citiesEn);
+        setSpecialities(specialities_en);
         break;
       case 'ru':
         setData(citiesRu);
+        setSpecialities(specialities_ru);
         break;
       case 'it':
         setData(citiesIt);
+        setSpecialities(specialities_it);
         break;
       case 'zh':
         setData(citiesZh);
+        setSpecialities(specialities_zh);
         break;
       default:
         setData(citiesEn);
+        setSpecialities(specialities_en);
         break;
     }
   };
@@ -87,6 +98,7 @@ export default function Test() {
     setDataForSelects();
     setCityValue('');
     setSelectedCountry('');
+    setSpeciality('');
   }, [selectedLanguage]);
 
   const [cardArray, setCardArray] = useState([]);
@@ -245,6 +257,7 @@ export default function Test() {
               setSpeciality(ev.target.innerText);
               handleChangeEspecialitation(ev)
             }}
+            value={speciality}
             style={{
               width: '33%', height: '56px'
             }}
