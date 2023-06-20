@@ -85,6 +85,8 @@ export default function Test() {
 
   useEffect(() => {
     setDataForSelects();
+    setCityValue('');
+    setSelectedCountry('');
   }, [selectedLanguage]);
 
   const [cardArray, setCardArray] = useState([]);
@@ -265,6 +267,7 @@ export default function Test() {
             id="country-selected"
             {...register('country-selected')}
             onChange={(ev) => handleCountryChange(ev)}
+            value={selectedCountry}
             options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
