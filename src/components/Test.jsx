@@ -273,7 +273,7 @@ export default function Test() {
              className='req-form-input'
              id="city-selected"
              {...register('city-selected')}
-             onChange={(ev, newValue) => handleChangeCities(ev, newValue)}
+             onChange={(ev) => handleChangeCities(ev)}
              value={cityValue}
              options={cities}
              renderInput={(params) => <TextField {...params} label={t('City')} />}
