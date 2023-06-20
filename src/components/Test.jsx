@@ -147,26 +147,18 @@ export default function Test() {
     }
   };
 
-  // const handleCountryChange = (event) => {
-  //   setCardArray([]);
-  //   if (event.target.innerText !== "" && event.target.innerText !== "Country") {
-  //     const paisSeleccionado = event.target.innerText;
-  //     setSelectedCountry(paisSeleccionado);
-  //     setCityValue('');
-  //   }
-  // };
-
   const handleCountryChange = (event) => {
+       setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
-      const paisSeleccionado = event.target.innerText;
-      setSelectedCountry(paisSeleccionado);
-      setCityValue('');
-      const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
-      const selectedCountryCities = Object.keys(selectedCountryData?.cities || {});
-      setCities(selectedCountryCities);
+        const paisSeleccionado = event.target.innerText;
+        setSelectedCountry(paisSeleccionado);
+        setCityValue('');
+        const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
+        const selectedCountryCities = selectedCountryData.cities || [];
+        setCities(selectedCountryCities);
     }
-  };
-  
+};
+
 
   const marks = [
     { value: 0, label: '0' },
@@ -185,10 +177,12 @@ export default function Test() {
   const selectedCountryCities = useMemo(() => {
     if (selectedCountry) {
       const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
-      return Object.keys(selectedCountryData?.cities || {});
+      console.log('selectedCountryData?.cities', selectedCountryData?.citiesZ)
+      console.log('selectedCountryData', selectedCountryData)
+      return selectedCountryData?.cities;
     }
     return [];
-  }, [data.paises, selectedCountry]);
+  }, [data.paises, selectedCountry])
 
   useEffect(() => {
     setCityValue('');
@@ -275,11 +269,16 @@ export default function Test() {
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
-          <Autocomplete className='req-form-input' id="city-selected"
-            {...register('city-selected')}
-            onChange={(ev) => handleChangeCities(ev)}
-            options={cities} renderInput={(params) => <TextField {...params} label={t('City')} />}
+          <Autocomplete 
+             className='req-form-input' 
+             id="city-selected"
+             {...register('city-selected')}
+             onChange={(ev, newValue) => setCityValue(newValue)}
+             value={cityValue}
+             options={cities} 
+             renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
+
         </form>
         {/* third row */}
 
