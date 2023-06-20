@@ -19,7 +19,7 @@ import { MediaCard } from "./MediaCard";
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
 // import citiesEs from '../models/cities_es.json';
-// import citiesFr from '../models/cities_fr.json';                  
+// import citiesFr from '../models/cities_fr.json';
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
 import citiesIt from '../models/cities_it.json';
@@ -272,13 +272,13 @@ export default function Test() {
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
-          <Autocomplete 
-             className='req-form-input' 
+          <Autocomplete
+             className='req-form-input'
              id="city-selected"
              {...register('city-selected')}
-             onChange={(ev, newValue) => setCityValue(newValue)}
+             onChange={(ev) => handleChangeCities(ev)}
              value={cityValue}
-             options={cities} 
+             options={cities}
              renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
 
