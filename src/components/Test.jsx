@@ -174,10 +174,10 @@ export default function Test() {
 };
 
 
-  const marks = [
-    { value: 0, label: '0' },
-    { value: 200, label: '~' }
-  ];
+  // const marks = [
+  //   { value: 0, label: '0' },
+  //   { value: 200, label: '~' }
+  // ];
 
   const getValue = (e, val) => {
     console.warn(val);
@@ -199,10 +199,32 @@ export default function Test() {
   }, [data.paises, selectedCountry])
 
   useEffect(() => {
+    setMapWidth('60%');
+
+    // Validar si selectedLanguage es un código de idioma válido
+    const validLanguages = ['en', 'ru', 'it', 'zh']; // Agrega los códigos de idioma válidos aquí
+    if (validLanguages.includes(selectedLanguage)) {
+      MapaMultiMarker(
+        selectedCountry,
+        cityValue,
+        speciality,
+        fillCardArray,
+        setPlacesDistancesToUserPosition,
+        selectedLanguage
+      );
+    } else {
+      // Manejar el caso de un código de idioma no válido
+      console.log('selectedLanguage no es un código de idioma válido');
+    }
+
+    // ...
+  }, [selectedCountry, cityValue, speciality, selectedLanguage]);
+
+  useEffect(() => {
     setCityValue('');
     nameOfClinic.value = '';
     setMapWidth('100%');
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
     if (selectedCountry) {
       setCities(selectedCountryCities);
       setMapWidth('57vw');
@@ -213,7 +235,7 @@ export default function Test() {
     nameOfClinic.value = '';
     setMapWidth('100%');
     setClinicsToDisplay(null);
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
@@ -226,7 +248,7 @@ export default function Test() {
 
   useEffect(() => {
     setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);
@@ -329,7 +351,8 @@ export default function Test() {
               <span className="T4"> {sliderValue} </span>
             </div>
             <div className="slider_bar">
-              <Slider color="bar" defaultValue={0} max={10000} step={25} marks={marks}
+            {/* marks={marks} */}
+              <Slider color="bar" defaultValue={0} max={10000} step={25} 
                 onChange={getValue} valueLabelDisplay="auto" />
             </div>
             <div className="slider_leyent_button">
@@ -374,7 +397,7 @@ export default function Test() {
             }
           </div>
           <div css={{ width: `${mapWidth}`, maxHeight: '70vh' }}>
-            <div id="panel"></div>
+            <div id="panel" ></div>
             <div className="map" id="map"></div>
           </div>
         </div>
