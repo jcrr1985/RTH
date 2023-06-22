@@ -12,8 +12,12 @@ import clinic_Chipre1 from '@/assets/images/clinics/clinic_Chipre1.jpeg';
 import reviewFullStar from '@/assets/images/svg/reviewFullStar.png';
 import reviewHalfStar from '@/assets/images/svg/reviewHalfStar.png';
 import './../App.css'
+import { useTranslation } from 'react-i18next';
+
 
 export function MediaCard({ name, phone, address, rating, openNow, key, photo, distance }) {
+    const { t } = useTranslation();
+   
     let url_img = `src/assets/images/clinics/${photo}`;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
@@ -52,7 +56,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                     </Typography>
                     <div css={{ display: 'flex', alignItems: 'center' }}>
                       <Typography variant="body2" style={{ color: 'black' }}>
-                      {'Distance:'}
+                      {t('distance')}
                       </Typography>
                          { <span alt="reviews" width={25} >
                             {distance}km </span>}
@@ -71,7 +75,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                     </Typography>
                 </CardContent>
                 <CardActions style={{ textAlign: 'center' }}>
-                    <button>Book now</button>
+                    <button>{t('book now')}</button>
                 </CardActions>
             </div>
         </Card>

@@ -1,4 +1,4 @@
-import data from '../models/cities_coords.json';
+// import data from '../models/cities_coords.json';
 import React, { useEffect, useState, useMemo, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -9,10 +9,31 @@ import RoomSharpIcon from '@mui/icons-material/RoomSharp';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import ChangeLanguage from './ChangeLanguage';
-import specialities from '../assets/specialities.js';
+import specialities_en from '../assets/specialities_en.js';
+import specialities_ru from '../assets/specialities_ru.js';
+import specialities_it from '../assets/specialities_it.js';
+import specialities_zh from '../assets/specialities_zh.js';
+import specialities_fr from '../assets/specialities_fr.js';
+
+// import specialities_es from '../assets/specialities_es.js';
+
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
+
+// Import JSON files as necessary to each translation
+
+import citiesEn from '../models/cities_en.json';
+import citiesRu from '../models/cities_ru.json';
+// import citiesEs from '../models/cities_es.json';
+import citiesFr from '../models/cities_fr.json';
+// import citiesEl from '../models/cities_el.json';
+// import citiesPt from '../models/cities_pt.json';
+import citiesIt from '../models/cities_it.json';
+// import citiesHi from '../models/cities_hi.json';
+// import citiesAr from '../models/cities_ar.json';
+import citiesZh from '../models/cities_zh.json';
+// import citiesJa from '../models/cities_ja.json';
 
 import { MapaMultiMarker } from './MapaMultiMarker';
 import LanguageContext from '../contexts/LanguageContext';
@@ -33,6 +54,8 @@ export default function Test() {
     setSelectedLanguage(languageCode);
   };
 
+  const [data, setData] = useState(citiesEn);
+  const [specialities, setSpecialities] = useState(specialities_en);	
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -47,23 +70,56 @@ export default function Test() {
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
-  newArrayWithoutDuplicates
+  const setDataForSelects = () => {
+    // Choose the correct JSON file based on the selected language
+    switch (selectedLanguage) {
+      case 'en':
+        setData(citiesEn);
+        setSpecialities(specialities_en);
+        break;
+      case 'ru':
+        setData(citiesRu);
+        setSpecialities(specialities_ru);
+        break;
+      case 'it':
+        setData(citiesIt);
+        setSpecialities(specialities_it);
+        break;
+      case 'zh':
+        setData(citiesZh);
+        setSpecialities(specialities_zh);
+        break;
+        case 'fr':
+        setData(citiesFr);
+        setSpecialities(specialities_fr);
+        break;
+      default:
+        setData(citiesEn);
+        setSpecialities(specialities_en);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    setDataForSelects();
+    setCityValue('');
+    setSelectedCountry('');
+    setSpeciality('');
+  }, [selectedLanguage]);
+
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = (cardArray) => {
-    console.log('cardArray en fillcardaraay', cardArray)
     setTimeout(() => {
       const newArrayWithoutDuplicates = [...new Set(cardArray.map((clinic) => clinic.name))].map((name) => {
         return cardArray.find((clinic) => clinic.name === name);
       });
 
-
-      setCardArray(newArrayWithoutDuplicates)
+      setCardArray(newArrayWithoutDuplicates);
     }, 10);
-  }
-
-  const onSubmit = (data) => {
   };
+
+  const onSubmit = (data) => {};
 
   const handleChangeEspecialitation = (event) => {
     if (event.target.innerText !== "" && event.target.innerText !== "Specialization") {
@@ -100,7 +156,7 @@ export default function Test() {
           })
       }
     };
-  }
+  };
 
   const handleChangeCities = (event) => {
     setCardArray([]);
@@ -112,61 +168,64 @@ export default function Test() {
   };
 
   const handleCountryChange = (event) => {
-    setCardArray([]);
+       setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
-      const paisSeleccionado = event.target.innerText;
-      setSelectedCountry(paisSeleccionado);
-      setCityValue('');
-      let cityInput = document.getElementById('city-selected');
-      console.log('cityInput', cityInput)
-      cityInput.value = '';
+        const paisSeleccionado = event.target.innerText;
+        setSelectedCountry(paisSeleccionado);
+        setCityValue('');
+        const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
+        const selectedCountryCities = selectedCountryData.cities || [];
+        setCities(selectedCountryCities);
     }
-  };
+};
 
-  const marks = [
-    { value: 0, label: '0' },
-    { value: 200, label: '~' }
-  ]
+
+  // const marks = [
+  //   { value: 0, label: '0' },
+  //   { value: 200, label: '~' }
+  // ];
 
   const getValue = (e, val) => {
     console.warn(val);
     setSliderValue(val);
-  }
+  };
 
   const countriesArray = useMemo(() => {
     return data.paises.map((country) => country.name);
   }, [data.paises]);
 
-  const selectedCountryData = useMemo(() => {
-    return data.paises.find((country) => country.name === selectedCountry) || {};
-  }, [data.paises, selectedCountry]);
-
   const selectedCountryCities = useMemo(() => {
-    return Object.keys(selectedCountryData.cities || {});
-  }, [selectedCountryData]);
+    if (selectedCountry) {
+      const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
+      console.log('selectedCountryData?.cities', selectedCountryData?.citiesZ)
+      console.log('selectedCountryData', selectedCountryData)
+      return selectedCountryData?.cities;
+    }
+    return [];
+  }, [data.paises, selectedCountry])
 
   useEffect(() => {
-    const links = document.querySelectorAll('.filter-icon');
+    setMapWidth('60%');
 
-    links.forEach(link => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        links.forEach(link => {
-          link.classList.remove('active');
-        });
-        this.classList.add('active');
-      });
-    });
-    setCountries(countriesArray);
-  }, []);
+    // Validar si selectedLanguage es un código de idioma válido
+    const validLanguages = ['en', 'ru', 'it', 'zh', 'fr', 'es']; // Agrega los códigos de idioma válidos aquí
+    if (validLanguages.includes(selectedLanguage)) {
+      MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
+
+    } else {
+      // Manejar el caso de un código de idioma no válido
+      console.log('selectedLanguage no es un código de idioma válido');
+    }
+
+    // ...
+  }, [selectedCountry, cityValue, speciality, selectedLanguage]);
 
   useEffect(() => {
-    setCityValue('');
+    // setCityValue('');
     nameOfClinic.value = '';
     setMapWidth('100%');
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
     if (selectedCountry) {
-      const countryData = data.paises.find((country) => country.name === selectedCountry);
       setCities(selectedCountryCities);
       setMapWidth('57vw');
     }
@@ -176,7 +235,7 @@ export default function Test() {
     nameOfClinic.value = '';
     setMapWidth('100%');
     setClinicsToDisplay(null);
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
@@ -189,7 +248,7 @@ export default function Test() {
 
   useEffect(() => {
     setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);
@@ -220,6 +279,7 @@ export default function Test() {
               setSpeciality(ev.target.innerText);
               handleChangeEspecialitation(ev)
             }}
+            value={speciality}
             style={{
               width: '33%', height: '56px'
             }}
@@ -233,7 +293,6 @@ export default function Test() {
           <SearchIcon className='search-icon' fontSize="large" />
 
           <ChangeLanguage selectedLanguage={selectedLanguage} handleChangeLanguage={handleChangeLanguage} />
-
         </form>
         {/* second row */}
 
@@ -243,15 +302,21 @@ export default function Test() {
             id="country-selected"
             {...register('country-selected')}
             onChange={(ev) => handleCountryChange(ev)}
-            options={countries}
+            value={selectedCountry}
+            options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
-          <Autocomplete className='req-form-input' id="city-selected"
-            {...register('city-selected')}
-            onChange={(ev) => handleChangeCities(ev)}
-            options={cities} renderInput={(params) => <TextField {...params} label={t('City')} />}
+          <Autocomplete
+             className='req-form-input'
+             id="city-selected"
+             {...register('city-selected')}
+             onChange={(ev) => handleChangeCities(ev)}
+             value={cityValue}
+             options={cities}
+             renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
+
         </form>
         {/* third row */}
 
@@ -263,11 +328,6 @@ export default function Test() {
             onKeyDown={(ev) => handleChangeClinics(ev)
             } sx={{ width: '100%' }}
           />
-          {/* PROCEDURES */}
-          {/* <Autocomplete className='req-form-input' id="procedures" {...register('procedures')}
-            onChange={(ev) => handleChangeProcedure(ev)}
-            options={filter} renderInput={(params) => <TextField {...params} label="Procedures" />} /> */}
-
         </form>
         {/* cuarta fila */}
         <form className='filters' onSubmit={handleSubmit(onSubmit)}>
@@ -291,7 +351,8 @@ export default function Test() {
               <span className="T4"> {sliderValue} </span>
             </div>
             <div className="slider_bar">
-              <Slider color="bar" defaultValue={0} max={10000} step={25} mark={marks}
+            {/* marks={marks} */}
+              <Slider color="bar" defaultValue={0} max={10000} step={25} 
                 onChange={getValue} valueLabelDisplay="auto" />
             </div>
             <div className="slider_leyent_button">
@@ -313,7 +374,6 @@ export default function Test() {
                 (
                   <>
                     {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
-                      console.log('cardArray con valor!! :D', cardArray);
                       return (
                         <MediaCard
                           name={clinic.name}
@@ -337,7 +397,7 @@ export default function Test() {
             }
           </div>
           <div css={{ width: `${mapWidth}`, maxHeight: '70vh' }}>
-            <div id="panel"></div>
+            <div id="panel" ></div>
             <div className="map" id="map"></div>
           </div>
         </div>

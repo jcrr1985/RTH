@@ -31,13 +31,13 @@ let userPosition = null; // Variable global
 
 const distanceBetween = (pos, marker_coords) => {
   let _coordinates = pos //a google.maps.LatLng object
-    var _pCord = marker_coords;
+  var _pCord = marker_coords;
   let testDistance = google.maps.geometry.spherical.computeDistanceBetween(_pCord, _coordinates);
-    // console.log('testDistance:', testDistance);
-//como el valor devuelto viene en metros lo llevamos a kilimetros
-    testDistance = (testDistance / 100).toFixed(3)
-     return testDistance;
-  }
+  // console.log('testDistance:', testDistance);
+  //como el valor devuelto viene en metros lo llevamos a kilimetros
+  testDistance = (testDistance / 100).toFixed(3)
+  return testDistance;
+}
 
 function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition) {
   const markersCreator = (places, map) => {
@@ -45,7 +45,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
     const infowindow = new window.google.maps.InfoWindow();
     let placesCoords = [];
     fillCardArray(places)
-// console.log('userPosition inside markets:', userPosition)
+    // console.log('userPosition inside markets:', userPosition)
     places.forEach((place) => {
       let distance = 0;
       const marker = new window.google.maps.Marker({
@@ -56,7 +56,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
       });
       let coord = new window.google.maps.LatLng(place.lat, place.lng);
       // console.log(`${coord} of ${marker.title}`)
-      if(userPosition){
+      if (userPosition) {
         // Crear un objeto google.maps.LatLng
         marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
         console.log(`para ${marker.title} la distancia desde su ubicaci[on actual es de ${marker.distance}]`)
@@ -83,7 +83,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
 }
 
 
-function fetching(url, fillCardArray, setPlacesDistancesToUserPosition) {
+function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage) {
   let pos;
   console.log('url', url)
   fetch(url)
@@ -100,6 +100,7 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition) {
         const map = new window.google.maps.Map(document.getElementById("map"), {
           zoom: 10,
           center: data.results[0].geometry.location,
+          language: selectedLanguage
         });
         pos = map.center;
         console.log('map.center in pos:', pos);
@@ -111,12 +112,13 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition) {
 
       } else {
         console.error("No se encontraron resultados para la búsqueda especificada");
+        centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage)
       }
     })
     .catch(error => console.error(error));
 }
 
-function centrarMapaEnPaisOCiudad(pais, ciudad) {
+function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
   console.log('address por parametro en centrarMapaEnPaisOCiudad: ', address)
   const geocoder = new window.google.maps.Geocoder();
@@ -128,22 +130,22 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
             (pais == "Chile") ? 10 : 10
         ,
         center: results[0].geometry.location,
+        language: selectedLanguage
       });
-      // getNearbyPlaces(map.center)
     } else {
       console.error("No se ha podido encontrar la ciudad especificada");
     }
   });
 }
 
-function centrarSinDatosConGeoLocation() {
+function centrarSinDatosConGeoLocation(selectedLanguage) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
     alert("La geolocalización no es compatible con este navegador.");
   }
 
-function success(position) {
+  function success(position) {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
@@ -152,6 +154,7 @@ function success(position) {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: userLatLng,
+      language: selectedLanguage
     });
     // getNearbyPlaces(map.center)
     const marker = new google.maps.Marker({
@@ -165,11 +168,11 @@ function success(position) {
   }
 }
 
-function obtenerPaisYCiudadPorGeoLocalizacion() {
+function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) { 
   navigator.geolocation.getCurrentPosition(async position => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
-    const geocodingUrl = `${myProxy}https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+    const geocodingUrl = `${myProxy}https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=${selectedLanguage}&key=${apiKey}`;
     const geocodingResponse = await fetch(geocodingUrl);
     const geocodingData = await geocodingResponse.json();
     const cityComponent = geocodingData.results[0].address_components.find(
@@ -185,16 +188,14 @@ function obtenerPaisYCiudadPorGeoLocalizacion() {
     const tipo2 = 'clínica';
     const tipo5 = 'clinic';
 
-    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&$keyword=-Clinics.&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&key=${apiKey}`;
+    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&$keyword=-Clinics.&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&language=${selectedLanguage}&key=${apiKey}`;
 
-    // const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
     creadorDeMarcadores(places, map)
-    // getNearbyPlaces(map.center)
   }, error => {
-    centrarSinDatosConGeoLocation();
+    centrarSinDatosConGeoLocation(selectedLanguage);
     console.error(error);
   });
 
@@ -276,20 +277,20 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition) {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage) {
 
   // si pais no ciudad, no especialidad
 
   if (pais && !ciudad && !especialidad) {
     console.log('si no no')
-    centrarMapaEnPaisOCiudad(pais, ciudad);
+    centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
   }
 
   // si pais si ciudad no especialidad
 
   if (pais && ciudad && !especialidad) {
     console.log('si si no')
-    centrarMapaEnPaisOCiudad(pais, ciudad);
+    centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
 
   }
 
@@ -297,7 +298,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   if (pais && !ciudad && especialidad) {
     console.log('si no si')
-    centrarMapaEnPaisOCiudad(pais, ciudad);
+    centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
 
   }
 
@@ -312,8 +313,8 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
     console.log('ciudad && ciudad.length > 0', ciudad && ciudad.length > 0, ciudad)
     console.log('si si si')
-    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&key=${apiKey}`;
-    fetching(url, fillCardArray, setPlacesDistancesToUserPosition)
+    const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage)
   }
 
   //--------------------------------------------------------------
@@ -321,27 +322,27 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
   // no pais, no ciudad, no especialidad
 
   if (!pais && !ciudad && !especialidad) {
-    centrarSinDatosConGeoLocation();
+    centrarSinDatosConGeoLocation(selectedLanguage);
   }
   // no pais, si ciudad, si especialidad
 
   if (!pais && ciudad && especialidad) {
     console.log('no si si')
-    obtenerPaisYCiudadPorGeoLocalizacion();
+    obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 
   // no pais, no ciudad, si especialidad
 
   if (!pais && !ciudad && especialidad) {
     console.log('no no si')
-    obtenerPaisYCiudadPorGeoLocalizacion();
+    obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 
   // no pais, si ciudad, no especialidad
 
   if (!pais && !ciudad && !especialidad) {
     console.log('no no no')
-    centrarSinDatosConGeoLocation();
+    centrarSinDatosConGeoLocation(selectedLanguage);
   }
 
 }

@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const { setSelectedLanguage } = useContext(LanguageContext);
 
   const handleSelectLanguage = (language) => {
     i18n.changeLanguage(language);
+    setSelectedLanguage(language);
     setIsOpen(false);
   };
 
   const languages = [
-    { code: 'ar', name: 'Arabic' },
     { code: 'zh', name: 'Chinese' },
     { code: 'en', name: 'English' },
     { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
-    { code: 'el', name: 'Greek' },
-    { code: 'hi', name: 'Hindi' },
     { code: 'it', name: 'Italian' },
-    { code: 'ja', name: 'Japanese' },
-    { code: 'pt', name: 'Portuguese' },
     { code: 'ru', name: 'Russian' },
     { code: 'es', name: 'Spanish' }
   ];
+  // { code: 'ar', name: 'Arabic' },
+  // { code: 'hi', name: 'Hindi' },
+  // { code: 'ja', name: 'Japanese' },
+  // { code: 'pt', name: 'Portuguese' },
+  // { code: 'de', name: 'German' },
+  // { code: 'el', name: 'Greek' },
 
   return (
     <div style={{ position: 'relative', display: 'inline-block', alignItems: 'center' }}>

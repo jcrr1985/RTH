@@ -7,8 +7,11 @@ import Tooltip from '@mui/material/Tooltip';
 import TextField from '@mui/material/TextField'
 import React from 'react'
 import { useForm } from "react-hook-form"
+import { useTranslation } from 'react-i18next';
+
 
 const DatePicker_requestForm = (props) => {
+    const { t } = useTranslation();
     const [date, setDate] = useState(null);
     const handleChange = (newDate) => {
         setDate(newDate);
@@ -21,7 +24,7 @@ const DatePicker_requestForm = (props) => {
                 <div className="tooltip not-specialities-dropdown">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <MobileDatePicker
-                            label="Date"
+                            label={t('date')}
                             inputFormat="MM/DD/YYYY"
                             value={date}
                             onChange={handleChange}
