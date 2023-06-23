@@ -38,12 +38,9 @@ import citiesZh from '../models/cities_zh.json';
 import { MapaMultiMarker } from './MapaMultiMarker';
 import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
-
 import './../App.css'
 
-
 export default function Test() {
-  // const apiKey = import.meta.env.REACT_APP_GOOGLE_API_KEY;
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
@@ -55,7 +52,7 @@ export default function Test() {
   };
 
   const [data, setData] = useState(citiesEn);
-  const [specialities, setSpecialities] = useState(specialities_en);	
+  const [specialities, setSpecialities] = useState(specialities_en);
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -102,9 +99,9 @@ export default function Test() {
 
   useEffect(() => {
     setDataForSelects();
-    setCityValue('');
-    setSelectedCountry('');
-    setSpeciality('');
+    // setCityValue('');
+    // setSelectedCountry('');
+    // setSpeciality('');
   }, [selectedLanguage]);
 
   const [cardArray, setCardArray] = useState([]);
@@ -352,7 +349,7 @@ export default function Test() {
             </div>
             <div className="slider_bar">
             {/* marks={marks} */}
-              <Slider color="bar" defaultValue={0} max={10000} step={25} 
+              <Slider color="bar" defaultValue={0} max={10000} step={25}
                 onChange={getValue} valueLabelDisplay="auto" />
             </div>
             <div className="slider_leyent_button">

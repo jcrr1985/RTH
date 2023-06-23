@@ -89,10 +89,6 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log('data desde fetching: ', data);
-      console.log('status de la peticion http : ', data.status)
-
-
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
         console.log('places', places)
@@ -104,12 +100,7 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
         });
         pos = map.center;
         console.log('map.center in pos:', pos);
-        // creadorDeMarcadores(places, map, fillCardArray);
         creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition); // Pasar userPosition como argumento
-
-        // especialidad ? getNearbyPlaces(map.center, especialidad) : getNearbyPlaces(map.center);
-
-
       } else {
         console.error("No se encontraron resultados para la búsqueda especificada");
         centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage)
@@ -309,6 +300,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
   // si pais, si ciudad si especialidad
 
   if (pais && (ciudad && ciudad.length > 0) && especialidad) {
+    console.log('entro en sisisi?')
     let keyword = especialidad;
     keyword += 'clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic';
     keyword = keyword.replace(/ /g, '+');
@@ -316,6 +308,7 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
     console.log('ciudad && ciudad.length > 0', ciudad && ciudad.length > 0, ciudad)
     console.log('si si si')
     const url = `${myProxy}https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+
     fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage)
   }
 
@@ -344,6 +337,8 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   if (!pais && !ciudad && !especialidad) {
     console.log('no no no')
+    console.log('entro en nonono?')
+
     centrarSinDatosConGeoLocation(selectedLanguage);
   }
 
