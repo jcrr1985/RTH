@@ -67,6 +67,54 @@ export default function Test() {
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
+  const [selectedOptions, setSelectedOptions] = useState({
+    country: '',
+    city: '',
+    speciality: ''
+  });
+  
+  const handleAutocompleteChange = (value, nameField) => {
+      let selectedIndices;
+      
+      switch (nameField) {
+        case "specialization":
+          selectedIndices = value.map(option =>
+            specialities.findIndex(speciality => speciality === option)
+          );
+          setSelectedOptions(prevOptions => ({
+            ...prevOptions,
+            speciality: selectedIndices
+          }));
+          break;
+        case "countrySelected":
+          selectedIndices = value.map(option =>
+            countriesArray.findIndex(country => country === option)
+          );
+          setSelectedOptions(prevOptions => ({
+            ...prevOptions,
+            country: selectedIndices
+          }));
+          break;
+        case "citySelected":
+          selectedIndices = value.map(option =>
+            cities.findIndex(city => city === option)
+          );
+          setSelectedOptions(prevOptions => ({
+            ...prevOptions,
+            city: selectedIndices
+          }));
+          break;
+        
+        default:
+          // selectedIndices = null;
+          break;
+      }
+    };
+
+    useEffect(() => {
+      console.log("selectedOptions:", selectedOptions);
+    }, [selectedOptions]);
+
   const setDataForSelects = () => {
     // Choose the correct JSON file based on the selected language
     switch (selectedLanguage) {
@@ -194,7 +242,7 @@ export default function Test() {
   const selectedCountryCities = useMemo(() => {
     if (selectedCountry) {
       const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
-      console.log('selectedCountryData?.cities', selectedCountryData?.citiesZ)
+      console.log('selectedCountryData?.cities', selectedCountryData?.cities)
       console.log('selectedCountryData', selectedCountryData)
       return selectedCountryData?.cities;
     }
@@ -275,6 +323,7 @@ export default function Test() {
             onChange={(ev) => {
               setSpeciality(ev.target.innerText);
               handleChangeEspecialitation(ev)
+              handleAutocompleteChange(ev.target.value, "specialization");
             }}
             value={speciality}
             style={{
@@ -298,7 +347,10 @@ export default function Test() {
           <Autocomplete className='req-form-input'
             id="country-selected"
             {...register('country-selected')}
-            onChange={(ev) => handleCountryChange(ev)}
+            onChange={(ev) => {
+              handleCountryChange(ev);
+              handleAutocompleteChange(ev.target.value, "countrySelected");
+            }}
             value={selectedCountry}
             options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
@@ -308,7 +360,10 @@ export default function Test() {
              className='req-form-input'
              id="city-selected"
              {...register('city-selected')}
-             onChange={(ev) => handleChangeCities(ev)}
+             onChange={(ev) => {
+              handleChangeCities(ev);
+              handleAutocompleteChange(ev.target.value, "citySelected");
+            }}
              value={cityValue}
              options={cities}
              renderInput={(params) => <TextField {...params} label={t('City')} />}
