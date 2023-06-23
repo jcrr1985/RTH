@@ -13,6 +13,8 @@ import specialities_en from '../assets/specialities_en.js';
 import specialities_ru from '../assets/specialities_ru.js';
 import specialities_it from '../assets/specialities_it.js';
 import specialities_zh from '../assets/specialities_zh.js';
+import specialities_fr from '../assets/specialities_fr.js';
+
 // import specialities_es from '../assets/specialities_es.js';
 
 import DatePicker_requestForm from './datePicker';
@@ -24,7 +26,7 @@ import { MediaCard } from "./MediaCard";
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
 // import citiesEs from '../models/cities_es.json';
-// import citiesFr from '../models/cities_fr.json';
+import citiesFr from '../models/cities_fr.json';
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
 import citiesIt from '../models/cities_it.json';
@@ -86,6 +88,10 @@ export default function Test() {
       case 'zh':
         setData(citiesZh);
         setSpecialities(specialities_zh);
+        break;
+        case 'fr':
+        setData(citiesFr);
+        setSpecialities(specialities_fr);
         break;
       default:
         setData(citiesEn);
@@ -202,16 +208,10 @@ export default function Test() {
     setMapWidth('60%');
 
     // Validar si selectedLanguage es un código de idioma válido
-    const validLanguages = ['en', 'ru', 'it', 'zh']; // Agrega los códigos de idioma válidos aquí
+    const validLanguages = ['en', 'ru', 'it', 'zh', 'fr', 'es']; // Agrega los códigos de idioma válidos aquí
     if (validLanguages.includes(selectedLanguage)) {
-      MapaMultiMarker(
-        selectedCountry,
-        cityValue,
-        speciality,
-        fillCardArray,
-        setPlacesDistancesToUserPosition,
-        selectedLanguage
-      );
+      MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
+
     } else {
       // Manejar el caso de un código de idioma no válido
       console.log('selectedLanguage no es un código de idioma válido');
@@ -221,7 +221,7 @@ export default function Test() {
   }, [selectedCountry, cityValue, speciality, selectedLanguage]);
 
   useEffect(() => {
-    setCityValue('');
+    // setCityValue('');
     nameOfClinic.value = '';
     setMapWidth('100%');
     MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
