@@ -168,7 +168,7 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
   }
 }
 
-function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) { 
+function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
   navigator.geolocation.getCurrentPosition(async position => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
@@ -278,6 +278,8 @@ function showPanel(placeResult, marker) {
 }
 
 export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage) {
+  console.log('ciudad', ciudad)
+  console.log('pais', pais)
 
   // si pais no ciudad, no especialidad
 

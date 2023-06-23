@@ -7,12 +7,16 @@ const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const { setSelectedLanguage } = useContext(LanguageContext);
+  const [runMapaMultimarker, setRunMapaMultimarker] = useState(false);
 
   const handleSelectLanguage = (language) => {
     i18n.changeLanguage(language);
     setSelectedLanguage(language);
     setIsOpen(false);
+    runMapaMultimarker(false)
   };
+
+
 
   const languages = [
     { code: 'zh', name: 'Chinese' },
