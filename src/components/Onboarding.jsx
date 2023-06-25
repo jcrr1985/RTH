@@ -11,7 +11,7 @@ export const Onboarding = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Header />
+      <div> <Header /> </div>
       <div className="" id='chartdiv' style={{ width: '50vw', height: '100vh' }}></div>
     </div>
   );
