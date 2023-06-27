@@ -1,5 +1,8 @@
 import { createObjOfPlaces } from '../helpers/createObjOfPlaces.js'
 import '../assets/css/MapaMultiMarker.css'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+
+import 'sweetalert2/src/sweetalert2.scss'
 
 const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
 const myProxy = 'https://juliocorsproxy.herokuapp.com/'
@@ -85,7 +88,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
 
 function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage) {
   let pos;
-  console.log('url', url)
+  Swal.showLoading();
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -100,20 +103,32 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
         });
         pos = map.center;
         console.log('map.center in pos:', pos);
+        Swal.close();
         creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition); // Pasar userPosition como argumento
       } else {
         console.error("No se encontraron resultados para la búsqueda especificada");
         centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage)
       }
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+      Swal.fire({
+        title: 'Results not found...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    });
 }
 
 function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
   console.log('address por parametro en centrarMapaEnPaisOCiudad: ', address)
   const geocoder = new window.google.maps.Geocoder();
+  Swal.showLoading();
   geocoder.geocode({ address: address }, (results, status) => {
+
     if (status === "OK") {
       const map = new window.google.maps.Map(document.getElementById("map"), {
         zoom: pais && ciudad ? 11 : (pais == "Russia" || pais == "China") ? 4 :
@@ -123,17 +138,34 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
         center: results[0].geometry.location,
         language: selectedLanguage
       });
+      Swal.close();
     } else {
-      console.error("No se ha podido encontrar la ciudad especificada");
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Not results found!',
+        html: 'Could not find location:' + address,
+        showCloseButton: true,
+      })
     }
   });
 }
 
 function centrarSinDatosConGeoLocation(selectedLanguage) {
+
   if (navigator.geolocation) {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      }
+    });
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
-    alert("La geolocalización no es compatible con este navegador.");
+    console.log("Geolocation is not supported by this browser.")
   }
 
   function success(position) {
@@ -141,7 +173,6 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
     userPosition = userLatLng; // Asignar el valor a la variable global
-    console.log('userPosition:', userPosition);
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: userLatLng,
@@ -152,14 +183,24 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
       position: userLatLng,
       map: map,
     });
+    setTimeout(() => {
+      Swal.close();
+    }, 2000)
   }
 
   function error() {
-    alert("No se pudo obtener la ubicación del usuario.");
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not results found!',
+      html: 'Geolocation is not supported by this browser.',
+      showCloseButton: true,
+    })
   }
 }
 
 function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
+  Swal.showLoading();
   navigator.geolocation.getCurrentPosition(async position => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
@@ -185,9 +226,18 @@ function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
     const data = await response.json();
     const places = createObjOfPlaces(data.results);
     creadorDeMarcadores(places, map)
+    Swal.close();
+
   }, error => {
     centrarSinDatosConGeoLocation(selectedLanguage);
     console.error(error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not results found!',
+      html: error.message,
+      showCloseButton: true,
+    })
   });
 
 }
@@ -337,7 +387,6 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   if (!pais && !ciudad && !especialidad) {
     console.log('no no no')
-    console.log('entro en nonono?')
 
     centrarSinDatosConGeoLocation(selectedLanguage);
   }
