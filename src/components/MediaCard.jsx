@@ -1,4 +1,4 @@
-/** @jsxImportSource @emotion/react */
+// /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
 import * as React from 'react';
 import Card from '@mui/material/Card';
@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 export function MediaCard({ name, phone, address, rating, openNow, key, photo, distance }) {
     const { t } = useTranslation();
-   
+
     let url_img = `src/assets/images/clinics/${photo}`;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
