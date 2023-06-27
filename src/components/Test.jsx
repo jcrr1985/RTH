@@ -14,8 +14,7 @@ import specialities_ru from '../assets/specialities_ru.js';
 import specialities_it from '../assets/specialities_it.js';
 import specialities_zh from '../assets/specialities_zh.js';
 import specialities_fr from '../assets/specialities_fr.js';
-
-// import specialities_es from '../assets/specialities_es.js';
+import specialities_es from '../assets/specialities_es.js';
 
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
@@ -25,7 +24,7 @@ import { MediaCard } from "./MediaCard";
 
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
-// import citiesEs from '../models/cities_es.json';
+import citiesEs from '../models/cities_es.json';
 import citiesFr from '../models/cities_fr.json';
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
@@ -139,6 +138,11 @@ export default function Test() {
         setSpecialities(specialities_fr);
         updateSelectLabels()
         break;
+        case 'es':
+          setData(citiesEs);
+          setSpecialities(specialities_es);
+          updateSelectLabels()
+          break;
       default:
         setData(citiesEn);
         setSpecialities(specialities_en);
