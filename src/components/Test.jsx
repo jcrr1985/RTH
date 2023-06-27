@@ -17,6 +17,10 @@ import specialities_fr from '../assets/specialities_fr.js';
 
 // import specialities_es from '../assets/specialities_es.js';
 
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+
+import 'sweetalert2/src/sweetalert2.scss'
+
 import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";

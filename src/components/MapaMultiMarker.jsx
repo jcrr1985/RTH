@@ -1,5 +1,8 @@
 import { createObjOfPlaces } from '../helpers/createObjOfPlaces.js'
 import '../assets/css/MapaMultiMarker.css'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+
+import 'sweetalert2/src/sweetalert2.scss'
 
 const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
 const myProxy = 'https://juliocorsproxy.herokuapp.com/'
@@ -113,7 +116,9 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
   console.log('address por parametro en centrarMapaEnPaisOCiudad: ', address)
   const geocoder = new window.google.maps.Geocoder();
+  Swal.showLoading();
   geocoder.geocode({ address: address }, (results, status) => {
+
     if (status === "OK") {
       const map = new window.google.maps.Map(document.getElementById("map"), {
         zoom: pais && ciudad ? 11 : (pais == "Russia" || pais == "China") ? 4 :
@@ -123,7 +128,16 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
         center: results[0].geometry.location,
         language: selectedLanguage
       });
+      Swal.close();
     } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Not results found!',
+        html: 'Not results found! <b>:P</b>, ',
+        showCloseButton: true,
+      })
+
       console.error("No se ha podido encontrar la ciudad especificada");
     }
   });

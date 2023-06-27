@@ -5076,6 +5076,11 @@
     "picocolors" "^1.0.0"
     "stable" "^0.1.8"
 
+"sweetalert2@^11.7.12":
+  "integrity" "sha512-TQJy8mQymJLzqWPQOMQErd81Zd/rSYr0UL4pEc7bqEihtjS+zt7LWJXLhfPp93e+Hf3Z2FHMB6QGNskAMCsdTg=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.7.12.tgz"
+  "version" "11.7.12"
+
 "tar-stream@^1.5.2":
   "integrity" "sha512-rzS0heiNf8Xn7/mpdSVVSMAWAoy9bfb1WOTYC78Z0UQKeKa/CWS8FOq0lKGNa8DWKAn9gxjCvMLYc5PGXYlK2A=="
   "resolved" "https://registry.npmjs.org/tar-stream/-/tar-stream-1.6.2.tgz"
