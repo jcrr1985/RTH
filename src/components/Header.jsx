@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header>
-      <div style={{ position: 'relative', top: '20px', right: '20px' }}>
+      <div style={{ position: 'relative', top: '20px', right: '20px',     left: '0.58651026vw' }}>
         <ChangeLanguage onChange={handleLanguageChange} />
       </div>
       <div className='header'>

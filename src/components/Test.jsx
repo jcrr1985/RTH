@@ -14,8 +14,7 @@ import specialities_ru from '../assets/specialities_ru.js';
 import specialities_it from '../assets/specialities_it.js';
 import specialities_zh from '../assets/specialities_zh.js';
 import specialities_fr from '../assets/specialities_fr.js';
-
-// import specialities_es from '../assets/specialities_es.js';
+import specialities_es from '../assets/specialities_es.js';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 
@@ -29,7 +28,7 @@ import { MediaCard } from "./MediaCard";
 
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
-// import citiesEs from '../models/cities_es.json';
+import citiesEs from '../models/cities_es.json';
 import citiesFr from '../models/cities_fr.json';
 // import citiesEl from '../models/cities_el.json';
 // import citiesPt from '../models/cities_pt.json';
@@ -71,29 +70,83 @@ export default function Test() {
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
 
+  const [selectedOptions, setSelectedOptions] = useState({
+    country: '',
+    city: '',
+    speciality: ''
+  });
+  
+  const handleAutocompleteChange = (value, nameField) => {
+    let selectedIndices;
+    
+    switch (nameField) {
+      case "speciality":
+        selectedIndices = specialities.findIndex(speciality => speciality === value);
+        setSelectedOptions(prevOptions => ({
+          ...prevOptions,
+          speciality: selectedIndices
+        }));
+        // setSpeciality(specialities[selectedIndices]);
+        break;
+      case "country":
+        selectedIndices = countriesArray.findIndex(country => country === value);
+        setSelectedOptions(prevOptions => ({
+          ...prevOptions,
+          country: selectedIndices
+        }));
+        // setSelectedCountry(countriesArray[selectedIndices]);
+        break;
+      case "city":
+        selectedIndices = cities.findIndex(city => city === value);
+        setSelectedOptions(prevOptions => ({
+          ...prevOptions,
+          city: selectedIndices
+        }));
+        // setCityValue(cities[selectedIndices]);
+        break;
+      default:
+        break;
+    }
+  };
+  
+
+    useEffect(() => {
+      console.log("selectedOptions:", selectedOptions);
+    }, [selectedOptions]);
+
   const setDataForSelects = () => {
     // Choose the correct JSON file based on the selected language
     switch (selectedLanguage) {
       case 'en':
         setData(citiesEn);
         setSpecialities(specialities_en);
+        updateSelectLabels()
         break;
       case 'ru':
         setData(citiesRu);
         setSpecialities(specialities_ru);
+        updateSelectLabels()
         break;
       case 'it':
         setData(citiesIt);
         setSpecialities(specialities_it);
+        updateSelectLabels()
         break;
       case 'zh':
         setData(citiesZh);
         setSpecialities(specialities_zh);
+        updateSelectLabels()
         break;
         case 'fr':
         setData(citiesFr);
         setSpecialities(specialities_fr);
+        updateSelectLabels()
         break;
+        case 'es':
+          setData(citiesEs);
+          setSpecialities(specialities_es);
+          updateSelectLabels()
+          break;
       default:
         setData(citiesEn);
         setSpecialities(specialities_en);
@@ -101,12 +154,36 @@ export default function Test() {
     }
   };
 
-  useEffect(() => {
-    setDataForSelects();
-    // setCityValue('');
-    // setSelectedCountry('');
-    // setSpeciality('');
-  }, [selectedLanguage]);
+  const updateSelectLabels = () => { 
+    if (selectedOptions.city !== null && selectedOptions.city !== undefined) {
+      const cityIndex = selectedOptions.city;
+      if (cityIndex >= 0 && cityIndex < cities.length) {
+        setCityValue(cities[cityIndex]);
+      }
+    }
+    if (selectedOptions.country !== null && selectedOptions.country !== undefined) {
+      const countryIndex = selectedOptions.country;
+      if (countryIndex >= 0 && countryIndex < countriesArray.length) {
+        setSelectedCountry(countriesArray[countryIndex]);
+      }
+    }
+    if (selectedOptions.speciality !== null && selectedOptions.speciality !== undefined) {
+      const specialityIndex = selectedOptions.speciality;
+      if (specialityIndex >= 0 && specialityIndex < specialities.length) {
+        setSpeciality(specialities[specialityIndex]);
+      }
+    }
+  };
+
+ useEffect(() => {
+  setDataForSelects();
+  updateSelectLabels();
+}, [selectedLanguage]);
+
+useEffect(() => {
+  console.log("selectedOptions:", selectedOptions);
+  updateSelectLabels();
+}, [selectedOptions]);
 
   const [cardArray, setCardArray] = useState([]);
 
@@ -193,17 +270,21 @@ export default function Test() {
 
   const countriesArray = useMemo(() => {
     return data.paises.map((country) => country.name);
-  }, [data.paises]);
+  }, [data.paises, selectedLanguage]);
 
   const selectedCountryCities = useMemo(() => {
     if (selectedCountry) {
       const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
-      console.log('selectedCountryData?.cities', selectedCountryData?.citiesZ)
+      console.log('selectedCountryData?.cities', selectedCountryData?.cities)
       console.log('selectedCountryData', selectedCountryData)
       return selectedCountryData?.cities;
     }
     return [];
-  }, [data.paises, selectedCountry])
+  }, [data.paises, selectedCountry, selectedLanguage])
+
+  useEffect(() => {
+  updateSelectLabels();
+}, [cities, countriesArray, specialities]);
 
   useEffect(() => {
     setMapWidth('60%');
@@ -273,20 +354,23 @@ export default function Test() {
         <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
 
           {/* SPECIALITIES */}
-          <Autocomplete className="h2 req-form-input "
+          <Autocomplete
+            className="h2 req-form-input"
             id="specialization"
             {...register('specialization')}
-            onChange={(ev) => {
-              setSpeciality(ev.target.innerText);
-              handleChangeEspecialitation(ev)
+            onChange={(event, value) => {
+              setSpeciality(value);
+              handleChangeEspecialitation(event);
+              handleAutocompleteChange(value, "speciality");
             }}
             value={speciality}
             style={{
-              width: '33%', height: '56px'
+              width: '33%',
+              height: '56px'
             }}
             options={specialities}
             renderInput={(params) => <TextField {...params} label={t('Specialization')}
-              sx={{ backgroundColor: 'theme.palette.background.default', }} />}
+              sx={{ backgroundColor: 'theme.palette.background.default' }} />}
           />
           {/* Date */}
           <DatePicker_requestForm register={register} />
@@ -299,23 +383,30 @@ export default function Test() {
 
         <form className="h2 top-form-inputs">
           {/* countries */}
-          <Autocomplete className='req-form-input'
+          <Autocomplete
+            className='req-form-input'
             id="country-selected"
             {...register('country-selected')}
-            onChange={(ev) => handleCountryChange(ev)}
+            onChange={(event, value) => {
+              handleCountryChange(event);
+              handleAutocompleteChange(value, "country");
+            }}
             value={selectedCountry}
             options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
           <Autocomplete
-             className='req-form-input'
-             id="city-selected"
-             {...register('city-selected')}
-             onChange={(ev) => handleChangeCities(ev)}
-             value={cityValue}
-             options={cities}
-             renderInput={(params) => <TextField {...params} label={t('City')} />}
+            className='req-form-input'
+            id="city-selected"
+            {...register('city-selected')}
+            onChange={(event, value) => {
+              handleChangeCities(event);
+              handleAutocompleteChange(value, "city");
+            }}
+            value={cityValue}
+            options={cities}
+            renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
 
         </form>
