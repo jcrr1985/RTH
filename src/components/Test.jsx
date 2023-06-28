@@ -75,10 +75,10 @@ export default function Test() {
     city: '',
     speciality: ''
   });
-  
+
   const handleAutocompleteChange = (value, nameField) => {
     let selectedIndices;
-    
+
     switch (nameField) {
       case "speciality":
         selectedIndices = specialities.findIndex(speciality => speciality === value);
@@ -108,7 +108,7 @@ export default function Test() {
         break;
     }
   };
-  
+
 
     useEffect(() => {
       console.log("selectedOptions:", selectedOptions);
@@ -154,7 +154,7 @@ export default function Test() {
     }
   };
 
-  const updateSelectLabels = () => { 
+  const updateSelectLabels = () => {
     if (selectedOptions.city !== null && selectedOptions.city !== undefined) {
       const cityIndex = selectedOptions.city;
       if (cityIndex >= 0 && cityIndex < cities.length) {
