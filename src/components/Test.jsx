@@ -207,12 +207,14 @@ useEffect(() => {
   };
 
   const handleChangeClinics = (event) => {
+
     setMapWidth('17vw');
     if (event.target.value !== "") {
       if (event.key === "Enter") {
         setClinicSelected(true);
         event.preventDefault();
         let url = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinic.value}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+        console.log('url', url)
         fetch(url)
           .then((nameOfClinicFetchResponse) => {
             return nameOfClinicFetchResponse.json();
@@ -230,7 +232,10 @@ useEffect(() => {
             let id = data.place_id || 1;
             let placeId = data.place_id;
             let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId }
+            console.log('clinicToDisplayObj', clinicToDisplayObj)
             setClinicsToDisplay([clinicToDisplayObj])
+            MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicToDisplayObj);
+
           })
       }
     };
@@ -330,7 +335,7 @@ useEffect(() => {
 
   useEffect(() => {
     setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage);
+    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);

@@ -45,9 +45,9 @@ export default function Header() {
             <p className="header-info header-info" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {t('header.title')}<br />
               {t('header.description')}
-              <Link to='/AboutUs' style={{ textDecoration: 'none' }} className="header-info-link link">
+              {/* <Link to='/AboutUs' style={{ textDecoration: 'none' }} className="header-info-link link">
                 <span>{t('header.moreAboutUs')}</span>
-              </Link>
+              </Link> */}
               <button className="button_blue">
                 <Link to='/RequestForm' style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
                   {t('header.search')}
