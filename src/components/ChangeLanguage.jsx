@@ -26,15 +26,9 @@ const ChangeLanguage = () => {
     { code: 'ru', name: 'Russian' },
     { code: 'es', name: 'Spanish' }
   ];
-  // { code: 'ar', name: 'Arabic' },
-  // { code: 'hi', name: 'Hindi' },
-  // { code: 'ja', name: 'Japanese' },
-  // { code: 'pt', name: 'Portuguese' },
-  // { code: 'de', name: 'German' },
-  // { code: 'el', name: 'Greek' },
 
   return (
-    <div style={{ position: 'relative', display: 'inline-block', alignItems: 'center' }}>
+    <div style={{ position: 'relative', display: 'inline-block', alignItems: 'center', display: 'flex' }}>
       <LanguageIcon fontSize="large" onClick={() => setIsOpen(!isOpen)} />
 
       {isOpen && (
