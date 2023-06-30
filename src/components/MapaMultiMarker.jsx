@@ -350,10 +350,10 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   // no pais, no ciudad, si especialidad
 
-  if (!pais && !ciudad && especialidad) {
-    console.log('no no si')
-    obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
-  }
+  // if (!pais && !ciudad && especialidad) {
+  //   console.log('no no si')
+  //   centrarSinDatosConGeoLocation(selectedLanguage);
+  // }
 
   // no pais, si ciudad, no especialidad
 
