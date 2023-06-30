@@ -1,5 +1,5 @@
 const specialities = [
-	'Allergology & Immunology',
+	'Allergology Immunology',
 	'Anesthesiology',
 	'Bariatrics',
 	'Cardiology',

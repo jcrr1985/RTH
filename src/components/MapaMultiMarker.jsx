@@ -36,7 +36,6 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
       // console.log(`${coord} of ${marker.title}`)
       if (userPosition) {
         marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
-        console.log(`para ${marker.title} la distancia desde su ubicaci[on actual es de ${marker.distance}]`)
         placesCoords = [...new Set([...placesCoords, marker.distance])];
 
       }
