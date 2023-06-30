@@ -51,7 +51,13 @@ export default function amWorld() {
         fill: root.interfaceColors.get("primaryButtonHover")
     });
 
-
+    polygonSeries.mapPolygons.template.on("hit", function(event) {
+      var target = event.target;
+      var dataItem = target.dataItem;
+      var countryName = dataItem.get("name");
+      // Realiza las acciones necesarias cuando se hace clic en el país, por ejemplo:
+      console.log("Clic en el país:", countryName);
+    });
 
     // Create series for background fill
     // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/#Background_polygon

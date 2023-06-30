@@ -4,6 +4,7 @@ export const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [dateFormat, setDateFormat] = useState('MM/DD/YYYY');
 
   const handleChangeLanguage = (languageCode) => {
     setSelectedLanguage(languageCode);
@@ -11,7 +12,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>
+    <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage, dateFormat, setDateFormat }}>
         {children}
     </LanguageContext.Provider>
   );

@@ -6,12 +6,14 @@ import { LanguageContext } from '../contexts/LanguageContext';
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { setSelectedLanguage } = useContext(LanguageContext);
+  const { setSelectedLanguage, setDateFormat } = useContext(LanguageContext);
   const [runMapaMultimarker, setRunMapaMultimarker] = useState(false);
 
   const handleSelectLanguage = (language) => {
+    console.log('language', language)
     i18n.changeLanguage(language);
     setSelectedLanguage(language);
+    setDateFormat(language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY');
     setIsOpen(false);
     runMapaMultimarker(false)
   };

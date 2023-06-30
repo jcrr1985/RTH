@@ -7,37 +7,13 @@ import 'sweetalert2/src/sweetalert2.scss'
 const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
 const myProxy = 'https://juliocorsproxy.herokuapp.com/'
 let infoPanel = document.getElementById('panel');
-let userPosition = null; // Variable global
-
-//funciones reutilizables
-
-// Perform a Places Nearby Search Request: realizamos busqyeda de lugares asociados con especialidad
-// function getNearbyPlaces(position) {
-//   let request = {
-//     location: position,
-//     rankBy: google.maps.places.RankBy.DISTANCE,
-//     keyword: spec,
-//   };
-//   //console.log(request.keyword)
-//   service = new google.maps.places.PlacesService(map);
-//   service.nearbySearch(request, nearbyCallback);
-
-// }
-
-// // Handle the results (up to 20) of the Nearby Search
-// function nearbyCallback(results, status, testCoord) {
-//   if (status == google.maps.places.PlacesServiceStatus.OK) {
-//     createMarkers(results, testCoord);
-
-//   }
-// }
+let userPosition = null;
 
 const distanceBetween = (pos, marker_coords) => {
   let _coordinates = pos //a google.maps.LatLng object
   var _pCord = marker_coords;
   let testDistance = google.maps.geometry.spherical.computeDistanceBetween(_pCord, _coordinates);
-  // console.log('testDistance:', testDistance);
-  //como el valor devuelto viene en metros lo llevamos a kilimetros
+
   testDistance = (testDistance / 100).toFixed(3)
   return testDistance;
 }
@@ -48,7 +24,6 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
     const infowindow = new window.google.maps.InfoWindow();
     let placesCoords = [];
     fillCardArray(places)
-    // console.log('userPosition inside markets:', userPosition)
     places.forEach((place) => {
       let distance = 0;
       const marker = new window.google.maps.Marker({
@@ -60,9 +35,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
       let coord = new window.google.maps.LatLng(place.lat, place.lng);
       // console.log(`${coord} of ${marker.title}`)
       if (userPosition) {
-        // Crear un objeto google.maps.LatLng
         marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
-        console.log(`para ${marker.title} la distancia desde su ubicaci[on actual es de ${marker.distance}]`)
         placesCoords = [...new Set([...placesCoords, marker.distance])];
 
       }
@@ -84,7 +57,6 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
   }
   markersCreator(places, map);
 }
-
 
 function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage) {
   let pos;
@@ -172,13 +144,13 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
-    userPosition = userLatLng; // Asignar el valor a la variable global
+    userPosition = userLatLng;
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: userLatLng,
       language: selectedLanguage
     });
-    // getNearbyPlaces(map.center)
+
     const marker = new google.maps.Marker({
       position: userLatLng,
       map: map,
@@ -318,7 +290,7 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage) {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay) {
   console.log('ciudad', ciudad)
   console.log('pais', pais)
 
