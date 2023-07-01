@@ -206,6 +206,11 @@ useEffect(() => {
     }
   };
 
+  useEffect(() => {
+    console.log('clinicsToDisplay after update', clinicsToDisplay);
+    setCardArray(clinicsToDisplay)
+  }, [clinicsToDisplay]);
+
   const handleChangeClinics = (event) => {
 
     setMapWidth('17vw');
@@ -233,7 +238,7 @@ useEffect(() => {
             let placeId = data.place_id;
             let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId }
             console.log('clinicToDisplayObj', clinicToDisplayObj)
-            setClinicsToDisplay([clinicToDisplayObj])
+            setClinicsToDisplay([clinicToDisplayObj]);
             MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicToDisplayObj);
 
           })
@@ -461,7 +466,7 @@ useEffect(() => {
         <div className="results-and-map-wrapper">
           <div className="clinic-cards-container">
             {
-              (cardArray.length === 0 && selectedCountry && cityValue) ?
+              (cardArray && cardArray.length === 0 && selectedCountry && cityValue) ?
                 <>
                   <span className="no-results-container">no results found</span>
                 </> :
@@ -470,6 +475,7 @@ useEffect(() => {
                     {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
                       return (
                         <MediaCard
+                        key={index}
                           name={clinic.name}
                           phone={clinic.distance}
                           address={clinic.address}
@@ -479,7 +485,7 @@ useEffect(() => {
                         />
                       );
                     })}
-                    {cardArray.length >= 2 &&
+                    {cardArray && cardArray.length >= 2 &&
                       <Pagination
                         count={Math.ceil(cardArray.length / clinicsPerPage)}
                         color="secondary"
