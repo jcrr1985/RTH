@@ -264,7 +264,7 @@ export const RequestForm = () => {
                               onChangeCountry(event)
                             }}
                             disablePortal
-                            options={state.countries}
+                            options={state.countries || []}
                             sx={{ width: 300, backgroundColor: 'white', borderRadius: '14px', border: 'none' }}
                             renderInput={(params) => <TextField {...params} label="Countries"
                               {...register("countries")} />}
@@ -285,7 +285,7 @@ export const RequestForm = () => {
                               setDisplayCards(true)
                             }}
                             disablePortal
-                            options={state.ciudades}
+                            options={state.ciudades || []}
                             sx={{ width: 200, backgroundColor: 'white', borderRadius: '14px', border: 'none' }}
                             renderInput={(params) => <TextField {...params} label="Cities"
                               {...register("cities")}
