@@ -59,13 +59,12 @@ export default function Test() {
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, getValues, reset  } = useForm();
   const [speciality, setSpeciality] = useState('');
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [mapWidth, setMapWidth] = useState('80vw');
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
-  const [clinicSelected, setClinicSelected] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState([]);
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] = useState([]);
@@ -132,16 +131,16 @@ export default function Test() {
         setSpecialities(specialities_zh);
         updateSelectLabels()
         break;
-        case 'fr':
+      case 'fr':
         setData(citiesFr);
         setSpecialities(specialities_fr);
         updateSelectLabels()
         break;
-        case 'es':
-          setData(citiesEs);
-          setSpecialities(specialities_es);
-          updateSelectLabels()
-          break;
+      case 'es':
+        setData(citiesEs);
+        setSpecialities(specialities_es);
+        updateSelectLabels()
+        break;
       default:
         setData(citiesEn);
         setSpecialities(specialities_en);
@@ -170,14 +169,14 @@ export default function Test() {
     }
   };
 
- useEffect(() => {
-  setDataForSelects();
-  updateSelectLabels();
-}, [selectedLanguage]);
+  useEffect(() => {
+    setDataForSelects();
+    updateSelectLabels();
+  }, [selectedLanguage]);
 
-useEffect(() => {
-  updateSelectLabels();
-}, [selectedOptions]);
+  useEffect(() => {
+    updateSelectLabels();
+  }, [selectedOptions]);
 
   const [cardArray, setCardArray] = useState([]);
 
@@ -191,7 +190,7 @@ useEffect(() => {
     }, 10);
   };
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => { };
 
   const handleChangeEspecialitation = (event) => {
     if (event.target.innerText !== "" && event.target.innerText !== "Specialization") {
@@ -207,9 +206,10 @@ useEffect(() => {
     setMapWidth('17vw');
     if (event.target.value !== "") {
       if (event.key === "Enter") {
-        setClinicSelected(true);
         event.preventDefault();
-        let url = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinic.value}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+        const nameOfClinicValue = getValues('nameOfClinic');
+
+        let url = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
         console.log('url', url)
         fetch(url)
           .then((nameOfClinicFetchResponse) => {
@@ -230,8 +230,15 @@ useEffect(() => {
             let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId, data }
             console.log('clinicToDisplayObj', clinicToDisplayObj)
             setClinicsToDisplay([clinicToDisplayObj]);
+            reset({
+              'country-selected': null,
+              'city-selected': null
+            });
 
           })
+          .catch((error) => {
+            console.error('Error en la solicitud fetch:', error);
+          });
       }
     };
   };
@@ -246,22 +253,16 @@ useEffect(() => {
   };
 
   const handleCountryChange = (event) => {
-       setCardArray([]);
+    setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
-        const paisSeleccionado = event.target.innerText;
-        setSelectedCountry(paisSeleccionado);
-        setCityValue('');
-        const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
-        const selectedCountryCities = selectedCountryData.cities || [];
-        setCities(selectedCountryCities);
+      const paisSeleccionado = event.target.innerText;
+      setSelectedCountry(paisSeleccionado);
+      setCityValue('');
+      const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
+      const selectedCountryCities = selectedCountryData.cities || [];
+      setCities(selectedCountryCities);
     }
-};
-
-
-  // const marks = [
-  //   { value: 0, label: '0' },
-  //   { value: 200, label: '~' }
-  // ];
+  };
 
   const getValue = (e, val) => {
     console.warn(val);
@@ -281,8 +282,8 @@ useEffect(() => {
   }, [data.paises, selectedCountry, selectedLanguage])
 
   useEffect(() => {
-  updateSelectLabels();
-}, [cities, countriesArray, specialities]);
+    updateSelectLabels();
+  }, [cities, countriesArray, specialities]);
 
   useEffect(() => {
     setMapWidth('60%');
@@ -319,21 +320,17 @@ useEffect(() => {
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
-    const delay = 500; // tiempo de espera en milisegundos
+    const delay = 500;
     const timeoutId = setTimeout(() => {
-      console.log('placesDistancesToUserPosition:', placesDistancesToUserPosition);
     }, delay);
-    return () => clearTimeout(timeoutId); // Limpiar el temporizador
+    return () => clearTimeout(timeoutId);
   }, [placesDistancesToUserPosition]);
 
   useEffect(() => {
     setMapWidth('60%');
-
-    // setCardArray(clinicsToDisplay);
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
     console.log('clinicObj linicsToDisplay[0]', clinicObj)
     MapaMultiMarker(null, null, null, fillCardArray, null, selectedLanguage, clinicObj);
-    // MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);
@@ -443,7 +440,7 @@ useEffect(() => {
               <span className="T4"> {sliderValue} </span>
             </div>
             <div className="slider_bar">
-            {/* marks={marks} */}
+              {/* marks={marks} */}
               <Slider color="bar" defaultValue={0} max={10000} step={25}
                 onChange={getValue} valueLabelDisplay="auto" />
             </div>
