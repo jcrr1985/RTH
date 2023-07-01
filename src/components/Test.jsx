@@ -368,7 +368,6 @@ useEffect(() => {
               handleChangeEspecialitation(event);
               handleAutocompleteChange(value, "speciality");
             }}
-            value={speciality}
             style={{
               width: '33%',
               height: '56px'
@@ -396,7 +395,6 @@ useEffect(() => {
               handleCountryChange(event);
               handleAutocompleteChange(value, "country");
             }}
-            value={selectedCountry}
             options={countriesArray}
             renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
@@ -409,7 +407,6 @@ useEffect(() => {
               handleChangeCities(event);
               handleAutocompleteChange(value, "city");
             }}
-            value={cityValue}
             options={cities}
             renderInput={(params) => <TextField {...params} label={t('City')} />}
           />
