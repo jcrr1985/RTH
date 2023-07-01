@@ -109,11 +109,6 @@ export default function Test() {
     }
   };
 
-
-    useEffect(() => {
-      console.log("selectedOptions:", selectedOptions);
-    }, [selectedOptions]);
-
   const setDataForSelects = () => {
     // Choose the correct JSON file based on the selected language
     switch (selectedLanguage) {
@@ -181,7 +176,6 @@ export default function Test() {
 }, [selectedLanguage]);
 
 useEffect(() => {
-  console.log("selectedOptions:", selectedOptions);
   updateSelectLabels();
 }, [selectedOptions]);
 
@@ -206,10 +200,7 @@ useEffect(() => {
     }
   };
 
-  useEffect(() => {
-    console.log('clinicsToDisplay after update', clinicsToDisplay);
-    setCardArray(clinicsToDisplay)
-  }, [clinicsToDisplay]);
+
 
   const handleChangeClinics = (event) => {
 
@@ -236,10 +227,9 @@ useEffect(() => {
             let photos = data.photos;
             let id = data.place_id || 1;
             let placeId = data.place_id;
-            let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId }
+            let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId, data }
             console.log('clinicToDisplayObj', clinicToDisplayObj)
             setClinicsToDisplay([clinicToDisplayObj]);
-            MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicToDisplayObj);
 
           })
       }
@@ -285,8 +275,6 @@ useEffect(() => {
   const selectedCountryCities = useMemo(() => {
     if (selectedCountry) {
       const selectedCountryData = data.paises.find((country) => country.name === selectedCountry);
-      console.log('selectedCountryData?.cities', selectedCountryData?.cities)
-      console.log('selectedCountryData', selectedCountryData)
       return selectedCountryData?.cities;
     }
     return [];
@@ -339,8 +327,13 @@ useEffect(() => {
   }, [placesDistancesToUserPosition]);
 
   useEffect(() => {
-    setMapWidth('60%')
-    MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay);
+    setMapWidth('60%');
+
+    // setCardArray(clinicsToDisplay);
+    const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
+    console.log('clinicObj linicsToDisplay[0]', clinicObj)
+    MapaMultiMarker(null, null, null, fillCardArray, null, selectedLanguage, clinicObj);
+    // MapaMultiMarker(selectedCountry, cityValue, speciality, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay);
   }, [clinicsToDisplay]);
 
   const [page, setPage] = React.useState(1);
@@ -475,13 +468,14 @@ useEffect(() => {
                     {cardArray && cardArray.slice((page - 1) * clinicsPerPage, page * clinicsPerPage).map((clinic, index) => {
                       return (
                         <MediaCard
-                        key={index}
                           name={clinic.name}
                           phone={clinic.distance}
                           address={clinic.address}
                           rating={clinic.rating}
-                          id={index}
+                          key={index}
                           distance={placesDistancesToUserPosition[index]}
+                          openNow={clinic.openNow}
+                          fono={clinic.phone}
                         />
                       );
                     })}

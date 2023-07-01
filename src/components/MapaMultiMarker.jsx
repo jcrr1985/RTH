@@ -59,6 +59,7 @@ function creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlaces
 }
 
 function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ciudad, selectedLanguage) {
+  console.log('fetching')
   let pos;
   Swal.showLoading();
   fetch(url)
@@ -66,7 +67,6 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
     .then(data => {
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
-        console.log('places', places)
 
         const map = new window.google.maps.Map(document.getElementById("map"), {
           zoom: 10,
@@ -74,7 +74,6 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
           language: selectedLanguage
         });
         pos = map.center;
-        console.log('map.center in pos:', pos);
         Swal.close();
         creadorDeMarcadores(places, map, fillCardArray, userPosition, setPlacesDistancesToUserPosition); // Pasar userPosition como argumento
       } else {
@@ -88,6 +87,7 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
         allowOutsideClick: false,
         showConfirmButton: false,
         willOpen: () => {
+          console.log('error de fetching', error)
           Swal.showLoading();
         }
       });
@@ -95,6 +95,7 @@ function fetching(url, fillCardArray, setPlacesDistancesToUserPosition, pais, ci
 }
 
 function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
+  console.log('centrarMapaEnPaisOCiudad')
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
   console.log('address por parametro en centrarMapaEnPaisOCiudad: ', address)
   const geocoder = new window.google.maps.Geocoder();
@@ -125,6 +126,7 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
 }
 
 function centrarSinDatosConGeoLocation(selectedLanguage) {
+  console.log('centrarSinDatosConGeoLocation')
 
   if (navigator.geolocation) {
     Swal.fire({
@@ -172,6 +174,7 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
 }
 
 function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
+  console.log('obtenerPaisYCiudadPorGeoLocalizacion')
   Swal.showLoading();
   navigator.geolocation.getCurrentPosition(async position => {
     const lat = position.coords.latitude;
@@ -290,7 +293,8 @@ function showPanel(placeResult, marker) {
   infoPanel.classList.add("open");
 }
 
-export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplay) {
+export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPlacesDistancesToUserPosition, selectedLanguage, clinicsToDisplayObj) {
+  console.log('clinicsToDisplay', clinicsToDisplayObj)
   console.log('ciudad', ciudad)
   console.log('pais', pais)
 
@@ -336,9 +340,11 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   //--------------------------------------------------------------
 
-  // no pais, no ciudad, no especialidad
+  // no pais, no ciudad, no especialidad no clinicsToDisplayObj
 
-  if (!pais && !ciudad && !especialidad) {
+  if (!pais && !ciudad && !especialidad && !clinicsToDisplayObj ) {
+    console.log('no no no NO')
+
     centrarSinDatosConGeoLocation(selectedLanguage);
   }
   // no pais, si ciudad, si especialidad
@@ -357,10 +363,56 @@ export function MapaMultiMarker(pais, ciudad, especialidad, fillCardArray, setPl
 
   // no pais, si ciudad, no especialidad
 
-  if (!pais && !ciudad && !especialidad) {
-    console.log('no no no')
 
-    centrarSinDatosConGeoLocation(selectedLanguage);
+
+  if (!pais && !ciudad && !especialidad && clinicsToDisplayObj) {
+    console.log(' no no no si');
+    creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj)
+    // obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
+
+  function creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj) {
+    console.log('creadorDeMarcadores2')
+    console.log('clinicsToDisplayObj', clinicsToDisplayObj)
+    const map2 = new window.google.maps.Map(document.getElementById("map"), {
+      zoom: 10,
+      center: { lat: clinicsToDisplayObj.lat, lng: clinicsToDisplayObj.lng }, // Utiliza las coordenadas lat y lng del objeto
+    });
+    fillCardArray([clinicsToDisplayObj]);
+    const markersCreator = (map2) => {
+      const bounds = new window.google.maps.LatLngBounds();
+      const infowindow = new window.google.maps.InfoWindow();
+      const position = { lat: clinicsToDisplayObj.lat, lng: clinicsToDisplayObj.lng };
+      // const position = new google.maps.LatLng(clinicsToDisplayObj.lat, clinicsToDisplayObj.lng);
+      console.log('position', position)
+
+      let distance = 0;
+      const marker = new window.google.maps.Marker({
+        position: position,
+        map: map2,
+        title: clinicsToDisplayObj.name,
+        distance: distance
+      });
+      marker.setMap(map2);
+
+
+      bounds.extend(marker.position);
+
+      marker.addListener("mouseover", () => {
+        infowindow.setContent(`<div><strong>${clinicsToDisplayObj.name}</strong><br>${clinicsToDisplayObj.address}<br>${clinicsToDisplayObj.fono}</div>`);
+        infowindow.open(map2, marker);
+      });
+
+      marker.addListener('click', () => {
+        showPanel(clinicsToDisplayObj);
+      });
+
+      map2.fitBounds(bounds);
+
+      map2.setZoom(8);
+    }
+    markersCreator(map2);
+  }
+
 
 }

@@ -12,12 +12,13 @@ import reviewFullStar from '@/assets/images/svg/reviewFullStar.png';
 import reviewHalfStar from '@/assets/images/svg/reviewHalfStar.png';
 import './../App.css'
 import { useTranslation } from 'react-i18next';
+// openNow, key, photo,
 
-
-export function MediaCard({ name, phone, address, rating, openNow, key, photo, distance }) {
+export function MediaCard({ name, phone, address, rating, distance, openNow, fono }) {
     const { t } = useTranslation();
 
-    let url_img = `src/assets/images/clinics/${photo}`;
+    // let url_img = `src/assets/images/clinics/${photo}`;
+    let url_img = null;
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
     const fullStarArray = Array(Math.floor(rating)).fill().map(() => {
@@ -31,7 +32,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
             height: '22.739726027vh',
             borderRadius: '1.025641026vh',
             display: 'inline-table!important',
-        }} key={key} >
+        }} >
 
             <CardMedia
                 sx={{
@@ -53,6 +54,9 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                     <Typography variant="body2" >
                         {address}
                     </Typography>
+                    <Typography variant="body2" >
+                        {fono}
+                    </Typography>
                     <div css={{ display: 'flex', alignItems: 'center' }}>
                       <Typography variant="body2" style={{ color: 'black' }}>
                       {t('distance')}
@@ -71,7 +75,7 @@ export function MediaCard({ name, phone, address, rating, openNow, key, photo, d
                     </div>
                     <Typography variant="body2" color="text.secondary">
                         {openNow}
-                    </Typography>
+                    </Typography>openNow
                 </CardContent>
                 <CardActions style={{ textAlign: 'center' }}>
                     <button>{t('book now')}</button>
