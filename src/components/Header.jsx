@@ -40,27 +40,15 @@ export default function Header() {
               height: '8.937728938vw',
             }} />
           </div>
-
           <div className="rth-info">
             <p className="header-info header-info" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {t('header.title')}<br />
               {t('header.description')}
-              {/* <Link to='/AboutUs' style={{ textDecoration: 'none' }} className="header-info-link link">
-                <span>{t('header.moreAboutUs')}</span>
-              </Link> */}
-              <button className="button_blue" class="button_blue">
-                <Link to='/RequestForm' style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
-                  {t('header.search')}
-                </Link>
-                <a href="" className="button_blue" class="button_blue">new blue btn</a>
-              </button>
-
               <a class="button_blue" href="/RequestForm" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
                 <button className="button_blue">
                   {t('header.search')}
                 </button>
               </a>
-
             </p>
           </div>
         </div>
