@@ -55,7 +55,7 @@ export default function Header() {
                 <a href="" className="button_blue" class="button_blue">new blue btn</a>
               </button>
 
-              <a href="/RequestForm" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
+              <a class="button_blue" href="/RequestForm" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
                 <button className="button_blue">
                   {t('header.search')}
                 </button>
