@@ -54,6 +54,8 @@ export default function Header() {
                 </Link>
                 <a href="" className="button_blue" class="button_blue">new blue btn</a>
               </button>
+              <a href="" className="button_blue" class="button_blue">new new blue btn</a>
+
             </p>
           </div>
         </div>
