@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header>
-      <div style={{ position: 'relative', top: '20px', right: '20px',     left: '0.58651026vw' }}>
+      <div style={{ position: 'relative', top: '20px', right: '20px', left: '0.58651026vw' }}>
         <ChangeLanguage onChange={handleLanguageChange} />
       </div>
       <div className='header'>
@@ -54,6 +54,12 @@ export default function Header() {
                 </Link>
                 <a href="" className="button_blue" class="button_blue">new blue btn</a>
               </button>
+
+              <a href="/RequestForm" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
+                <button className="button_blue">
+                  {t('header.search')}
+                </button>
+              </a>
 
             </p>
           </div>
