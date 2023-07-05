@@ -24,26 +24,32 @@ import DatePicker_requestForm from './datePicker';
 import Back from '../assets/images/svg/Back.svg';
 import { MediaCard } from "./MediaCard";
 
-// Import JSON files as necessary to each translation
-
 import citiesEn from '../models/cities_en.json';
 import citiesRu from '../models/cities_ru.json';
 import citiesEs from '../models/cities_es.json';
 import citiesFr from '../models/cities_fr.json';
-// import citiesEl from '../models/cities_el.json';
-// import citiesPt from '../models/cities_pt.json';
 import citiesIt from '../models/cities_it.json';
-// import citiesHi from '../models/cities_hi.json';
-// import citiesAr from '../models/cities_ar.json';
 import citiesZh from '../models/cities_zh.json';
-// import citiesJa from '../models/cities_ja.json';
 
 import { MapaMultiMarker } from './MapaMultiMarker';
 import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 import './../App.css'
+import { useSelector } from 'react-redux';
+
 
 export default function Test() {
+
+  const countryInAmworld = useSelector((state) => state.countryInAmworld);
+  console.log('Estado del store:', useSelector(state => state));
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('countryInAmworld useSelector', countryInAmworld === '');
+    }, 5000);
+  }, [countryInAmworld])
+
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
@@ -59,7 +65,7 @@ export default function Test() {
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState('');
   const [cityValue, setCityValue] = useState('');
-  const { register, handleSubmit, getValues, reset  } = useForm();
+  const { register, handleSubmit, getValues, reset } = useForm();
   const [speciality, setSpeciality] = useState('');
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);

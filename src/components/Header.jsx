@@ -44,7 +44,7 @@ export default function Header() {
             <p className="header-info header-info" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {t('header.title')}<br />
               {t('header.description')}
-              <a class="button_blue" href="/RequestForm" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
+              <a class="button_blue" href="/Test" style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
                 <button className="button_blue">
                   {t('header.search')}
                 </button>
