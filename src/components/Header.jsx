@@ -52,8 +52,8 @@ export default function Header() {
                 <Link to='/Test' style={{ textDecoration: 'none', color: '#000', border: 'none', boxShadow: 'none' }}>
                   {t('header.search')}
                 </Link>
-                <a href="" className="button_blue" class="button_blue">new blue btn</a>
               </button>
+
             </p>
           </div>
         </div>
