@@ -1,10 +1,7 @@
-@font-face {
-  font-family: 'Fira Sans Condensed';
-  src: url('./assets/fonts/Fira_Sans_Condensed,Fira_Sans_Extra_Condensed,Josefin_Sans,Lora/FiraSansCondensed-Regular.ttf') format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed&display=swap');
 
-body {
-  font-family: 'Fira Sans Condensed', sans-serif;
+*, body{
+  font-family: "Fira Sans Extra Condensed", Helvetica, Arial, sans-serif;
 }
 
 #root {
