@@ -83,7 +83,7 @@ export default function FilterBox() {
                                     }}>
                                         <label htmlFor={`custom_checkbox_${index}`} className="label-custom_checkbox_"
                                             style={{
-                                                fontFamily: 'Fira Sans Extra Condensed',
+
                                                 fontStyle: 'normal',
                                                 fontWeight: '400',
                                                 fontSize: '20px',
