@@ -15,7 +15,7 @@ export const Onboarding = ({ setCountryInAmworld, countryInAmworld }) => {
   }, []);
 
   useEffect(() => {
-    console.log('countryInAmworld', countryInAmworld)
+    console.log('countryInAmworld in onboarding', countryInAmworld)
     dispatch(setCountry(countryInAmworld));
 
   }, [countryInAmworld])

@@ -39,18 +39,20 @@ import { useSelector } from 'react-redux';
 import store from './../redux/store.js'
 
 
-export default function Test() {
+export default function Test(props) {
 
   const countryInAmworld = useSelector((state) => state.countryInAmworld);
-  console.log('Estado del store:', useSelector(state => state));
-
+  console.log('props.countryInAmworld', props.countryInAmworld)
+  console.log('AAAAAAAAAAAAAAA', props.a)
 
   useEffect(() => {
+    console.log('countryInAmworld', countryInAmworld);
     setTimeout(() => {
-      console.log('store store', store.getState());
-
+      console.log('store', store.getState());
+      console.log('countryInAmworld', countryInAmworld);
     }, 5000);
-  }, [countryInAmworld])
+  }, [countryInAmworld]);
+
 
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';

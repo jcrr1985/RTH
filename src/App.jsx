@@ -34,7 +34,7 @@ function App() {
             <Route path='/' element={<Onboarding setCountryInAmworld={setCountryInAmworld} countryInAmworld={countryInAmworld} />}></Route>
             <Route path='/FilterFinding' element={<FilterFinding />}></Route>
             <Route path='/LoginForm' element={<LoginForm />}></Route>
-            <Route path='/Test' element={<Test />}></Route>
+            <Route path='/Test' element={<Test countryInAmworld={countryInAmworld || 'fuck'} a={1}/>}></Route>
             <Route path='/AboutUs' element={<AboutUs />}></Route>
             <Route path='*' element={<ErrorPage />}></Route>
           </Routes>
