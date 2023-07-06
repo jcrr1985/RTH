@@ -29,7 +29,7 @@ link_enter_page : {
     margin: '0px',
     padding: '0px',
     height: '4.109589041vh',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -37,7 +37,7 @@ link_enter_page : {
 },
 link : {
     alignSelf: 'flex-end',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -57,7 +57,7 @@ form_content : {
 legent : {
     height: '4.794520548vh',
     alignSelf: 'center',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '2.197802198vw',
@@ -66,7 +66,7 @@ legent : {
     padding: '0px',
 },
 label : {
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -75,7 +75,7 @@ label : {
      height: '4.109589041vh',
 },
 input : {
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -99,7 +99,7 @@ button : {
     height: '6.849315068vh',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '14px',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -127,7 +127,7 @@ button_blue: {
     /* кнопки */
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '14px',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -181,7 +181,7 @@ export const onboarding = {
         // margin: '0',
         width: '39.56043956vw',
         height: '16.438356164vh',
-        fontFamily: 'Fira Sans Extra Condensed',
+
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: '1.831501832vw',
@@ -243,7 +243,7 @@ main_content:{
 },
 h1:{
     width: '79.289377289vw',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '5.128205128vw',
@@ -253,7 +253,7 @@ h1:{
 },
 h2:{
     width: '67.326007326vw',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '2.197802198vw',
@@ -265,7 +265,7 @@ h2:{
 title:{
     width: '12.893772894vw',
     height: '4.054054054vh',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.831501832vw',
@@ -275,7 +275,7 @@ title:{
 },
 content:{
     width: '25.641025641vw',
-    fontFamily: 'Fira Sans Extra Condensed',
+
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '1.465201465vw',
