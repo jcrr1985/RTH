@@ -988,10 +988,10 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.7.tgz"
   "version" "2.11.7"
 
-"@remix-run/router@1.5.0":
-  "integrity" "sha512-bkUDCp8o1MvFO+qxkODcbhSqRa6P2GXgrGZVpt0dCXNW2HCSCqYI0ZoAqEOSAjRWmmlKcYgFvN4B4S+zo/f8kg=="
-  "resolved" "https://registry.npmjs.org/@remix-run/router/-/router-1.5.0.tgz"
-  "version" "1.5.0"
+"@remix-run/router@1.7.1":
+  "integrity" "sha512-bgVQM4ZJ2u2CM8k1ey70o1ePFXsEzYVZoWghh6WjM8p59jQ7HxzbHW4SbnWFG7V9ig9chLawQxDTZ3xzOF8MkQ=="
+  "resolved" "https://registry.npmjs.org/@remix-run/router/-/router-1.7.1.tgz"
+  "version" "1.7.1"
 
 "@sinclair/typebox@^0.27.8":
   "integrity" "sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA=="
@@ -5908,20 +5908,20 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.14.0.tgz"
   "version" "0.14.0"
 
-"react-router-dom@^6.6.1":
-  "integrity" "sha512-E5dfxRPuXKJqzwSe/qGcqdwa18QiWC6f3H3cWXM24qj4N0/beCIf/CWTipop2xm7mR0RCS99NnaqPNjHtrAzCg=="
-  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.10.0.tgz"
-  "version" "6.10.0"
+"react-router-dom@^6.14.1":
+  "integrity" "sha512-ssF6M5UkQjHK70fgukCJyjlda0Dgono2QGwqGvuk7D+EDGHdacEN3Yke2LTMjkrpHuFwBfDFsEjGVXBDmL+bWw=="
+  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.14.1.tgz"
+  "version" "6.14.1"
   dependencies:
-    "@remix-run/router" "1.5.0"
-    "react-router" "6.10.0"
+    "@remix-run/router" "1.7.1"
+    "react-router" "6.14.1"
 
-"react-router@6.10.0":
-  "integrity" "sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ=="
-  "resolved" "https://registry.npmjs.org/react-router/-/react-router-6.10.0.tgz"
-  "version" "6.10.0"
+"react-router@6.14.1":
+  "integrity" "sha512-U4PfgvG55LdvbQjg5Y9QRWyVxIdO1LlpYT7x+tMAxd9/vmiPuJhIwdxZuIQLN/9e3O4KFDHYfR9gzGeYMasW8g=="
+  "resolved" "https://registry.npmjs.org/react-router/-/react-router-6.14.1.tgz"
+  "version" "6.14.1"
   dependencies:
-    "@remix-run/router" "1.5.0"
+    "@remix-run/router" "1.7.1"
 
 "react-transition-group@^4.4.5":
   "integrity" "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g=="

@@ -36,6 +36,7 @@ import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 import './../App.css'
 import { useSelector } from 'react-redux';
+import store from './../redux/store.js'
 
 
 export default function Test() {
@@ -46,7 +47,8 @@ export default function Test() {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('countryInAmworld useSelector', countryInAmworld === '');
+      console.log('store store', store.getState());
+
     }, 5000);
   }, [countryInAmworld])
 
