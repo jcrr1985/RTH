@@ -215,7 +215,7 @@ export default function Test() {
           <div className="icons_wrapper">
             <div>
               <RoomSharpIcon className='search-icon' />
-              <span>Destination</span>
+              <span>Distance</span>
             </div>
             <div>
               <TranslateRoundedIcon className='search-icon' />
