@@ -36,24 +36,11 @@ import LanguageContext from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 import './../App.css'
 import { useSelector } from 'react-redux';
-import store from './../redux/store.js'
+import {handleChangeClinics} from './../utils/functions'
 
 
 export default function Test(props) {
-
   const countryInAmworld = useSelector((state) => state.countryInAmworld);
-  console.log('props.countryInAmworld', props.countryInAmworld)
-  console.log('AAAAAAAAAAAAAAA', props.a)
-
-  useEffect(() => {
-    console.log('countryInAmworld', countryInAmworld);
-    setTimeout(() => {
-      console.log('store', store.getState());
-      console.log('countryInAmworld', countryInAmworld);
-    }, 5000);
-  }, [countryInAmworld]);
-
-
   const apiKey = 'AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k';
   const myProxy = 'https://juliocorsproxy.herokuapp.com/';
 
@@ -84,6 +71,13 @@ export default function Test(props) {
     city: '',
     speciality: ''
   });
+
+
+  useEffect(() => {
+    console.log('countryInAmworld yeyyy', countryInAmworld);
+    !!countryInAmworld && handleCountryChange(null, countryInAmworld);
+  }, [countryInAmworld]);
+
 
   const handleAutocompleteChange = (value, nameField) => {
     let selectedIndices;
@@ -211,47 +205,7 @@ export default function Test(props) {
 
 
 
-  const handleChangeClinics = (event) => {
 
-    setMapWidth('17vw');
-    if (event.target.value !== "") {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        const nameOfClinicValue = getValues('nameOfClinic');
-
-        let url = `${myProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
-        console.log('url', url)
-        fetch(url)
-          .then((nameOfClinicFetchResponse) => {
-            return nameOfClinicFetchResponse.json();
-          }).then((nameOfClinicFetchResponseJson) => {
-            setClinicsToDisplay([])
-            let data = nameOfClinicFetchResponseJson.candidates[0];
-            let lat = data.geometry.location.lat;
-            let lng = data.geometry.location.lng;
-            let name = data.name;
-            let openNow = data.opening_hours.open_now;
-            let address = data.formatted_address;
-            let rating = data.rating;
-            let phone = 333444555;
-            let photos = data.photos;
-            let id = data.place_id || 1;
-            let placeId = data.place_id;
-            let clinicToDisplayObj = { lat, lng, name, openNow, address, rating, phone, photos, id, placeId, data }
-            console.log('clinicToDisplayObj', clinicToDisplayObj)
-            setClinicsToDisplay([clinicToDisplayObj]);
-            reset({
-              'country-selected': null,
-              'city-selected': null
-            });
-
-          })
-          .catch((error) => {
-            console.error('Error en la solicitud fetch:', error);
-          });
-      }
-    };
-  };
 
   const handleChangeCities = (event) => {
     setCardArray([]);
@@ -262,7 +216,18 @@ export default function Test(props) {
     }
   };
 
-  const handleCountryChange = (event) => {
+  const handleCountryChange = (event, countryInAmworld) => {
+    console.log('countryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworld', countryInAmworld)
+    if(!event){
+      const paisSeleccionado = countryInAmworld;
+      setSelectedCountry(paisSeleccionado);
+      setCityValue('');
+      const selectedCountryData = data.paises.find((country) => country.name === paisSeleccionado);
+      console.log('selectedCountryData', selectedCountryData)
+      const selectedCountryCities = selectedCountryData.cities || [];
+      setCities(selectedCountryCities);
+      return;
+    }
     setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
       const paisSeleccionado = event.target.innerText;
@@ -392,16 +357,17 @@ export default function Test(props) {
 
         <form className="h2 top-form-inputs">
           {/* countries */}
-          <Autocomplete
-            className='req-form-input'
-            id="country-selected"
-            {...register('country-selected')}
-            onChange={(event, value) => {
-              handleCountryChange(event);
-              handleAutocompleteChange(value, "country");
-            }}
-            options={countriesArray}
-            renderInput={(params) => <TextField {...params} label={t('Country')} />}
+            <Autocomplete
+              className='req-form-input'
+              id="country-selected"
+              {...register('country-selected')}
+              onChange={(event, value) => {
+                handleCountryChange(event, countryInAmworld);
+                handleAutocompleteChange(value, "country");
+              }}
+              options={countriesArray}
+              value={countryInAmworld}
+              renderInput={(params) => <TextField {...params} label={t('Country')} />}
           />
           {/* cities */}
           <Autocomplete

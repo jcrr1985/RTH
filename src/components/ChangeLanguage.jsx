@@ -21,12 +21,12 @@ const ChangeLanguage = () => {
 
 
   const languages = [
-    { code: 'zh', name: 'Chinese' },
+    { code: 'zh', name: '中國人' },
     { code: 'en', name: 'English' },
-    { code: 'fr', name: 'French' },
-    { code: 'it', name: 'Italian' },
-    { code: 'ru', name: 'Russian' },
-    { code: 'es', name: 'Spanish' }
+    { code: 'fr', name: 'Français' },
+    { code: 'it', name: 'Italiana' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'es', name: 'Español' }
   ];
 
   return (
