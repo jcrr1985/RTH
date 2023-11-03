@@ -358,8 +358,6 @@ export default function Test(props) {
   }, [selectedCountry, cityValue, speciality, selectedLanguage]);
 
   useEffect(() => {
-    console.log("1 11111111111111111111111");
-
     nameOfClinic.value = "";
     setMapWidth("100%");
     MapaMultiMarker(
@@ -376,6 +374,22 @@ export default function Test(props) {
     }
   }, [selectedCountry]);
 
+  function xxx(a) {
+    console.log(" ~ trueOrFalse:", a);
+  }
+  useEffect(() => {
+    MapaMultiMarker(
+      selectedCountry,
+      cityValue,
+      speciality,
+      fillCardArray,
+      setPlacesDistancesToUserPosition,
+      selectedLanguage,
+      null,
+      xxx
+    );
+  }, [cityValue]);
+
   useEffect(() => {
     console.log("22222222222222222");
 
@@ -388,7 +402,9 @@ export default function Test(props) {
       speciality,
       fillCardArray,
       setPlacesDistancesToUserPosition,
-      selectedLanguage
+      selectedLanguage,
+      null,
+      xxx
     );
   }, [selectedCountry, cityValue, speciality]);
 

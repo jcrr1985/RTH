@@ -332,12 +332,18 @@ export function MapaMultiMarker(
   fillCardArray,
   setPlacesDistancesToUserPosition,
   selectedLanguage,
-  clinicsToDisplayObj
+  clinicsToDisplayObj,
+  cb
 ) {
   console.log("clinicsToDisplay", clinicsToDisplayObj);
   console.log("ciudad", ciudad);
   console.log("pais", pais);
 
+  try {
+    cb(true);
+  } catch (error) {
+    console.log("EWRRRORRRRRRR", error);
+  }
   // si pais no ciudad, no especialidad
 
   if (pais && !ciudad && !especialidad) {
