@@ -53,7 +53,7 @@ export default function Test(props) {
   const clinicsPerPage = 3;
   const [selectedCountry, setSelectedCountry] = useState("");
   const [cityValue, setCityValue] = useState("");
-  const { register, handleSubmit, getValues, reset } = useForm();
+  const { register, handleSubmit, getValues, reset, setValue } = useForm();
   const [speciality, setSpeciality] = useState("");
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
@@ -74,7 +74,7 @@ export default function Test(props) {
 
   useEffect(() => {
     console.log("countryInAmworld yeyyy", countryInAmworld);
-    !!countryInAmworld && handleCountryChange(null, countryInAmworld);
+    !!countryInAmworld && handleChangeCountry(null, countryInAmworld);
   }, [countryInAmworld]);
 
   const handleAutocompleteChange = (value, nameField) => {
@@ -107,7 +107,7 @@ export default function Test(props) {
           ...prevOptions,
           city: selectedIndices,
         }));
-        // setCityValue(cities[selectedIndices]);
+        setCityValue(cities[selectedIndices]);
         break;
       default:
         break;
@@ -259,6 +259,12 @@ export default function Test(props) {
     }, 10);
   };
 
+  useEffect(() => {
+    reset({
+      "city-selected": null,
+    });
+  }, [selectedCountry]);
+
   const onSubmit = (data) => {};
 
   const handleChangeEspecialitation = (event) => {
@@ -280,15 +286,12 @@ export default function Test(props) {
     }
   };
 
-  const handleCountryChange = (event, countryInAmworld) => {
-    console.log(
-      "countryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworldcountryInAmworld",
-      countryInAmworld
-    );
+  const handleChangeCountry = (event, countryInAmworld) => {
+    setCityValue("");
+
     if (!event) {
       const paisSeleccionado = countryInAmworld;
       setSelectedCountry(paisSeleccionado);
-      setCityValue("");
       const selectedCountryData = data.paises.find(
         (country) => country.name === paisSeleccionado
       );
@@ -374,8 +377,17 @@ export default function Test(props) {
     }
   }, [selectedCountry]);
 
+  const [showNoResults, setShowNoResults] = useState(false);
+
   function xxx(a) {
     console.log(" ~ trueOrFalse:", a);
+    setShowNoResults(a);
+    setTimeout(() => {
+      console.log(
+        "🚀 ~ file: Test.jsx:378 ~ Test ~ showNoResults:",
+        showNoResults
+      );
+    }, 2000);
   }
   useEffect(() => {
     MapaMultiMarker(
@@ -503,7 +515,7 @@ export default function Test(props) {
             id="country-selected"
             {...register("country-selected")}
             onChange={(event, value) => {
-              handleCountryChange(event, countryInAmworld);
+              handleChangeCountry(event, countryInAmworld);
               handleAutocompleteChange(value, "country");
             }}
             options={countriesArray}
@@ -590,7 +602,9 @@ export default function Test(props) {
             selectedCountry &&
             cityValue ? (
               <>
-                <span className="no-results-container">no results found</span>
+                {showNoResults ?? (
+                  <span className="no-results-container">no results found</span>
+                )}
               </>
             ) : (
               <>

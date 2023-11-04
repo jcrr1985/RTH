@@ -99,6 +99,11 @@ function fetching(
           setPlacesDistancesToUserPosition
         ); // Pasar userPosition como argumento
       } else {
+        try {
+          cb(true);
+        } catch (error) {
+          console.log("EWRRRORRRRRRR", error);
+        }
         console.error(
           "No se encontraron resultados para la búsqueda especificada"
         );
@@ -339,11 +344,6 @@ export function MapaMultiMarker(
   console.log("ciudad", ciudad);
   console.log("pais", pais);
 
-  try {
-    cb(true);
-  } catch (error) {
-    console.log("EWRRRORRRRRRR", error);
-  }
   // si pais no ciudad, no especialidad
 
   if (pais && !ciudad && !especialidad) {
