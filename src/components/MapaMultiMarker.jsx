@@ -371,10 +371,10 @@ export function MapaMultiMarker(
 
   if (pais && ciudad && ciudad.length > 0 && especialidad) {
     console.log("entro en sisisi?");
-    let keyword = especialidad;
-    keyword +=
-      "clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic";
-    keyword = keyword.replace(/ /g, "+");
+    // let keyword = especialidad;
+    // keyword +=
+    //   "clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic+hospital";
+    // keyword = keyword.replace(/ /g, "+");
 
     console.log(
       "ciudad && ciudad.length > 0",
@@ -382,7 +382,7 @@ export function MapaMultiMarker(
       ciudad
     );
     console.log("si si si");
-    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyword}${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
 
     fetching(
       url,
