@@ -99,25 +99,28 @@ function fetching(
           setPlacesDistancesToUserPosition
         ); // Pasar userPosition como argumento
       } else {
-        try {
-          cb(true);
-        } catch (error) {
-          console.log("EWRRRORRRRRRR", error);
-        }
+        Swal.fire({
+          title: "Results not found....",
+          allowOutsideClick: true,
+          showConfirmButton: true,
+          willOpen: () => {
+            console.log("error de fetching");
+          },
+        });
         console.error(
           "No se encontraron resultados para la búsqueda especificada"
         );
+
         centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
       }
     })
     .catch((error) => {
       Swal.fire({
-        title: "Results not found...",
-        allowOutsideClick: false,
-        showConfirmButton: false,
+        title: "Server not reached....",
+        allowOutsideClick: true,
+        showConfirmButton: true,
         willOpen: () => {
           console.log("error de fetching", error);
-          Swal.showLoading();
         },
       });
     });
@@ -337,8 +340,7 @@ export function MapaMultiMarker(
   fillCardArray,
   setPlacesDistancesToUserPosition,
   selectedLanguage,
-  clinicsToDisplayObj,
-  cb
+  clinicsToDisplayObj
 ) {
   console.log("clinicsToDisplay", clinicsToDisplayObj);
   console.log("ciudad", ciudad);
@@ -382,7 +384,8 @@ export function MapaMultiMarker(
       ciudad
     );
     console.log("si si si");
-    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    // const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    const url = `http://localhost:5000/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
 
     fetching(
       url,

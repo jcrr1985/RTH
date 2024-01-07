@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node server/index.js"
   },
   "dependencies": {
     "@amcharts/amcharts5": "^5.3.6",
@@ -20,13 +21,17 @@
     "@mui/material": "^5.11.2",
     "@mui/styles": "^5.11.16",
     "@mui/x-date-pickers": "^5.0.12",
+    "cors": "^2.8.5",
     "d3-geo-projection": "^4.0.0",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
     "i18next": "^22.5.1",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
     "moment": "^2.29.4",
+    "mongoose": "^8.0.3",
     "node": "^19.8.1",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
