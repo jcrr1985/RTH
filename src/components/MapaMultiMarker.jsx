@@ -385,7 +385,7 @@ export function MapaMultiMarker(
     );
     console.log("si si si");
     // const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
-    const url = `http://localhost:5000/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    const url = `https://delightful-biscuit-859325.netlify.app/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
 
     fetching(
       url,
