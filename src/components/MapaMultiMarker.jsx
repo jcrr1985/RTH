@@ -5,6 +5,8 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+const proxy = "https://rth-server-d3n1.onrender.com";
+
 let infoPanel = document.getElementById("panel");
 let userPosition = null;
 
@@ -162,8 +164,6 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
 }
 
 function centrarSinDatosConGeoLocation(selectedLanguage) {
-  console.log("centrarSinDatosConGeoLocation");
-
   if (navigator.geolocation) {
     Swal.fire({
       title: "Loading...",
@@ -210,13 +210,12 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
 }
 
 function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
-  console.log("obtenerPaisYCiudadPorGeoLocalizacion");
   Swal.showLoading();
   navigator.geolocation.getCurrentPosition(
     async (position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
-      const geocodingUrl = `  https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=${selectedLanguage}&key=${apiKey}`;
+      const geocodingUrl = `${proxy}/https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=${selectedLanguage}&key=${apiKey}`;
 
       const geocodingResponse = await fetch(geocodingUrl);
       const geocodingData = await geocodingResponse.json();
@@ -233,7 +232,7 @@ function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
       const tipo2 = "clínica";
       const tipo5 = "clinic";
 
-      const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&$keyword=-Clinics.&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&language=${selectedLanguage}&key=${apiKey}`;
+      const url = `${proxy}/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&$keyword=-Clinics.&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&language=${selectedLanguage}&key=${apiKey}`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -342,28 +341,21 @@ export function MapaMultiMarker(
   selectedLanguage,
   clinicsToDisplayObj
 ) {
-  console.log("clinicsToDisplay", clinicsToDisplayObj);
-  console.log("ciudad", ciudad);
-  console.log("pais", pais);
-
   // si pais no ciudad, no especialidad
 
   if (pais && !ciudad && !especialidad) {
-    console.log("si no no");
     centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
   }
 
   // si pais si ciudad no especialidad
 
   if (pais && ciudad && !especialidad) {
-    console.log("si si no");
     centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
   }
 
   // si pais no ciudad si especialidad
 
   if (pais && !ciudad && especialidad) {
-    console.log("si no si");
     centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
   }
 
@@ -372,20 +364,7 @@ export function MapaMultiMarker(
   // si pais, si ciudad si especialidad
 
   if (pais && ciudad && ciudad.length > 0 && especialidad) {
-    console.log("entro en sisisi?");
-    // let keyword = especialidad;
-    // keyword +=
-    //   "clinica+medical+centre+center+policlinic+clinic+policlinico+centromedico+polyclinic+hospital";
-    // keyword = keyword.replace(/ /g, "+");
-
-    console.log(
-      "ciudad && ciudad.length > 0",
-      ciudad && ciudad.length > 0,
-      ciudad
-    );
-    console.log("si si si");
-    // const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
-    const url = `https://rth-server-d3n1.onrender.com/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    const url = `${proxy}/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
 
     fetching(
       url,
@@ -402,38 +381,22 @@ export function MapaMultiMarker(
   // no pais, no ciudad, no especialidad no clinicsToDisplayObj
 
   if (!pais && !ciudad && !especialidad && !clinicsToDisplayObj) {
-    console.log("no no no NO");
-
     centrarSinDatosConGeoLocation(selectedLanguage);
   }
   // no pais, si ciudad, si especialidad
 
   if (!pais && ciudad && especialidad) {
-    console.log("no si si");
     obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 
-  // no pais, no ciudad, si especialidad
-
-  // if (!pais && !ciudad && especialidad) {
-  //   console.log('no no si')
-  //   centrarSinDatosConGeoLocation(selectedLanguage);
-  // }
-
-  // no pais, si ciudad, no especialidad
-
   if (!pais && !ciudad && !especialidad && clinicsToDisplayObj) {
-    console.log(" no no no si");
     creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj);
-    // obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 
   function creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj) {
-    console.log("creadorDeMarcadores2");
-    console.log("clinicsToDisplayObj", clinicsToDisplayObj);
     const map2 = new window.google.maps.Map(document.getElementById("map"), {
       zoom: 10,
-      center: { lat: clinicsToDisplayObj.lat, lng: clinicsToDisplayObj.lng }, // Utiliza las coordenadas lat y lng del objeto
+      center: { lat: clinicsToDisplayObj.lat, lng: clinicsToDisplayObj.lng },
     });
     fillCardArray([clinicsToDisplayObj]);
     const markersCreator = (map2) => {
@@ -443,8 +406,6 @@ export function MapaMultiMarker(
         lat: clinicsToDisplayObj.lat,
         lng: clinicsToDisplayObj.lng,
       };
-      // const position = new google.maps.LatLng(clinicsToDisplayObj.lat, clinicsToDisplayObj.lng);
-      console.log("position", position);
 
       let distance = 0;
       const marker = new window.google.maps.Marker({

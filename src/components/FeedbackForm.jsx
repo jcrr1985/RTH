@@ -36,8 +36,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
           <input
             type="text"
             {...register("name", { required: true })}
-            className={errors.name ? "error" : ""}
-            class="ff-input"
+            className={` ff-input ${errors.name ? "error" : ""}`}
           />
           {errors.name && (
             <span className="error-msg">This field is required</span>

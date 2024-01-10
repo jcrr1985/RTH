@@ -15,7 +15,6 @@ import specialities_zh from "../assets/specialities_zh.js";
 import specialities_fr from "../assets/specialities_fr.js";
 import specialities_es from "../assets/specialities_es.js";
 
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 import DatePicker_requestForm from "./datePicker";
@@ -32,14 +31,15 @@ import citiesZh from "../models/cities_zh.json";
 import { MapaMultiMarker } from "./MapaMultiMarker";
 import LanguageContext from "../contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
-import "./../App.css";
 import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-export default function Test(props) {
+import "./../App.css";
+
+export default function Test() {
   const countryInAmworld = useSelector((state) => state.countryInAmworld);
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+  const proxy = "https://rth-server-d3n1.onrender.com";
 
   const { t } = useTranslation();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
@@ -55,14 +55,13 @@ export default function Test(props) {
   const [cityValue, setCityValue] = useState("");
   const { register, handleSubmit, getValues, reset, setValue } = useForm();
   const [speciality, setSpeciality] = useState("");
-  const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
-  const [mapWidth, setMapWidth] = useState("80vw");
+  const [mapWidth, setMapWidth] = useState("100vw");
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
   const [sliderValue, setSliderValue] = useState(0);
-  const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState(
-    []
-  );
+  // const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState(
+  //   []
+  // );
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] =
     useState([]);
 
@@ -73,7 +72,6 @@ export default function Test(props) {
   });
 
   useEffect(() => {
-    console.log("countryInAmworld yeyyy", countryInAmworld);
     !!countryInAmworld && handleChangeCountry(null, countryInAmworld);
   }, [countryInAmworld]);
 
@@ -161,13 +159,10 @@ export default function Test(props) {
         event.preventDefault();
         const nameOfClinicValue = getValues("nameOfClinic");
 
-        const corsAnywhereProxy = "https://cors-anywhere.herokuapp.com/";
-        const url = `${corsAnywhereProxy}https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+        const apiUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
 
-        // let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+        const url = `${proxy}/${apiUrl}`;
 
-        // let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
-        console.log("url", url);
         fetch(url)
           .then((nameOfClinicFetchResponse) => {
             return nameOfClinicFetchResponse.json();
@@ -198,7 +193,6 @@ export default function Test(props) {
               placeId,
               data,
             };
-            console.log("clinicToDisplayObj", clinicToDisplayObj);
             setClinicsToDisplay([clinicToDisplayObj]);
             reset({
               "country-selected": null,
@@ -276,7 +270,7 @@ export default function Test(props) {
       event.target.innerText !== "Specialization"
     ) {
       setSpeciality(event.target.innerText);
-      setMapWidth("57vw");
+      // setMapWidth("57vw");
     }
   };
 
@@ -285,7 +279,7 @@ export default function Test(props) {
     if (event.target.innerText !== "" && event.target.innerText !== "City") {
       const ciudadSeleccionada = event.target.innerText;
       setCityValue(ciudadSeleccionada);
-      setMapWidth("57vw");
+      // setMapWidth("57vw");
     }
   };
 
@@ -341,13 +335,10 @@ export default function Test(props) {
   }, [cities, countriesArray, specialities]);
 
   useEffect(() => {
-    console.log("1 11111111111111111111111");
-    setMapWidth("60%");
+    // setMapWidth("60%");
 
     const validLanguages = ["en", "ru", "it", "zh", "fr", "es"];
     if (validLanguages.includes(selectedLanguage)) {
-      console.log("000000000000000");
-
       MapaMultiMarker(
         selectedCountry,
         cityValue,
@@ -383,7 +374,6 @@ export default function Test(props) {
   const [showNoResults, setShowNoResults] = useState(false);
 
   function xxx(a) {
-    console.log(" ~ trueOrFalse:", a);
     setShowNoResults(a);
     setTimeout(() => {
       console.log(
@@ -406,8 +396,6 @@ export default function Test(props) {
   }, [cityValue]);
 
   useEffect(() => {
-    console.log("22222222222222222");
-
     nameOfClinic.value = "";
     setMapWidth("100%");
     setClinicsToDisplay(null);
@@ -430,9 +418,7 @@ export default function Test(props) {
   }, [placesDistancesToUserPosition]);
 
   useEffect(() => {
-    console.log("3333333333333333");
-
-    setMapWidth("60%");
+    // setMapWidth("60%");
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
     console.log("clinicObj linicsToDisplay[0]", clinicObj);
     MapaMultiMarker(
@@ -638,7 +624,7 @@ export default function Test(props) {
               </>
             )}
           </div>
-          <div css={{ width: `${mapWidth}`, maxHeight: "70vh" }}>
+          <div style={{ width: `${mapWidth}`, maxHeight: "70vh" }}>
             <div id="panel"></div>
             <div className="map" id="map"></div>
           </div>

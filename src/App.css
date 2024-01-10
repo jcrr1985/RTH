@@ -28,6 +28,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -271,7 +272,6 @@ fieldset {
   align-items: center;
   width: 22vw;
   margin-top: 27px;
-  margin-left: 1vw;
   border-radius: 15px;
   top: -301px;
 }
@@ -346,18 +346,18 @@ fieldset {
 }
 
 .search-and-results-container {
-  width: 90vw;
   min-height: 40vh;
   margin-top: -45px;
+  padding: 0 2rem
 }
 
 .map {
   /* z-index: 99; */
-  width: 74vw;
   max-height: 100vh;
   margin-top: 4vh;
   border-radius: 1vw;
   height: 100vh;
+  width: -webkit-fill-available;
 }
 
 .req-form-input {
