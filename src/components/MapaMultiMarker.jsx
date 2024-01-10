@@ -104,7 +104,7 @@ function fetching(
           allowOutsideClick: true,
           showConfirmButton: true,
           willOpen: () => {
-            console.log("error de fetching");
+            console.log("error de fetching", error);
           },
         });
         console.error(
@@ -385,7 +385,7 @@ export function MapaMultiMarker(
     );
     console.log("si si si");
     // const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
-    const url = `https://delightful-biscuit-859325.netlify.app/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
+    const url = `https://rth-server-d3n1.onrender.com/places?apiUrl=https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&language=${selectedLanguage}&key=${apiKey}`;
 
     fetching(
       url,

@@ -16,8 +16,10 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
       if (response.status === 200) {
         console.log("Feedback submitted successfully");
         onSubmitSuccess();
+        // Realiza alguna acción en caso de éxito, como mostrar un mensaje de confirmación.
       } else {
         console.error("Error submitting feedback");
+        // Realiza alguna acción en caso de error, como mostrar un mensaje de error.
       }
     } catch (error) {
       console.error("Error submitting feedback:", error);
