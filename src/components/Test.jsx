@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useMemo, useContext, useRef } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Box, TextField, Autocomplete, Pagination } from "@mui/material";
-import { Slider } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import RoomSharpIcon from "@mui/icons-material/RoomSharp";
-import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
-import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
+// import { Slider } from "@mui/material";
+// import SearchIcon from "@mui/icons-material/Search";
+// import RoomSharpIcon from "@mui/icons-material/RoomSharp";
+// import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
+// import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
 import ChangeLanguage from "./ChangeLanguage";
 import specialities_en from "../assets/specialities_en.js";
 import specialities_ru from "../assets/specialities_ru.js";
@@ -292,7 +292,6 @@ export default function Test() {
       const selectedCountryData = data.paises.find(
         (country) => country.name === paisSeleccionado
       );
-      console.log("selectedCountryData", selectedCountryData);
       const selectedCountryCities = selectedCountryData.cities || [];
       setCities(selectedCountryCities);
       return;
@@ -373,15 +372,6 @@ export default function Test() {
 
   const [showNoResults, setShowNoResults] = useState(false);
 
-  function xxx(a) {
-    setShowNoResults(a);
-    setTimeout(() => {
-      console.log(
-        "🚀 ~ file: Test.jsx:378 ~ Test ~ showNoResults:",
-        showNoResults
-      );
-    }, 2000);
-  }
   useEffect(() => {
     MapaMultiMarker(
       selectedCountry,
@@ -390,8 +380,7 @@ export default function Test() {
       fillCardArray,
       setPlacesDistancesToUserPosition,
       selectedLanguage,
-      null,
-      xxx
+      null
     );
   }, [cityValue]);
 
@@ -406,19 +395,11 @@ export default function Test() {
       fillCardArray,
       setPlacesDistancesToUserPosition,
       selectedLanguage,
-      null,
-      xxx
+      null
     );
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
-    const delay = 500;
-    const timeoutId = setTimeout(() => {}, delay);
-    return () => clearTimeout(timeoutId);
-  }, [placesDistancesToUserPosition]);
-
-  useEffect(() => {
-    // setMapWidth("60%");
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
     console.log("clinicObj linicsToDisplay[0]", clinicObj);
     MapaMultiMarker(
@@ -440,193 +421,274 @@ export default function Test() {
 
   const autocompleteRef = useRef(null);
 
-  const handleTyping = () => {
-    autocompleteRef.current.dispatchEvent(
-      new Event("input", { bubbles: true, cancelable: true })
-    );
-    autocompleteRef.current.value = "brazil";
-    autocompleteRef.current.dispatchEvent(
-      new Event("change", { bubbles: true })
-    );
-  };
-
   return (
     <>
       <FeedbackModal />
-      <Box className="back-arrow">
-        <Link to="../" style={{ textDecoration: "none" }}>
-          <img src={Back} alt="home-page" />
-        </Link>
-      </Box>
-      <Box className="form-wrapper" id="formParentBox">
-        {/* First row */}
-        <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
-          {/* SPECIALITIES */}
-          <Autocomplete
-            className="h2 req-form-input"
-            id="specialization"
-            {...register("specialization")}
-            onChange={(event, value) => {
-              setSpeciality(value);
-              handleChangeEspecialitation(event);
-              handleAutocompleteChange(value, "speciality");
-            }}
-            style={{
-              width: "33%",
-              height: "56px",
-            }}
-            options={specialities}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label={t("Specialization")}
-                sx={{ backgroundColor: "theme.palette.background.default" }}
-              />
-            )}
-          />
-          {/* Date */}
-          <DatePicker_requestForm register={register} />
-          {/* Search Button */}
-          <SearchIcon className="search-icon" fontSize="large" />
-
+      <div className="whole-wrapper">
+        <div className="logo-container header-wide-screen">
+          <div className="logo-container-text">
+            <span className="logo-title">Run To Health</span>
+            <span className="logo-text">
+              A platform for finding medical services around the world quickly
+              and easily
+            </span>
+          </div>
           <ChangeLanguage
             selectedLanguage={selectedLanguage}
             handleChangeLanguage={handleChangeLanguage}
           />
-        </form>
-        {/* second row */}
+        </div>
 
-        <form className="h2 top-form-inputs">
-          {/* countries */}
-          <Autocomplete
-            ref={autocompleteRef}
-            className="req-form-input"
-            id="country-selected"
-            {...register("country-selected")}
-            onChange={(event, value) => {
-              handleChangeCountry(event, countryInAmworld);
-              handleAutocompleteChange(value, "country");
-            }}
-            options={countriesArray}
-            // value={countryInAmworld}
-            renderInput={(params) => (
-              <TextField {...params} label={t("Country")} />
-            )}
-          />
-          {/* cities */}
-          <Autocomplete
-            className="req-form-input"
-            id="city-selected"
-            {...register("city-selected")}
-            onChange={(event, value) => {
-              handleChangeCities(event);
-              handleAutocompleteChange(value, "city");
-            }}
-            options={cities}
-            renderInput={(params) => (
-              <TextField {...params} label={t("City")} />
-            )}
-          />
-        </form>
-        {/* third row */}
+        {/* header small screen */}
 
-        <form className="h2 top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
-          {/* Name Of Clinics */}
-          <TextField
-            label={t("Clinic Name")}
-            variant="outlined"
-            id="nameOfClinic"
-            className="req-form-input"
-            {...register("nameOfClinic")}
-            onKeyDown={(ev) => handleChangeClinics(ev)}
-            sx={{ width: "100%" }}
-          />
-        </form>
-        {/* cuarta fila */}
-        <form className="filters" onSubmit={handleSubmit(onSubmit)}>
-          <div className="icons_wrapper">
-            <div className="filter-icon">
-              <RoomSharpIcon className="search-icon" />
-              <span className="">{t("Destination")}</span>
-            </div>
-            <div className="filter-icon">
-              <TranslateRoundedIcon className="search-icon" />
-              <span className="">{t("Translator")}</span>
-            </div>
-            <div className="filter-icon">
-              <DescriptionRoundedIcon className="search-icon" />
-              <span className="int-acc">
-                {t("International Accreditation")}
-              </span>
-            </div>
-          </div>
-          <div className="slider_wrapper">
-            <div className="slider_leyent_top">
-              <span className="T4">{t("Average service cost")}</span>
-              <span className="T4"> {sliderValue} </span>
-            </div>
-            <div className="slider_bar">
-              {/* marks={marks} */}
-              <Slider
-                color="bar"
-                defaultValue={0}
-                max={10000}
-                step={25}
-                onChange={getValue}
-                valueLabelDisplay="auto"
+        <div className="logo-container header-smaller-screen">
+          <div className="logo-container-text">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <span className="logo-title">Run To Health</span>
+              <ChangeLanguage
+                selectedLanguage={selectedLanguage}
+                handleChangeLanguage={handleChangeLanguage}
               />
             </div>
-            <div className="slider_leyent_button">
-              <span className="T4">0</span>
-              <span className="T4">~</span>
-            </div>
+            <span className="logo-text">
+              A platform for finding medical services around the world quickly
+              and easily
+            </span>
           </div>
-        </form>
-      </Box>
-      <div className="search-and-results-container">
-        <div className="results-and-map-wrapper">
-          <div className="clinic-cards-container">
-            {cardArray &&
-            cardArray.length === 0 &&
-            selectedCountry &&
-            cityValue ? (
-              <>
-                {showNoResults ?? (
-                  <span className="no-results-container">no results found</span>
-                )}
-              </>
-            ) : (
-              <>
-                {cardArray &&
-                  cardArray
-                    .slice((page - 1) * clinicsPerPage, page * clinicsPerPage)
-                    .map((clinic, index) => {
-                      return (
-                        <MediaCard
-                          name={clinic.name}
-                          phone={clinic.distance}
-                          address={clinic.address}
-                          rating={clinic.rating}
-                          key={index}
-                          distance={placesDistancesToUserPosition[index]}
-                          openNow={clinic.openNow}
-                          fono={clinic.phone}
-                        />
-                      );
-                    })}
-                {cardArray && cardArray.length >= 2 && (
-                  <Pagination
-                    count={Math.ceil(cardArray.length / clinicsPerPage)}
-                    color="secondary"
-                    onChange={handlePaginationChange}
+        </div>
+
+        {/* filters form  */}
+
+        {/* wide-screen */}
+
+        <Box className="form-wrapper filter-box-wide-screen" id="formParentBox">
+          {/* First row */}
+          <form
+            className="h2 top-form-inputs"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {/* SPECIALITIES */}
+            <Autocomplete
+              className="h2 req-form-input"
+              id="specialization"
+              {...register("specialization")}
+              onChange={(event, value) => {
+                setSpeciality(value);
+                handleChangeEspecialitation(event);
+                handleAutocompleteChange(value, "speciality");
+              }}
+              style={{
+                width: "33%",
+                height: "56px",
+              }}
+              options={specialities}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={t("Specialization")}
+                  sx={{ backgroundColor: "theme.palette.background.default" }}
+                />
+              )}
+            />
+            {/* countries */}
+            <Autocomplete
+              ref={autocompleteRef}
+              className="req-form-input"
+              id="country-selected"
+              {...register("country-selected")}
+              onChange={(event, value) => {
+                handleChangeCountry(event, countryInAmworld);
+                handleAutocompleteChange(value, "country");
+              }}
+              options={countriesArray}
+              // value={countryInAmworld}
+              renderInput={(params) => (
+                <TextField {...params} label={t("Country")} />
+              )}
+            />
+            {/* cities */}
+            <Autocomplete
+              className="req-form-input"
+              id="city-selected"
+              {...register("city-selected")}
+              onChange={(event, value) => {
+                handleChangeCities(event);
+                handleAutocompleteChange(value, "city");
+              }}
+              options={cities}
+              renderInput={(params) => (
+                <TextField {...params} label={t("City")} />
+              )}
+            />
+            {/* Date */}
+            <DatePicker_requestForm register={register} />
+            {/* Search Button */}
+            {/* <SearchIcon className="search-icon" fontSize="large" /> */}
+
+            {/* second row */}
+
+            {/* Name Of Clinics */}
+          </form>
+          <div className="row-clinic">
+            <TextField
+              label={t("Clinic Name")}
+              variant="outlined"
+              id="nameOfClinic"
+              className="req-form-input clinic"
+              {...register("nameOfClinic")}
+              onKeyDown={(ev) => handleChangeClinics(ev)}
+              sx={{ width: "100%" }}
+            />
+          </div>
+        </Box>
+
+        {/* smaller screen */}
+
+        <Box
+          className="form-wrapper filter-box-smaller-screen"
+          id="formParentBox"
+        >
+          {/* First row */}
+          <form
+            className="h2 top-form-inputs"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {/* specialities */}
+            <div className="filter-row">
+              <Autocomplete
+                className="h2 req-form-input"
+                id="specialization"
+                {...register("specialization")}
+                onChange={(event, value) => {
+                  setSpeciality(value);
+                  handleChangeEspecialitation(event);
+                  handleAutocompleteChange(value, "speciality");
+                }}
+                style={{
+                  width: "33%",
+                  height: "56px",
+                }}
+                options={specialities}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label={t("Specialization")}
+                    sx={{ backgroundColor: "theme.palette.background.default" }}
                   />
                 )}
-              </>
+              />
+              {/* countries */}
+              <Autocomplete
+                ref={autocompleteRef}
+                className="req-form-input"
+                id="country-selected"
+                {...register("country-selected")}
+                onChange={(event, value) => {
+                  handleChangeCountry(event, countryInAmworld);
+                  handleAutocompleteChange(value, "country");
+                }}
+                options={countriesArray}
+                // value={countryInAmworld}
+                renderInput={(params) => (
+                  <TextField {...params} label={t("Country")} />
+                )}
+              />
+            </div>
+
+            <div className="filter-row">
+              {/* cities */}
+              <Autocomplete
+                className="req-form-input"
+                id="city-selected"
+                {...register("city-selected")}
+                onChange={(event, value) => {
+                  handleChangeCities(event);
+                  handleAutocompleteChange(value, "city");
+                }}
+                options={cities}
+                renderInput={(params) => (
+                  <TextField {...params} label={t("City")} />
+                )}
+              />
+              {/* Date */}
+              <DatePicker_requestForm register={register} />
+              {/* Search Button */}
+              {/* <SearchIcon className="search-icon" fontSize="large" /> */}
+            </div>
+
+            {/* third row */}
+
+            {/* Name Of Clinics */}
+            <TextField
+              label={t("Clinic Name")}
+              variant="outlined"
+              id="nameOfClinic"
+              className="req-form-input"
+              {...register("nameOfClinic")}
+              onKeyDown={(ev) => handleChangeClinics(ev)}
+              sx={{ width: "100%" }}
+            />
+          </form>
+        </Box>
+
+        <div className="search-and-results-container">
+          <div className="results-and-map-wrapper">
+            {cardArray.length !== 0 && (
+              <div className="clinic-cards-container">
+                {cardArray &&
+                cardArray.length === 0 &&
+                selectedCountry &&
+                cityValue ? (
+                  <>
+                    {showNoResults ?? (
+                      <span className="no-results-container">
+                        no results found
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {cardArray &&
+                      cardArray
+                        .slice(
+                          (page - 1) * clinicsPerPage,
+                          page * clinicsPerPage
+                        )
+                        .map((clinic, index) => {
+                          console.log("clinic", clinic);
+                          return (
+                            <MediaCard
+                              key={clinic.placeId}
+                              name={clinic.name}
+                              phone={clinic.phone}
+                              address={clinic.address}
+                              rating={clinic.rating}
+                              distance={placesDistancesToUserPosition[index]}
+                              openNow={clinic.openNow}
+                            />
+                          );
+                        })}
+                    {cardArray && cardArray.length >= 2 && (
+                      <Pagination
+                        count={Math.ceil(cardArray.length / clinicsPerPage)}
+                        color="secondary"
+                        onChange={handlePaginationChange}
+                      />
+                    )}
+                  </>
+                )}
+              </div>
             )}
-          </div>
-          <div style={{ width: `${mapWidth}`, maxHeight: "70vh" }}>
-            <div id="panel"></div>
-            <div className="map" id="map"></div>
+            <div style={{ width: `${mapWidth}`, maxHeight: "70vh" }}>
+              <div id="panel"></div>
+              <div className="map" id="map"></div>
+            </div>
           </div>
         </div>
       </div>

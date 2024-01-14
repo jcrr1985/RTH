@@ -79,7 +79,7 @@ export function MediaCard({
             </Typography>
             {
               <span alt="reviews" width={25}>
-                {distance}km{" "}
+                {distance} km{" "}
               </span>
             }
           </div>

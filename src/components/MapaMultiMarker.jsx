@@ -18,7 +18,7 @@ const distanceBetween = (pos, marker_coords) => {
     _coordinates
   );
 
-  testDistance = (testDistance / 100).toFixed(3);
+  testDistance = (testDistance / 1000).toFixed(0);
   return testDistance;
 };
 

@@ -236,9 +236,8 @@ p.header-info {
   background-color: #fff;
   margin: auto;
   border-radius: 1.026392962vw;
-  padding: 1.46627566vw;
+  padding: 1rem 0 3rem 0;
   margin: 0 auto;
-  width: 50%;
 }
 
 .css-1e2qfxt-MuiSlider-root {
@@ -246,10 +245,53 @@ p.header-info {
 }
 
 .top-form-inputs {
-  display: flex;
-  gap: 1.46628vw;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
 }
+
+.top-form-inputs div {
+  width: 100% !important;
+}
+
+.top-form-inputs input {
+  width: 250px !important;
+}
+
+
+
+.logo-container {
+  padding: 35px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-container-text {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.logo-title {
+  font-size: 45px;
+  line-height: normal
+}
+
+.logo-text {
+  font-family: Roboto;
+  font-size: 20px;
+}
+
+.languages-container {
+  cursor: pointer;
+  margin: 10px 0;
+
+}
+
+.languages-container:hover {
+  background: rgb(245, 245, 247);
+}
+
 
 .especialidades-autocomplete {
   color: #000;
@@ -348,8 +390,13 @@ fieldset {
 .search-and-results-container {
   min-height: 40vh;
   margin-top: -45px;
-  padding: 0 2rem
 }
+
+
+.whole-wrapper {
+  padding: 0 5.5rem
+}
+
 
 .map {
   /* z-index: 99; */
@@ -497,4 +544,110 @@ fieldset {
 
 .form-group {
   margin-bottom: 30px;
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root {
+  background-color: white;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.Mui-readOnly.MuiInputBase-readOnly {
+  background-color: white;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
+  background-color: white;
+}
+
+
+
+
+@media (max-width: 1370px) {
+  .filter-box-wide-screen {
+    display: none;
+  }
+
+  .filter-box-smaller-screen {
+    display: block;
+  }
+
+  .top-form-inputs {
+    display: block;
+    width: 100%;
+  }
+
+  .top-form-inputs {
+
+    .MuiAutocomplete-root {
+      width: 50% !important;
+    }
+  }
+
+  .top-form-inputs input {
+    width: 22vh !important;
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .search-and-results-container {
+    margin-top: -20px;
+  }
+
+  .logo-container-text {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .logo-text {
+      font-size: 12px;
+    }
+
+  }
+
+  .header-wide-screen {
+    display: none;
+  }
+
+  .header-smaller-screen {
+    display: flex;
+  }
+
+
+}
+
+@media (min-width: 1371px) {
+  .filter-box-wide-screen {
+    display: block;
+  }
+
+  .filter-box-smaller-screen {
+    display: none;
+  }
+
+
+
+  .header-wide-screen {
+    display: flex;
+  }
+
+  .header-smaller-screen {
+    display: none;
+  }
+
+  .req-form-input.clinic {
+    margin-top: 1rem;
+    width: 80%;
+
+  }
+
+  .row-clinic {
+    display: flex;
+    justify-content: center;
+  }
+
+
 }
