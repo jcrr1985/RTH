@@ -562,6 +562,15 @@ fieldset {
 
 
 @media (max-width: 1370px) {
+
+  .whole-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .top-form-inputs input {
+    width: 100% !important
+  }
+
   .filter-box-wide-screen {
     display: none;
   }
@@ -578,13 +587,11 @@ fieldset {
   .top-form-inputs {
 
     .MuiAutocomplete-root {
-      width: 50% !important;
+      /* width: 50% !important; */
     }
   }
 
-  .top-form-inputs input {
-    width: 22vh !important;
-  }
+  .top-form-inputs input {}
 
   .filter-row {
     display: flex;
