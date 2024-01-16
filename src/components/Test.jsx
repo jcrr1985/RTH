@@ -76,36 +76,30 @@ export default function Test() {
   }, [countryInAmworld]);
 
   const handleAutocompleteChange = (value, nameField) => {
-    let selectedIndices;
+    console.log("nameField", nameField);
 
+    console.log("value", value);
     switch (nameField) {
       case "speciality":
-        selectedIndices = specialities.findIndex(
-          (speciality) => speciality === value
-        );
+        setSpeciality(value);
         setSelectedOptions((prevOptions) => ({
           ...prevOptions,
-          speciality: selectedIndices,
+          speciality: value,
         }));
-        // setSpeciality(specialities[selectedIndices]);
         break;
       case "country":
-        selectedIndices = countriesArray.findIndex(
-          (country) => country === value
-        );
+        setSelectedCountry(value);
         setSelectedOptions((prevOptions) => ({
           ...prevOptions,
-          country: selectedIndices,
+          country: value,
         }));
-        // setSelectedCountry(countriesArray[selectedIndices]);
         break;
       case "city":
-        selectedIndices = cities.findIndex((city) => city === value);
+        setCityValue(value);
         setSelectedOptions((prevOptions) => ({
           ...prevOptions,
-          city: selectedIndices,
+          city: value,
         }));
-        setCityValue(cities[selectedIndices]);
         break;
       default:
         break;
@@ -113,7 +107,7 @@ export default function Test() {
   };
 
   const setDataForSelects = () => {
-    // Choose the correct JSON file based on the selected language
+    // Choosing the correct JSON file based on the selected language
     switch (selectedLanguage) {
       case "en":
         setData(citiesEn);
@@ -260,7 +254,7 @@ export default function Test() {
     reset({
       "city-selected": null,
     });
-  }, [selectedCountry]);
+  }, [selectedOptions.country]);
 
   const onSubmit = (data) => {};
 
@@ -477,6 +471,7 @@ export default function Test() {
             <Autocomplete
               className="h2 req-form-input"
               id="specialization"
+              value={selectedOptions.speciality}
               {...register("specialization")}
               onChange={(event, value) => {
                 setSpeciality(value);
@@ -507,7 +502,7 @@ export default function Test() {
                 handleAutocompleteChange(value, "country");
               }}
               options={countriesArray}
-              // value={countryInAmworld}
+              value={selectedOptions.country}
               renderInput={(params) => (
                 <TextField {...params} label={t("Country")} />
               )}
@@ -516,6 +511,7 @@ export default function Test() {
             <Autocomplete
               className="req-form-input"
               id="city-selected"
+              value={selectedOptions.city}
               {...register("city-selected")}
               onChange={(event, value) => {
                 handleChangeCities(event);
