@@ -363,12 +363,12 @@ fieldset {
 }
 
 .slider_leyent_top .T4 {
-  height: 0.586510264vw;
+  height: 0.6vw;
   color: #000;
 }
 
 .slider_leyent_top .T4 span {
-  margin-right: 0.73313783vw;
+  margin-right: 0.7vw;
 }
 
 .slider_wrapper {
@@ -377,7 +377,7 @@ fieldset {
 
 .filters {
   display: flex;
-  gap: 1.46627566vw;
+  gap: 1.4;
   width: -webkit-fill-available;
   margin-top: -13px;
 }
@@ -640,6 +640,10 @@ fieldset {
   }
 
 
+  .css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator {
+    position: absolute !important;
+    left: 0 !important;
+  }
 
   .header-wide-screen {
     display: flex;

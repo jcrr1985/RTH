@@ -4,10 +4,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import clinicImg from "@/assets/images/svg/clinic-image.svg";
-import clinic_Chipre1 from "@/assets/images/clinics/clinic_Chipre1.jpeg";
 import reviewFullStar from "@/assets/images/svg/reviewFullStar.png";
 import reviewHalfStar from "@/assets/images/svg/reviewHalfStar.png";
 import "./../App.css";
@@ -21,7 +19,8 @@ export function MediaCard({
   rating,
   distance,
   openNow,
-  fono,
+  formatted_phone_number,
+  website,
 }) {
   const { t } = useTranslation();
 
@@ -72,21 +71,16 @@ export function MediaCard({
           </Typography>
           <Typography variant="body2">{phone}</Typography>
           <Typography variant="body2">{address}</Typography>
-          <Typography variant="body2">{fono}</Typography>
-          <div css={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="body2" style={{ color: "black" }}>
-              {t("distance")}
-            </Typography>
+          <Typography variant="body2"> {formatted_phone_number} </Typography>
+          <Typography variant="body2"> {website} </Typography>{" "}
+          <Typography variant="body2" style={{ color: "black" }}>
+            <span alt="reviews" width={25}>
+              Distance: {distance} km
+            </span>
+          </Typography>
+          <Typography variant="body2">
             {
-              <span alt="reviews" width={25}>
-                {distance} km{" "}
-              </span>
-            }
-          </div>
-          <div css={{ display: "inline-flex" }}>
-            <Typography variant="body2">{rating}</Typography>
-            {
-              <>
+              <div css={{ display: "inline-flex" }}>
                 {fullStarArray}
                 {ratingHasDecimal && (
                   <img
@@ -98,13 +92,10 @@ export function MediaCard({
                     height={25}
                   />
                 )}
-              </>
+              </div>
             }
-          </div>
-          <Typography variant="body2" color="text.secondary">
-            {openNow}
           </Typography>
-          openNow
+          {openNow && <Typography variant="body2">{openNow}</Typography>}
         </CardContent>
         <CardActions style={{ textAlign: "center" }}>
           <button>{t("book now")}</button>

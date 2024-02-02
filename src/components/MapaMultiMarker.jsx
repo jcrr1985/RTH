@@ -5,7 +5,8 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-const proxy = "https://rth-server-d3n1.onrender.com";
+// const proxy = "https://rth-server-d3n1.onrender.com";
+const proxy = "http://localhost:5000";
 
 let infoPanel = document.getElementById("panel");
 let userPosition = null;
@@ -41,18 +42,18 @@ function creadorDeMarcadores(
         map: map,
         title: place.name,
         distance: distance,
+        placeId: place.placeId,
       });
       let coord = new window.google.maps.LatLng(place.lat, place.lng);
-      // console.log(`${coord} of ${marker.title}`)
       if (userPosition) {
-        marker.distance = distanceBetween(userPosition, coord); // Pasar el objeto como segundo parámetro
+        marker.distance = distanceBetween(userPosition, coord);
         placesCoords = [...new Set([...placesCoords, marker.distance])];
       }
       bounds.extend(marker.position);
 
       marker.addListener("mouseover", () => {
         infowindow.setContent(
-          `<div><strong>${place.name}</strong><br>${place.address}<br>${place.phone}</div>`
+          `<div><strong>${place.name}</strong><br>${place.address}</div>`
         );
         infowindow.open(map, marker);
       });
@@ -387,52 +388,5 @@ export function MapaMultiMarker(
 
   if (!pais && ciudad && especialidad) {
     obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
-  }
-
-  if (!pais && !ciudad && !especialidad && clinicsToDisplayObj) {
-    creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj);
-  }
-
-  function creadorDeMarcadores2(fillCardArray, clinicsToDisplayObj) {
-    const map2 = new window.google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
-      center: { lat: clinicsToDisplayObj.lat, lng: clinicsToDisplayObj.lng },
-    });
-    fillCardArray([clinicsToDisplayObj]);
-    const markersCreator = (map2) => {
-      const bounds = new window.google.maps.LatLngBounds();
-      const infowindow = new window.google.maps.InfoWindow();
-      const position = {
-        lat: clinicsToDisplayObj.lat,
-        lng: clinicsToDisplayObj.lng,
-      };
-
-      let distance = 0;
-      const marker = new window.google.maps.Marker({
-        position: position,
-        map: map2,
-        title: clinicsToDisplayObj.name,
-        distance: distance,
-      });
-      marker.setMap(map2);
-
-      bounds.extend(marker.position);
-
-      marker.addListener("mouseover", () => {
-        infowindow.setContent(
-          `<div><strong>${clinicsToDisplayObj.name}</strong><br>${clinicsToDisplayObj.address}<br>${clinicsToDisplayObj.fono}</div>`
-        );
-        infowindow.open(map2, marker);
-      });
-
-      marker.addListener("click", () => {
-        showPanel(clinicsToDisplayObj);
-      });
-
-      map2.fitBounds(bounds);
-
-      map2.setZoom(8);
-    };
-    markersCreator(map2);
   }
 }

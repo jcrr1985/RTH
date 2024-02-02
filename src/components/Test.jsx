@@ -35,11 +35,13 @@ import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
 
 import "./../App.css";
+// import { clinicImg } from "@/assets/images/svg/clinic-image.svg";
 
 export default function Test() {
   const countryInAmworld = useSelector((state) => state.countryInAmworld);
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-  const proxy = "https://rth-server-d3n1.onrender.com";
+  // const proxy = "https://rth-server-d3n1.onrender.com";
+  // const proxy = "http://http://localhost:5000/";
 
   const { t } = useTranslation();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
@@ -155,7 +157,8 @@ export default function Test() {
 
         const apiUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
 
-        const url = `${proxy}/${apiUrl}`;
+        // const url = `${proxy}/${apiUrl}`;
+        const url = apiUrl;
 
         fetch(url)
           .then((nameOfClinicFetchResponse) => {
@@ -238,16 +241,38 @@ export default function Test() {
 
   const [cardArray, setCardArray] = useState([]);
 
-  const fillCardArray = (cardArray) => {
-    setTimeout(() => {
-      const newArrayWithoutDuplicates = [
-        ...new Set(cardArray.map((clinic) => clinic.name)),
-      ].map((name) => {
-        return cardArray.find((clinic) => clinic.name === name);
-      });
+  const fillCardArray = async (cardArray) => {
+    const map = document.getElementById("map");
+    const service = new google.maps.places.PlacesService(map);
 
-      setCardArray(newArrayWithoutDuplicates);
-    }, 10);
+    //  Promise.all para esperar a que todas las llamadas getDetails se completen
+    const detailsPromises = cardArray.map((card) => {
+      return new Promise((resolve) => {
+        const request = {
+          placeId: card.placeId,
+          fields: ["formatted_phone_number", "website"],
+        };
+        service.getDetails(request, (details, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            card.formatted_phone_number =
+              details.formatted_phone_number || null;
+            card.website = details.website || null;
+          }
+          resolve();
+        });
+      });
+    });
+
+    // Esperando a que todas las promesas se resuelvan antes de actualizar el estado
+    await Promise.all(detailsPromises);
+
+    const newArrayWithoutDuplicates = [
+      ...new Set(cardArray.map((clinic) => clinic.name)),
+    ].map((name) => {
+      return cardArray.find((clinic) => clinic.name === name);
+    });
+
+    setCardArray(newArrayWithoutDuplicates);
   };
 
   useEffect(() => {
@@ -264,7 +289,6 @@ export default function Test() {
       event.target.innerText !== "Specialization"
     ) {
       setSpeciality(event.target.innerText);
-      // setMapWidth("57vw");
     }
   };
 
@@ -273,7 +297,6 @@ export default function Test() {
     if (event.target.innerText !== "" && event.target.innerText !== "City") {
       const ciudadSeleccionada = event.target.innerText;
       setCityValue(ciudadSeleccionada);
-      // setMapWidth("57vw");
     }
   };
 
@@ -328,8 +351,6 @@ export default function Test() {
   }, [cities, countriesArray, specialities]);
 
   useEffect(() => {
-    // setMapWidth("60%");
-
     const validLanguages = ["en", "ru", "it", "zh", "fr", "es"];
     if (validLanguages.includes(selectedLanguage)) {
       MapaMultiMarker(
@@ -395,7 +416,6 @@ export default function Test() {
 
   useEffect(() => {
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
-    console.log("clinicObj linicsToDisplay[0]", clinicObj);
     MapaMultiMarker(
       null,
       null,
@@ -667,6 +687,13 @@ export default function Test() {
                               rating={clinic.rating}
                               distance={placesDistancesToUserPosition[index]}
                               openNow={clinic.openNow}
+                              formatted_phone_number={
+                                clinic.formatted_phone_number
+                              }
+                              website={clinic.website}
+                              //there's a photo property too (array). in [0] I can access to html_attributions[0]
+                              //and the value is smth like <a href=\"https://maps.google.com/maps/contrib/102888846898940690071\">A Google User</a>"
+                              //from there I can to extract the href, to get the photos of the clinic.
                             />
                           );
                         })}
@@ -681,7 +708,7 @@ export default function Test() {
                 )}
               </div>
             )}
-            <div style={{ width: `${mapWidth}`, maxHeight: "70vh" }}>
+            <div style={{ width: `${mapWidth}`, height: "auto" }}>
               <div id="panel"></div>
               <div className="map" id="map"></div>
             </div>
