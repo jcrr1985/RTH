@@ -631,7 +631,6 @@ fieldset {
 }
 
 @media (min-width: 1371px) {
-
   .filter-box-wide-screen {
     display: block;
   }
@@ -641,10 +640,6 @@ fieldset {
   }
 
 
-  .css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator {
-    position: absolute !important;
-    left: 0 !important;
-  }
 
   .header-wide-screen {
     display: flex;

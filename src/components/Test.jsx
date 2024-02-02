@@ -432,6 +432,15 @@ export default function Test() {
 
   const autocompleteRef = useRef(null);
 
+  useEffect(() => {
+    const elementsWithTitle = document.querySelectorAll('[title="Open"]');
+
+    elementsWithTitle.forEach((element) => {
+      element.style.position = "absolute";
+      element.style.left = "0px";
+    });
+  });
+
   return (
     <>
       <FeedbackModal />
