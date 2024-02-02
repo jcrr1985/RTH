@@ -631,6 +631,7 @@ fieldset {
 }
 
 @media (min-width: 1371px) {
+
   .filter-box-wide-screen {
     display: block;
   }
