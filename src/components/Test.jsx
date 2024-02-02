@@ -40,7 +40,7 @@ import "./../App.css";
 export default function Test() {
   const countryInAmworld = useSelector((state) => state.countryInAmworld);
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-  // const proxy = "https://rth-server-d3n1.onrender.com";
+  const proxy = "https://rth-server-d3n1.onrender.com";
   // const proxy = "http://http://localhost:5000/";
 
   const { t } = useTranslation();
@@ -154,11 +154,8 @@ export default function Test() {
       if (event.key === "Enter") {
         event.preventDefault();
         const nameOfClinicValue = getValues("nameOfClinic");
-
         const apiUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
-
-        // const url = `${proxy}/${apiUrl}`;
-        const url = apiUrl;
+        const url = `${proxy}/${apiUrl}`;
 
         fetch(url)
           .then((nameOfClinicFetchResponse) => {
