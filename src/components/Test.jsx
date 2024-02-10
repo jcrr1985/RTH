@@ -16,9 +16,7 @@ import specialities_fr from "../assets/specialities_fr.js";
 import specialities_es from "../assets/specialities_es.js";
 
 import "sweetalert2/src/sweetalert2.scss";
-
 import DatePicker_requestForm from "./datePicker";
-import Back from "../assets/images/svg/Back.svg";
 import { MediaCard } from "./MediaCard";
 
 import citiesEn from "../models/cities_en.json";
@@ -35,13 +33,11 @@ import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
 
 import "./../App.css";
-// import { clinicImg } from "@/assets/images/svg/clinic-image.svg";
 
 export default function Test() {
-  const countryInAmworld = useSelector((state) => state.countryInAmworld);
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-  const proxy = "https://rth-server-d3n1.onrender.com";
-  // const proxy = "http://http://localhost:5000/";
+  // const proxy = "https://rth-server-d3n1.onrender.com";
+  const proxy = "http://http://localhost:5000/";
 
   const { t } = useTranslation();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
@@ -73,14 +69,7 @@ export default function Test() {
     speciality: "",
   });
 
-  useEffect(() => {
-    !!countryInAmworld && handleChangeCountry(null, countryInAmworld);
-  }, [countryInAmworld]);
-
   const handleAutocompleteChange = (value, nameField) => {
-    console.log("nameField", nameField);
-
-    console.log("value", value);
     switch (nameField) {
       case "speciality":
         setSpeciality(value);
@@ -163,29 +152,16 @@ export default function Test() {
           })
           .then((nameOfClinicFetchResponseJson) => {
             setClinicsToDisplay([]);
-            let data = nameOfClinicFetchResponseJson.candidates[0];
-            let lat = data.geometry.location.lat;
-            let lng = data.geometry.location.lng;
-            let name = data.name;
-            let openNow = data.opening_hours.open_now;
-            let address = data.formatted_address;
-            let rating = data.rating;
-            let phone = 333444555;
-            let photos = data.photos;
-            let id = data.place_id || 1;
-            let placeId = data.place_id;
-            let clinicToDisplayObj = {
-              lat,
-              lng,
-              name,
-              openNow,
-              address,
-              rating,
-              phone,
-              photos,
-              id,
-              placeId,
-              data,
+            const clinicToDisplayObj = {
+              data: nameOfClinicFetchResponseJson.candidates[0],
+              lat: data.geometry.location.lat,
+              lng: data.geometry.location.lng,
+              name: data.name,
+              openNow: data.opening_hours.open_now,
+              address: data.formatted_address,
+              rating: data.rating,
+              id: data.place_id,
+              placeId: data.place_id,
             };
             setClinicsToDisplay([clinicToDisplayObj]);
             reset({
@@ -239,30 +215,6 @@ export default function Test() {
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = async (cardArray) => {
-    const map = document.getElementById("map");
-    const service = new google.maps.places.PlacesService(map);
-
-    //  Promise.all para esperar a que todas las llamadas getDetails se completen
-    const detailsPromises = cardArray.map((card) => {
-      return new Promise((resolve) => {
-        const request = {
-          placeId: card.placeId,
-          fields: ["formatted_phone_number", "website"],
-        };
-        service.getDetails(request, (details, status) => {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            card.formatted_phone_number =
-              details.formatted_phone_number || null;
-            card.website = details.website || null;
-          }
-          resolve();
-        });
-      });
-    });
-
-    // Esperando a que todas las promesas se resuelvan antes de actualizar el estado
-    await Promise.all(detailsPromises);
-
     const newArrayWithoutDuplicates = [
       ...new Set(cardArray.map((clinic) => clinic.name)),
     ].map((name) => {
@@ -280,15 +232,6 @@ export default function Test() {
 
   const onSubmit = (data) => {};
 
-  const handleChangeEspecialitation = (event) => {
-    if (
-      event.target.innerText !== "" &&
-      event.target.innerText !== "Specialization"
-    ) {
-      setSpeciality(event.target.innerText);
-    }
-  };
-
   const handleChangeCities = (event) => {
     setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "City") {
@@ -297,20 +240,8 @@ export default function Test() {
     }
   };
 
-  const handleChangeCountry = (event, countryInAmworld) => {
+  const handleChangeCountry = (event) => {
     setCityValue("");
-
-    if (!event) {
-      const paisSeleccionado = countryInAmworld;
-      setSelectedCountry(paisSeleccionado);
-      const selectedCountryData = data.paises.find(
-        (country) => country.name === paisSeleccionado
-      );
-      const selectedCountryCities = selectedCountryData.cities || [];
-      setCities(selectedCountryCities);
-      return;
-    }
-
     setCardArray([]);
     if (event.target.innerText !== "" && event.target.innerText !== "Country") {
       const paisSeleccionado = event.target.innerText;
@@ -322,11 +253,6 @@ export default function Test() {
       const selectedCountryCities = selectedCountryData.cities || [];
       setCities(selectedCountryCities);
     }
-  };
-
-  const getValue = (e, val) => {
-    console.warn(val);
-    setSliderValue(val);
   };
 
   const countriesArray = useMemo(() => {
@@ -361,9 +287,7 @@ export default function Test() {
     } else {
       console.log("selectedLanguage no es un código de idioma válido");
     }
-
-    // ...
-  }, [selectedCountry, cityValue, speciality, selectedLanguage]);
+  }, [selectedLanguage]);
 
   useEffect(() => {
     nameOfClinic.value = "";
@@ -501,7 +425,6 @@ export default function Test() {
               {...register("specialization")}
               onChange={(event, value) => {
                 setSpeciality(value);
-                handleChangeEspecialitation(event);
                 handleAutocompleteChange(value, "speciality");
               }}
               style={{
@@ -524,7 +447,7 @@ export default function Test() {
               id="country-selected"
               {...register("country-selected")}
               onChange={(event, value) => {
-                handleChangeCountry(event, countryInAmworld);
+                handleChangeCountry(event);
                 handleAutocompleteChange(value, "country");
               }}
               options={countriesArray}
@@ -589,7 +512,6 @@ export default function Test() {
                 {...register("specialization")}
                 onChange={(event, value) => {
                   setSpeciality(value);
-                  handleChangeEspecialitation(event);
                   handleAutocompleteChange(value, "speciality");
                 }}
                 style={{
@@ -612,11 +534,10 @@ export default function Test() {
                 id="country-selected"
                 {...register("country-selected")}
                 onChange={(event, value) => {
-                  handleChangeCountry(event, countryInAmworld);
+                  handleChangeCountry(event);
                   handleAutocompleteChange(value, "country");
                 }}
                 options={countriesArray}
-                // value={countryInAmworld}
                 renderInput={(params) => (
                   <TextField {...params} label={t("Country")} />
                 )}
@@ -683,7 +604,6 @@ export default function Test() {
                           page * clinicsPerPage
                         )
                         .map((clinic, index) => {
-                          console.log("clinic", clinic);
                           return (
                             <MediaCard
                               key={clinic.placeId}
@@ -714,6 +634,7 @@ export default function Test() {
                 )}
               </div>
             )}
+
             <div style={{ width: `${mapWidth}`, height: "auto" }}>
               <div id="panel"></div>
               <div className="map" id="map"></div>

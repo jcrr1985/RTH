@@ -9,8 +9,7 @@ function createObjOfPlaces(places) {
     let rating = place.rating || null;
     let phone = place.phone || null;
     let website = place.website || null;
-
-    // let photos = place.photos || "src/assets/images/svg/defaultMarketImage.svg";
+    let opening_hours = place.opening_hours || null;
     let id = place.place_id || null;
     let placeId = place.place_id;
     let distance = null;
@@ -25,10 +24,10 @@ function createObjOfPlaces(places) {
         rating,
         distance,
         phone,
-        // photos,
         id,
         website,
         placeId,
+        opening_hours,
       },
     ];
   });

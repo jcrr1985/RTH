@@ -33,7 +33,7 @@ export default function Test() {
   const [sliderValue, setSliderValue] = useState(0);
   const onSubmit = (data) => {};
 
-  const handleChangeEspecialitation = (event) => {
+  const handleChangeSpecialization = (event) => {
     if (
       event.target.innerText !== "" &&
       event.target.innerText !== "Specialization"
@@ -179,7 +179,7 @@ export default function Test() {
             {...register("specialization")}
             onChange={(ev) => {
               setSpeciality(ev.target.innerText);
-              handleChangeEspecialitation(ev);
+              handleChangeSpecialization(ev);
             }}
             style={{
               width: "33%",

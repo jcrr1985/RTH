@@ -18,14 +18,11 @@ export function MediaCard({
   address,
   rating,
   distance,
-  openNow,
   formatted_phone_number,
   website,
+  opening_hours,
 }) {
   const { t } = useTranslation();
-
-  // let url_img = `src/assets/images/clinics/${photo}`;
-  let url_img = null;
   let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
   const fullStarArray = Array(Math.floor(rating))
@@ -50,52 +47,40 @@ export function MediaCard({
         display: "inline-table!important",
       }}
     >
-      <CardMedia
-        sx={{
-          maxWidth: "100%",
-          maxHeight: "100%",
-          height: "auto",
-        }}
-        image={url_img ? url_img : clinicImg}
-        title="clinic image"
-      />
       <div className="card-content">
         <CardContent>
-          <Typography
-            gutterBottom
-            variant="h6"
-            component="div"
-            style={{ textAlign: "center", marginBottom: "5px" }}
-          >
-            {name}
-          </Typography>
-          <Typography variant="body2">{phone}</Typography>
-          <Typography variant="body2">{address}</Typography>
-          <Typography variant="body2"> {formatted_phone_number} </Typography>
-          <Typography variant="body2"> {website} </Typography>{" "}
-          <Typography variant="body2" style={{ color: "black" }}>
-            <span alt="reviews" width={25}>
-              Distance: {distance} km
-            </span>
-          </Typography>
-          <Typography variant="body2">
-            {
-              <div css={{ display: "inline-flex" }}>
-                {fullStarArray}
-                {ratingHasDecimal && (
-                  <img
-                    className="reviewHalfStar"
-                    src={reviewHalfStar}
-                    alt="reviews"
-                    css={{ marginBottom: "0px" }}
-                    width={25}
-                    height={25}
-                  />
-                )}
-              </div>
-            }
-          </Typography>
-          {openNow && <Typography variant="body2">{openNow}</Typography>}
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>{name}</span>
+            <span>{distance} km</span>
+          </div>
+          <div style={{ display: "flex" }}>
+            <span>{address}</span>
+          </div>
+          <div style={{ display: "flex" }}>
+            <span>{phone}</span>
+          </div>
+          <div style={{ display: "flex" }}>
+            <span>{formatted_phone_number}</span>
+          </div>
+          <div style={{ display: "flex" }}>
+            <span>{website}</span>
+          </div>
+
+          {
+            <div css={{ display: "inline-flex" }}>
+              {fullStarArray}
+              {ratingHasDecimal && (
+                <img
+                  className="reviewHalfStar"
+                  src={reviewHalfStar}
+                  alt="reviews"
+                  css={{ marginBottom: "0px" }}
+                  width={22}
+                  height={22}
+                />
+              )}
+            </div>
+          }
         </CardContent>
         <CardActions style={{ textAlign: "center" }}>
           <button>{t("book now")}</button>

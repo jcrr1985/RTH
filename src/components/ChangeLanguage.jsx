@@ -29,7 +29,6 @@ const ChangeLanguage = () => {
     <div
       style={{
         position: "relative",
-        display: "inline-block",
         alignItems: "center",
         display: "flex",
       }}

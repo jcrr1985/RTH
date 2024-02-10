@@ -623,9 +623,6 @@ fieldset {
     display: flex;
   }
 
-  #map {
-    height: 100vh !important;
-  }
 
 
 }
