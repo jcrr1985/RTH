@@ -32,10 +32,13 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
 
+import { Loader } from "@googlemaps/js-api-loader";
+
 import "./../App.css";
 
 export default function Test() {
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+
   // const proxy = "https://rth-server-d3n1.onrender.com";
   const proxy = "http://http://localhost:5000/";
 
@@ -57,9 +60,7 @@ export default function Test() {
   const [mapWidth, setMapWidth] = useState("100vw");
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
   const [sliderValue, setSliderValue] = useState(0);
-  // const [newArrayWithoutDuplicates, setNewArrayWithoutDuplicates] = useState(
-  //   []
-  // );
+
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] =
     useState([]);
 
@@ -215,6 +216,30 @@ export default function Test() {
   const [cardArray, setCardArray] = useState([]);
 
   const fillCardArray = async (cardArray) => {
+    const service = new google.maps.places.PlacesService(
+      document.createElement("div")
+    );
+
+    //  Promise.all para esperar a que todas las llamadas getDetails se completen
+    const detailsPromises = cardArray.map((card) => {
+      return new Promise((resolve) => {
+        const request = {
+          placeId: card.placeId,
+          fields: ["formatted_phone_number", "website"],
+        };
+        service.getDetails(request, (details, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            card.formatted_phone_number =
+              details.formatted_phone_number || null;
+            card.website = details.website || null;
+          }
+          resolve();
+        });
+      });
+    });
+
+    await Promise.all(detailsPromises);
+
     const newArrayWithoutDuplicates = [
       ...new Set(cardArray.map((clinic) => clinic.name)),
     ].map((name) => {
@@ -307,18 +332,6 @@ export default function Test() {
   }, [selectedCountry]);
 
   const [showNoResults, setShowNoResults] = useState(false);
-
-  useEffect(() => {
-    MapaMultiMarker(
-      selectedCountry,
-      cityValue,
-      speciality,
-      fillCardArray,
-      setPlacesDistancesToUserPosition,
-      selectedLanguage,
-      null
-    );
-  }, [cityValue]);
 
   useEffect(() => {
     nameOfClinic.value = "";

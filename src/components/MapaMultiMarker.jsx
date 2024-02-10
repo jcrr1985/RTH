@@ -1,10 +1,17 @@
 import { createObjOfPlaces } from "../helpers/createObjOfPlaces.js";
 import "../assets/css/MapaMultiMarker.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
 import "sweetalert2/src/sweetalert2.scss";
 
+import { Loader } from "@googlemaps/js-api-loader";
+
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+
+const loader = new Loader({
+  apiKey,
+  libraries: ["places", "geometry"],
+});
+
 // const proxy = "https://rth-server-d3n1.onrender.com";
 const proxy = "http://localhost:5000";
 
@@ -86,12 +93,13 @@ function fetching(
     .then((data) => {
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
+        console.log("places", places);
 
         const map = new window.google.maps.Map(document.getElementById("map"), {
           zoom: 10,
           center: data.results[0].geometry.location,
-          language: selectedLanguage,
         });
+
         pos = map.center;
         Swal.close();
         creadorDeMarcadores(
