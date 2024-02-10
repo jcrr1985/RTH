@@ -342,25 +342,15 @@ export function MapaMultiMarker(
   selectedLanguage,
   clinicsToDisplayObj
 ) {
-  // si pais no ciudad, no especialidad
+  // si pais, algun otro campo faltante
 
-  if (pais && !ciudad && !especialidad) {
+  if (
+    (pais && !ciudad && !especialidad) ||
+    (pais && ciudad && !especialidad) ||
+    (pais && !ciudad && especialidad)
+  ) {
     centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
   }
-
-  // si pais si ciudad no especialidad
-
-  if (pais && ciudad && !especialidad) {
-    centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
-  }
-
-  // si pais no ciudad si especialidad
-
-  if (pais && !ciudad && especialidad) {
-    centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
-  }
-
-  //-------------------------------------------------------------
 
   // si pais, si ciudad si especialidad
 
