@@ -31,9 +31,6 @@ import LanguageContext from "../contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
-
-import { Loader } from "@googlemaps/js-api-loader";
-
 import "./../App.css";
 
 export default function Test() {

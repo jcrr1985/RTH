@@ -1,16 +1,10 @@
 import { createObjOfPlaces } from "../helpers/createObjOfPlaces.js";
 import "../assets/css/MapaMultiMarker.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+
 import "sweetalert2/src/sweetalert2.scss";
 
-import { Loader } from "@googlemaps/js-api-loader";
-
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-
-const loader = new Loader({
-  apiKey,
-  libraries: ["places", "geometry"],
-});
 
 // const proxy = "https://rth-server-d3n1.onrender.com";
 const proxy = "http://localhost:5000";
