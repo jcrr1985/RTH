@@ -7,12 +7,12 @@ body {
 
 #root {
   margin: 0 auto;
-  font-size: 1.172161172vw;
+  font-size: 1.17vw;
 }
 
 .logo {
-  height: 13.150684932vh;
-  padding: 3.287671233vh 1.758241758vw;
+  height: 13.15vh;
+  padding: 3.28vh 1.75vw;
   will-change: filter;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 
 .card {
-  padding: 4.383561644vh 2.344322344vw;
+  padding: 4.4vh 2.3vw;
 }
 
 .read-the-docs {
@@ -53,7 +53,7 @@ body {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 6.575342466vh;
+  margin-top: 6.5vh;
   color: #333;
 }
 
@@ -75,8 +75,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0px;
-  width: 9.597069597vw;
-  height: 6.849315068vh;
+  width: 9.5vw;
+  height: 6.8vh;
 }
 
 .button-Для-2 {
@@ -84,7 +84,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 1.369863014vh 0.732600733vw;
+  padding: 1.3vh 0.73vw;
 }
 
 .span {
@@ -101,7 +101,7 @@ body {
 }
 
 p.app-icon {
-  font-size: 5.128205128vw;
+  font-size: 5vw;
   color: #333;
   transform: rotate(-6.23deg);
 }
@@ -115,14 +115,14 @@ p.app-icon {
 p.header-info {
   box-sizing: border-box;
   margin: 0;
-  width: 39.56043956vw;
-  height: 16.438356164vh;
-  font-size: 1.831501832vw;
+  width: 39.5w;
+  height: 16vh;
+  font-size: 1.8vw;
   color: #333;
 }
 
 .link {
-  font-size: 1.831501832vw;
+  font-size: 1.8vw;
   color: #5c85c6;
 }
 
@@ -136,11 +136,11 @@ p.header-info {
 }
 
 .globe {
-  margin-top: 16.02739726vh;
+  margin-top: 16vh;
 }
 
 .button-Для-1 {
-  margin-right: 2.197802198vw;
+  margin-right: 2vw;
 }
 
 .wrapper-top {
@@ -155,7 +155,7 @@ p.header-info {
 .clinics-card {
   width: 25.641025641vw !important;
   background: #d9d9d9 !important;
-  margin-bottom: 2.191780822vh !important;
+  margin-bottom: 2vh !important;
   border-radius: 14px !important;
 }
 
@@ -312,10 +312,32 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 22vw;
   margin-top: 27px;
   border-radius: 15px;
   top: -301px;
+}
+
+.card-content--div:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.card-content--div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-content--item {
+  display: flex;
+  align-items: center;
+}
+
+.book-now-icon {
+  font-size: small;
+}
+
+.card-content--span {
+  width: 40%;
+  word-wrap: break-word;
 }
 
 .results-and-map-wrapper {
@@ -343,6 +365,26 @@ fieldset {
   border: none;
   border-radius: 14px;
   margin-bottom: 15px;
+}
+
+.card-content div {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reviewHalfStar {
+  position: relative;
+  top: -1px
+}
+
+.map-container {
+  width: 100%;
+  height: calc(100vh);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
 }
 
 .slider_leyent_button {
@@ -399,13 +441,14 @@ fieldset {
 
 
 .map {
-  /* z-index: 99; */
   max-height: 100vh;
   margin-top: 4vh;
   border-radius: 1vw;
   height: 100vh;
   width: -webkit-fill-available;
 }
+
+
 
 .req-form-input {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

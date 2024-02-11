@@ -3,14 +3,13 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import clinicImg from "@/assets/images/svg/clinic-image.svg";
 import reviewFullStar from "@/assets/images/svg/reviewFullStar.png";
 import reviewHalfStar from "@/assets/images/svg/reviewHalfStar.png";
 import "./../App.css";
 import { useTranslation } from "react-i18next";
-// openNow, key, photo,
+import EventRoundedIcon from "@mui/icons-material/EventRounded";
+import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 
 export function MediaCard({
   name,
@@ -41,32 +40,34 @@ export function MediaCard({
   return (
     <Card
       sx={{
-        width: "22.600732601vw",
-        height: "22.739726027vh",
-        borderRadius: "1.025641026vh",
+        width: "27vw",
+        height: "22vh",
+        borderRadius: "1",
         display: "inline-table!important",
+        marginBottom: "16px",
+        boxShadow: "3px 1px 2px #ddd",
       }}
     >
       <div className="card-content">
         <CardContent>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="card-content--div">
             <span>{name}</span>
-            <span>{distance} km</span>
+            <span className="card-content--item">
+              <LocationOnRoundedIcon className="book-now-icon" />
+              {distance} km
+            </span>
           </div>
-          <div style={{ display: "flex" }}>
-            <span>{address}</span>
+          <div className="card-content--div">
+            <span className="card-content--span">{address}</span>
+            <span className="card-content--item">
+              <PhoneRoundedIcon className="book-now-icon" />
+              {formatted_phone_number}
+            </span>
           </div>
-          <div style={{ display: "flex" }}>
-            <span>{phone}</span>
-          </div>
-          <div style={{ display: "flex" }}>
-            <span>{formatted_phone_number}</span>
-          </div>
-          <div style={{ display: "flex" }}>
-            <span>{website}</span>
-          </div>
-
-          {
+          <div className="card-content--div">
+            <a href={website} target="_blank" rel="noopener noreferrer">
+              <span>{website}</span>
+            </a>
             <div css={{ display: "inline-flex" }}>
               {fullStarArray}
               {ratingHasDecimal && (
@@ -74,17 +75,17 @@ export function MediaCard({
                   className="reviewHalfStar"
                   src={reviewHalfStar}
                   alt="reviews"
-                  css={{ marginBottom: "0px" }}
                   width={22}
                   height={22}
                 />
               )}
             </div>
-          }
+            <div className="card-content--item">
+              <EventRoundedIcon className="book-now-icon" />
+              <span>{t("Book time online")}</span>
+            </div>
+          </div>
         </CardContent>
-        <CardActions style={{ textAlign: "center" }}>
-          <button>{t("book now")}</button>
-        </CardActions>
       </div>
     </Card>
   );

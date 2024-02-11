@@ -645,7 +645,7 @@ export default function Test() {
               </div>
             )}
 
-            <div style={{ width: `${mapWidth}`, height: "auto" }}>
+            <div className="map-container">
               <div id="panel"></div>
               <div className="map" id="map"></div>
             </div>
