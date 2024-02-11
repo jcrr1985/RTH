@@ -7,9 +7,15 @@ import reviewFullStar from "@/assets/images/svg/reviewFullStar.png";
 import reviewHalfStar from "@/assets/images/svg/reviewHalfStar.png";
 import "./../App.css";
 import { useTranslation } from "react-i18next";
+import Button from "@mui/material/Button";
+
 import EventRoundedIcon from "@mui/icons-material/EventRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
+import DriveIcon from "@mui/icons-material/DriveEta";
+import WalkIcon from "@mui/icons-material/DirectionsWalk";
+
+import trazarRuta from "../helpers/drawRoute.js";
 
 export function MediaCard({
   name,
@@ -20,6 +26,9 @@ export function MediaCard({
   formatted_phone_number,
   website,
   opening_hours,
+  mapy,
+  userPosition,
+  destination,
 }) {
   const { t } = useTranslation();
   let ratingHasDecimal = rating % 1 !== 0 ? true : false;
@@ -53,14 +62,14 @@ export function MediaCard({
           <div className="card-content--div">
             <span>{name}</span>
             <span className="card-content--item">
-              <LocationOnRoundedIcon className="book-now-icon" />
+              <LocationOnRoundedIcon />
               {distance} km
             </span>
           </div>
           <div className="card-content--div">
             <span className="card-content--span">{address}</span>
             <span className="card-content--item">
-              <PhoneRoundedIcon className="book-now-icon" />
+              <PhoneRoundedIcon />
               {formatted_phone_number}
             </span>
           </div>
@@ -81,9 +90,23 @@ export function MediaCard({
               )}
             </div>
             <div className="card-content--item">
-              <EventRoundedIcon className="book-now-icon" />
+              <EventRoundedIcon />
               <span>{t("Book time online")}</span>
             </div>
+          </div>
+          <div className="card-content--div">
+            <DriveIcon
+              className="media-card--icon"
+              onClick={() =>
+                trazarRuta(mapy, "DRIVING", userPosition, destination)
+              }
+            />
+            <WalkIcon
+              className="media-card--icon"
+              onClick={() =>
+                trazarRuta(mapy, "WALKING", userPosition, destination)
+              }
+            />
           </div>
         </CardContent>
       </div>

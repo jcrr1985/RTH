@@ -77,7 +77,8 @@ function fetching(
   setPlacesDistancesToUserPosition,
   pais,
   ciudad,
-  selectedLanguage
+  selectedLanguage,
+  setsetMapyMapy
 ) {
   console.log("fetching");
   let pos;
@@ -93,6 +94,8 @@ function fetching(
           zoom: 10,
           center: data.results[0].geometry.location,
         });
+
+        setsetMapyMapy(map);
 
         pos = map.center;
         Swal.close();
@@ -166,7 +169,10 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
   });
 }
 
-function centrarSinDatosConGeoLocation(selectedLanguage) {
+function centrarSinDatosConGeoLocation(
+  selectedLanguage,
+  setUserCurrentPosition
+) {
   if (navigator.geolocation) {
     Swal.fire({
       title: "Loading...",
@@ -186,6 +192,8 @@ function centrarSinDatosConGeoLocation(selectedLanguage) {
     const userLng = position.coords.longitude;
     const userLatLng = new google.maps.LatLng(userLat, userLng);
     userPosition = userLatLng;
+    setUserCurrentPosition({ lat: userLat, lng: userLng });
+
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: userLatLng,
@@ -342,7 +350,9 @@ export function MapaMultiMarker(
   fillCardArray,
   setPlacesDistancesToUserPosition,
   selectedLanguage,
-  clinicsToDisplayObj
+  clinicsToDisplayObj,
+  setUserCurrentPosition,
+  setsetMapyMapy
 ) {
   // si pais, algun otro campo faltante
 
@@ -365,7 +375,8 @@ export function MapaMultiMarker(
       setPlacesDistancesToUserPosition,
       pais,
       ciudad,
-      selectedLanguage
+      selectedLanguage,
+      setsetMapyMapy
     );
   }
 
@@ -374,7 +385,7 @@ export function MapaMultiMarker(
   // no pais, no ciudad, no especialidad no clinicsToDisplayObj
 
   if (!pais && !ciudad && !especialidad && !clinicsToDisplayObj) {
-    centrarSinDatosConGeoLocation(selectedLanguage);
+    centrarSinDatosConGeoLocation(selectedLanguage, setUserCurrentPosition);
   }
   // no pais, si ciudad, si especialidad
 

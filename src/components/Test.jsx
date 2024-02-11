@@ -46,6 +46,20 @@ export default function Test() {
     setSelectedLanguage(languageCode);
   };
 
+  const [userPosition, setUserPosition] = useState();
+
+  const setUserCurrentPosition = (userPos) => {
+    console.log("userPos", userPos);
+    setUserPosition(userPos);
+  };
+
+  const [mapy, setMapy] = useState();
+
+  const setsetMapyMapy = (mapy) => {
+    console.log("mapy", mapy);
+    setMapy(mapy);
+  };
+
   const [data, setData] = useState(citiesEn);
   const [specialities, setSpecialities] = useState(specialities_en);
   const clinicsPerPage = 3;
@@ -304,7 +318,9 @@ export default function Test() {
         speciality,
         fillCardArray,
         setPlacesDistancesToUserPosition,
-        selectedLanguage
+        selectedLanguage,
+        null,
+        setUserCurrentPosition
       );
     } else {
       console.log("selectedLanguage no es un código de idioma válido");
@@ -341,7 +357,9 @@ export default function Test() {
       fillCardArray,
       setPlacesDistancesToUserPosition,
       selectedLanguage,
-      null
+      null,
+      null,
+      setsetMapyMapy
     );
   }, [selectedCountry, cityValue, speciality]);
 
@@ -627,6 +645,9 @@ export default function Test() {
                                 clinic.formatted_phone_number
                               }
                               website={clinic.website}
+                              mapy={mapy}
+                              userPosition={userPosition}
+                              destination={{ lat: clinic.lat, lng: clinic.lng }}
                               //there's a photo property too (array). in [0] I can access to html_attributions[0]
                               //and the value is smth like <a href=\"https://maps.google.com/maps/contrib/102888846898940690071\">A Google User</a>"
                               //from there I can to extract the href, to get the photos of the clinic.

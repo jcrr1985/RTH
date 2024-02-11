@@ -340,6 +340,10 @@ fieldset {
   word-wrap: break-word;
 }
 
+.media-card--icon {
+  cursor: pointer;
+}
+
 .results-and-map-wrapper {
   display: flex;
   gap: 2.5rem;
