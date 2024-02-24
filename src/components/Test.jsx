@@ -150,7 +150,6 @@ export default function Test() {
   };
 
   const handleChangeClinics = (event) => {
-    setMapWidth("17vw");
     if (event.target.value !== "") {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -327,29 +326,10 @@ export default function Test() {
     }
   }, [selectedLanguage]);
 
-  useEffect(() => {
-    if (selectedCountry) {
-      nameOfClinic.value = "";
-      setMapWidth("100%");
-      MapaMultiMarker(
-        selectedCountry,
-        cityValue,
-        speciality,
-        fillCardArray,
-        setPlacesDistancesToUserPosition,
-        selectedLanguage
-      );
-
-      setCities(selectedCountryCities);
-      setMapWidth("57vw");
-    }
-  }, [selectedCountry]);
-
   const [showNoResults, setShowNoResults] = useState(false);
 
   useEffect(() => {
     nameOfClinic.value = "";
-    setMapWidth("100%");
     setClinicsToDisplay(null);
 
     if (selectedCountry) {
@@ -617,52 +597,32 @@ export default function Test() {
             {cardArray.length !== 0 && (
               <div className="clinic-cards-container">
                 {cardArray &&
-                cardArray.length === 0 &&
-                selectedCountry &&
-                cityValue ? (
-                  <>
-                    {showNoResults ?? (
-                      <span className="no-results-container">
-                        no results found
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {cardArray &&
-                      cardArray
-                        .slice(
-                          (page - 1) * clinicsPerPage,
-                          page * clinicsPerPage
-                        )
-                        .map((clinic, index) => {
-                          return (
-                            <MediaCard
-                              key={clinic.placeId}
-                              name={clinic.name}
-                              phone={clinic.phone}
-                              address={clinic.address}
-                              rating={clinic.rating}
-                              distance={placesDistancesToUserPosition[index]}
-                              openNow={clinic.openNow}
-                              formatted_phone_number={
-                                clinic.formatted_phone_number
-                              }
-                              website={clinic.website}
-                              mapy={mapy}
-                              userPosition={userPosition}
-                              destination={{ lat: clinic.lat, lng: clinic.lng }}
-                            />
-                          );
-                        })}
-                    {cardArray && cardArray.length >= 2 && (
-                      <Pagination
-                        count={Math.ceil(cardArray.length / clinicsPerPage)}
-                        color="secondary"
-                        onChange={handlePaginationChange}
-                      />
-                    )}
-                  </>
+                  cardArray
+                    .slice((page - 1) * clinicsPerPage, page * clinicsPerPage)
+                    .map((clinic, index) => {
+                      return (
+                        <MediaCard
+                          key={clinic.placeId}
+                          name={clinic.name}
+                          phone={clinic.phone}
+                          address={clinic.address}
+                          rating={clinic.rating}
+                          distance={placesDistancesToUserPosition[index]}
+                          openNow={clinic.openNow}
+                          formatted_phone_number={clinic.formatted_phone_number}
+                          website={clinic.website}
+                          mapy={mapy}
+                          userPosition={userPosition}
+                          destination={{ lat: clinic.lat, lng: clinic.lng }}
+                        />
+                      );
+                    })}
+                {cardArray && cardArray.length >= 2 && (
+                  <Pagination
+                    count={Math.ceil(cardArray.length / clinicsPerPage)}
+                    color="secondary"
+                    onChange={handlePaginationChange}
+                  />
                 )}
               </div>
             )}

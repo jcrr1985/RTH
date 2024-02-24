@@ -50,7 +50,7 @@ export function MediaCard({
   return (
     <Card
       sx={{
-        width: "27vw",
+        width: "28vw",
         height: "22vh",
         borderRadius: "1",
         display: "inline-table!important",
@@ -80,7 +80,7 @@ export function MediaCard({
                 <div>-</div>
               )}
 
-              {fullStarArray ? (
+              {rating ? (
                 <div css={{ display: "inline-flex" }}>
                   {fullStarArray}
                   {ratingHasDecimal && (
@@ -98,7 +98,10 @@ export function MediaCard({
               )}
             </div>
             <div className="card-content--item-right">
-              <div className="book-time--div">{t("Book time online")}</div>
+              <div className="book-time--div">
+                <CalendarMonthIcon />
+                <span>{t("Book time online")}</span>
+              </div>
               <div>
                 <DriveIcon
                   className="media-card--icon"
