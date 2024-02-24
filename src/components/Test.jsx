@@ -328,17 +328,18 @@ export default function Test() {
   }, [selectedLanguage]);
 
   useEffect(() => {
-    nameOfClinic.value = "";
-    setMapWidth("100%");
-    MapaMultiMarker(
-      selectedCountry,
-      cityValue,
-      speciality,
-      fillCardArray,
-      setPlacesDistancesToUserPosition,
-      selectedLanguage
-    );
     if (selectedCountry) {
+      nameOfClinic.value = "";
+      setMapWidth("100%");
+      MapaMultiMarker(
+        selectedCountry,
+        cityValue,
+        speciality,
+        fillCardArray,
+        setPlacesDistancesToUserPosition,
+        selectedLanguage
+      );
+
       setCities(selectedCountryCities);
       setMapWidth("57vw");
     }
@@ -350,17 +351,20 @@ export default function Test() {
     nameOfClinic.value = "";
     setMapWidth("100%");
     setClinicsToDisplay(null);
-    MapaMultiMarker(
-      selectedCountry,
-      cityValue,
-      speciality,
-      fillCardArray,
-      setPlacesDistancesToUserPosition,
-      selectedLanguage,
-      null,
-      null,
-      setsetMapyMapy
-    );
+
+    if (selectedCountry) {
+      MapaMultiMarker(
+        selectedCountry,
+        cityValue,
+        speciality,
+        fillCardArray,
+        setPlacesDistancesToUserPosition,
+        selectedLanguage,
+        null,
+        null,
+        setsetMapyMapy
+      );
+    }
   }, [selectedCountry, cityValue, speciality]);
 
   useEffect(() => {
@@ -648,9 +652,6 @@ export default function Test() {
                               mapy={mapy}
                               userPosition={userPosition}
                               destination={{ lat: clinic.lat, lng: clinic.lng }}
-                              //there's a photo property too (array). in [0] I can access to html_attributions[0]
-                              //and the value is smth like <a href=\"https://maps.google.com/maps/contrib/102888846898940690071\">A Google User</a>"
-                              //from there I can to extract the href, to get the photos of the clinic.
                             />
                           );
                         })}
