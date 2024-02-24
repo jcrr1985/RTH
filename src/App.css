@@ -361,6 +361,24 @@ fieldset {
   z-index: 1;
 }
 
+.card-content-text {
+  word-wrap: break-word;
+  width: 80%;
+}
+
+.card-content-left-right-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-content--item-left {
+  width: 75%;
+}
+
+.book-time--div {
+  cursor: pointer;
+}
+
 .card-content button {
   background: #5c85c6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -371,9 +389,13 @@ fieldset {
   margin-bottom: 15px;
 }
 
+.css-46bh2p-MuiCardContent-root:last-child {
+  padding-bottom: 0 !important;
+}
+
 .card-content div {
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .reviewHalfStar {

@@ -14,6 +14,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import DriveIcon from "@mui/icons-material/DriveEta";
 import WalkIcon from "@mui/icons-material/DirectionsWalk";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import trazarRuta from "../helpers/drawRoute.js";
 
@@ -59,54 +60,61 @@ export function MediaCard({
     >
       <div className="card-content">
         <CardContent>
-          <div className="card-content--div">
-            <span>{name}</span>
-            <span className="card-content--item">
-              <LocationOnRoundedIcon />
-              {distance} km
-            </span>
-          </div>
-          <div className="card-content--div">
-            <span className="card-content--span">{address}</span>
-            <span className="card-content--item">
-              <PhoneRoundedIcon />
-              {formatted_phone_number}
-            </span>
-          </div>
-          <div className="card-content--div">
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              <span>{website}</span>
-            </a>
-            <div css={{ display: "inline-flex" }}>
-              {fullStarArray}
-              {ratingHasDecimal && (
-                <img
-                  className="reviewHalfStar"
-                  src={reviewHalfStar}
-                  alt="reviews"
-                  width={22}
-                  height={22}
-                />
+          <div className="card-content-left-right-container">
+            <div className="card-content--item-left">
+              <div className="card-content-text" style={{ fontSize: "20px" }}>
+                {name}
+              </div>
+              <div className=" card-content-text">{address}</div>
+              {formatted_phone_number ? (
+                <div className="card-content-text">
+                  {formatted_phone_number}
+                </div>
+              ) : (
+                <div>-</div>
+              )}
+
+              {website ? (
+                <div className="card-content-text">{website}</div>
+              ) : (
+                <div>-</div>
+              )}
+
+              {fullStarArray ? (
+                <div css={{ display: "inline-flex" }}>
+                  {fullStarArray}
+                  {ratingHasDecimal && (
+                    <img
+                      className="reviewHalfStar"
+                      src={reviewHalfStar}
+                      alt="reviews"
+                      width={22}
+                      height={22}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div>No reviews available</div>
               )}
             </div>
-            <div className="card-content--item">
-              <EventRoundedIcon />
-              <span>{t("Book time online")}</span>
+            <div className="card-content--item-right">
+              <div className="book-time--div">{t("Book time online")}</div>
+              <div>
+                <DriveIcon
+                  className="media-card--icon"
+                  onClick={() =>
+                    trazarRuta(mapy, "DRIVING", userPosition, destination)
+                  }
+                />
+                <div></div>
+                <WalkIcon
+                  className="media-card--icon"
+                  onClick={() =>
+                    trazarRuta(mapy, "WALKING", userPosition, destination)
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className="card-content--div">
-            <DriveIcon
-              className="media-card--icon"
-              onClick={() =>
-                trazarRuta(mapy, "DRIVING", userPosition, destination)
-              }
-            />
-            <WalkIcon
-              className="media-card--icon"
-              onClick={() =>
-                trazarRuta(mapy, "WALKING", userPosition, destination)
-              }
-            />
           </div>
         </CardContent>
       </div>
