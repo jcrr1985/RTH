@@ -6,8 +6,8 @@ import "sweetalert2/src/sweetalert2.scss";
 
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
 
-// const proxy = "https://rth-server-d3n1.onrender.com";
-const proxy = "http://localhost:5000";
+const proxy = "https://rth-server-d3n1.onrender.com";
+// const proxy = "http://localhost:5000";
 
 let infoPanel = document.getElementById("panel");
 let userPosition = null;
