@@ -49,14 +49,12 @@ export default function Test() {
   const [userPosition, setUserPosition] = useState();
 
   const setUserCurrentPosition = (userPos) => {
-    console.log("userPos", userPos);
     setUserPosition(userPos);
   };
 
   const [mapy, setMapy] = useState();
 
   const setsetMapyMapy = (mapy) => {
-    console.log("mapy", mapy);
     setMapy(mapy);
   };
 
@@ -68,9 +66,7 @@ export default function Test() {
   const { register, handleSubmit, getValues, reset, setValue } = useForm();
   const [speciality, setSpeciality] = useState("");
   const [cities, setCities] = useState([]);
-  const [mapWidth, setMapWidth] = useState("100vw");
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
-  const [sliderValue, setSliderValue] = useState(0);
 
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] =
     useState([]);
@@ -115,32 +111,32 @@ export default function Test() {
       case "en":
         setData(citiesEn);
         setSpecialities(specialities_en);
-        updateSelectLabels();
+
         break;
       case "ru":
         setData(citiesRu);
         setSpecialities(specialities_ru);
-        updateSelectLabels();
+
         break;
       case "it":
         setData(citiesIt);
         setSpecialities(specialities_it);
-        updateSelectLabels();
+
         break;
       case "zh":
         setData(citiesZh);
         setSpecialities(specialities_zh);
-        updateSelectLabels();
+
         break;
       case "fr":
         setData(citiesFr);
         setSpecialities(specialities_fr);
-        updateSelectLabels();
+
         break;
       case "es":
         setData(citiesEs);
         setSpecialities(specialities_es);
-        updateSelectLabels();
+
         break;
       default:
         setData(citiesEn);
@@ -187,41 +183,11 @@ export default function Test() {
     }
   };
 
-  const updateSelectLabels = () => {
-    if (selectedOptions.city !== null && selectedOptions.city !== undefined) {
-      const cityIndex = selectedOptions.city;
-      if (cityIndex >= 0 && cityIndex < cities.length) {
-        setCityValue(cities[cityIndex]);
-      }
-    }
-    if (
-      selectedOptions.country !== null &&
-      selectedOptions.country !== undefined
-    ) {
-      const countryIndex = selectedOptions.country;
-      if (countryIndex >= 0 && countryIndex < countriesArray.length) {
-        setSelectedCountry(countriesArray[countryIndex]);
-      }
-    }
-    if (
-      selectedOptions.speciality !== null &&
-      selectedOptions.speciality !== undefined
-    ) {
-      const specialityIndex = selectedOptions.speciality;
-      if (specialityIndex >= 0 && specialityIndex < specialities.length) {
-        setSpeciality(specialities[specialityIndex]);
-      }
-    }
-  };
-
   useEffect(() => {
     setDataForSelects();
-    updateSelectLabels();
   }, [selectedLanguage]);
 
-  useEffect(() => {
-    updateSelectLabels();
-  }, [selectedOptions]);
+  useEffect(() => {}, [selectedOptions]);
 
   const [cardArray, setCardArray] = useState([]);
 
@@ -294,20 +260,6 @@ export default function Test() {
     return data.paises.map((country) => country.name);
   }, [data.paises, selectedLanguage]);
 
-  const selectedCountryCities = useMemo(() => {
-    if (selectedCountry) {
-      const selectedCountryData = data.paises.find(
-        (country) => country.name === selectedCountry
-      );
-      return selectedCountryData?.cities;
-    }
-    return [];
-  }, [data.paises, selectedCountry, selectedLanguage]);
-
-  useEffect(() => {
-    updateSelectLabels();
-  }, [cities, countriesArray, specialities]);
-
   useEffect(() => {
     const validLanguages = ["en", "ru", "it", "zh", "fr", "es"];
     if (validLanguages.includes(selectedLanguage)) {
@@ -322,11 +274,9 @@ export default function Test() {
         setUserCurrentPosition
       );
     } else {
-      console.log("selectedLanguage no es un código de idioma válido");
+      console.log("idioma no válido");
     }
-  }, [selectedLanguage]);
-
-  const [showNoResults, setShowNoResults] = useState(false);
+  }, []);
 
   useEffect(() => {
     nameOfClinic.value = "";
@@ -451,6 +401,7 @@ export default function Test() {
                   sx={{ backgroundColor: "theme.palette.background.default" }}
                 />
               )}
+              clearIcon={<></>}
             />
             {/* countries */}
             <Autocomplete
@@ -467,6 +418,7 @@ export default function Test() {
               renderInput={(params) => (
                 <TextField {...params} label={t("Country")} />
               )}
+              clearIcon={<></>}
             />
             {/* cities */}
             <Autocomplete
@@ -482,6 +434,7 @@ export default function Test() {
               renderInput={(params) => (
                 <TextField {...params} label={t("City")} />
               )}
+              clearIcon={<></>}
             />
             {/* Date */}
             <DatePicker_requestForm register={register} />
