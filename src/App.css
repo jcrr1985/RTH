@@ -614,6 +614,11 @@ fieldset {
   background-color: white;
 }
 
+.card-map-toggler {
+  display: flex;
+  justify-content: center;
+}
+
 
 
 

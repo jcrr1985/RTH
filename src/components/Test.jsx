@@ -1,12 +1,22 @@
 import React, { useEffect, useState, useMemo, useContext, useRef } from "react";
 // import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Box, TextField, Autocomplete, Pagination } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Autocomplete,
+  Pagination,
+  useMediaQuery,
+  Button,
+} from "@mui/material";
 // import { Slider } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search";
 // import RoomSharpIcon from "@mui/icons-material/RoomSharp";
 // import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 // import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+
 import ChangeLanguage from "./ChangeLanguage";
 import specialities_en from "../assets/specialities_en.js";
 import specialities_ru from "../assets/specialities_ru.js";
@@ -316,16 +326,12 @@ export default function Test() {
     setPage(value);
   };
 
-  const autocompleteRef = useRef(null);
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const [showCards, setShowCards] = useState(false);
 
-  useEffect(() => {
-    const elementsWithTitle = document.querySelectorAll('[title="Open"]');
-
-    elementsWithTitle.forEach((element) => {
-      element.style.position = "absolute";
-      element.style.left = "0px";
-    });
-  });
+  const toggleVisibility = () => {
+    setShowCards((prevShowCards) => !prevShowCards);
+  };
 
   return (
     <>
@@ -403,7 +409,6 @@ export default function Test() {
             />
             {/* countries */}
             <Autocomplete
-              ref={autocompleteRef}
               className="req-form-input"
               id="country-selected"
               {...register("country-selected")}
@@ -492,7 +497,6 @@ export default function Test() {
               />
               {/* countries */}
               <Autocomplete
-                ref={autocompleteRef}
                 className="req-form-input"
                 id="country-selected"
                 {...register("country-selected")}
@@ -544,9 +548,19 @@ export default function Test() {
         </Box>
 
         <div className="search-and-results-container">
+          <div className="card-map-toggler">
+            {isMobile && (
+              <Button onClick={toggleVisibility}>
+                {showCards ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+              </Button>
+            )}
+          </div>
           <div className="results-and-map-wrapper">
             {cardArray.length !== 0 && (
-              <div className="clinic-cards-container">
+              <Box
+                display={isMobile ? (showCards ? "block" : "none") : "block"}
+                className="clinic-cards-container"
+              >
                 {cardArray &&
                   cardArray
                     .slice((page - 1) * clinicsPerPage, page * clinicsPerPage)
@@ -575,13 +589,16 @@ export default function Test() {
                     onChange={handlePaginationChange}
                   />
                 )}
-              </div>
+              </Box>
             )}
 
-            <div className="map-container">
+            <Box
+              display={showCards ? "none" : "block"}
+              className="map-container"
+            >
               <div id="panel"></div>
               <div className="map" id="map"></div>
-            </div>
+            </Box>
           </div>
         </div>
       </div>
