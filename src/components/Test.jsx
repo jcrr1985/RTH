@@ -369,8 +369,6 @@ export default function Test() {
           </div>
         </div>
 
-        {/* filters form  */}
-
         {/* wide-screen */}
 
         <Box className="form-wrapper filter-box-wide-screen" id="formParentBox">

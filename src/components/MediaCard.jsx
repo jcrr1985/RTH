@@ -50,12 +50,13 @@ export function MediaCard({
   return (
     <Card
       sx={{
-        width: "28vw",
+        // width: "28vw",
         height: "22vh",
         borderRadius: "1",
         display: "inline-table!important",
         marginBottom: "16px",
         boxShadow: "3px 1px 2px #ddd",
+        width: "-webkit-fill-available",
       }}
     >
       <div className="card-content">
