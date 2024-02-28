@@ -201,31 +201,77 @@ export default function Test() {
 
   const [cardArray, setCardArray] = useState([]);
 
+  //calculate time
+
+  async function getTravelTime(origin, destination, mode) {
+    const directionsService = new google.maps.DirectionsService();
+
+    const request = {
+      origin: origin, // LatLng | String | google.maps.Place,
+      destination: destination, // LatLng | String | google.maps.Place,
+      travelMode: google.maps.TravelMode[mode], // 'DRIVING' or 'WALKING'
+    };
+
+    return new Promise((resolve, reject) => {
+      directionsService.route(request, (result, status) => {
+        if (status === "OK") {
+          const duration = result.routes[0].legs[0].duration;
+          resolve(duration.text); // or duration.value for seconds
+        } else {
+          reject("Directions request failed due to " + status);
+        }
+      });
+    });
+  }
+
   const fillCardArray = async (cardArray) => {
     const service = new google.maps.places.PlacesService(
       document.createElement("div")
     );
 
-    //  Promise.all para esperar a que todas las llamadas getDetails se completen
-    const detailsPromises = cardArray.map((card) => {
-      return new Promise((resolve) => {
+    // Crear un array de promesas para obtener detalles y tiempos de viaje
+    const promises = cardArray.map((card) => {
+      return new Promise(async (resolve) => {
+        // Obtener detalles
         const request = {
           placeId: card.placeId,
           fields: ["formatted_phone_number", "website"],
         };
-        service.getDetails(request, (details, status) => {
+        service.getDetails(request, async (details, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             card.formatted_phone_number =
               details.formatted_phone_number || null;
             card.website = details.website || null;
           }
+
+          // Obtener tiempos de viaje
+          try {
+            const timeByCar = await getTravelTime(
+              userPosition,
+              { lat: card.lat, lng: card.lng },
+              "DRIVING"
+            );
+            card.timeByCar = timeByCar;
+
+            const timeByFoot = await getTravelTime(
+              userPosition,
+              { lat: card.lat, lng: card.lng },
+              "WALKING"
+            );
+            card.timeByFoot = timeByFoot;
+          } catch (error) {
+            console.error("Error obtaining travel time:", error);
+          }
+
           resolve();
         });
       });
     });
 
-    await Promise.all(detailsPromises);
+    // Esperar a que todas las promesas se resuelvan
+    await Promise.all(promises);
 
+    // Eliminar duplicados y actualizar el estado
     const newArrayWithoutDuplicates = [
       ...new Set(cardArray.map((clinic) => clinic.name)),
     ].map((name) => {
@@ -233,6 +279,7 @@ export default function Test() {
     });
 
     setCardArray(newArrayWithoutDuplicates);
+    console.log("newArrayWithoutDuplicates", newArrayWithoutDuplicates);
   };
 
   useEffect(() => {
@@ -579,6 +626,8 @@ export default function Test() {
                           mapy={mapy}
                           userPosition={userPosition}
                           destination={{ lat: clinic.lat, lng: clinic.lng }}
+                          timeByCar={clinic.timeByCar}
+                          timeByFoot={clinic.timeByFoot}
                         />
                       );
                     })}

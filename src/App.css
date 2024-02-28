@@ -378,6 +378,8 @@ fieldset {
 
 .book-time--div {
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .card-content button {

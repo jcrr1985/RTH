@@ -30,6 +30,8 @@ export function MediaCard({
   mapy,
   userPosition,
   destination,
+  timeByCar,
+  timeByFoot,
 }) {
   const { t } = useTranslation();
   let ratingHasDecimal = rating % 1 !== 0 ? true : false;
@@ -76,7 +78,13 @@ export function MediaCard({
               )}
 
               {website ? (
-                <div className="card-content-text">{website}</div>
+                <div className="card-content-text">
+                  {
+                    <a href={website} target="_blank">
+                      {website}
+                    </a>
+                  }
+                </div>
               ) : (
                 <div>-</div>
               )}
@@ -104,19 +112,32 @@ export function MediaCard({
                 <span>{t("Book time online")}</span>
               </div>
               <div>
-                <DriveIcon
-                  className="media-card--icon"
-                  onClick={() =>
-                    trazarRuta(mapy, "DRIVING", userPosition, destination)
-                  }
-                />
-                <div></div>
-                <WalkIcon
-                  className="media-card--icon"
-                  onClick={() =>
-                    trazarRuta(mapy, "WALKING", userPosition, destination)
-                  }
-                />
+                <div style={{ display: "flex" }}>
+                  <DriveIcon
+                    className="media-card--icon"
+                    onClick={() =>
+                      trazarRuta(mapy, "DRIVING", userPosition, destination)
+                    }
+                  />
+                  {timeByCar ? (
+                    <div className="media-card--icon-text">
+                      {timeByCar} {t("by car")}
+                    </div>
+                  ) : null}
+                </div>
+                <div style={{ display: "flex" }}>
+                  <WalkIcon
+                    className="media-card--icon"
+                    onClick={() =>
+                      trazarRuta(mapy, "WALKING", userPosition, destination)
+                    }
+                  />
+                  {timeByFoot ? (
+                    <div className="media-card--icon-text">
+                      {timeByFoot} {t("by foot")}
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
