@@ -70,7 +70,7 @@ export default function Test() {
 
   const [data, setData] = useState(citiesEn);
   const [specialities, setSpecialities] = useState(specialities_en);
-  const clinicsPerPage = 3;
+  const clinicsPerPage = 4;
   const [selectedCountry, setSelectedCountry] = useState("");
   const [cityValue, setCityValue] = useState("");
   const { register, handleSubmit, getValues, reset, setValue } = useForm();
@@ -384,7 +384,7 @@ export default function Test() {
     <>
       <FeedbackModal />
       <div className="whole-wrapper">
-        <div className="logo-container header-wide-screen">
+        <div className="logo-container">
           <div className="logo-container-text">
             <span className="logo-title">Run To Health</span>
             <span className="logo-text">
@@ -398,201 +398,71 @@ export default function Test() {
           />
         </div>
 
-        {/* header small screen */}
-
-        <div className="logo-container header-smaller-screen">
-          <div className="logo-container-text">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <span className="logo-title">Run To Health</span>
-              <ChangeLanguage
-                selectedLanguage={selectedLanguage}
-                handleChangeLanguage={handleChangeLanguage}
+        <form className="top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
+          {/* SPECIALITIES */}
+          <Autocomplete
+            className="req-form-input"
+            id="specialization"
+            value={selectedOptions.speciality}
+            {...register("specialization")}
+            onChange={(event, value) => {
+              setSpeciality(value);
+              handleAutocompleteChange(value, "speciality");
+            }}
+            options={specialities}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label={t("Specialization")}
+                sx={{ backgroundColor: "theme.palette.background.default" }}
               />
-            </div>
-            <span className="logo-text">
-              A platform for finding medical services around the world quickly
-              and easily
-            </span>
-          </div>
-        </div>
+            )}
+            clearIcon={<></>}
+          />
+          {/* countries */}
+          <Autocomplete
+            className="req-form-input"
+            id="country-selected"
+            {...register("country-selected")}
+            onChange={(event, value) => {
+              handleChangeCountry(event);
+              handleAutocompleteChange(value, "country");
+            }}
+            options={countriesArray}
+            value={selectedOptions.country}
+            renderInput={(params) => (
+              <TextField {...params} label={t("Country")} />
+            )}
+            clearIcon={<></>}
+          />
+          {/* cities */}
+          <Autocomplete
+            className="req-form-input city"
+            id="city-selected"
+            value={selectedOptions.city}
+            {...register("city-selected")}
+            onChange={(event, value) => {
+              handleChangeCities(event);
+              handleAutocompleteChange(value, "city");
+            }}
+            options={cities}
+            renderInput={(params) => (
+              <TextField {...params} label={t("City")} />
+            )}
+            clearIcon={<></>}
+          />
 
-        {/* wide-screen */}
-
-        <Box className="form-wrapper filter-box-wide-screen" id="formParentBox">
-          {/* First row */}
-          <form
-            className="h2 top-form-inputs"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            {/* SPECIALITIES */}
-            <Autocomplete
-              className="h2 req-form-input"
-              id="specialization"
-              value={selectedOptions.speciality}
-              {...register("specialization")}
-              onChange={(event, value) => {
-                setSpeciality(value);
-                handleAutocompleteChange(value, "speciality");
-              }}
-              style={{
-                width: "33%",
-                height: "56px",
-              }}
-              options={specialities}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label={t("Specialization")}
-                  sx={{ backgroundColor: "theme.palette.background.default" }}
-                />
-              )}
-              clearIcon={<></>}
-            />
-            {/* countries */}
-            <Autocomplete
-              className="req-form-input"
-              id="country-selected"
-              {...register("country-selected")}
-              onChange={(event, value) => {
-                handleChangeCountry(event);
-                handleAutocompleteChange(value, "country");
-              }}
-              options={countriesArray}
-              value={selectedOptions.country}
-              renderInput={(params) => (
-                <TextField {...params} label={t("Country")} />
-              )}
-              clearIcon={<></>}
-            />
-            {/* cities */}
-            <Autocomplete
-              className="req-form-input"
-              id="city-selected"
-              value={selectedOptions.city}
-              {...register("city-selected")}
-              onChange={(event, value) => {
-                handleChangeCities(event);
-                handleAutocompleteChange(value, "city");
-              }}
-              options={cities}
-              renderInput={(params) => (
-                <TextField {...params} label={t("City")} />
-              )}
-              clearIcon={<></>}
-            />
-            {/* Date */}
-            <DatePicker_requestForm register={register} />
-            {/* Search Button */}
-            {/* <SearchIcon className="search-icon" fontSize="large" /> */}
-
-            {/* second row */}
-
-            {/* Name Of Clinics */}
-          </form>
-          <div className="row-clinic">
-            <TextField
-              label={t("Clinic Name")}
-              variant="outlined"
-              id="nameOfClinic"
-              className="req-form-input clinic"
-              {...register("nameOfClinic")}
-              onKeyDown={(ev) => handleChangeClinics(ev)}
-              sx={{ width: "100%" }}
-            />
-          </div>
-        </Box>
-
-        {/* smaller screen */}
-
-        <Box
-          className="form-wrapper filter-box-smaller-screen"
-          id="formParentBox"
-        >
-          {/* First row */}
-          <form
-            className="h2 top-form-inputs"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            {/* specialities */}
-            <div className="filter-row">
-              <Autocomplete
-                className="h2 req-form-input"
-                id="specialization"
-                {...register("specialization")}
-                onChange={(event, value) => {
-                  setSpeciality(value);
-                  handleAutocompleteChange(value, "speciality");
-                }}
-                style={{
-                  width: "33%",
-                  height: "56px",
-                }}
-                options={specialities}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label={t("Specialization")}
-                    sx={{ backgroundColor: "theme.palette.background.default" }}
-                  />
-                )}
-              />
-              {/* countries */}
-              <Autocomplete
-                className="req-form-input"
-                id="country-selected"
-                {...register("country-selected")}
-                onChange={(event, value) => {
-                  handleChangeCountry(event);
-                  handleAutocompleteChange(value, "country");
-                }}
-                options={countriesArray}
-                renderInput={(params) => (
-                  <TextField {...params} label={t("Country")} />
-                )}
-              />
-            </div>
-
-            <div className="filter-row">
-              {/* cities */}
-              <Autocomplete
-                className="req-form-input"
-                id="city-selected"
-                {...register("city-selected")}
-                onChange={(event, value) => {
-                  handleChangeCities(event);
-                  handleAutocompleteChange(value, "city");
-                }}
-                options={cities}
-                renderInput={(params) => (
-                  <TextField {...params} label={t("City")} />
-                )}
-              />
-              {/* Date */}
-              <DatePicker_requestForm register={register} />
-              {/* Search Button */}
-              {/* <SearchIcon className="search-icon" fontSize="large" /> */}
-            </div>
-
-            {/* third row */}
-
-            {/* Name Of Clinics */}
-            <TextField
-              label={t("Clinic Name")}
-              variant="outlined"
-              id="nameOfClinic"
-              className="req-form-input"
-              {...register("nameOfClinic")}
-              onKeyDown={(ev) => handleChangeClinics(ev)}
-              sx={{ width: "100%" }}
-            />
-          </form>
-        </Box>
+          {/* Name Of Clinics */}
+          <TextField
+            label={t("Clinic Name")}
+            variant="outlined"
+            id="nameOfClinic"
+            className="req-form-input clinic"
+            {...register("nameOfClinic")}
+            onKeyDown={(ev) => handleChangeClinics(ev)}
+            sx={{ width: "100%" }}
+          />
+        </form>
 
         <div className="search-and-results-container">
           <div className="card-map-toggler">

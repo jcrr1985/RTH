@@ -30,10 +30,10 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
       if (response.status === 201) {
         reusableSwal("success", "Feedback submitted successfully", 1500);
       } else {
-        console.error("Error submitting feedback");
+        reusableSwal("error", "Error submitting feedback", 1500);
       }
     } catch (error) {
-      console.error("Error submitting feedback:", error);
+      reusableSwal("error", "Error submitting feedback", 1500);
     }
     onSubmitSuccess();
   };

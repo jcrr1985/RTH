@@ -10,20 +10,6 @@ body {
   font-size: 1.17vw;
 }
 
-.logo {
-  height: 13.15vh;
-  padding: 3.28vh 1.75vw;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2rem #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2rem #61dafbaa);
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -40,476 +26,139 @@ body {
   }
 }
 
-.card {
-  padding: 4.4vh 2.3vw;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.nav {
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 6.5vh;
-  color: #333;
-}
-
-.button {
-  border: 0;
-  font-size: 1, 831501832vw;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #333;
-  background: #f0efee !important;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 14px;
-}
-
-.button-Для-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  width: 9.5vw;
-  height: 6.8vh;
-}
-
-.button-Для-2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 1.3vh 0.73vw;
-}
-
-.span {
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.app-icon {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-}
-
-p.app-icon {
-  font-size: 5vw;
-  color: #333;
-  transform: rotate(-6.23deg);
-}
-
-.RTH-info {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: flex-start;
-}
-
-p.header-info {
-  box-sizing: border-box;
-  margin: 0;
-  width: 39.5w;
-  height: 16vh;
-  font-size: 1.8vw;
-  color: #333;
-}
-
-.link {
-  font-size: 1.8vw;
-  color: #5c85c6;
-}
-
-.back-arrow {
-  width: min-content;
-  display: inline-block;
-  position: relative;
-  left: 8.3em;
-  top: 3.4rem;
-  scale: 1.5;
-}
-
-.globe {
-  margin-top: 16vh;
-}
-
-.button-Для-1 {
-  margin-right: 2vw;
-}
-
-.wrapper-top {
-  width: 81.246007326vw !important;
-  margin: 0 auto;
-}
-
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.Mui-expanded.MuiAccordion-gutters.css-nwbbc1-MuiPaper-root-MuiAccordion-root {
-  margin-bottom: 25px !important;
-}
-
-.clinics-card {
-  width: 25.641025641vw !important;
-  background: #d9d9d9 !important;
-  margin-bottom: 2vh !important;
-  border-radius: 14px !important;
-}
-
-.button-card {
-  background: #2acb91;
-  height: 152px;
-  width: 51px;
-  border-radius: 14px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.css-whebh7-MuiInputBase-root-MuiInput-root:after,
-.css-whebh7-MuiInputBase-root-MuiInput-root:before {
-  display: none;
-}
-
-.icons {
-  width: 103.821vw;
-  height: 8.108108108vh;
-  position: relative;
-  top: 3.324vh;
-  left: 6.905vw;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 3.029304029vw;
-}
-
-.icons_wrapper {
-  display: flex;
-  gap: 1.46627566vw;
-  margin-top: 27px;
-}
-
-.icons_wrapper img {
-  width: 70px;
-  height: 64px;
-}
-
-.button_blue {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 1.39863014vh 3.663003663vw;
-  gap: 1.369863014vh;
-  width: 11.648351648vw;
-  height: 6.849315068vh;
-  background: #5c85c6;
-  border-radius: 14px;
-  border: none;
-  font-size: 1.831501832vw;
-  color: #333;
-  align-self: flex-end;
-}
-
-.h2 {
-  font-size: 30px;
-  line-height: 35px;
-}
-
-.T4 {
-  font-size: 15px;
-  line-height: 32px;
-}
-
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  align-content: center;
-  gap: 1.46627566vw;
-  background-color: #fff;
-  margin: auto;
-  border-radius: 1.026392962vw;
-  padding: 1rem 0 3rem 0;
-  margin: 0 auto;
-}
-
-.css-1e2qfxt-MuiSlider-root {
-  width: 89%;
-}
-
-.top-form-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1rem;
-}
-
-.top-form-inputs div {
-  width: 100% !important;
-}
-
-.top-form-inputs input {
-  width: 250px !important;
-}
-
-
-
-.logo-container {
-  padding: 35px 0 0 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.logo-container-text {
-  display: flex;
-  gap: 50px;
-  align-items: center;
-}
-
-.logo-title {
-  font-size: 45px;
-  line-height: normal
-}
-
-.logo-text {
-  font-family: Roboto;
-  font-size: 20px;
-}
-
 .languages-container {
   cursor: pointer;
   margin: 10px 0;
 
-}
-
-.languages-container:hover {
-  background: rgb(245, 245, 247);
-}
-
-
-.especialidades-autocomplete {
-  color: #000;
-  border-radius: 1.026392962vw;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2.19941349vw;
-  width: 33%;
-}
-
-fieldset {
-  border: none;
-  border-width: 0 !important;
-  transform: scale(1.1);
-}
-
-.clinic-cards-container {
-  gap: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 27px;
-  border-radius: 15px;
-  top: -301px;
-  width: 55%;
-}
-
-.card-content--div:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
-.card-content--div {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-content--item {
-  display: flex;
-  align-items: center;
-}
-
-.book-now-icon {
-  font-size: small;
-}
-
-.card-content--span {
-  width: 40%;
-  word-wrap: break-word;
-}
-
-.media-card--icon {
-  cursor: pointer;
-}
-
-.results-and-map-wrapper {
-  display: flex;
-  gap: 2.5rem;
-  margin-top: 5px;
-  min-height: 100vh;
-}
-
-.panel {
-  position: absolute;
-  width: 24vw;
-  height: auto;
-  left: 8vw;
-  border-radius: 1vw;
-  top: 50vh;
-  z-index: 1;
-}
-
-.card-content-text {
-  word-wrap: break-word;
-  width: 80%;
-}
-
-.card-content-left-right-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-content--item-left {
-  width: 75%;
-}
-
-.book-time--div {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.card-content button {
-  background: #5c85c6;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  height: 44px;
-  width: 144px;
-  border: none;
-  border-radius: 14px;
-  margin-bottom: 15px;
+  &:hover {
+    background-color: #d9d7ec;
+  }
 }
 
 .css-46bh2p-MuiCardContent-root:last-child {
   padding-bottom: 0 !important;
 }
 
-.card-content div {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.reviewHalfStar {
-  position: relative;
-  top: -1px
-}
-
-.map-container {
-  width: 100%;
-  height: calc(100vh);
-}
-
-
-.slider_leyent_button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.46627566vw;
-  margin-bottom: 20px;
-}
-
-.slider_leyent_top {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.46627566vw;
-  height: 2.346041056vw;
-  margin-bottom: 10px;
-}
-
-.slider_leyent_top .T4 {
-  height: 0.6vw;
-  color: #000;
-}
-
-.slider_leyent_top .T4 span {
-  margin-right: 0.7vw;
-}
-
-.slider_wrapper {
-  width: -webkit-fill-available;
-}
-
-.filters {
-  display: flex;
-  gap: 1.4;
-  width: -webkit-fill-available;
-  margin-top: -13px;
-}
-
-.slider_bar {
-  height: 0.73313783vw;
-  margin-bottom: 10px;
-}
-
-.search-and-results-container {
-  min-height: 40vh;
-  margin-top: -45px;
-}
-
-
 .whole-wrapper {
-  padding: 0 3.5rem
+  padding: .5rem 3.5rem;
+
+  /* top logo text   */
+
+  .logo-container {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .logo-container-text {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+
+      .logo-title {
+        font-size: 45px;
+        line-height: normal
+      }
+
+      .logo-text {
+        font-family: Roboto;
+        font-size: 20px;
+      }
+    }
+  }
+
+  /* filters */
+
+  .top-form-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-bottom: 3rem;
+
+    .req-form-input.clinic {
+      grid-column: 1 / 4;
+    }
+
+    &>* {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+    }
+
+    fieldset {
+      border: none;
+    }
+  }
+
+  /* cards and maps container */
+
+  .search-and-results-container {
+    min-height: 40vh;
+
+    .card-map-toggler {
+      display: flex;
+      justify-content: center;
+    }
+
+    .results-and-map-wrapper {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 5px;
+      min-height: 100vh;
+
+      .clinic-cards-container {
+        width: 55%;
+
+        .media-card--icon {
+          cursor: pointer;
+        }
+
+        .book-time--div {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .card-content div {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      .card-content-text {
+        word-wrap: break-word;
+        width: 80%;
+      }
+
+      .card-content-left-right-container {
+        display: flex;
+        justify-content: space-between;
+
+        .card-content--item-left {
+          width: 75%;
+
+          .reviewHalfStar {
+            position: relative;
+            top: -1px
+          }
+        }
+      }
+
+      .map-container {
+        width: 100%;
+        height: 100vh;
+
+        .map {
+          max-height: 100vh;
+          border-radius: 10px;
+          height: 100vh;
+          width: -webkit-fill-available;
+        }
+      }
+    }
+
+  }
 }
 
-
-.map {
-  max-height: 100vh;
-  margin-top: 4vh;
-  border-radius: 1vw;
-  height: 100vh;
-  width: -webkit-fill-available;
-}
-
-
-
-.req-form-input {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 50%;
-  border-radius: 1vw;
-}
-
-.search-icon {
-  transform: scale(1.5);
-  margin-top: 16px;
-}
-
-.icons_wrapper div {
-  text-align: center;
-}
-
-.icons_wrapper div span {
-  font-size: 14px;
-}
-
-.icons_wrapper div span.int-acc {
-  display: block;
-}
-
-.onboarding-wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: space-around;
-  gap: 2vw;
-}
-
-#chartdiv {
-  width: 50%;
-  height: 100vh;
-}
+/* feedback icon and modal */
 
 .circle-logo {
   position: fixed;
@@ -528,66 +177,6 @@ fieldset {
   z-index: 9999;
 }
 
-.feedback-form {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.ff-form-group {
-  margin-bottom: 15px;
-}
-
-.ff-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.ff-input {
-  width: -webkit-fill-available;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.error {
-  border-color: red;
-}
-
-.error-msg {
-  color: red;
-  font-size: 12px;
-}
-
-.submit-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-  background-color: #0056b3;
-}
-
-.modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .modal {
   background-color: #fff;
   padding: 20px;
@@ -597,132 +186,79 @@ fieldset {
   height: min-content;
   position: fixed;
   bottom: 2rem;
-}
 
-.form-group {
-  margin-bottom: 30px;
-}
+  .feedback-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root {
-  background-color: white;
-}
+    .ff-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 5px;
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.Mui-readOnly.MuiInputBase-readOnly {
-  background-color: white;
-}
+    }
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl {
-  background-color: white;
-}
+    .ff-input {
+      width: -webkit-fill-available;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-.card-map-toggler {
-  display: flex;
-  justify-content: center;
-}
+    .error {
+      border-color: red;
+    }
 
-
-
-
-@media (max-width: 1370px) {
-
-  .whole-wrapper {
-    padding: 0 0.5rem;
-  }
-
-  .top-form-inputs input {
-    width: 100% !important
-  }
-
-  .filter-box-wide-screen {
-    display: none;
-  }
-
-  .filter-box-smaller-screen {
-    display: block;
-  }
-
-  .top-form-inputs {
-    display: block;
-    width: 100%;
-  }
-
-
-  .filter-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .search-and-results-container {
-    margin-top: -20px;
-  }
-
-  .logo-container-text {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .logo-text {
+    .error-msg {
+      color: red;
       font-size: 12px;
     }
 
+    .submit-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
   }
-
-  .header-wide-screen {
-    display: none;
-  }
-
-  .header-smaller-screen {
-    display: flex;
-  }
-
-
-
 }
 
-@media (min-width: 1371px) {
-  .filter-box-wide-screen {
-    display: block;
-  }
+@media screen and (max-width: 768px) {
+  .whole-wrapper {
 
-  .filter-box-smaller-screen {
-    display: none;
-  }
+    .top-form-inputs {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 0 !important;
 
+      .req-form-input.city {
+        grid-column: 1 / 2;
+      }
 
+      .req-form-input.clinic {
+        grid-column: 2 / 3;
+      }
+    }
 
-  .header-wide-screen {
-    display: flex;
-  }
+    .search-and-results-container {
+      .results-and-map-wrapper {
 
-  .header-smaller-screen {
-    display: none;
-  }
+        .clinic-cards-container {
+          width: 100% !important;
+        }
+      }
+    }
 
-  .req-form-input.clinic {
-    margin-top: 1rem;
-    width: 80%;
-
-  }
-
-  .row-clinic {
-    display: flex;
-    justify-content: center;
-  }
-
-
-}
-
-@media (max-width: 768px) {
-
-
-  .clinic-cards-container {
-
-    width: -webkit-fill-available;
-  }
-
-  .map-container {
-    display: none;
   }
 }

@@ -1,17 +1,10 @@
-import { css } from "@emotion/react";
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import reviewFullStar from "@/assets/images/svg/reviewFullStar.png";
 import reviewHalfStar from "@/assets/images/svg/reviewHalfStar.png";
 import "./../App.css";
 import { useTranslation } from "react-i18next";
-import Button from "@mui/material/Button";
-
-import EventRoundedIcon from "@mui/icons-material/EventRounded";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import DriveIcon from "@mui/icons-material/DriveEta";
 import WalkIcon from "@mui/icons-material/DirectionsWalk";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
