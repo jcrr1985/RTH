@@ -2,6 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
+const proxy = "https://rth-server-d3n1.onrender.com";
+// const proxy = "http://localhost:5000";
+
 const FeedbackForm = ({ onSubmitSuccess }) => {
   const {
     register,
@@ -11,7 +14,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/feedback", data);
+      const response = await axios.post(`${proxy}/feedback`, data);
       console.log("response", response);
       if (response.status === 201) {
         console.log("Feedback submitted successfully");
