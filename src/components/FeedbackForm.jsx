@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import FeedbackFormField from "./FeedbackFormField";
 
 const proxy = "https://rth-server-d3n1.onrender.com";
 // const proxy = "http://localhost:5000";
@@ -12,17 +14,23 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
     formState: { errors },
   } = useForm();
 
+  const reusableSwal = (icon, title, timer) => {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: timer,
+    });
+  };
+
   const onSubmit = async (data) => {
     try {
+      reusableSwal("", "Sending feedback...", 1500);
       const response = await axios.post(`${proxy}/feedback`, data);
-      console.log("response", response);
       if (response.status === 201) {
-        console.log("Feedback submitted successfully");
-
-        // Realiza alguna acción en caso de éxito, como mostrar un mensaje de confirmación.
+        reusableSwal("success", "Feedback submitted successfully", 1500);
       } else {
         console.error("Error submitting feedback");
-        // Realiza alguna acción en caso de error, como mostrar un mensaje de error.
       }
     } catch (error) {
       console.error("Error submitting feedback:", error);
@@ -33,57 +41,38 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="feedback-form">
-        <div className="form-group">
-          <label className="ff-label" htmlFor="name">
-            Name:
-          </label>
-          <input
-            type="text"
-            {...register("name", { required: true })}
-            className={` ff-input ${errors.name ? "error" : ""}`}
-          />
-          {errors.name && (
-            <span className="error-msg">This field is required</span>
-          )}
-        </div>
-        <div className="form-group">
-          <label className="ff-label" htmlFor="email">
-            Email:
-          </label>
-          <input
-            type="email"
-            {...register("email", { required: true })}
-            className={`ff-input ${errors.email ? "error" : ""}`}
-          />
-          {errors.email && (
-            <span className="error-msg">This field is required</span>
-          )}
-        </div>
-        <div className="form-group">
-          <label className="ff-label" htmlFor="country">
-            Country:
-          </label>
-          <input
-            type="text"
-            {...register("country", { required: true })}
-            className={`ff-input ${errors.country ? "error" : ""}`}
-          />
-          {errors.country && (
-            <span className="error-msg">This field is required</span>
-          )}
-        </div>
-        <div className="form-group">
-          <label className="ff-label" htmlFor="comment">
-            Comment:
-          </label>
-          <textarea
-            {...register("comment", { required: true })}
-            className={`ff-input ${errors.comment ? "error" : ""}`}
-          ></textarea>
-          {errors.comment && (
-            <span className="error-msg">This field is required</span>
-          )}
-        </div>
+        <FeedbackFormField
+          label="Name"
+          type="text"
+          register={register}
+          required={true}
+          errors={errors}
+          name="name"
+        />
+        <FeedbackFormField
+          label="Email"
+          type="email"
+          register={register}
+          required={true}
+          errors={errors}
+          name="email"
+        />
+        <FeedbackFormField
+          label="Country"
+          type="text"
+          register={register}
+          required={true}
+          errors={errors}
+          name="country"
+        />
+        <FeedbackFormField
+          label="Comment"
+          type="textarea"
+          register={register}
+          required={true}
+          errors={errors}
+          name="comment"
+        />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button type="submit" className="submit-btn">
             Submit
