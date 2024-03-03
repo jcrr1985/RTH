@@ -7,7 +7,7 @@ const FeedbackModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => {
-    setModalIsOpen(!modalIsOpen);
+    setModalIsOpen((prevModalState) => !prevModalState);
   };
   const handleSubmitSuccess = () => {
     setModalIsOpen(false);
@@ -16,11 +16,7 @@ const FeedbackModal = () => {
   return (
     <div>
       <div className="circle-logo" onClick={toggleModal}>
-        <span
-          role="img"
-          aria-label="Attention"
-          style={{ height: "22px" }}
-        >
+        <span role="img" aria-label="Attention" style={{ height: "22px" }}>
           <FavoriteBorderIcon />
         </span>
       </div>
@@ -37,7 +33,7 @@ const FeedbackModal = () => {
             marginTop: "-5px",
           }}
         >
-          <span onClick={toggleModal} style={{ marginTop: "-5px"}}>
+          <span onClick={toggleModal} style={{ marginTop: "-5px" }}>
             <CloseIcon className="close-icon" />
           </span>
         </div>

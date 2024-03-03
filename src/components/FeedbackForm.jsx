@@ -12,10 +12,10 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/feedback", data);
-
-      if (response.status === 200) {
+      console.log("response", response);
+      if (response.status === 201) {
         console.log("Feedback submitted successfully");
-        onSubmitSuccess();
+
         // Realiza alguna acción en caso de éxito, como mostrar un mensaje de confirmación.
       } else {
         console.error("Error submitting feedback");
@@ -24,6 +24,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
     } catch (error) {
       console.error("Error submitting feedback:", error);
     }
+    onSubmitSuccess();
   };
 
   return (
@@ -49,8 +50,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
           <input
             type="email"
             {...register("email", { required: true })}
-            className={errors.email ? "error" : ""}
-            class="ff-input"
+            className={`ff-input ${errors.email ? "error" : ""}`}
           />
           {errors.email && (
             <span className="error-msg">This field is required</span>
@@ -63,8 +63,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
           <input
             type="text"
             {...register("country", { required: true })}
-            className={errors.country ? "error" : ""}
-            class="ff-input"
+            className={`ff-input ${errors.country ? "error" : ""}`}
           />
           {errors.country && (
             <span className="error-msg">This field is required</span>
@@ -76,8 +75,7 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
           </label>
           <textarea
             {...register("comment", { required: true })}
-            className={errors.comment ? "error" : ""}
-            class="ff-input"
+            className={`ff-input ${errors.comment ? "error" : ""}`}
           ></textarea>
           {errors.comment && (
             <span className="error-msg">This field is required</span>

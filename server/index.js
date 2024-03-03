@@ -31,17 +31,21 @@ const Feedback = mongoose.model("feedback", feedbackSchema);
 
 // API Endpoint to handle form submission
 app.post("/feedback", async (req, res) => {
+  console.warn("in post feedback");
   const { name, email, country, comment } = req.body;
 
   const newFeedback = new Feedback({
-    name: name,
-    email: email,
-    country: country,
-    comment: comment,
+    name,
+    email,
+    country,
+    comment,
   });
+
+  console.log("newFeedback", newFeedback);
 
   try {
     const feedback = await newFeedback.save();
+    console.log("feedback", feedback);
     res.status(201).json({ mesage: "succesfully saved", feedback });
   } catch (error) {
     res.status(500).send(error);
