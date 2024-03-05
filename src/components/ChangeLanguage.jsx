@@ -33,8 +33,8 @@ const ChangeLanguage = () => {
         <div
           style={{
             position: "absolute",
-            top: "10px",
-            left: 0,
+            top: "3rem",
+            right: "0",
             backgroundColor: "white",
             padding: "1rem",
             borderRadius: "4px",
