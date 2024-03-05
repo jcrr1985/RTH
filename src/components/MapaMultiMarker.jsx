@@ -79,8 +79,6 @@ function fetching(
   selectedLanguage,
   setsetMapyMapy
 ) {
-  console.log("fetching");
-  let pos;
   Swal.showLoading();
   fetch(url)
     .then((response) => response.json())
@@ -96,7 +94,6 @@ function fetching(
 
         setsetMapyMapy(map);
 
-        pos = map.center;
         Swal.close();
         creadorDeMarcadores(
           places,

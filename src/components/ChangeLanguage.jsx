@@ -26,13 +26,7 @@ const ChangeLanguage = () => {
   ];
 
   return (
-    <div
-      style={{
-        position: "relative",
-        alignItems: "center",
-        display: "flex",
-      }}
-    >
+    <div className="change-language-container">
       <LanguageIcon fontSize="large" onClick={() => setIsOpen(!isOpen)} />
 
       {isOpen && (

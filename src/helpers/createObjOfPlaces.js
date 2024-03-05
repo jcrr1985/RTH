@@ -2,35 +2,24 @@ function createObjOfPlaces(places) {
   let clinicToDisplayObj = [];
 
   places.map((place) => {
-    let lat = place.geometry.location.lat;
-    let lng = place.geometry.location.lng;
-    let name = place.name;
-    let address = place.formatted_address || null;
-    let rating = place.rating || null;
-    let phone = place.phone || null;
-    let website = place.website || null;
-    let opening_hours = place.opening_hours || null;
-    let id = place.place_id || null;
-    let placeId = place.place_id;
-    let distance = null;
-
     clinicToDisplayObj = [
       ...clinicToDisplayObj,
       {
-        lat,
-        lng,
-        name,
-        address,
-        rating,
-        distance,
-        phone,
-        id,
-        website,
-        placeId,
-        opening_hours,
+        lat: place.geometry.location.lat,
+        lng: place.geometry.location.lng,
+        name: place.name,
+        address: place.formatted_address || null,
+        rating: place.rating || null,
+        distance: null,
+        phone: place.phone || null,
+        id: place.place_id || null,
+        website: place.website || null,
+        placeId: place.place_id,
+        opening_hours: place.opening_hours || null,
       },
     ];
   });
+
   return clinicToDisplayObj;
 }
 
