@@ -1,5 +1,4 @@
 import { createObjOfPlaces } from "../helpers/createObjOfPlaces.js";
-import "../assets/css/MapaMultiMarker.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";

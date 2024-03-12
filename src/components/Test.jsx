@@ -308,6 +308,7 @@ export default function Test() {
       const selectedCountryData = data.paises.find(
         (country) => country.name === paisSeleccionado
       );
+      console.log("selectedCountryData", selectedCountryData);
       const selectedCountryCities = selectedCountryData.cities || [];
       setCities(selectedCountryCities);
     }

@@ -6,13 +6,12 @@ import { LanguageContext } from "../contexts/LanguageContext";
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { setSelectedLanguage, setDateFormat } = useContext(LanguageContext);
+  const { setSelectedLanguage } = useContext(LanguageContext);
 
   const handleSelectLanguage = (language) => {
     console.log("language", language);
     i18n.changeLanguage(language);
     setSelectedLanguage(language);
-    setDateFormat(language === "en" ? "MM/DD/YYYY" : "DD/MM/YYYY");
     setIsOpen(false);
   };
 
