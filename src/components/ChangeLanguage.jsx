@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useTranslation } from "react-i18next";
 import { LanguageContext } from "../contexts/LanguageContext";
@@ -9,7 +9,6 @@ const ChangeLanguage = () => {
   const { setSelectedLanguage } = useContext(LanguageContext);
 
   const handleSelectLanguage = (language) => {
-    console.log("language", language);
     i18n.changeLanguage(language);
     setSelectedLanguage(language);
     setIsOpen(false);
@@ -24,12 +23,34 @@ const ChangeLanguage = () => {
     { code: "es", name: "Español" },
   ];
 
+  const toggleModal = (event) => {
+    event.stopPropagation();
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <div className="change-language-container">
-      <LanguageIcon fontSize="large" onClick={() => setIsOpen(!isOpen)} />
+      <LanguageIcon fontSize="large" onClick={toggleModal} />
 
       {isOpen && (
         <div
+          ref={modalRef}
           style={{
             position: "absolute",
             top: "3rem",
