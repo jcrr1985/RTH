@@ -26,7 +26,6 @@ import specialities_fr from "../assets/specialities_fr.js";
 import specialities_es from "../assets/specialities_es.js";
 
 import "sweetalert2/src/sweetalert2.scss";
-import DatePicker_requestForm from "./datePicker";
 import { MediaCard } from "./MediaCard";
 
 import citiesEn from "../models/cities_en.json";
@@ -39,9 +38,10 @@ import citiesZh from "../models/cities_zh.json";
 import { MapaMultiMarker } from "./MapaMultiMarker";
 import LanguageContext from "../contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import FeedbackModal from "./FeedbackModal";
 import "./../App.css";
+
+import wideChevron from "../../public/chevron-down.png";
 
 export default function Test() {
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
@@ -467,9 +467,15 @@ export default function Test() {
 
         <div className="search-and-results-container">
           <div className="card-map-toggler">
-            {isMobile && (
+            {isMobile && cardArray.length !== 0 && (
               <Button onClick={toggleVisibility}>
-                {showCards ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+                <img
+                  src={wideChevron}
+                  alt=""
+                  style={{
+                    transform: showCards ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
               </Button>
             )}
           </div>
