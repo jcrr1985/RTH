@@ -197,8 +197,6 @@ export default function Test() {
     setDataForSelects();
   }, [selectedLanguage]);
 
-  useEffect(() => {}, [selectedOptions]);
-
   const [cardArray, setCardArray] = useState([]);
 
   //calculate time
@@ -471,7 +469,7 @@ export default function Test() {
               <Button onClick={toggleVisibility}>
                 <img
                   src={wideChevron}
-                  alt=""
+                  alt="chevron icon"
                   style={{
                     transform: showCards ? "rotate(180deg)" : "rotate(0deg)",
                   }}

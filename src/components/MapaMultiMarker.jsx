@@ -388,3 +388,17 @@ export function MapaMultiMarker(
     obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 }
+
+window.onload = function () {
+  MapaMultiMarker(
+    pais,
+    ciudad,
+    especialidad,
+    fillCardArray,
+    setPlacesDistancesToUserPosition,
+    selectedLanguage,
+    clinicsToDisplayObj,
+    setUserCurrentPosition,
+    setsetMapyMapy
+  );
+};
