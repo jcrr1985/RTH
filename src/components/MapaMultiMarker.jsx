@@ -1,11 +1,12 @@
 import { createObjOfPlaces } from "../helpers/createObjOfPlaces.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
 import "sweetalert2/src/sweetalert2.scss";
 
 const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
 const proxy = "https://rth-server-d3n1.onrender.com";
 // const proxy = "http://localhost:5000";
+
+import { centrar } from "./centrar.js";
 
 let infoPanel = document.getElementById("panel");
 let userPosition = null;
@@ -113,7 +114,7 @@ function fetching(
           "No se encontraron resultados para la búsqueda especificada"
         );
 
-        centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage);
+        centrarMapaEnPaisOCiudad(pais, ciudad);
       }
     })
     .catch((error) => {
@@ -128,7 +129,7 @@ function fetching(
     });
 }
 
-function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
+function centrarMapaEnPaisOCiudad(pais, ciudad) {
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
   const geocoder = new window.google.maps.Geocoder();
   Swal.showLoading();
@@ -146,7 +147,6 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
             ? 10
             : 10,
         center: results[0].geometry.location,
-        language: selectedLanguage,
       });
       Swal.close();
     } else {
@@ -159,41 +159,6 @@ function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
       });
     }
   });
-}
-
-function centrarSinDatosConGeoLocation(
-  selectedLanguage,
-  setUserCurrentPosition
-) {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
-
-  function success(position) {
-    const userLat = position.coords.latitude;
-    const userLng = position.coords.longitude;
-    const userLatLng = new google.maps.LatLng(userLat, userLng);
-    userPosition = userLatLng;
-    setUserCurrentPosition({ lat: userLat, lng: userLng });
-
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 6,
-      center: userLatLng,
-      language: selectedLanguage,
-    });
-  }
-
-  function error() {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Not results found!",
-      html: "Geolocation is not supported by this browser.",
-      showCloseButton: true,
-    });
-  }
 }
 
 function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
@@ -228,7 +193,8 @@ function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
       Swal.close();
     },
     (error) => {
-      centrarSinDatosConGeoLocation(selectedLanguage);
+      setUserCurrentPosition;
+      centrar();
       console.error(error);
       Swal.fire({
         icon: "error",
@@ -361,7 +327,7 @@ export function MapaMultiMarker(
   // no pais, no ciudad, no especialidad no clinicsToDisplayObj
 
   if (!pais && !ciudad && !especialidad && !clinicsToDisplayObj) {
-    centrarSinDatosConGeoLocation(selectedLanguage, setUserCurrentPosition);
+    centrar(setUserCurrentPosition);
   }
   // no pais, si ciudad, si especialidad
 

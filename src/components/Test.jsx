@@ -34,6 +34,7 @@ import FeedbackModal from "./FeedbackModal";
 import "./../App.css";
 
 import wideChevron from "../../public/chevron-down.png";
+import { centrar } from "./centrar.js";
 
 export default function Test() {
   const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
@@ -307,6 +308,10 @@ export default function Test() {
   const countriesArray = useMemo(() => {
     return data.paises.map((country) => country.name);
   }, [data.paises, selectedLanguage]);
+
+  useEffect(() => {
+    centrar();
+  }, []);
 
   useEffect(() => {
     nameOfClinic.value = "";
