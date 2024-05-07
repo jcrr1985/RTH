@@ -319,7 +319,8 @@ export default function Test() {
         setPlacesDistancesToUserPosition,
         selectedLanguage,
         null,
-        setUserCurrentPosition
+        setUserCurrentPosition,
+        null
       );
     } else {
       console.log("idioma no válido");
@@ -339,7 +340,7 @@ export default function Test() {
         setPlacesDistancesToUserPosition,
         selectedLanguage,
         null,
-        null,
+        setUserCurrentPosition,
         setsetMapyMapy
       );
     }
@@ -354,7 +355,9 @@ export default function Test() {
       fillCardArray,
       null,
       selectedLanguage,
-      clinicObj
+      clinicObj,
+      setUserCurrentPosition,
+      null
     );
   }, [clinicsToDisplay]);
 
@@ -481,7 +484,7 @@ export default function Test() {
                     .map((clinic, index) => {
                       return (
                         <MediaCard
-                          key={clinic.placeId}
+                          key={clinic.placeId + "_" + index}
                           name={clinic.name}
                           phone={clinic.phone}
                           address={clinic.address}
