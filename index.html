@@ -10,9 +10,9 @@
     />
     <meta
       name="keywords"
-      content="medical services, health, platform, global, search"
+      content="medical services, health, search, clinics aggregator"
     />
-    <meta name="author" content="Run to health" />
+    <meta name="author" content="run to health" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="icon" href="./src/assets/images/svg/Globe.svg" />
     <!-- Google Tag Manager -->
@@ -45,13 +45,21 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <script type="module" src="/src/main.jsx"></script>
     <script
       async
       defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k&libraries=places,geometry"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k&libraries=places,geometry&callback=loadMainScript"
     >
       //&v=weekly
+    </script>
+    <!-- <script type="module" src="/src/main.jsx"></script> -->
+    <script>
+      function loadMainScript() {
+        var script = document.createElement("script");
+        script.type = "module";
+        script.src = "/src/main.jsx";
+        document.head.appendChild(script);
+      }
     </script>
   </body>
 </html>

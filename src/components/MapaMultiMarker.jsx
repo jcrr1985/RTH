@@ -168,6 +168,8 @@ function centrarSinDatosConGeoLocation(
   selectedLanguage,
   setUserCurrentPosition
 ) {
+  const startTime = performance.now();
+
   if (navigator.geolocation) {
     Swal.fire({
       title: "Loading...",
@@ -195,13 +197,11 @@ function centrarSinDatosConGeoLocation(
       language: selectedLanguage,
     });
 
-    const marker = new google.maps.Marker({
-      position: userLatLng,
-      map: map,
-    });
     setTimeout(() => {
       Swal.close();
-    }, 2000);
+    }, 1000);
+
+    console.log("performance.now()", performance.now() - startTime);
   }
 
   function error() {
@@ -388,17 +388,3 @@ export function MapaMultiMarker(
     obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
   }
 }
-
-window.onload = function () {
-  MapaMultiMarker(
-    pais,
-    ciudad,
-    especialidad,
-    fillCardArray,
-    setPlacesDistancesToUserPosition,
-    selectedLanguage,
-    clinicsToDisplayObj,
-    setUserCurrentPosition,
-    setsetMapyMapy
-  );
-};

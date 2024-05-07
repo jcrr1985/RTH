@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo, useContext, useRef } from "react";
-// import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Box,
@@ -9,13 +8,6 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
-// import { Slider } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
-// import RoomSharpIcon from "@mui/icons-material/RoomSharp";
-// import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
-// import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 
 import ChangeLanguage from "./ChangeLanguage";
 import specialities_en from "../assets/specialities_en.js";
