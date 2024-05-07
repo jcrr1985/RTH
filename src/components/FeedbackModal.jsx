@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import FeedbackForm from "./FeedbackForm";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-const FeedbackModal = () => {
+const FeedbackModal = React.memo(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => {
@@ -41,6 +41,6 @@ const FeedbackModal = () => {
       </Modal>
     </div>
   );
-};
+});
 
 export default FeedbackModal;
