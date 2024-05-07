@@ -84,7 +84,6 @@ function fetching(
     .then((data) => {
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
-        console.log("places", places);
 
         const map = new window.google.maps.Map(document.getElementById("map"), {
           zoom: 10,
@@ -130,9 +129,7 @@ function fetching(
 }
 
 function centrarMapaEnPaisOCiudad(pais, ciudad, selectedLanguage) {
-  console.log("centrarMapaEnPaisOCiudad");
   let address = ciudad ? `${ciudad}, ${pais}` : pais;
-  console.log("address por parametro en centrarMapaEnPaisOCiudad: ", address);
   const geocoder = new window.google.maps.Geocoder();
   Swal.showLoading();
   geocoder.geocode({ address: address }, (results, status) => {
@@ -168,17 +165,7 @@ function centrarSinDatosConGeoLocation(
   selectedLanguage,
   setUserCurrentPosition
 ) {
-  const startTime = performance.now();
-
   if (navigator.geolocation) {
-    Swal.fire({
-      title: "Loading...",
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      willOpen: () => {
-        Swal.showLoading();
-      },
-    });
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
     console.log("Geolocation is not supported by this browser.");
@@ -196,12 +183,6 @@ function centrarSinDatosConGeoLocation(
       center: userLatLng,
       language: selectedLanguage,
     });
-
-    setTimeout(() => {
-      Swal.close();
-    }, 1000);
-
-    console.log("performance.now()", performance.now() - startTime);
   }
 
   function error() {
@@ -339,9 +320,9 @@ function showPanel(placeResult, marker) {
 }
 
 export function MapaMultiMarker(
-  pais,
-  ciudad,
-  especialidad,
+  pais = null,
+  ciudad = null,
+  especialidad = null,
   fillCardArray,
   setPlacesDistancesToUserPosition,
   selectedLanguage,

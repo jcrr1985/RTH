@@ -7,7 +7,7 @@ import FeedbackFormField from "./FeedbackFormField";
 const proxy = "https://rth-server-d3n1.onrender.com";
 // const proxy = "http://localhost:5000";
 
-const FeedbackForm = ({ onSubmitSuccess }) => {
+const FeedbackForm = React.memo(({ onSubmitSuccess }) => {
   const {
     register,
     handleSubmit,
@@ -81,6 +81,6 @@ const FeedbackForm = ({ onSubmitSuccess }) => {
       </form>
     </div>
   );
-};
+});
 
 export default FeedbackForm;

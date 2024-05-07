@@ -11,7 +11,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import trazarRuta from "../helpers/drawRoute.js";
 
-export function MediaCard({
+const MediaCard = ({
   name,
   phone,
   address,
@@ -25,7 +25,7 @@ export function MediaCard({
   destination,
   timeByCar,
   timeByFoot,
-}) {
+}) => {
   const { t } = useTranslation();
   let ratingHasDecimal = rating % 1 !== 0 ? true : false;
 
@@ -138,4 +138,5 @@ export function MediaCard({
       </div>
     </Card>
   );
-}
+};
+export default MediaCard;

@@ -18,7 +18,7 @@ import specialities_fr from "../assets/specialities_fr.js";
 import specialities_es from "../assets/specialities_es.js";
 
 import "sweetalert2/src/sweetalert2.scss";
-import { MediaCard } from "./MediaCard";
+import MediaCard from "./MediaCard";
 
 import citiesEn from "../models/cities_en.json";
 import citiesRu from "../models/cities_ru.json";
@@ -309,27 +309,8 @@ export default function Test() {
   }, [data.paises, selectedLanguage]);
 
   useEffect(() => {
-    const validLanguages = ["en", "ru", "it", "zh", "fr", "es"];
-    if (validLanguages.includes(selectedLanguage)) {
-      MapaMultiMarker(
-        selectedCountry,
-        cityValue,
-        speciality,
-        fillCardArray,
-        setPlacesDistancesToUserPosition,
-        selectedLanguage,
-        null,
-        setUserCurrentPosition,
-        null
-      );
-    } else {
-      console.log("idioma no válido");
-    }
-  }, []);
-
-  useEffect(() => {
     nameOfClinic.value = "";
-    setClinicsToDisplay(null);
+    const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
 
     if (selectedCountry) {
       MapaMultiMarker(
@@ -339,7 +320,7 @@ export default function Test() {
         fillCardArray,
         setPlacesDistancesToUserPosition,
         selectedLanguage,
-        null,
+        clinicObj,
         setUserCurrentPosition,
         setsetMapyMapy
       );
