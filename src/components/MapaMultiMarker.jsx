@@ -80,7 +80,9 @@ function fetching(
   setsetMapyMapy
 ) {
   Swal.showLoading();
-  fetch(url)
+  fetch(url, {
+    mode: "cors",
+  })
     .then((response) => response.json())
     .then((data) => {
       if (data.results && data.results.length > 0) {
@@ -169,7 +171,9 @@ function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
       const lng = position.coords.longitude;
       const geocodingUrl = `${proxy}/https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=${selectedLanguage}&key=${apiKey}`;
 
-      const geocodingResponse = await fetch(geocodingUrl);
+      const geocodingResponse = await fetch(geocodingUrl, {
+        mode: "cors",
+      });
       const geocodingData = await geocodingResponse.json();
       const cityComponent = geocodingData.results[0].address_components.find(
         (component) => component.types.includes("locality")
