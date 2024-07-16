@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useMemo, useContext, useRef } from "react";
+import React, { useEffect, useState, useMemo, useContext } from "react";
+
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import {
   Box,
@@ -8,31 +10,23 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
-
-import ChangeLanguage from "./ChangeLanguage";
-import specialities_en from "../assets/specialities_en.js";
-import specialities_ru from "../assets/specialities_ru.js";
-import specialities_it from "../assets/specialities_it.js";
-import specialities_zh from "../assets/specialities_zh.js";
-import specialities_fr from "../assets/specialities_fr.js";
-import specialities_es from "../assets/specialities_es.js";
-
 import "sweetalert2/src/sweetalert2.scss";
+
+import * as specialitiesArray from "../assets/js/specialities/specialities.js";
+import {
+  citiesEn,
+  citiesRu,
+  citiesEs,
+  citiesFr,
+  citiesIt,
+  citiesZh,
+} from "../assets/js/countries-cities/countries-cities.js";
+import ChangeLanguage from "./ChangeLanguage";
 import MediaCard from "./MediaCard";
-
-import citiesEn from "../models/cities_en.json";
-import citiesRu from "../models/cities_ru.json";
-import citiesEs from "../models/cities_es.json";
-import citiesFr from "../models/cities_fr.json";
-import citiesIt from "../models/cities_it.json";
-import citiesZh from "../models/cities_zh.json";
-
 import { MapaMultiMarker } from "./MapaMultiMarker";
 import LanguageContext from "../contexts/LanguageContext";
-import { useTranslation } from "react-i18next";
 import FeedbackModal from "./FeedbackModal";
 import "./../App.css";
-
 import wideChevron from "../../public/chevron-down.png";
 import { centrar } from "./centrar.js";
 
@@ -62,7 +56,14 @@ export default function Test() {
   };
 
   const [data, setData] = useState(citiesEn);
-  const [specialities, setSpecialities] = useState(specialities_en);
+  const [specialities, setSpecialities] = useState(
+    specialitiesArray.specialities_en
+  );
+
+  useEffect(() => {
+    console.log("specialities", specialities);
+    console.log("data", data);
+  });
   const clinicsPerPage = 4;
   const [selectedCountry, setSelectedCountry] = useState("");
   const [cityValue, setCityValue] = useState("");
@@ -113,78 +114,78 @@ export default function Test() {
     switch (selectedLanguage) {
       case "en":
         setData(citiesEn);
-        setSpecialities(specialities_en);
+        setSpecialities(specialitiesArray.specialities_en);
 
         break;
       case "ru":
         setData(citiesRu);
-        setSpecialities(specialities_ru);
+        setSpecialities(specialitiesArray.specialities_ru);
 
         break;
       case "it":
         setData(citiesIt);
-        setSpecialities(specialities_it);
+        setSpecialities(specialitiesArray.specialities_it);
 
         break;
       case "zh":
         setData(citiesZh);
-        setSpecialities(specialities_zh);
+        setSpecialities(specialitiesArray.specialities_zh);
 
         break;
       case "fr":
         setData(citiesFr);
-        setSpecialities(specialities_fr);
+        setSpecialities(specialitiesArray.specialities_fr);
 
         break;
       case "es":
         setData(citiesEs);
-        setSpecialities(specialities_es);
+        setSpecialities(specialitiesArray.specialities_es);
 
         break;
       default:
         setData(citiesEn);
-        setSpecialities(specialities_en);
+        setSpecialities(specialitiesArray.specialities_en);
         break;
     }
   };
 
-  const handleChangeClinics = (event) => {
-    if (event.target.value !== "") {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        const nameOfClinicValue = getValues("nameOfClinic");
-        const apiUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
-        const url = `${proxy}/${apiUrl}`;
+  // const handleChangeClinics = (event) => {
+  //   if (event.target.value !== "") {
+  //     if (event.key === "Enter") {
+  //       event.preventDefault();
+  //       const nameOfClinicValue = getValues("nameOfClinic");
+  //       const apiUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${nameOfClinicValue}&inputtype=textquery&fields=name,formatted_address,rating,opening_hours,geometry,place_id&key=${apiKey}`;
+  //       const url = `${proxy}/${apiUrl}`;
 
-        fetch(url)
-          .then((nameOfClinicFetchResponse) => {
-            return nameOfClinicFetchResponse.json();
-          })
-          .then((nameOfClinicFetchResponseJson) => {
-            setClinicsToDisplay([]);
-            const clinicToDisplayObj = {
-              data: nameOfClinicFetchResponseJson.candidates[0],
-              lat: data.geometry.location.lat,
-              lng: data.geometry.location.lng,
-              name: data.name,
-              openNow: data.opening_hours.open_now,
-              address: data.formatted_address,
-              rating: data.rating,
-              id: data.place_id,
-              placeId: data.place_id,
-            };
-            setClinicsToDisplay([clinicToDisplayObj]);
-            reset({
-              "country-selected": null,
-              "city-selected": null,
-            });
-          })
-          .catch((error) => {
-            console.error("Error en la solicitud fetch:", error);
-          });
-      }
-    }
-  };
+  //       fetch(url)
+  //         .then((nameOfClinicFetchResponse) => {
+  //           return nameOfClinicFetchResponse.json();
+  //         })
+  //         .then((nameOfClinicFetchResponseJson) => {
+  //           setClinicsToDisplay([]);
+  //           const clinicToDisplayObj = {
+  //             data: nameOfClinicFetchResponseJson.candidates[0],
+  //             lat: data.geometry.location.lat,
+  //             lng: data.geometry.location.lng,
+  //             name: data.name,
+  //             openNow: data.opening_hours.open_now,
+  //             address: data.formatted_address,
+  //             rating: data.rating,
+  //             id: data.place_id,
+  //             placeId: data.place_id,
+  //           };
+  //           setClinicsToDisplay([clinicToDisplayObj]);
+  //           reset({
+  //             "country-selected": null,
+  //             "city-selected": null,
+  //           });
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error en la solicitud fetch:", error);
+  //         });
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     setDataForSelects();
@@ -314,7 +315,7 @@ export default function Test() {
   }, []);
 
   useEffect(() => {
-    nameOfClinic.value = "";
+    // nameOfClinic.value = "";
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
 
     if (selectedCountry) {
@@ -360,6 +361,17 @@ export default function Test() {
     setShowCards((prevShowCards) => !prevShowCards);
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000); // 1000 ms = 1 segundo
+
+    // Limpiar el timeout si el componente se desmonta
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <FeedbackModal />
@@ -377,30 +389,33 @@ export default function Test() {
             handleChangeLanguage={handleChangeLanguage}
           />
         </div>
+        {isVisible && (
+          <form className="top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
+            {/* SPECIALITIES */}
 
-        <form className="top-form-inputs" onSubmit={handleSubmit(onSubmit)}>
-          {/* SPECIALITIES */}
-          <Autocomplete
-            className="req-form-input"
-            id="specialization"
-            value={selectedOptions.speciality}
-            {...register("specialization")}
-            onChange={(event, value) => {
-              setSpeciality(value);
-              handleAutocompleteChange(value, "speciality");
-            }}
-            options={specialities}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label={t("Specialization")}
-                sx={{ backgroundColor: "theme.palette.background.default" }}
+            {specialities && (
+              <Autocomplete
+                className="req-form-input"
+                id="specialization"
+                value={selectedOptions.speciality}
+                {...register("specialization")}
+                onChange={(event, value) => {
+                  setSpeciality(value);
+                  handleAutocompleteChange(value, "speciality");
+                }}
+                options={specialities.specialities_en || []}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label={t("Specialization")}
+                    sx={{ backgroundColor: "theme.palette.background.default" }}
+                  />
+                )}
+                clearIcon={<></>}
               />
             )}
-            clearIcon={<></>}
-          />
-          {/* countries */}
-          <Autocomplete
+            {/* countries */}
+            {/* <Autocomplete
             className="req-form-input"
             id="country-selected"
             {...register("country-selected")}
@@ -414,9 +429,9 @@ export default function Test() {
               <TextField {...params} label={t("Country")} />
             )}
             clearIcon={<></>}
-          />
-          {/* cities */}
-          <Autocomplete
+          /> */}
+            {/* cities */}
+            {/* <Autocomplete
             className="req-form-input city"
             id="city-selected"
             value={selectedOptions.city}
@@ -430,20 +445,20 @@ export default function Test() {
               <TextField {...params} label={t("City")} />
             )}
             clearIcon={<></>}
-          />
+          /> */}
 
-          {/* Name Of Clinics */}
-          <TextField
-            label={t("Clinic Name")}
-            variant="outlined"
-            id="nameOfClinic"
-            className="req-form-input clinic"
-            {...register("nameOfClinic")}
-            onKeyDown={(ev) => handleChangeClinics(ev)}
-            sx={{ width: "100%" }}
-          />
-        </form>
-
+            {/* Name Of Clinics */}
+            {/* <TextField
+              label={t("Clinic Name")}
+              variant="outlined"
+              id="nameOfClinic"
+              className="req-form-input clinic"
+              {...register("nameOfClinic")}
+              onKeyDown={(ev) => handleChangeClinics(ev)}
+              sx={{ width: "100%" }}
+            /> */}
+          </form>
+        )}
         <div className="search-and-results-container">
           <div className="card-map-toggler">
             {isMobile && cardArray.length !== 0 && (
