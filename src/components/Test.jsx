@@ -32,52 +32,54 @@ import { centrar } from "./centrar.js";
 import createClinicObj from "../helpers/createClinicObj.js";
 import "./../App.css";
 import getDiagnosis from "./../api/openai";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
+const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+const proxy = "http://localhost:5000";
+const clinicsPerPage = 4;
 
 export default function Test() {
-  const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-
-  const proxy = "http://localhost:5000";
-
+  // Hooks
   const { t } = useTranslation();
+  const isMobile = useMediaQuery("(max-width:768px)");
+
+  // States
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
-
-  const handleChangeLanguage = (languageCode) => {
-    setSelectedLanguage(languageCode);
-  };
-
   const [userPosition, setUserPosition] = useState();
-
-  const setUserCurrentPosition = (userPos) => {
-    setUserPosition(userPos);
-  };
-
   const [mapy, setMapy] = useState();
-
-  const setsetMapyMapy = (mapy) => {
-    setMapy(mapy);
-  };
-
   const [data, setData] = useState(citiesEn);
   const [specialities, setSpecialities] = useState(
     specialitiesArray.specialities_en
   );
-  const clinicsPerPage = 4;
   const [selectedCountry, setSelectedCountry] = useState("");
   const [cityValue, setCityValue] = useState("");
   const { register, handleSubmit, getValues, reset, setValue } = useForm();
   const [speciality, setSpeciality] = useState("");
   const [cities, setCities] = useState([]);
   const [clinicsToDisplay, setClinicsToDisplay] = useState(null);
-
   const [placesDistancesToUserPosition, setPlacesDistancesToUserPosition] =
     useState([]);
-
   const [selectedOptions, setSelectedOptions] = useState({
     country: "",
     city: "",
     speciality: "",
   });
+  const [diagnosis, setDiagnosis] = useState("");
+  const [cardArray, setCardArray] = useState([]);
+  const [showCards, setShowCards] = useState(false);
+  const [page, setPage] = React.useState(1);
 
+  // Handlers
+  const handleChangeLanguage = (languageCode) => {
+    setSelectedLanguage(languageCode);
+  };
+  const setUserCurrentPosition = (userPos) => {
+    setUserPosition(userPos);
+  };
+  const setsetMapyMapy = (mapy) => {
+    setMapy(mapy);
+  };
   const handleAutocompleteChange = (value, nameField) => {
     switch (nameField) {
       case "speciality":
@@ -177,14 +179,24 @@ export default function Test() {
     }
   };
 
-  const [diagnosis, setDiagnosis] = useState("");
-
-  const handleDiagnosisRequest = (event) => {
+  const handleDiagnosisRequest = async (event) => {
     if (event.key === "Enter" && event.target.value !== "") {
-      alert("hola");
-      getDiagnosis("headache").then((diagnosis) => {
-        console.log("diagnosis", diagnosis);
-      });
+      event.preventDefault();
+      const diagnosisInput = event.target.value;
+      setDiagnosis(diagnosisInput);
+
+      try {
+        Swal.showLoading();
+        const diagnosisResponse = await getDiagnosis(diagnosisInput);
+        console.log("diagnosis", diagnosisResponse);
+        Swal.fire({
+          title: diagnosis,
+          text: diagnosisResponse,
+          icon: "success",
+        });
+      } catch (error) {
+        console.error("Error fetching diagnosis:", error);
+      }
     }
   };
 
@@ -192,10 +204,7 @@ export default function Test() {
     setDataForSelects();
   }, [selectedLanguage]);
 
-  const [cardArray, setCardArray] = useState([]);
-
   //calculate time
-
   async function getTravelTime(origin, destination, mode) {
     const directionsService = new google.maps.DirectionsService();
 
@@ -346,14 +355,9 @@ export default function Test() {
     );
   }, [clinicsToDisplay]);
 
-  const [page, setPage] = React.useState(1);
-
   const handlePaginationChange = (event, value) => {
     setPage(value);
   };
-
-  const isMobile = useMediaQuery("(max-width:768px)");
-  const [showCards, setShowCards] = useState(false);
 
   const toggleVisibility = () => {
     setShowCards((prevShowCards) => !prevShowCards);
@@ -434,7 +438,7 @@ export default function Test() {
           />
 
           {/* Name Of Clinics */}
-          <TextField
+          {/* <TextField
             label={t("Clinic Name")}
             variant="outlined"
             id="nameOfClinic"
@@ -442,11 +446,11 @@ export default function Test() {
             {...register("nameOfClinic")}
             onKeyDown={(ev) => handleChangeClinics(ev)}
             sx={{ width: "100%" }}
-          />
+          /> */}
 
           {/* Dianosis Request */}
           <TextField
-            label={t("Diagnosis Request")}
+            label={t("Quick Diagnosis Advice")}
             variant="outlined"
             id="diagnosisRequest"
             className="req-form-input clinic"
@@ -461,11 +465,11 @@ export default function Test() {
             {isMobile && cardArray.length !== 0 && (
               <Button onClick={toggleVisibility}>
                 <img
+                  className={`chevron-icon ${
+                    showCards ? "" : "rotated pulsar"
+                  }`}
                   src={wideChevron}
                   alt="chevron icon"
-                  style={{
-                    transform: showCards ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
                 />
               </Button>
             )}

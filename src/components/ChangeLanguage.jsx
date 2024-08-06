@@ -68,6 +68,7 @@ const ChangeLanguage = () => {
               padding: "4px",
               margin: "4px",
               fontSize: "initial",
+              listStyle: "none",
             }}
           >
             {languages.map((language) => (
