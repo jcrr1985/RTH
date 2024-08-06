@@ -536,6 +536,10 @@ export default function Test() {
         </main>
         <footer>
           <FeedbackModal />
+          <p className="check-out-jobs">
+            check out AI Jobs Vacancies on{" "}
+            <a href="https://aijobshome.com">AI JOBS HOME</a>
+          </p>
         </footer>
       </div>
     </>

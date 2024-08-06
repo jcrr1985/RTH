@@ -328,3 +328,11 @@
 .chevron-icon.rotated {
   transform: rotate(180deg);
 }
+
+.check-out-jobs {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  color: #007bff;
+  font-weight: bold;
+}
