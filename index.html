@@ -13,8 +13,34 @@
       content="medical services, health, search, clinics aggregator"
     />
     <meta name="author" content="run to health" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Run To Health" />
+    <meta
+      property="og:description"
+      content="A platform for finding medical services around the world quickly and easily."
+    />
+    <meta property="og:image" content="/path/to/image.jpg" />
+    <meta property="og:url" content="https://runtohealth.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Run To Health",
+        "url": "https://runtohealth.com",
+        "logo": "https://runtohealth.com/path/to/logo.jpg",
+        "description": "A platform for finding medical services around the world quickly and easily."
+      }
+    </script>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="icon" href="./src/assets/images/svg/Globe.svg" />
+
+    <!-- Sitemap -->
     <link
       rel="sitemap"
       type="application/xml"
@@ -41,7 +67,18 @@
     <!-- End Google Tag Manager -->
   </head>
   <body>
-    <div id="root"></div>
+    <header>
+      <nav aria-label="Main Navigation">
+        <!-- Navigation items here -->
+      </nav>
+    </header>
+
+    <main id="root"></main>
+
+    <footer>
+      <!-- Footer content here -->
+    </footer>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -52,19 +89,7 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k&libraries=places,geometry&callback=Function.prototype"
-    >
-      //&v=weekly
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k&libraries=places,geometry&callback=Function.prototype"></script>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- <script>
-      function loadMainScript() {
-        var script = document.createElement("script");
-        script.type = "module";
-        script.src = "/src/main.jsx";
-        document.head.appendChild(script);
-      }
-    </script> -->
   </body>
 </html>

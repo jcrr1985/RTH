@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo, useContext } from "react";
-
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import {
@@ -114,32 +113,26 @@ export default function Test() {
       case "en":
         setData(citiesEn);
         setSpecialities(specialitiesArray.specialities_en);
-
         break;
       case "ru":
         setData(citiesRu);
         setSpecialities(specialitiesArray.specialities_ru);
-
         break;
       case "it":
         setData(citiesIt);
         setSpecialities(specialitiesArray.specialities_it);
-
         break;
       case "zh":
         setData(citiesZh);
         setSpecialities(specialitiesArray.specialities_zh);
-
         break;
       case "fr":
         setData(citiesFr);
         setSpecialities(specialitiesArray.specialities_fr);
-
         break;
       case "es":
         setData(citiesEs);
         setSpecialities(specialitiesArray.specialities_es);
-
         break;
       default:
         setData(citiesEn);
@@ -190,12 +183,27 @@ export default function Test() {
         const diagnosisResponse = await getDiagnosis(diagnosisInput);
         console.log("diagnosis", diagnosisResponse);
         Swal.fire({
-          title: diagnosis,
+          title: "Diagnosis",
           text: diagnosisResponse,
           icon: "success",
         });
       } catch (error) {
+        if (error.response && error.response.status === 429) {
+          Swal.fire({
+            title: "Too Many Requests",
+            text: "Please try again later. Currently, there are no available tokens.",
+            icon: "error",
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while fetching the diagnosis. Please try again later.",
+            icon: "error",
+          });
+        }
         console.error("Error fetching diagnosis:", error);
+      } finally {
+        Swal.hideLoading();
       }
     }
   };
@@ -367,161 +375,168 @@ export default function Test() {
     <>
       <FeedbackModal />
       <div className="whole-wrapper">
-        <div className="logo-container">
+        <header className="logo-container">
           <div className="logo-container-text">
-            <span className="logo-title">Run To Health</span>
-            <span className="logo-text">
+            <h1 className="logo-title">Run To Health</h1>
+            <p className="logo-text">
               A platform for finding medical services around the world quickly
               and easily
-            </span>
+            </p>
           </div>
           <ChangeLanguage
             selectedLanguage={selectedLanguage}
             handleChangeLanguage={handleChangeLanguage}
           />
-        </div>
-        <form className="top-form-inputs">
-          {/* SPECIALITIES */}
-
-          {specialities && (
+        </header>
+        <main>
+          <form className="top-form-inputs">
+            {/* SPECIALITIES */}
+            {specialities && (
+              <Autocomplete
+                className="req-form-input"
+                id="specialization"
+                value={selectedOptions.speciality}
+                {...register("specialization")}
+                onChange={(event, value) => {
+                  setSpeciality(value);
+                  handleAutocompleteChange(value, "speciality");
+                }}
+                options={specialities || []}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label={t("Specialization")}
+                    sx={{ backgroundColor: "theme.palette.background.default" }}
+                  />
+                )}
+                clearIcon={<></>}
+              />
+            )}
+            {/* countries */}
             <Autocomplete
               className="req-form-input"
-              id="specialization"
-              value={selectedOptions.speciality}
-              {...register("specialization")}
+              id="country-selected"
+              {...register("country-selected")}
               onChange={(event, value) => {
-                setSpeciality(value);
-                handleAutocompleteChange(value, "speciality");
+                handleChangeCountry(event);
+                handleAutocompleteChange(value, "country");
               }}
-              options={specialities || []}
+              options={countriesArray}
+              value={selectedOptions.country}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label={t("Specialization")}
-                  sx={{ backgroundColor: "theme.palette.background.default" }}
-                />
+                <TextField {...params} label={t("Country")} />
               )}
               clearIcon={<></>}
             />
-          )}
-          {/* countries */}
-          <Autocomplete
-            className="req-form-input"
-            id="country-selected"
-            {...register("country-selected")}
-            onChange={(event, value) => {
-              handleChangeCountry(event);
-              handleAutocompleteChange(value, "country");
-            }}
-            options={countriesArray}
-            value={selectedOptions.country}
-            renderInput={(params) => (
-              <TextField {...params} label={t("Country")} />
-            )}
-            clearIcon={<></>}
-          />
-          {/* cities */}
-          <Autocomplete
-            className="req-form-input city"
-            id="city-selected"
-            value={selectedOptions.city}
-            {...register("city-selected")}
-            onChange={(event, value) => {
-              handleChangeCities(event);
-              handleAutocompleteChange(value, "city");
-            }}
-            options={cities}
-            renderInput={(params) => (
-              <TextField {...params} label={t("City")} />
-            )}
-            clearIcon={<></>}
-          />
-
-          {/* Name Of Clinics */}
-          {/* <TextField
-            label={t("Clinic Name")}
-            variant="outlined"
-            id="nameOfClinic"
-            className="req-form-input clinic"
-            {...register("nameOfClinic")}
-            onKeyDown={(ev) => handleChangeClinics(ev)}
-            sx={{ width: "100%" }}
-          /> */}
-
-          {/* Dianosis Request */}
-          <TextField
-            label={t("Quick Diagnosis Advice")}
-            variant="outlined"
-            id="diagnosisRequest"
-            className="req-form-input clinic"
-            {...register("diagnosisRequest")}
-            onKeyDown={(ev) => handleDiagnosisRequest(ev)}
-            sx={{ width: "100%" }}
-          />
-        </form>
-
-        <div className="search-and-results-container">
-          <div className="card-map-toggler">
-            {isMobile && cardArray.length !== 0 && (
-              <Button onClick={toggleVisibility}>
-                <img
-                  className={`chevron-icon ${
-                    showCards ? "" : "rotated pulsar"
-                  }`}
-                  src={wideChevron}
-                  alt="chevron icon"
-                />
-              </Button>
-            )}
-          </div>
-          <div className="results-and-map-wrapper">
-            {cardArray.length !== 0 && (
-              <Box
-                display={isMobile ? (showCards ? "block" : "none") : "block"}
-                className="clinic-cards-container"
-              >
-                {cardArray &&
-                  cardArray
-                    .slice((page - 1) * clinicsPerPage, page * clinicsPerPage)
-                    .map((clinic, index) => {
-                      return (
-                        <MediaCard
-                          key={clinic.placeId + "_" + index}
-                          name={clinic.name}
-                          phone={clinic.phone}
-                          address={clinic.address}
-                          rating={clinic.rating}
-                          distance={placesDistancesToUserPosition[index]}
-                          openNow={clinic.openNow}
-                          formatted_phone_number={clinic.formatted_phone_number}
-                          website={clinic.website}
-                          mapy={mapy}
-                          userPosition={userPosition}
-                          destination={{ lat: clinic.lat, lng: clinic.lng }}
-                          timeByCar={clinic.timeByCar}
-                          timeByFoot={clinic.timeByFoot}
-                        />
-                      );
-                    })}
-                {cardArray && cardArray.length >= 2 && (
-                  <Pagination
-                    count={Math.ceil(cardArray.length / clinicsPerPage)}
-                    color="secondary"
-                    onChange={handlePaginationChange}
+            {/* cities */}
+            <Autocomplete
+              className="req-form-input city"
+              id="city-selected"
+              value={selectedOptions.city}
+              {...register("city-selected")}
+              onChange={(event, value) => {
+                handleChangeCities(event);
+                handleAutocompleteChange(value, "city");
+              }}
+              options={cities}
+              renderInput={(params) => (
+                <TextField {...params} label={t("City")} />
+              )}
+              clearIcon={<></>}
+            />
+            {/* Name Of Clinics */}
+            {/* <TextField
+              label={t("Clinic Name")}
+              variant="outlined"
+              id="nameOfClinic"
+              className="req-form-input clinic"
+              {...register("nameOfClinic")}
+              onKeyDown={(ev) => handleChangeClinics(ev)}
+              sx={{ width: "100%" }}
+            /> */}
+            {/* Dianosis Request */}
+            <TextField
+              label={t("Quick Diagnosis Advice")}
+              variant="outlined"
+              id="diagnosisRequest"
+              className="req-form-input clinic"
+              {...register("diagnosisRequest")}
+              onKeyDown={(ev) => handleDiagnosisRequest(ev)}
+              sx={{ width: "100%" }}
+            />
+          </form>
+          <div className="search-and-results-container">
+            <div className="card-map-toggler">
+              {isMobile && cardArray.length !== 0 && (
+                <Button
+                  onClick={toggleVisibility}
+                  aria-label={
+                    showCards ? "Hide clinic cards" : "Show clinic cards"
+                  }
+                >
+                  <img
+                    className={`chevron-icon ${
+                      showCards ? "rotated" : "pulsar"
+                    }`}
+                    src={wideChevron}
+                    alt="chevron icon"
                   />
-                )}
+                </Button>
+              )}
+            </div>
+            <div className="results-and-map-wrapper">
+              {cardArray.length !== 0 && (
+                <Box
+                  display={isMobile ? (showCards ? "block" : "none") : "block"}
+                  className="clinic-cards-container"
+                >
+                  {cardArray &&
+                    cardArray
+                      .slice((page - 1) * clinicsPerPage, page * clinicsPerPage)
+                      .map((clinic, index) => {
+                        return (
+                          <MediaCard
+                            key={clinic.placeId + "_" + index}
+                            name={clinic.name}
+                            phone={clinic.phone}
+                            address={clinic.address}
+                            rating={clinic.rating}
+                            distance={placesDistancesToUserPosition[index]}
+                            openNow={clinic.openNow}
+                            formatted_phone_number={
+                              clinic.formatted_phone_number
+                            }
+                            website={clinic.website}
+                            mapy={mapy}
+                            userPosition={userPosition}
+                            destination={{ lat: clinic.lat, lng: clinic.lng }}
+                            timeByCar={clinic.timeByCar}
+                            timeByFoot={clinic.timeByFoot}
+                          />
+                        );
+                      })}
+                  {cardArray && cardArray.length >= 2 && (
+                    <Pagination
+                      count={Math.ceil(cardArray.length / clinicsPerPage)}
+                      color="secondary"
+                      onChange={handlePaginationChange}
+                    />
+                  )}
+                </Box>
+              )}
+              <Box
+                display={showCards ? "none" : "block"}
+                className="map-container"
+              >
+                <div id="panel"></div>
+                <div className="map" id="map"></div>
               </Box>
-            )}
-
-            <Box
-              display={showCards ? "none" : "block"}
-              className="map-container"
-            >
-              <div id="panel"></div>
-              <div className="map" id="map"></div>
-            </Box>
+            </div>
           </div>
-        </div>
+        </main>
+        <footer>
+          <FeedbackModal />
+        </footer>
       </div>
     </>
   );
