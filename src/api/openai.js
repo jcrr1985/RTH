@@ -9,11 +9,11 @@ const getDiagnosis = async (symptoms) => {
       {
         role: "system",
         content:
-          "You are a medical assistant. Provide a possible diagnosis based on the given symptoms. Be clear and concise.",
+          "You are a medical assistant. Provide multiple possible diagnoses based on the given symptoms. Be clear and concise.",
       },
       {
         role: "user",
-        content: `The patient is experiencing the following symptoms: ${symptoms}. Please provide a possible diagnosis.`,
+        content: `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`,
       },
     ],
     max_tokens: 512,
