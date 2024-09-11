@@ -4,7 +4,7 @@ const apiKey = "bd71dd9e6bda4d7d82ca625453e1480a";
 
 const getDiagnosis = async (symptoms) => {
   const data = {
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     messages: [
       {
         role: "system",
