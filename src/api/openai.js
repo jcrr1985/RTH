@@ -9,7 +9,7 @@ const getDiagnosis = async (symptoms) => {
       {
         role: "system",
         content:
-          "You are a medical assistant. Provide multiple possible diagnoses based on the given symptoms. Be clear and concise.",
+          "You are a medical assistant. Provide multiple possible diagnoses based on the given symptoms. Be clear and concise, and limit your response to 200 words.",
       },
       {
         role: "user",
