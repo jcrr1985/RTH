@@ -181,10 +181,26 @@ export default function Test() {
       try {
         Swal.showLoading();
         const diagnosisResponse = await getDiagnosis(diagnosisInput);
-        console.log("diagnosis", diagnosisResponse);
+        const diagnosisLines = diagnosisResponse.split("\n");
+
         Swal.fire({
           title: "Diagnosis",
-          text: diagnosisResponse,
+          html: `
+                <div style="
+                    max-height: 300px;
+                    overflow-y: auto;
+                    text-align: left;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+                    ${diagnosisLines
+                      .map(
+                        (line) =>
+                          `<p style="margin: 0; margin-bottom: 16px;">${line}</p>`
+                      )
+                      .join("")}
+                </div>
+            `,
           icon: "success",
         });
       } catch (error) {
