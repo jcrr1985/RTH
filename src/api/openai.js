@@ -21,8 +21,24 @@ const getDiagnosis = async (symptoms) => {
       data,
       config
     );
+
+    // Check the structure of the response to extract generated text
+    // This is a common structure for Hugging Face responses but may vary
     const result = response.data;
-    const diagnosis = result[0].generated_text; // Adjust based on the API response format
+    let diagnosis;
+
+    if (result && Array.isArray(result) && result.length > 0) {
+      // GPT-2 models might return the result in an array or a different structure
+      diagnosis = result[0].generated_text || result[0].text;
+    } else if (result && typeof result === "object" && result.text) {
+      // Handle cases where response is an object with text field
+      diagnosis = result.text;
+    } else {
+      // Fallback to logging the full response
+      console.log("Unexpected response format:", result);
+      diagnosis = "Unable to retrieve diagnosis.";
+    }
+
     console.log(diagnosis);
     return diagnosis;
   } catch (error) {
