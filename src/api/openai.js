@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const apiKey = "distilbert-base-uncased";
-const model = "gpt2"; // Replace with your chosen model
+const apiKey = "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";
+const model = "distilbert-base-uncased"; // Replace with your chosen model
 
 const getDiagnosis = async (symptoms) => {
   const data = {
