@@ -1,40 +1,30 @@
 import axios from "axios";
 
-const apiKey = "bd71dd9e6bda4d7d82ca625453e1480a";
+const apiKey = "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";
+const model = "gpt2"; // Replace with your chosen model
 
 const getDiagnosis = async (symptoms) => {
   const data = {
-    model: "gpt-4",
-    messages: [
-      {
-        role: "system",
-        content:
-          "You are a medical assistant. Provide multiple possible diagnoses based on the given symptoms. Be clear and concise, and limit your response to 200 words.",
-      },
-      {
-        role: "user",
-        content: `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`,
-      },
-    ],
-    max_tokens: 512,
-    stream: false,
+    inputs: `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`,
   };
 
   const config = {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
     },
   };
 
   try {
     const response = await axios.post(
-      "https://api.aimlapi.com/chat/completions",
+      `https://api-inference.huggingface.co/models/${model}`,
       data,
       config
     );
-    console.log(response.data.choices[0].message.content);
-    return response.data.choices[0].message.content;
+    const result = response.data;
+    const diagnosis = result[0].generated_text; // Adjust based on the API response format
+    console.log(diagnosis);
+    return diagnosis;
   } catch (error) {
     console.error("Error:", error);
     throw error;
