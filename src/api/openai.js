@@ -1,44 +1,20 @@
-import axios from "axios";
+import cohere from "cohere-ai";
 
-const apiKey = "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";
-const model = "distilbert-base-uncased"; // Replace with your chosen model
+const COHERE_API_KEY = "MKiQ4ky0IkOOh7PARHLwBfEtXMWBvR0PuIFodmB3";
+cohere.init(COHERE_API_KEY);
 
 const getDiagnosis = async (symptoms) => {
-  const data = {
-    inputs: `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`,
-  };
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-  };
+  const prompt = `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`;
 
   try {
-    const response = await axios.post(
-      `https://api-inference.huggingface.co/models/${model}`,
-      data,
-      config
-    );
+    const response = await cohere.generate({
+      model: "command-xlarge-nightly",
+      prompt: prompt,
+      max_tokens: 300,
+      temperature: 0.5,
+    });
 
-    // Check the structure of the response to extract generated text
-    // This is a common structure for Hugging Face responses but may vary
-    const result = response.data;
-    let diagnosis;
-
-    if (result && Array.isArray(result) && result.length > 0) {
-      // GPT-2 models might return the result in an array or a different structure
-      diagnosis = result[0].generated_text || result[0].text;
-    } else if (result && typeof result === "object" && result.text) {
-      // Handle cases where response is an object with text field
-      diagnosis = result.text;
-    } else {
-      // Fallback to logging the full response
-      console.log("Unexpected response format:", result);
-      diagnosis = "Unable to retrieve diagnosis.";
-    }
-
+    const diagnosis = response.body.generations[0].text.trim();
     console.log(diagnosis);
     return diagnosis;
   } catch (error) {
