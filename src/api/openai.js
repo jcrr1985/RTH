@@ -1,24 +1,17 @@
-import cohere from "cohere-ai";
-
-const COHERE_API_KEY = "MKiQ4ky0IkOOh7PARHLwBfEtXMWBvR0PuIFodmB3";
-cohere.init(COHERE_API_KEY);
+import axios from "axios";
 
 const getDiagnosis = async (symptoms) => {
-  const prompt = `The patient is experiencing the following symptoms: ${symptoms}. Please provide multiple possible diagnoses.`;
-
   try {
-    const response = await cohere.generate({
-      model: "command-xlarge-nightly",
-      prompt: prompt,
-      max_tokens: 300,
-      temperature: 0.5,
-    });
+    const response = await axios.post(
+      "rth-server-fq5w31u5r-jcrr1985s-projects.vercel.app/api/getDiagnosis",
+      {
+        symptoms,
+      }
+    );
 
-    const diagnosis = response.body.generations[0].text.trim();
-    console.log(diagnosis);
-    return diagnosis;
+    return response.data.diagnosis;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error fetching diagnosis:", error);
     throw error;
   }
 };
