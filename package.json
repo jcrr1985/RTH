@@ -23,6 +23,7 @@
     "@mui/styles": "^5.11.16",
     "@mui/x-date-pickers": "^5.0.12",
     "axios": "^1.7.2",
+    "cohere-ai": "^7.14.0",
     "cors": "^2.8.5",
     "d3-geo-projection": "^4.0.0",
     "dayjs": "^1.11.7",
