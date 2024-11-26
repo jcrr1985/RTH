@@ -478,7 +478,7 @@ export default function Test() {
               className="req-form-input clinic"
               {...register("diagnosisRequest")}
               onKeyDown={(ev) => handleDiagnosisRequest(ev)}
-              // sx={{ width: "100%", display: "none" }}
+              sx={{ width: "100%", display: "none" }}
             />
           </form>
           <div className="search-and-results-container">
