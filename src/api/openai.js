@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const getDiagnosis = async (symptoms) => {
   try {
     const response = await axios.post(
