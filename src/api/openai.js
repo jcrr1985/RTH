@@ -1,9 +1,7 @@
-import axios from "axios";
-
 const getDiagnosis = async (symptoms) => {
   try {
     const response = await axios.post(
-      "https://rth-fpv05le9n-jcrr1985s-projects.vercel.app/api/getDiagnosis",
+      "https://rth-server.vercel.app/api/getDiagnosis",
       {
         symptoms,
       }
