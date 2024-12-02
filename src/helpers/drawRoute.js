@@ -1,6 +1,14 @@
+let directionsRenderer = null;
+
 export default function trazarRuta(map, modo, userPosition, destination) {
   const directionsService = new window.google.maps.DirectionsService();
-  const directionsRenderer = new window.google.maps.DirectionsRenderer();
+
+  if (directionsRenderer) {
+    directionsRenderer.setMap(null);
+    directionsRenderer = null;
+  }
+
+  directionsRenderer = new window.google.maps.DirectionsRenderer();
 
   const request = {
     origin: userPosition,
