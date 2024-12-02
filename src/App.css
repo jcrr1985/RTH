@@ -261,6 +261,12 @@
       .req-form-input.clinic {
         grid-column: 2 / 3;
       }
+
+      .loader-text {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        font-size: 10px;
+      }
     }
 
     .search-and-results-container {

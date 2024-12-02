@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo, useContext } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import {
@@ -79,6 +81,8 @@ export default function Test() {
   const setsetMapyMapy = (mapy) => {
     setMapy(mapy);
   };
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleAutocompleteChange = (value, nameField) => {
     switch (nameField) {
       case "speciality":
@@ -251,6 +255,7 @@ export default function Test() {
   }
 
   const fillCardArray = async (cardArray) => {
+    setIsLoading(true);
     const service = new google.maps.places.PlacesService(
       document.createElement("div")
     );
@@ -305,6 +310,8 @@ export default function Test() {
     });
 
     setCardArray(newArrayWithoutDuplicates);
+    setIsLoading(false);
+
     console.log("newArrayWithoutDuplicates", newArrayWithoutDuplicates);
   };
 
@@ -481,6 +488,12 @@ export default function Test() {
               sx={{ width: "100%", display: "none" }}
             />
           </form>
+          {isLoading && (
+            <div className="loader-container">
+              <CircularProgress color="secondary" />
+              <p className="loader-text">Your clinics are loading ✨✨ </p>
+            </div>
+          )}
           <div className="search-and-results-container">
             <div className="card-map-toggler">
               {isMobile && cardArray.length !== 0 && (
