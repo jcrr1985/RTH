@@ -85,6 +85,14 @@ async function enrichOneClinic(clinic, userPosition) {
         "WALKING"
       ),
     ]);
+
+    // A rejection here means Google itself couldn't compute that route
+    // (e.g. ZERO_RESULTS for a destination unreachable by road/on foot,
+    // such as a different continent) -- not a transient error, so it's
+    // safe to treat as "this mode is unavailable for this clinic" and
+    // reflect that in the UI instead of leaving the icon silently clickable.
+    enriched.carRouteAvailable = timeByCar.status === "fulfilled";
+    enriched.footRouteAvailable = timeByFoot.status === "fulfilled";
     if (timeByCar.status === "fulfilled") enriched.timeByCar = timeByCar.value;
     if (timeByFoot.status === "fulfilled")
       enriched.timeByFoot = timeByFoot.value;

@@ -461,6 +461,8 @@ export default function Test() {
                             destination={{ lat: clinic.lat, lng: clinic.lng }}
                             timeByCar={clinic.timeByCar}
                             timeByFoot={clinic.timeByFoot}
+                            carRouteAvailable={clinic.carRouteAvailable}
+                            footRouteAvailable={clinic.footRouteAvailable}
                           />
                         );
                       })}

@@ -14,5 +14,9 @@
   "Average service cost": "Average service cost",
   "date": "Date",
   "book now": "Book Now",
-  "language": "en"
+  "language": "en",
+  "by car": "by car",
+  "by foot": "by foot",
+  "Book time online": "Book time online",
+  "routeUnavailable": "No route available: this location may not be reachable by road or on foot."
 }

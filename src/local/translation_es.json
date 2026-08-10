@@ -14,6 +14,9 @@
   "Average service cost": "Costo promedio del servicio",
   "date": "Fecha",
   "book now": "Reservar ahora",
-  "language": "es"
-
+  "language": "es",
+  "by car": "en auto",
+  "by foot": "a pie",
+  "Book time online": "Reservar hora en línea",
+  "routeUnavailable": "No hay ruta disponible: puede que este destino no sea accesible por carretera o a pie."
 }
