@@ -1,7 +1,10 @@
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
 import { getMap } from "../helpers/mapInstance.js";
 
+// Auto-centering the map on the user's location is a convenience, not a
+// requirement: the app is fully usable via manual country/city selection
+// either way. So a denied/unavailable/timed-out location request is not an
+// error worth interrupting the user over — it's logged and otherwise
+// ignored rather than shown as a blocking "Oops" dialog.
 export function centrar(setUserCurrentPosition) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -21,13 +24,10 @@ export function centrar(setUserCurrentPosition) {
     getMap(userLatLng, 6);
   }
 
-  function error() {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Not results found!",
-      html: "Geolocation is not supported by this browser.",
-      showCloseButton: true,
-    });
+  function error(geolocationError) {
+    console.warn(
+      "Could not get the user's location:",
+      geolocationError.message
+    );
   }
 }

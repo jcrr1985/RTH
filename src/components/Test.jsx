@@ -27,7 +27,6 @@ import { MapaMultiMarker } from "./MapaMultiMarker";
 import LanguageContext from "../contexts/LanguageContext";
 import FeedbackModal from "./FeedbackModal";
 import wideChevron from "../../public/chevron-down.png";
-import { centrar } from "./centrar.js";
 import { enrichClinics } from "../helpers/enrichClinics.js";
 import "./../App.css";
 import getDiagnosis from "./../api/openai";
@@ -247,10 +246,6 @@ export default function Test() {
   const countriesArray = useMemo(() => {
     return data.paises.map((country) => country.name);
   }, [data.paises, selectedLanguage]);
-
-  useEffect(() => {
-    centrar();
-  }, []);
 
   useEffect(() => {
     const clinicObj = clinicsToDisplay && clinicsToDisplay[0];
