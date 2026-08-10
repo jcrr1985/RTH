@@ -219,28 +219,25 @@ export default function Test() {
     });
   }, [selectedOptions.country]);
 
-  const handleChangeCities = (event) => {
+  const handleChangeCities = (ciudadSeleccionada) => {
     setCardArray([]);
-    if (event.target.innerText !== "" && event.target.innerText !== "City") {
-      const ciudadSeleccionada = event.target.innerText;
-      setCityValue(ciudadSeleccionada);
-    }
+    setCityValue(ciudadSeleccionada || "");
   };
 
-  const handleChangeCountry = (event) => {
+  const handleChangeCountry = (paisSeleccionado) => {
     setCityValue("");
     setCardArray([]);
-    if (event.target.innerText !== "" && event.target.innerText !== "Country") {
-      const paisSeleccionado = event.target.innerText;
-      setSelectedCountry(paisSeleccionado);
-      setCityValue("");
-      const selectedCountryData = data.paises.find(
-        (country) => country.name === paisSeleccionado
-      );
-      console.log("selectedCountryData", selectedCountryData);
-      const selectedCountryCities = selectedCountryData.cities || [];
-      setCities(selectedCountryCities);
+    setSelectedCountry(paisSeleccionado || "");
+
+    if (!paisSeleccionado) {
+      setCities([]);
+      return;
     }
+
+    const selectedCountryData = data.paises.find(
+      (country) => country.name === paisSeleccionado
+    );
+    setCities(selectedCountryData ? selectedCountryData.cities || [] : []);
   };
 
   const countriesArray = useMemo(() => {
@@ -374,7 +371,7 @@ export default function Test() {
               id="country-selected"
               {...register("country-selected")}
               onChange={(event, value) => {
-                handleChangeCountry(event);
+                handleChangeCountry(value);
                 handleAutocompleteChange(value, "country");
               }}
               options={countriesArray}
@@ -391,7 +388,7 @@ export default function Test() {
               value={selectedOptions.city}
               {...register("city-selected")}
               onChange={(event, value) => {
-                handleChangeCities(event);
+                handleChangeCities(value);
                 handleAutocompleteChange(value, "city");
               }}
               options={cities}
