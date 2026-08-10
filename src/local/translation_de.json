@@ -13,5 +13,9 @@
   "International Accreditation": "Internationale Akkreditierung",
   "distance": "Entfernung",
   "Average service cost": "Durchschnittliche Dienstleistungskosten",
-  "date": "Datum"
+  "date": "Datum",
+  "by car": "mit dem Auto",
+  "by foot": "zu Fuß",
+  "Book time online": "Termin online buchen",
+  "routeUnavailable": "Keine Route verfügbar: Dieser Ort ist möglicherweise nicht mit dem Auto oder zu Fuß erreichbar."
 }

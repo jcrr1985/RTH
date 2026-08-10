@@ -12,5 +12,9 @@
   "International Accreditation": "Acreditação internacional",
   "distance": "Distância",
   "Average service cost": "Custo médio do serviço",
-  "date": "Data"
+  "date": "Data",
+  "by car": "de carro",
+  "by foot": "a pé",
+  "Book time online": "Reservar horário online",
+  "routeUnavailable": "Nenhuma rota disponível: este destino pode não ser acessível por estrada ou a pé."
 }

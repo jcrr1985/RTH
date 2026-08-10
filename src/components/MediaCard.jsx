@@ -1,6 +1,7 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Tooltip from "@mui/material/Tooltip";
 import reviewFullStar from "@/assets/images/svg/reviewFullStar.png";
 import reviewHalfStar from "@/assets/images/svg/reviewHalfStar.png";
 import "./../App.css";
@@ -8,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import DriveIcon from "@mui/icons-material/DriveEta";
 import WalkIcon from "@mui/icons-material/DirectionsWalk";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 import trazarRuta from "../helpers/drawRoute.js";
 
@@ -26,6 +28,8 @@ const MediaCard = React.memo(
     destination,
     timeByCar,
     timeByFoot,
+    carRouteAvailable,
+    footRouteAvailable,
   }) => {
     const { t } = useTranslation();
     let ratingHasDecimal = rating % 1 !== 0 ? true : false;
@@ -106,26 +110,64 @@ const MediaCard = React.memo(
                   <span>{t("Book time online")}</span>
                 </div>
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     <DriveIcon
                       className="media-card--icon"
-                      onClick={() =>
-                        trazarRuta(mapy, "DRIVING", userPosition, destination)
+                      sx={
+                        carRouteAvailable === false
+                          ? { color: "action.disabled", cursor: "default" }
+                          : undefined
                       }
+                      onClick={() => {
+                        if (carRouteAvailable === false) return;
+                        trazarRuta(mapy, "DRIVING", userPosition, destination);
+                      }}
                     />
+                    {carRouteAvailable === false && (
+                      <Tooltip title={t("routeUnavailable")} enterTouchDelay={0}>
+                        <InfoOutlinedIcon
+                          className="media-card--icon-info"
+                          sx={{
+                            fontSize: 16,
+                            color: "action.disabled",
+                            marginLeft: "4px",
+                            cursor: "help",
+                          }}
+                        />
+                      </Tooltip>
+                    )}
                     {timeByCar ? (
                       <div className="media-card--icon-text">
                         {timeByCar} {t("by car")}
                       </div>
                     ) : null}
                   </div>
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     <WalkIcon
                       className="media-card--icon"
-                      onClick={() =>
-                        trazarRuta(mapy, "WALKING", userPosition, destination)
+                      sx={
+                        footRouteAvailable === false
+                          ? { color: "action.disabled", cursor: "default" }
+                          : undefined
                       }
+                      onClick={() => {
+                        if (footRouteAvailable === false) return;
+                        trazarRuta(mapy, "WALKING", userPosition, destination);
+                      }}
                     />
+                    {footRouteAvailable === false && (
+                      <Tooltip title={t("routeUnavailable")} enterTouchDelay={0}>
+                        <InfoOutlinedIcon
+                          className="media-card--icon-info"
+                          sx={{
+                            fontSize: 16,
+                            color: "action.disabled",
+                            marginLeft: "4px",
+                            cursor: "help",
+                          }}
+                        />
+                      </Tooltip>
+                    )}
                     {timeByFoot ? (
                       <div className="media-card--icon-text">
                         {timeByFoot} {t("by foot")}

@@ -12,5 +12,9 @@
   "International Accreditation": "国際認証",
   "distance": "距離",
   "Average service cost": "平均サービス費用",
-  "date": "日付"
+  "date": "日付",
+  "by car": "車で",
+  "by foot": "徒歩で",
+  "Book time online": "オンラインで予約する",
+  "routeUnavailable": "利用可能なルートがありません。この場所には車や徒歩で行けない可能性があります。"
 }

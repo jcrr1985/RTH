@@ -6,21 +6,16 @@ import Test from "./components/Test";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
-
 function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Test />}></Route>
-            <Route path="*" element={<ErrorPage />}></Route>
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Test />}></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

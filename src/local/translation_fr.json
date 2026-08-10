@@ -14,6 +14,9 @@
   "Average service cost": "Coût moyen du service",
   "date": "Date",
   "book now": "Réserver maintenant",
-  "language": "fr"
-
+  "language": "fr",
+  "by car": "en voiture",
+  "by foot": "à pied",
+  "Book time online": "Réserver en ligne",
+  "routeUnavailable": "Aucun itinéraire disponible : cette destination n'est peut-être pas accessible par la route ou à pied."
 }

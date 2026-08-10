@@ -12,5 +12,9 @@
   "International Accreditation": "अंतरराष्ट्रीय प्रमाणीकरण",
   "distance": "दूरी",
   "Average service cost": "औसत सेवा लागत",
-  "date": "तारीख"
+  "date": "तारीख",
+  "by car": "कार से",
+  "by foot": "पैदल",
+  "Book time online": "ऑनलाइन समय बुक करें",
+  "routeUnavailable": "कोई मार्ग उपलब्ध नहीं है: यह स्थान सड़क मार्ग या पैदल पहुंच योग्य नहीं हो सकता।"
 }

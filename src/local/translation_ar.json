@@ -12,5 +12,9 @@
   "International Accreditation": "الاعتماد الدولي",
   "distance": "المسافة",
   "Average service cost": "تكلفة الخدمة المتوسطة",
-  "date": "تاريخ"
+  "date": "تاريخ",
+  "by car": "بالسيارة",
+  "by foot": "سيرًا على الأقدام",
+  "Book time online": "احجز موعدًا عبر الإنترنت",
+  "routeUnavailable": "لا يوجد مسار متاح: قد لا يمكن الوصول إلى هذا المكان بالسيارة أو سيرًا على الأقدام."
 }

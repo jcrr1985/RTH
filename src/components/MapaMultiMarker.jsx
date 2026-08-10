@@ -1,10 +1,10 @@
 import { createObjOfPlaces } from "../helpers/createObjOfPlaces.js";
+import { getMap, clearMarkers, addMarker } from "../helpers/mapInstance.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-const proxy = "https://rth-server.vercel.app";
-// const proxy = "http://localhost:5000";
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const proxy = import.meta.env.VITE_API_PROXY_URL;
 
 import { centrar } from "./centrar.js";
 
@@ -31,19 +31,20 @@ function creadorDeMarcadores(
   setPlacesDistancesToUserPosition
 ) {
   const markersCreator = (places, map) => {
+    clearMarkers();
     const bounds = new window.google.maps.LatLngBounds();
     const infowindow = new window.google.maps.InfoWindow();
     let placesCoords = [];
     fillCardArray(places);
     places.forEach((place) => {
-      let distance = 0;
       const marker = new window.google.maps.Marker({
         position: { lat: place.lat, lng: place.lng },
         map: map,
         title: place.name,
-        distance: distance,
+        distance: 0,
         placeId: place.placeId,
       });
+      addMarker(marker);
       let coord = new window.google.maps.LatLng(place.lat, place.lng);
       if (userPosition) {
         marker.distance = distanceBetween(userPosition, coord);
@@ -61,9 +62,8 @@ function creadorDeMarcadores(
       marker.addListener("click", () => {
         showPanel(place);
       });
-
-      map.fitBounds(bounds);
     });
+    map.fitBounds(bounds);
     map.setZoom(8);
     setPlacesDistancesToUserPosition(placesCoords);
   };
@@ -88,10 +88,7 @@ function fetching(
       if (data.results && data.results.length > 0) {
         const places = createObjOfPlaces(data.results);
 
-        const map = new window.google.maps.Map(document.getElementById("map"), {
-          zoom: 10,
-          center: data.results[0].geometry.location,
-        });
+        const map = getMap(data.results[0].geometry.location, 10);
 
         setsetMapyMapy(map);
 
@@ -108,9 +105,6 @@ function fetching(
           title: "Results not found....",
           allowOutsideClick: true,
           showConfirmButton: true,
-          willOpen: () => {
-            console.log("error de fetching", error);
-          },
         });
         console.error(
           "No se encontraron resultados para la búsqueda especificada"
@@ -137,19 +131,13 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
   Swal.showLoading();
   geocoder.geocode({ address: address }, (results, status) => {
     if (status === "OK") {
-      const map = new window.google.maps.Map(document.getElementById("map"), {
-        zoom:
-          pais && ciudad
-            ? 11
-            : pais == "Russia" || pais == "China"
-            ? 4
-            : pais == "Cyprus"
-            ? 10
-            : pais == "Chile"
-            ? 10
-            : 10,
-        center: results[0].geometry.location,
-      });
+      const zoom =
+        pais && ciudad
+          ? 11
+          : pais == "Russia" || pais == "China"
+          ? 4
+          : 10;
+      getMap(results[0].geometry.location, zoom);
       Swal.close();
     } else {
       Swal.fire({
@@ -163,7 +151,12 @@ function centrarMapaEnPaisOCiudad(pais, ciudad) {
   });
 }
 
-function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
+function obtenerPaisYCiudadPorGeoLocalizacion(
+  especialidad,
+  fillCardArray,
+  setPlacesDistancesToUserPosition,
+  selectedLanguage
+) {
   Swal.showLoading();
   navigator.geolocation.getCurrentPosition(
     async (position) => {
@@ -184,20 +177,27 @@ function obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage) {
       const ciudad = cityComponent.long_name;
       const pais = countryComponent.short_name;
 
-      const tipo1 = "hospital";
-      const tipo2 = "clínica";
-      const tipo5 = "clinic";
+      const clinicTypes = ["hospital", "clínica", "clinic"];
+      const radius = 5000;
 
-      const url = `${proxy}/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&$keyword=-Clinics.&type=clinic|${tipo1}|${tipo2}|${tipo3}|${tipo4}|${tipo5}|${tipo6}|${especialidad}&radius=${radio}&language=${selectedLanguage}&key=${apiKey}`;
+      const url = `${proxy}/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${especialidad}+in+${ciudad},${pais}&type=${clinicTypes.join(
+        "|"
+      )}|${especialidad}&radius=${radius}&language=${selectedLanguage}&key=${apiKey}`;
 
       const response = await fetch(url);
       const data = await response.json();
       const places = createObjOfPlaces(data.results);
-      creadorDeMarcadores(places, map);
+      const map = getMap(data.results[0]?.geometry.location, 10);
+      creadorDeMarcadores(
+        places,
+        map,
+        fillCardArray,
+        userPosition,
+        setPlacesDistancesToUserPosition
+      );
       Swal.close();
     },
     (error) => {
-      setUserCurrentPosition;
       centrar();
       console.error(error);
       Swal.fire({
@@ -336,6 +336,11 @@ export function MapaMultiMarker(
   // no pais, si ciudad, si especialidad
 
   if (!pais && ciudad && especialidad) {
-    obtenerPaisYCiudadPorGeoLocalizacion(selectedLanguage);
+    obtenerPaisYCiudadPorGeoLocalizacion(
+      especialidad,
+      fillCardArray,
+      setPlacesDistancesToUserPosition,
+      selectedLanguage
+    );
   }
 }

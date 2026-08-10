@@ -14,5 +14,9 @@
   "Average service cost": "平均服务费用",
   "date": "日期",
   "book now": "立即预订",
-  "language": "zh"
+  "language": "zh",
+  "by car": "驾车",
+  "by foot": "步行",
+  "Book time online": "在线预约时间",
+  "routeUnavailable": "没有可用路线：该地点可能无法通过公路或步行到达。"
 }
