@@ -1,19 +1,24 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const axios = require("axios");
 
+const { MONGODB_URI, GOOGLE_PLACES_API_KEY, PORT = 5000 } = process.env;
+
+if (!MONGODB_URI || !GOOGLE_PLACES_API_KEY) {
+  console.error(
+    "Missing required environment variables: MONGODB_URI, GOOGLE_PLACES_API_KEY. See server/.env.example."
+  );
+  process.exit(1);
+}
+
 const app = express();
-const port = 5000;
-const url =
-  "mongodb+srv://jcrr1985:Tumama4$@cluster0.zi7qsgn.mongodb.net/feedbackdb";
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(MONGODB_URI);
 
 const db = mongoose.connection;
 db.on("error", (error) => console.error("MongoDB connection error:", error));
@@ -31,44 +36,55 @@ const Feedback = mongoose.model("feedback", feedbackSchema);
 
 // API Endpoint to handle form submission
 app.post("/feedback", async (req, res) => {
-  console.warn("in post feedback");
   const { name, email, country, comment } = req.body;
 
-  const newFeedback = new Feedback({
-    name,
-    email,
-    country,
-    comment,
-  });
-
-  console.log("newFeedback", newFeedback);
-
   try {
-    const feedback = await newFeedback.save();
-    console.log("feedback", feedback);
-    res.status(201).json({ mesage: "succesfully saved", feedback });
+    const feedback = await new Feedback({ name, email, country, comment }).save();
+    res.status(201).json({ message: "successfully saved", feedback });
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
+// Short-lived in-memory cache for Places lookups: identical searches (same
+// country/city/speciality) are extremely common and otherwise each one pays
+// full Google API latency on every request.
+const PLACES_CACHE_TTL_MS = 10 * 60 * 1000;
+const placesCache = new Map();
+
+const getCached = (key) => {
+  const entry = placesCache.get(key);
+  if (!entry) return undefined;
+  if (Date.now() - entry.timestamp > PLACES_CACHE_TTL_MS) {
+    placesCache.delete(key);
+    return undefined;
+  }
+  return entry.data;
+};
+
 app.get("/places", async (req, res) => {
-  // const apiUrl = req.query.apiUrl;
+  const { apiUrl } = req.query;
+  if (!apiUrl) {
+    return res.status(400).json({ error: "Missing apiUrl query parameter" });
+  }
 
-  const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
+  const cached = getCached(apiUrl);
+  if (cached) {
+    return res.json(cached);
+  }
 
-  const apiUrl = `${req.query.apiUrl}&key=${apiKey}`;
+  const requestUrl = `${apiUrl}&key=${GOOGLE_PLACES_API_KEY}`;
 
   try {
-    const response = await axios.get(apiUrl);
-    console.log("response.data", response.data);
+    const response = await axios.get(requestUrl);
+    placesCache.set(apiUrl, { data: response.data, timestamp: Date.now() });
     res.json(response.data);
   } catch (error) {
-    console.error("Error al hacer la solicitud:", error);
+    console.error("Error fetching from Google Places API:", error.message);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
-app.listen(port, () => {
-  console.log("server started on port 5000");
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
 });

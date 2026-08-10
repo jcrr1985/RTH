@@ -1,3 +1,5 @@
+import { getMap } from "../helpers/mapInstance.js";
+
 export function centrar(setUserCurrentPosition) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -14,10 +16,7 @@ export function centrar(setUserCurrentPosition) {
       setUserCurrentPosition({ lat: userLat, lng: userLng });
     }
 
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 6,
-      center: userLatLng,
-    });
+    getMap(userLatLng, 6);
   }
 
   function error() {

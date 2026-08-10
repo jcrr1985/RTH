@@ -11,8 +11,6 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
-import "sweetalert2/src/sweetalert2.scss";
-import axios from "axios";
 
 import * as specialitiesArray from "../assets/js/specialities/specialities.js";
 import {
@@ -30,14 +28,12 @@ import LanguageContext from "../contexts/LanguageContext";
 import FeedbackModal from "./FeedbackModal";
 import wideChevron from "../../public/chevron-down.png";
 import { centrar } from "./centrar.js";
-import createClinicObj from "../helpers/createClinicObj.js";
+import { enrichClinics } from "../helpers/enrichClinics.js";
 import "./../App.css";
 import getDiagnosis from "./../api/openai";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-const apiKey = "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-const proxy = "http://localhost:5000";
 const clinicsPerPage = 4;
 
 export default function Test() {
@@ -145,37 +141,6 @@ export default function Test() {
     }
   };
 
-  const handleChangeClinics = (event) => {
-    if (event.target.value !== "") {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        const nameOfClinicValue = getValues("nameOfClinic");
-        console.log("nameOfClinicValue", nameOfClinicValue);
-
-        const url = `${proxy}/clinics?name=${nameOfClinicValue}`;
-
-        axios
-          .get(url)
-          .then((response) => {
-            const nameOfClinicFetchResponseJson = response.data;
-            setClinicsToDisplay([]);
-
-            const clinicToDisplayObj = createClinicObj(
-              nameOfClinicFetchResponseJson
-            );
-            setClinicsToDisplay([clinicToDisplayObj]);
-            reset({
-              "country-selected": null,
-              "city-selected": null,
-            });
-          })
-          .catch((error) => {
-            console.error("Error en la solicitud axios:", error);
-          });
-      }
-    }
-  };
-
   const handleDiagnosisRequest = async (event) => {
     if (event.key === "Enter" && event.target.value !== "") {
       event.preventDefault();
@@ -232,87 +197,21 @@ export default function Test() {
     setDataForSelects();
   }, [selectedLanguage]);
 
-  //calculate time
-  async function getTravelTime(origin, destination, mode) {
-    const directionsService = new google.maps.DirectionsService();
-
-    const request = {
-      origin: origin, // LatLng | String | google.maps.Place,
-      destination: destination, // LatLng | String | google.maps.Place,
-      travelMode: google.maps.TravelMode[mode], // 'DRIVING' or 'WALKING'
-    };
-
-    return new Promise((resolve, reject) => {
-      directionsService.route(request, (result, status) => {
-        if (status === "OK") {
-          const duration = result.routes[0].legs[0].duration;
-          resolve(duration.text); // or duration.value for seconds
-        } else {
-          reject("Directions request failed due to " + status);
-        }
-      });
-    });
-  }
-
-  const fillCardArray = async (cardArray) => {
-    setIsLoading(true);
-    const service = new google.maps.places.PlacesService(
-      document.createElement("div")
-    );
-
-    // Crear un array de promesas para obtener detalles y tiempos de viaje
-    const promises = cardArray.map((card) => {
-      return new Promise(async (resolve) => {
-        // Obtener detalles
-        const request = {
-          placeId: card.placeId,
-          fields: ["formatted_phone_number", "website"],
-        };
-        service.getDetails(request, async (details, status) => {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            card.formatted_phone_number =
-              details.formatted_phone_number || null;
-            card.website = details.website || null;
-          }
-
-          // Obtener tiempos de viaje
-          try {
-            const timeByCar = await getTravelTime(
-              userPosition,
-              { lat: card.lat, lng: card.lng },
-              "DRIVING"
-            );
-            card.timeByCar = timeByCar;
-
-            const timeByFoot = await getTravelTime(
-              userPosition,
-              { lat: card.lat, lng: card.lng },
-              "WALKING"
-            );
-            card.timeByFoot = timeByFoot;
-          } catch (error) {
-            console.error("Error obtaining travel time:", error);
-          }
-
-          resolve();
-        });
-      });
+  // Renders clinics as soon as the search results arrive, without waiting
+  // on the slower per-clinic phone/website/travel-time lookups. Those are
+  // fetched lazily, only for the page currently on screen (see the
+  // enrichment effect below), so the UI is never blocked behind N x
+  // Google API round trips for results the user hasn't scrolled to yet.
+  const fillCardArray = (places) => {
+    const seenPlaceIds = new Set();
+    const deduped = places.filter((place) => {
+      if (seenPlaceIds.has(place.placeId)) return false;
+      seenPlaceIds.add(place.placeId);
+      return true;
     });
 
-    // Esperar a que todas las promesas se resuelvan
-    await Promise.all(promises);
-
-    // Eliminar duplicados y actualizar el estado
-    const newArrayWithoutDuplicates = [
-      ...new Set(cardArray.map((clinic) => clinic.name)),
-    ].map((name) => {
-      return cardArray.find((clinic) => clinic.name === name);
-    });
-
-    setCardArray(newArrayWithoutDuplicates);
-    setIsLoading(false);
-
-    console.log("newArrayWithoutDuplicates", newArrayWithoutDuplicates);
+    setCardArray(deduped);
+    setPage(1);
   };
 
   useEffect(() => {
@@ -385,6 +284,45 @@ export default function Test() {
       null
     );
   }, [clinicsToDisplay]);
+
+  // Lazily fetch phone/website/travel-time details only for the clinics on
+  // the currently visible page. enrichClinics caches by placeId, so paging
+  // back and forth never re-fetches the same clinic twice.
+  useEffect(() => {
+    const start = (page - 1) * clinicsPerPage;
+    const visibleClinics = cardArray.slice(start, start + clinicsPerPage);
+    const clinicsToEnrich = visibleClinics.filter((clinic) => !clinic.enriched);
+
+    if (clinicsToEnrich.length === 0) return;
+
+    let cancelled = false;
+    setIsLoading(true);
+
+    enrichClinics(clinicsToEnrich, userPosition)
+      .then((enrichedResults) => {
+        if (cancelled) return;
+        const enrichedByPlaceId = new Map(
+          enrichedResults.map((result) => [result.placeId, result])
+        );
+        setCardArray((prevCardArray) =>
+          prevCardArray.map((clinic) =>
+            enrichedByPlaceId.has(clinic.placeId)
+              ? { ...clinic, ...enrichedByPlaceId.get(clinic.placeId) }
+              : clinic
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("Error enriching clinic details:", error);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [cardArray, page, userPosition]);
 
   const handlePaginationChange = (event, value) => {
     setPage(value);
@@ -467,16 +405,6 @@ export default function Test() {
               )}
               clearIcon={<></>}
             />
-            {/* Name Of Clinics */}
-            {/* <TextField
-              label={t("Clinic Name")}
-              variant="outlined"
-              id="nameOfClinic"
-              className="req-form-input clinic"
-              {...register("nameOfClinic")}
-              onKeyDown={(ev) => handleChangeClinics(ev)}
-              sx={{ width: "100%" }}
-            /> */}
             {/* Dianosis Request */}
             <TextField
               label={t("Quick Diagnosis Advice")}
