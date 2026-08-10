@@ -3,15 +3,8 @@ import { getMap, clearMarkers, addMarker } from "../helpers/mapInstance.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-// This is the browser Maps JS API key: it ships to every page load and is
-// meant to be public (restrict it by HTTP referrer in Google Cloud Console,
-// not by hiding it). Falls back to the deployed default so the app keeps
-// working even where VITE_GOOGLE_MAPS_API_KEY isn't set in the build env.
-const apiKey =
-  import.meta.env.VITE_GOOGLE_MAPS_API_KEY ||
-  "AIzaSyDlqhte9y0XRMqlkwF_YJ6Ynx8HQrNyF3k";
-const proxy =
-  import.meta.env.VITE_API_PROXY_URL || "https://rth-server.vercel.app";
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const proxy = import.meta.env.VITE_API_PROXY_URL;
 
 import { centrar } from "./centrar.js";
 
