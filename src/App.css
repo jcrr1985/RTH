@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed&display=swap");
+
+* {
+  font-family: "Fira Sans Extra Condensed", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+#root {
+  margin: 0 auto;
+  font-size: 1.17vw;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.languages-container {
+  cursor: pointer;
+  margin: 10px 0;
+
+  &:hover {
+    background-color: #d9d7ec;
+  }
+}
+
+.css-46bh2p-MuiCardContent-root:last-child {
+  padding-bottom: 0 !important;
+}
+
+.whole-wrapper {
+  padding: .5rem 3.5rem;
+
+  /* top logo text   */
+
+  .logo-container {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .logo-container-text {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+
+      .logo-title {
+        font-size: 45px;
+        line-height: normal
+      }
+
+      .logo-text {
+        font-family: Roboto;
+        font-size: 20px;
+      }
+    }
+
+    .change-language-container {
+      position: absolute;
+      right: 3%;
+    }
+  }
+
+  /* filters */
+
+  .top-form-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-bottom: 3rem;
+
+    .req-form-input.clinic {
+      grid-column: 1 / 4;
+    }
+
+    &>* {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+    }
+
+    fieldset {
+      border: none;
+    }
+  }
+
+  /* cards and maps container */
+
+  .search-and-results-container {
+    min-height: 40vh;
+
+    .card-map-toggler {
+      display: flex;
+      justify-content: center;
+    }
+
+    .results-and-map-wrapper {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 5px;
+      min-height: 100vh;
+
+      .clinic-cards-container {
+        width: 55%;
+
+        .media-card--icon {
+          cursor: pointer;
+        }
+
+        .book-time--div {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .card-content div {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      .card-content-text {
+        word-wrap: break-word;
+        width: 80%;
+      }
+
+      .card-content-left-right-container {
+        display: flex;
+        justify-content: space-between;
+
+        .card-content--item-left {
+          width: 75%;
+
+          .reviewHalfStar {
+            position: relative;
+            top: -1px
+          }
+        }
+      }
+
+      .map-container {
+        width: 100%;
+        height: 100vh;
+
+        .map {
+          max-height: 100vh;
+          border-radius: 10px;
+          height: 100vh;
+          width: -webkit-fill-available;
+        }
+      }
+    }
+
+  }
+}
+
+/* feedback icon and modal */
+
+.circle-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #823978;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  z-index: 9999;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  height: min-content;
+  position: fixed;
+  bottom: 2rem;
+
+  .feedback-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .ff-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 5px;
+
+    }
+
+    .ff-input {
+      width: -webkit-fill-available;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .error {
+      border-color: red;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 12px;
+    }
+
+    .submit-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .whole-wrapper {
+    padding: 0.5rem 1rem;
+
+    .logo-container .logo-container-text {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .top-form-inputs {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 0 !important;
+
+      .req-form-input.city {
+        grid-column: 1 / 2;
+      }
+
+      .req-form-input.clinic {
+        grid-column: 2 / 3;
+      }
+
+      .loader-text {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        font-size: 10px;
+      }
+    }
+
+    .search-and-results-container {
+      .results-and-map-wrapper {
+
+        .clinic-cards-container {
+          width: 100% !important;
+
+          .card-content-left-right-container {
+            .card-content--item-left {
+              .card-content-text {
+                a {
+                  display: inline-block;
+                  max-width: 150px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.swal2-html-container {
+  text-align: justify !important;
+}
+
+.pulsar {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  border-radius: 50%;
+  position: relative;
+  animation: pulsate 1.5s infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.chevron-icon {
+  padding: 10px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.chevron-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.check-out-jobs {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  color: #007bff;
+  font-weight: bold;
+}
