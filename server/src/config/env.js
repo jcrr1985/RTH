@@ -72,7 +72,7 @@ const config = {
   // instância seguinte do que esperar 35 s por uma que está sobrecarregada.
   overpassTimeout: toInt(optional('OVERPASS_TIMEOUT', '12'), 12),
   // Tempo máximo TOTAL no Overpass antes de passar ao Nominatim (ms).
-  overpassBudgetMs: toInt(optional('OVERPASS_BUDGET_MS', '15000'), 15000),
+  overpassBudgetMs: toInt(optional('OVERPASS_BUDGET_MS', '6000'), 6000),
   // O servidor de demonstração do OSRM não tem SLA: serve para desenvolver,
   // não para produção com volume.
   osrmBase: optional('OSRM_BASE', 'https://router.project-osrm.org'),
